@@ -38,3 +38,92 @@ INSERT INTO `Jeu` (`prix`,`date_sortie`,`synopsis`) VALUES (
 
 );
 
+
+CREATE TABLE 'Role' (
+  'id_Role' INT AUTO_INCREMENT,
+  'nom_Role' VARCHAR(50)
+);
+
+INSERT INTO 'role`' ('nom_Role') VALUES (
+    ('Membre'),
+    ('Rédacteur'),
+    ('Administrateur')
+);
+
+
+
+
+CREATE TABLE 'Categorie' (
+  'id_Categorie' INT AUTO_INCREMENT,
+  'nom_Categorie' VARCHAR(50)
+);
+
+INSERT INTO 'Categorie' ('nom_Categorie') VALUES (
+    ('Course'),
+    ('RPG'),
+    ('Sport'),
+    ('Sandbox'),
+);
+
+
+
+
+
+CREATE TABLE 'Support' (
+  'id_Support' INT AUTO_INCREMENT,
+  'nom_Support' VARCHAR(50)
+);
+
+INSERT INTO 'Support' ('nom_Support') VALUES (
+    ('PS'),
+    ('Switch'),
+    ('PC'),
+    ('Xbox'),
+    ('Wii')
+);
+
+
+
+
+
+
+CREATE TABLE 'Utilisateur' (
+  'id_Utilisateur' INT AUTO_INCREMENT,
+  'login_Utilisateur' VARCHAR(50),
+  'password_Utilisateur' VARCHAR(50),
+  'photoProfil_Utilisateur' VARCHAR(50),
+  'nom_Utilisateur' VARCHAR(50),
+  'prenom_Utilisateur' VARCHAR(50)
+
+);
+
+INSERT INTO 'Utilisateur' ('login_Utilisateur', 'password_Utilisateur', 'photoProfil_Utilisateur', 'nom_Utilisateur', 'prenom_Utilisateur') VALUES (
+    ('prannou', 'prof_de_SR', 'METTREIMAGE', 'RANNOU', 'Phillipe'),
+    ('rmounier', 'prof_de_BDD', 'METTREIMAGE', 'MOUNIER', 'Romain'),
+    ('hfeuillatre', 'prof_de_IHM', 'METTREIMAGE', 'FEUILLATRE', 'Hélène'),
+    ('fthibault', 'prof_de_physique', 'METTREIMAGE', 'THIBAULT', 'Franck'),
+    ('olafond', 'prof_delectronique', 'METTREIMAGE', 'LAFOND', 'Olivier'),
+    ('vbouquet', 'prof_de_chimie', 'METTREIMAGE', 'BOUQUET', 'Valérie')
+);
+
+
+
+
+
+
+CREATE TABLE 'Article' (
+  'id_Article' INT AUTO_INCREMENT,
+  'titre_Article' VARCHAR(100),
+  'dateCreation_Article' DATE,
+  'dateModification_Article' DATE
+);
+
+INSERT INTO 'Article' ('titre_Article', 'dateCreation_Article', 'dateModification_Article') VALUES (
+    ('Créez votre propre monde avec Minecraft !', '2022-05-12', NULL),
+    ('Faites de votre salon un Dance Floor avec Just Dance !', '2022-06-04', NULL),
+    ('Un Football en voiture ? Tout est possible avec Rocket League !', '2023-04-04', NULL),
+    ('Jouer au football sans les ligaments croisés ? Fifa 21 est la solution !', '2023-03-04', NULL),
+    ('Possédez-vous des pouvoirs magiques ? World of Warcraft à votre service !', '2022-10-10', NULL),
+    ("Avez-vous déjà braqué une banque ? Avec GTA c'est légal !", '2021-12-12', NULL),
+
+);
