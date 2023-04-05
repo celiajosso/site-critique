@@ -42,6 +42,7 @@ INSERT INTO `Jeu` (`prix`,`date_sortie`,`synopsis`) VALUES (
 CREATE TABLE 'Role' (
   'id_Role' INT AUTO_INCREMENT,
   'nom_Role' VARCHAR(50)
+  PRIMARY KEY (`id_Role`)
 );
 
 INSERT INTO 'role`' ('nom_Role') VALUES (
@@ -55,7 +56,9 @@ INSERT INTO 'role`' ('nom_Role') VALUES (
 
 CREATE TABLE 'Categorie' (
   'id_Categorie' INT AUTO_INCREMENT,
-  'nom_Categorie' VARCHAR(50)
+  'nom_Categorie' VARCHAR(50),
+  PRIMARY KEY (`id_Categorie`)
+
 );
 
 INSERT INTO 'Categorie' ('nom_Categorie') VALUES (
@@ -71,7 +74,8 @@ INSERT INTO 'Categorie' ('nom_Categorie') VALUES (
 
 CREATE TABLE 'Support' (
   'id_Support' INT AUTO_INCREMENT,
-  'nom_Support' VARCHAR(50)
+  'nom_Support' VARCHAR(50),
+  PRIMARY KEY (`id_Support`)
 );
 
 INSERT INTO 'Support' ('nom_Support') VALUES (
@@ -93,7 +97,9 @@ CREATE TABLE 'Utilisateur' (
   'password_Utilisateur' VARCHAR(50),
   'photoProfil_Utilisateur' VARCHAR(50),
   'nom_Utilisateur' VARCHAR(50),
-  'prenom_Utilisateur' VARCHAR(50)
+  'prenom_Utilisateur' VARCHAR(50),
+  PRIMARY KEY (`id_Utilisateur`),
+  FOREIGN KEY ('id_Role') REFERENCES Role
 
 );
 
@@ -106,16 +112,15 @@ INSERT INTO 'Utilisateur' ('login_Utilisateur', 'password_Utilisateur', 'photoPr
     ('vbouquet', 'prof_de_chimie', 'METTREIMAGE', 'BOUQUET', 'Valérie')
 );
 
-
-
-
-
-
 CREATE TABLE 'Article' (
   'id_Article' INT AUTO_INCREMENT,
   'titre_Article' VARCHAR(100),
   'dateCreation_Article' DATE,
-  'dateModification_Article' DATE
+  'dateModification_Article' DATE,
+  PRIMARY KEY (`id_Article`),
+  FOREIGN KEY ('id_jeu') REFERENCES Jeu,
+  FOREIGN KEY ('id_Utilisateur') REFERENCES Utilisateur,
+
 );
 
 INSERT INTO 'Article' ('titre_Article', 'dateCreation_Article', 'dateModification_Article') VALUES (
@@ -125,5 +130,4 @@ INSERT INTO 'Article' ('titre_Article', 'dateCreation_Article', 'dateModificatio
     ('Jouer au football sans les ligaments croisés ? Fifa 21 est la solution !', '2023-03-04', NULL),
     ('Possédez-vous des pouvoirs magiques ? World of Warcraft à votre service !', '2022-10-10', NULL),
     ("Avez-vous déjà braqué une banque ? Avec GTA c'est légal !", '2021-12-12', NULL),
-
 );
