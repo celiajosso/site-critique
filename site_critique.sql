@@ -99,7 +99,7 @@ CREATE TABLE 'Utilisateur' (
   'nom_Utilisateur' VARCHAR(50),
   'prenom_Utilisateur' VARCHAR(50),
   PRIMARY KEY (`id_Utilisateur`),
-  FOREIGN KEY ('id_Role') REFERENCES Role
+  FOREIGN KEY ('id_Role') REFERENCES 'Role'
 
 );
 
@@ -118,8 +118,8 @@ CREATE TABLE 'Article' (
   'dateCreation_Article' DATE,
   'dateModification_Article' DATE,
   PRIMARY KEY (`id_Article`),
-  FOREIGN KEY ('id_jeu') REFERENCES Jeu,
-  FOREIGN KEY ('id_Utilisateur') REFERENCES Utilisateur,
+  FOREIGN KEY ('id_jeu') REFERENCES 'Jeu',
+  FOREIGN KEY ('id_Utilisateur') REFERENCES 'Utilisateur',
 
 );
 
@@ -130,4 +130,91 @@ INSERT INTO 'Article' ('titre_Article', 'dateCreation_Article', 'dateModificatio
     ('Jouer au football sans les ligaments croisés ? Fifa 21 est la solution !', '2023-03-04', NULL),
     ('Possédez-vous des pouvoirs magiques ? World of Warcraft à votre service !', '2022-10-10', NULL),
     ("Avez-vous déjà braqué une banque ? Avec GTA c'est légal !", '2021-12-12', NULL),
+);
+
+CREATE TABLE 'est_image' (
+  PRIMARY KEY (`id_Article`) REFERENCES 'Article',
+  FOREIGN KEY ('id_image') REFERENCES 'Image'
+);
+
+INSERT INTO 'est_image' ('id_Article', 'id_image') VALUES (
+    (1, 1),
+    (1, 2),
+    (2, 3),
+    (2, 4),
+    (3, 5),
+    (3, 6),
+    (4, 7),
+    (4, 8),
+    (5, 9),
+    (5, 10),
+    (6, 11),
+    (6, 12)
+);
+
+
+CREATE TABLE 'Avis' (
+  'id_Avis' INT AUTO_INCREMENT,
+  'titre_Avis' VARCHAR(100),
+  'contenu_Avis' VARCHAR(500),
+  'dateCreation_Avis' DATE,
+  'note_Avis' INT4RANGE(0, 10),
+  PRIMARY KEY (`id_Avis`),
+  FOREIGN KEY ('id_Utilisateur') REFERENCES 'Utilisateur',
+  FOREIGN KEY ('id_Jeu') REFERENCES 'Jeu'
+);
+
+
+
+CREATE TABLE 'est_categorie' (
+  PRIMARY KEY ('id_Jeu') REFERENCES 'Jeu',
+  PRIMARY KEY (`id_Categorie`) REFERENCES 'Categorie'
+  
+);
+
+INSERT INTO 'est_categorie' ('id_Jeu', 'id_Categorie') VALUES (
+    (1, 2),
+    (1, 3),
+    (2, 2),
+    (2, 4),
+    (3, 4),
+    (4, 1),
+    (5, 3),
+    (6, 1),
+    (6, 3)
+);
+
+
+CREATE TABLE 'est_support' (
+  PRIMARY KEY ('id_Jeu') REFERENCES 'Jeu',
+  PRIMARY KEY (`id_Support`) REFERENCES 'Support'
+);
+
+INSERT INTO 'est_support' ('id_Jeu', 'id_Support') VALUES (
+    (1, 1),
+    (1, 2),
+    (1, 3),
+    (1, 4),
+    (1, 5),
+    (2, 1),
+    (2, 3),
+    (3, 1),
+    (3, 2),
+    (3, 3),
+    (3, 4),
+    (3, 5),
+    (4, 1),
+    (4, 2),
+    (4, 3),
+    (4, 4),
+    (4, 5),
+    (5, 1),
+    (5, 2),
+    (5, 3),
+    (5, 4),
+    (5, 5),
+    (6, 1),
+    (6, 2),
+    (6, 3),
+    (6, 4)
 );
