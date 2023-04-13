@@ -1,3 +1,5 @@
+/* table Image */
+
 CREATE TABLE `Image` (
   `id_Image` INT NOT NULL AUTO_INCREMENT,
   `chemin_Image` varchar(100) NOT NULL,
@@ -19,6 +21,8 @@ INSERT INTO `Image` (`chemin_Image`) VALUES (
 (`Images/Jeu/6/jaquette.jpg`),
 );
 
+/* table Jeu */
+
 CREATE TABLE `Jeu` (
   `id_Jeu` INT NOT NULL AUTO_INCREMENT,
   `nom` varchar(30) NOT NULL,
@@ -38,6 +42,7 @@ INSERT INTO `Jeu` (`prix`,`date_sortie`,`synopsis`) VALUES (
 
 );
 
+/* table Role */
 
 CREATE TABLE 'Role' (
   'id_Role' INT AUTO_INCREMENT,
@@ -51,8 +56,7 @@ INSERT INTO 'role`' ('nom_Role') VALUES (
     ('Administrateur')
 );
 
-
-
+/* table Categorie */
 
 CREATE TABLE 'Categorie' (
   'id_Categorie' INT AUTO_INCREMENT,
@@ -68,9 +72,7 @@ INSERT INTO 'Categorie' ('nom_Categorie') VALUES (
     ('Sandbox'),
 );
 
-
-
-
+/* table Support */
 
 CREATE TABLE 'Support' (
   'id_Support' INT AUTO_INCREMENT,
@@ -86,10 +88,7 @@ INSERT INTO 'Support' ('nom_Support') VALUES (
     ('Wii')
 );
 
-
-
-
-
+/* table Utilisateur */
 
 CREATE TABLE 'Utilisateur' (
   'id_Utilisateur' INT AUTO_INCREMENT,
@@ -112,6 +111,8 @@ INSERT INTO 'Utilisateur' ('login_Utilisateur', 'password_Utilisateur', 'photoPr
     ('vbouquet', 'prof_de_chimie', 'Images/PhotoProfil/6.png', 'BOUQUET', 'Valérie')
 );
 
+/* table Article */
+
 CREATE TABLE 'Article' (
   'id_Article' INT AUTO_INCREMENT,
   'titre_Article' VARCHAR(100),
@@ -132,26 +133,7 @@ INSERT INTO 'Article' ('titre_Article', 'dateCreation_Article', 'dateModificatio
     ("Avez-vous déjà braqué une banque ? Avec GTA c'est légal !", '2021-12-12', NULL),
 );
 
-CREATE TABLE 'est_image' (
-  PRIMARY KEY (`id_Article`) REFERENCES 'Article',
-  FOREIGN KEY ('id_image') REFERENCES 'Image'
-);
-
-INSERT INTO 'est_image' ('id_Article', 'id_image') VALUES (
-    (1, 1),
-    (1, 2),
-    (2, 3),
-    (2, 4),
-    (3, 5),
-    (3, 6),
-    (4, 7),
-    (4, 8),
-    (5, 9),
-    (5, 10),
-    (6, 11),
-    (6, 12)
-);
-
+/* table Avis */
 
 CREATE TABLE 'Avis' (
   'id_Avis' INT AUTO_INCREMENT,
@@ -164,15 +146,15 @@ CREATE TABLE 'Avis' (
   FOREIGN KEY ('id_Jeu') REFERENCES 'Jeu'
 );
 
+/* table est_Categorie */
 
-
-CREATE TABLE 'est_categorie' (
+CREATE TABLE 'est_Categorie' (
   PRIMARY KEY ('id_Jeu') REFERENCES 'Jeu',
   PRIMARY KEY (`id_Categorie`) REFERENCES 'Categorie'
   
 );
 
-INSERT INTO 'est_categorie' ('id_Jeu', 'id_Categorie') VALUES (
+INSERT INTO 'est_Categorie' ('id_Jeu', 'id_Categorie') VALUES (
     (1, 2),
     (1, 3),
     (2, 2),
@@ -184,13 +166,14 @@ INSERT INTO 'est_categorie' ('id_Jeu', 'id_Categorie') VALUES (
     (6, 3)
 );
 
+/* table est_Support */
 
-CREATE TABLE 'est_support' (
+CREATE TABLE 'est_Support' (
   PRIMARY KEY ('id_Jeu') REFERENCES 'Jeu',
   PRIMARY KEY (`id_Support`) REFERENCES 'Support'
 );
 
-INSERT INTO 'est_support' ('id_Jeu', 'id_Support') VALUES (
+INSERT INTO 'est_Support' ('id_Jeu', 'id_Support') VALUES (
     (1, 1),
     (1, 2),
     (1, 3),
@@ -217,4 +200,26 @@ INSERT INTO 'est_support' ('id_Jeu', 'id_Support') VALUES (
     (6, 2),
     (6, 3),
     (6, 4)
+);
+
+/* table est_Image */
+
+CREATE TABLE 'est_Image' (
+  PRIMARY KEY (`id_Article`) REFERENCES 'Article',
+  FOREIGN KEY ('id_image') REFERENCES 'Image'
+);
+
+INSERT INTO 'est_Image' ('id_Article', 'id_image') VALUES (
+    (1, 1),
+    (1, 2),
+    (2, 3),
+    (2, 4),
+    (3, 5),
+    (3, 6),
+    (4, 7),
+    (4, 8),
+    (5, 9),
+    (5, 10),
+    (6, 11),
+    (6, 12)
 );
