@@ -4,7 +4,7 @@
 function connectionDB()
 {
 	//connexion à la BDD via le mode procédural (connexion non persistente)
-	$mysqli = mysqli_connect('localhost', 'root', '', 'pokedex');
+	$mysqli = mysqli_connect('localhost', 'root', '', 'site-critique');
 
 	//gestion des erreurs manuelle (si rapport d'erreur désactivé)
 	if (mysqli_connect_errno()){

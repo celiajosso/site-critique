@@ -95,13 +95,13 @@ CREATE TABLE Utilisateur (
   FOREIGN KEY (id_Role) REFERENCES Role(id_Role)
 );
 
-INSERT INTO Utilisateur (login_Utilisateur, password_Utilisateur, photoProfil_Utilisateur, nom_Utilisateur, prenom_Utilisateur) VALUES
-    ("prannou", "prof_de_SR", "Images/PhotoProfil/1.png", "RANNOU", "Phillipe"),
-    ("rmounier", "prof_de_BDD", "Images/PhotoProfil/2.png", "MOUNIER", "Romain"),
-    ("hfeuillatre", "prof_de_IHM", "Images/PhotoProfil/3.png", "FEUILLATRE", "Hélène"),
-    ("fthibault", "prof_de_physique", "Images/PhotoProfil/4.png", "THIBAULT", "Franck"),
-    ("olafond", "prof_delectronique", "Images/PhotoProfil/5.png", "LAFOND", "Olivier"),
-    ("vbouquet", "prof_de_chimie", "Images/PhotoProfil/6.png", "BOUQUET", "Valérie");
+INSERT INTO Utilisateur (login_Utilisateur, password_Utilisateur, photoProfil_Utilisateur, nom_Utilisateur, prenom_Utilisateur, id_role) VALUES
+    ("prannou", "prof_de_SR", "Images/PhotoProfil/1.png", "RANNOU", "Phillipe", 2),
+    ("rmounier", "prof_de_BDD", "Images/PhotoProfil/2.png", "MOUNIER", "Romain", 3),
+    ("hfeuillatre", "prof_de_IHM", "Images/PhotoProfil/3.png", "FEUILLATRE", "Hélène", 3),
+    ("fthibault", "prof_de_physique", "Images/PhotoProfil/4.png", "THIBAULT", "Franck", 2),
+    ("olafond", "prof_delectronique", "Images/PhotoProfil/5.png", "LAFOND", "Olivier", 1),
+    ("vbouquet", "prof_de_chimie", "Images/PhotoProfil/6.png", "BOUQUET", "Valérie", 1);
 
 /* table Article */
 
@@ -117,13 +117,13 @@ CREATE TABLE Article (
   FOREIGN KEY (id_Utilisateur) REFERENCES Utilisateur(id_Utilisateur)
 );
 
-INSERT INTO Article (titre_Article, dateCreation_Article, dateModification_Article) VALUES
-    ('Créez votre propre monde avec Minecraft !', '2022-05-12', NULL),
-    ('Faites de votre salon un Dance Floor avec Just Dance !', '2022-06-04', NULL),
-    ('Un Football en voiture ? Tout est possible avec Rocket League !', '2023-04-04', NULL),
-    ('Jouer au football sans les ligaments croisés ? Fifa 21 est la solution !', '2023-03-04', NULL),
-    ('Possédez-vous des pouvoirs magiques ? World of Warcraft à votre service !', '2022-10-10', NULL),
-    ("Avez-vous déjà braqué une banque ? Avec GTA c'est légal !", '2021-12-12', NULL);
+INSERT INTO Article (titre_Article, dateCreation_Article, dateModification_Article, id_Jeu, id_Utilisateur) VALUES
+    ('Créez votre propre monde avec Minecraft !', '2022-05-12', NULL, 1, 4),
+    ('Faites de votre salon un Dance Floor avec Just Dance !', '2022-06-04', NULL, 2, 1),
+    ('Un Football en voiture ? Tout est possible avec Rocket League !', '2023-04-04', NULL, 3, 2),
+    ('Jouer au football sans les ligaments croisés ? Fifa 21 est la solution !', '2023-03-04', NULL, 4, 3),
+    ('Possédez-vous des pouvoirs magiques ? World of Warcraft à votre service !', '2022-10-10', NULL, 5, 2),
+    ("Avez-vous déjà braqué une banque ? Avec GTA c'est légal !", '2021-12-12', NULL, 6, 3);
 
 /* table Avis */
 
