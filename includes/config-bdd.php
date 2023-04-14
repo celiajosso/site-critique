@@ -3,5 +3,5 @@
 define('SERVEUR', 'localhost:3306');         //hote
 define('USER', 'root');                 //login, par exemple "root" ou ""
 define('PWD', '');                  //mot de passe, par exemple "root" ou ""
-define('DB_NAME', 'critique-jeu');  //nom de la base de données
+define('DB_NAME', 'site-critique');  //nom de la base de données
 ?>

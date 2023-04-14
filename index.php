@@ -17,9 +17,19 @@ $my_sqli = connectionDB();
 
 <!DOCTYPE html lang="fr">
 
+    <head>
+        <title>Pokedex</title>
+        <meta name="author" content="JOSSO Célia">
+        <meta name="author" content="ESIR, CUPGE">
+        
+        <link rel="stylesheet" href="styles/header.css">
+        <link rel="stylesheet" href="styles/nav.css">
+        <link rel="stylesheet" href="styles/footer.css">
+    </head>
 
-<?php
-    
+    <?php include("./static/header.php"); ?>
+    <?php include("./static/nav.php"); ?>
+    <?php  
     // echo "<h1>Article</h1>";            
     // $sql_input = "SELECT * FROM Article";
     // $sql_input_res = readDB($my_sqli, $sql_input);
@@ -97,6 +107,8 @@ $my_sqli = connectionDB();
     // echo "<pre>";
     // print_r($sql_input_res);
     // echo "</pre>";
-
-
 ?>
+
+<?php include("./static/footer.php"); ?>
+
+</html>

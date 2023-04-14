@@ -1,0 +1,39 @@
+nav{
+  font-family: Arial, Helvetica, sans-serif;
+  position: sticky;
+  top: 0;
+  z-index : 10;
+}
+
+.ul-navigation {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color:  #57B3D4;
+}
+
+.li-navigation {
+  float: left;
+  width: 16.66%;
+}
+
+#active{
+  background-color: #295767;
+}
+  
+.li-navigation a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 15px 15px;
+  text-decoration: none;
+  font-variant-caps: small-caps;
+}
+
+.li-navigation a:hover {
+  background-color: #295767;
+  color: white;
+  text-decoration: none;
+}
+
