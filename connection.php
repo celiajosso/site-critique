@@ -41,7 +41,7 @@ $my_sqli = connectionDB();
                     <span class="number">
                         1
                     </span>
-                     Vos informations personnelles
+                    Vos informations personnelles
                 </legend>
                 <div class="form-content">
                     <div class="left-column">
@@ -68,47 +68,31 @@ $my_sqli = connectionDB();
                         <input type="text" name="field1" placeholder="Confirmation du mot de passe *" required>
                     </div>
                     <div class="right-column">
-                        <p>Souhaitez-vous choisir maintenant votre photo de profil ?</p>
-                    <div id="case-tshirt" class="form-content">
+                        <p class="question-form">Souhaitez-vous choisir maintenant votre photo de profil ?</p>
+                    <div id="case-pp" class="form-content">
                             <div id="case-oui">
                                 <label class="container">Oui
-                                    <input id="a-cocher-pour-reservation" type="radio" name="choix-tshirt">
+                                    <input type="radio" id="a-cocher-pour-pp" name="choix-pp">
                                     <span class="radiomark"></span>
                                     <br><br>
-                                    <div class="si-reservation">
-                                        <div>
-                                            <h5>
-                                                Taille du T-shirt
-                                            </h5>
-                                            <br>
-                                            <select name="taille">
-                                                <option>XS</option>
-                                                <option>S</option>
-                                                <option>M</option>
-                                                <option>L</option>
-                                                <option>XL</option>
-                                                <option>XXL</option>
-                                            </select>
-                                        </div>
+                                    <div class="si-pp">
+                                    <p class="question-form">LAISSER CHOISIR PHOTO PROFIL</p>
                                     </div>   
                                 </label>
                             </div>
-                            <div class="right-column">
+                            <div class="right-column" id="case-non">
                                 <label class="container">Non
-                                    <input type="radio" name="choix-tshirt" checked>
+                                    <input type="radio" name="choix-pp" checked>
                                     <span class="radiomark"></span>
                                 </label>
                             </div>
                         </div> 
                     </div>
-                </div>
-                <br>
-                
+                </div>        
             </fieldset>
-            <br>
-            <input type="submit" value="Apply" disabled>                
+            <input type="submit" value="S'inscrire" disabled>                
             </form>
         </div>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br>
     <?php include("./static/footer.php"); ?>
 <html>
