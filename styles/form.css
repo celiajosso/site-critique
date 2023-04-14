@@ -19,16 +19,6 @@ legend {
     width: 100%;
 }
 
-.checkmark {
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 16px;
-	width: 16px;
-	background-color: white;
-	border: 2px solid rgb(147, 147, 147);
-}
-
 .radiomark {
 	position: absolute;
 	top: 0;
@@ -36,40 +26,26 @@ legend {
 	height: 19px;
 	width: 19px;
 	background-color: white;
-	border: 2px solid rgb(147, 147, 147);
+	border: 2px solid rgb(190, 190, 190);
 	border-radius: 50%;
 }
 
-.container:hover input ~ .checkmark, .container:hover input ~ .radiomark{
+.container:hover input ~ .radiomark{
 	background-color: #ccc;
 }
 
-.container input:checked ~ .checkmark {
-	background-color: #403234;
-}
-
 .container input:checked ~ .radiomark {
-	background-color: #403234;
+	background-color: #57B3D4;
 }
 
-.checkmark:after, .radiomark:after {
+.radiomark:after {
 	content: "";
 	position: absolute;
 	display: none;
 }
 
-.container input:checked ~ .checkmark:after, .container input:checked ~ .radiomark:after {
+.container input:checked ~ .radiomark:after {
 	display: block;
-}
-
-.container .checkmark:after {
-	left: 4px;
-	top: 1px;
-	width: 5px;
-	height: 10px;
-	border: solid white;
-	border-width: 0 3px 3px 0;
-	transform: rotate(45deg);
 }
 
 .container .radiomark:after {
@@ -99,7 +75,7 @@ legend {
 .form-style-5{
 	width: 75%;
 	padding: 10px 20px;
-	background: #f7f3f5;
+	background: #f3f3f3;
 	margin: 10px auto;
 	padding: 20px;
 	border-radius: 8px;
