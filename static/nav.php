@@ -75,7 +75,7 @@ else {
     }
 
         echo "<a href='connection.php'>";
-            echo "Connexion";
+            echo "Authentification";
         echo "</a>";
     echo "</li>";
 
