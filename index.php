@@ -18,10 +18,11 @@ $my_sqli = connectionDB();
 <!DOCTYPE html lang="fr">
 
     <head>
-        <title>Pokedex</title>
-        <meta name="author" content="JOSSO Célia">
+        <title>Gamecrit</title>
+        <meta name="author" content="NORTON Thomas, JOSSO Célia">
         <meta name="author" content="ESIR, CUPGE">
         
+        <link rel="icon" href="Images/icone.png">
         <link rel="stylesheet" href="styles/general.css">
         <link rel="stylesheet" href="styles/header.css">
         <link rel="stylesheet" href="styles/nav.css">
