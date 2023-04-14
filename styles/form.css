@@ -51,8 +51,8 @@ legend {
 }
 
 .container .radiomark:after {
-	top : 4px;
-	left : 4px;
+	top : 3px;
+	left : 3px;
     width: 9px;
     height: 9px;
     border-radius: 50%;
@@ -152,11 +152,11 @@ legend {
 	background: #295767;
 }
 
-.si-pp {
+.si-reservation {
 	display: none;
   }
   
-#a-cocher-pour-pp:checked ~  .si-reservation {
+#a-cocher-pour-reservation:checked ~  .si-reservation {
 display: block;
 }
 
@@ -170,12 +170,13 @@ display: block;
 	width: 20%;
 }
 
+
 .question-form{
 	text-align: center;
 	margin: 0;
 	padding-bottom: 2%;
 }
 
-#case-pp{
+#case-t-shirt{
 	width: 50%;
 }
