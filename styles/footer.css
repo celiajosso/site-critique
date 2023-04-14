@@ -13,8 +13,12 @@ footer {
 }
 
 #author {
-  padding-left : 10%;
+  padding-left : 5%;
   padding-right: 2%;
+}
+
+#contact{
+  padding-left: 5%;
 }
 
 #copyright{

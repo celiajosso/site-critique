@@ -26,7 +26,7 @@ if (isset ($_SESSION['username'])) {
         }
 
             echo "<a href='index.php'>";
-                echo "Pokedex";
+                echo "Jeux Videos";
             echo "</a>";
         echo "</li>";
 
@@ -63,7 +63,7 @@ else {
     }
 
         echo "<a href='index.php'>";
-            echo "Pokedex";
+            echo "Jeux Videos";
         echo "</a>";
     echo "</li>";
 

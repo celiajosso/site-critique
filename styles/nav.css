@@ -10,12 +10,12 @@ nav{
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color:  #57B3D4;
+  background-color: #57B3D4;
 }
 
 .li-navigation {
   float: left;
-  width: 16.66%;
+  width: 50%;
 }
 
 #active{
