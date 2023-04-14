@@ -69,20 +69,20 @@ $my_sqli = connectionDB();
                     </div>
                     <div class="right-column">
                         <p class="question-form">Souhaitez-vous choisir maintenant votre photo de profil ?</p>
-                    <div id="case-tshirt" class="form-content">
+                    <div id="case-pp" class="form-content">
                             <div id="case-oui">
                                 <label class="container">Oui
-                                    <input id="a-cocher-pour-reservation" type="radio" name="choix-tshirt">
+                                    <input id="a-cocher-pour-pp" type="radio" name="choix-pp">
                                     <span class="radiomark"></span>
                                     <br><br>
-                                    <div class="si-reservation">
+                                    <div class="si-pp">
                                     <p class="question-form">LAISSER CHOISIR PHOTO PROFIL</p>
                                     </div>   
                                 </label>
                             </div>
                             <div class="right-column" id="case-non">
                                 <label class="container">Non
-                                    <input type="radio" name="choix-tshirt" checked>
+                                    <input type="radio" name="choix-pp" checked>
                                     <span class="radiomark"></span>
                                 </label>
                             </div>
