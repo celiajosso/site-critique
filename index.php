@@ -19,83 +19,84 @@ $my_sqli = connectionDB();
 
 
 <?php
-    echo "<h1>Article</h1>";            
-    $sql_input = "SELECT * FROM Article";
-    $sql_input_res = readDB($my_sqli, $sql_input);
-    echo "<pre>";
-    print_r($sql_input_res);
-    echo "</pre>";
-    echo "<br><br>";
+    
+    // echo "<h1>Article</h1>";            
+    // $sql_input = "SELECT * FROM Article";
+    // $sql_input_res = readDB($my_sqli, $sql_input);
+    // echo "<pre>";
+    // print_r($sql_input_res);
+    // echo "</pre>";
+    // echo "<br><br>";
 
-    echo "<h1>Support</h1><br><br>";            
-    $sql_input = "SELECT * FROM Support";
-    $sql_input_res = readDB($my_sqli, $sql_input);
-    echo "<pre>";
-    print_r($sql_input_res);
-    echo "</pre>";
+    // echo "<h1>Support</h1><br><br>";            
+    // $sql_input = "SELECT * FROM Support";
+    // $sql_input_res = readDB($my_sqli, $sql_input);
+    // echo "<pre>";
+    // print_r($sql_input_res);
+    // echo "</pre>";
 
-    echo "<h1>est_Support</h1><br><br>";            
-    $sql_input = "SELECT * FROM est_Support";
-    $sql_input_res = readDB($my_sqli, $sql_input);
-    echo "<pre>";
-    print_r($sql_input_res);
-    echo "</pre>";
+    // echo "<h1>est_Support</h1><br><br>";            
+    // $sql_input = "SELECT * FROM est_Support";
+    // $sql_input_res = readDB($my_sqli, $sql_input);
+    // echo "<pre>";
+    // print_r($sql_input_res);
+    // echo "</pre>";
 
-    echo "<h1>Categorie</h1><br><br>";            
-    $sql_input = "SELECT * FROM Categorie";
-    $sql_input_res = readDB($my_sqli, $sql_input);
-    echo "<pre>";
-    print_r($sql_input_res);
-    echo "</pre>";
+    // echo "<h1>Categorie</h1><br><br>";            
+    // $sql_input = "SELECT * FROM Categorie";
+    // $sql_input_res = readDB($my_sqli, $sql_input);
+    // echo "<pre>";
+    // print_r($sql_input_res);
+    // echo "</pre>";
 
-    echo "<h1>est_Categorie</h1><br><br>";            
-    $sql_input = "SELECT * FROM est_Categorie";
-    $sql_input_res = readDB($my_sqli, $sql_input);
-    echo "<pre>";
-    print_r($sql_input_res);
-    echo "</pre>";
+    // echo "<h1>est_Categorie</h1><br><br>";            
+    // $sql_input = "SELECT * FROM est_Categorie";
+    // $sql_input_res = readDB($my_sqli, $sql_input);
+    // echo "<pre>";
+    // print_r($sql_input_res);
+    // echo "</pre>";
 
-    echo "<h1>Jeu</h1><br><br>";            
-    $sql_input = "SELECT * FROM Jeu";
-    $sql_input_res = readDB($my_sqli, $sql_input);
-    echo "<pre>";
-    print_r($sql_input_res);
-    echo "</pre>";
+    // echo "<h1>Jeu</h1><br><br>";            
+    // $sql_input = "SELECT * FROM Jeu";
+    // $sql_input_res = readDB($my_sqli, $sql_input);
+    // echo "<pre>";
+    // print_r($sql_input_res);
+    // echo "</pre>";
 
-    echo "<h1>Avis</h1><br><br>";            
-    $sql_input = "SELECT * FROM Avis";
-    $sql_input_res = readDB($my_sqli, $sql_input);
-    echo "<pre>";
-    print_r($sql_input_res);
-    echo "</pre>";
+    // echo "<h1>Avis</h1><br><br>";            
+    // $sql_input = "SELECT * FROM Avis";
+    // $sql_input_res = readDB($my_sqli, $sql_input);
+    // echo "<pre>";
+    // print_r($sql_input_res);
+    // echo "</pre>";
 
-    echo "<h1>Utilisateur</h1><br><br>";            
-    $sql_input = "SELECT * FROM Utilisateur";
-    $sql_input_res = readDB($my_sqli, $sql_input);
-    echo "<pre>";
-    print_r($sql_input_res);
-    echo "</pre>";
+    // echo "<h1>Utilisateur</h1><br><br>";            
+    // $sql_input = "SELECT * FROM Utilisateur";
+    // $sql_input_res = readDB($my_sqli, $sql_input);
+    // echo "<pre>";
+    // print_r($sql_input_res);
+    // echo "</pre>";
 
-    echo "<h1>Role</h1><br><br>";            
-    $sql_input = "SELECT * FROM Role";
-    $sql_input_res = readDB($my_sqli, $sql_input);
-    echo "<pre>";
-    print_r($sql_input_res);
-    echo "</pre>";
+    // echo "<h1>Role</h1><br><br>";            
+    // $sql_input = "SELECT * FROM Role";
+    // $sql_input_res = readDB($my_sqli, $sql_input);
+    // echo "<pre>";
+    // print_r($sql_input_res);
+    // echo "</pre>";
 
-    echo "<h1>Image</h1><br><br>";            
-    $sql_input = "SELECT * FROM Image";
-    $sql_input_res = readDB($my_sqli, $sql_input);
-    echo "<pre>";
-    print_r($sql_input_res);
-    echo "</pre>";
+    // echo "<h1>Image</h1><br><br>";            
+    // $sql_input = "SELECT * FROM Image";
+    // $sql_input_res = readDB($my_sqli, $sql_input);
+    // echo "<pre>";
+    // print_r($sql_input_res);
+    // echo "</pre>";
 
-    echo "<h1>est_Image</h1><br><br>";            
-    $sql_input = "SELECT * FROM est_Image";
-    $sql_input_res = readDB($my_sqli, $sql_input);
-    echo "<pre>";
-    print_r($sql_input_res);
-    echo "</pre>";
+    // echo "<h1>est_Image</h1><br><br>";            
+    // $sql_input = "SELECT * FROM est_Image";
+    // $sql_input_res = readDB($my_sqli, $sql_input);
+    // echo "<pre>";
+    // print_r($sql_input_res);
+    // echo "</pre>";
 
 
 ?>
