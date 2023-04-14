@@ -22,6 +22,7 @@ $my_sqli = connectionDB();
         <meta name="author" content="JOSSO Célia">
         <meta name="author" content="ESIR, CUPGE">
         
+        <link rel="stylesheet" href="styles/general.css">
         <link rel="stylesheet" href="styles/header.css">
         <link rel="stylesheet" href="styles/nav.css">
         <link rel="stylesheet" href="styles/footer.css">
