@@ -67,15 +67,15 @@ else {
         echo "</a>";
     echo "</li>";
 
-    if ($page_courante == 'connection.php') {
+    if ($page_courante == 'authetification.php') {
         echo "<li class='li-navigation' id='active'>";
     }
     else {
         echo "<li class='li-navigation'>";
     }
 
-        echo "<a href='connection.php'>";
-            echo "Authentification";
+        echo "<a href='authentification.php'>";
+            echo "Connexion | Inscription";
         echo "</a>";
     echo "</li>";
 

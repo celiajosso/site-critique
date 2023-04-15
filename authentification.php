@@ -28,10 +28,27 @@ $my_sqli = connectionDB();
         <link rel="stylesheet" href="styles/nav.css">
         <link rel="stylesheet" href="styles/footer.css">
         <link rel="stylesheet" href="styles/form.css">
+        <link rel="stylesheet" href="styles/bouton.css">
     </head>
 
     <?php include("./static/header.php"); ?>
     <?php include("./static/nav.php"); ?>
+
+    <?php
+    
+    echo "<div class='authentification-buttons'>";
+    echo "<div>";
+    echo "Vous possédez déjà un compte Gamecrit ?";
+    echo "<br>";
+    echo "<button>Se connecter</button>";
+    echo "</div>";
+    echo "<div>";
+    echo "Vous êtes nouveau ?";
+    echo "<br>";
+    echo "<button>S'inscrire</button>";
+    echo "</div>";
+    echo "</div>";
+    ?>
 
     <div class="form-style-5">
             <form action="POST">
