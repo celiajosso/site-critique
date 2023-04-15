@@ -1,5 +1,20 @@
 <?php
 
+function getArticles ($my_sqli) {
+    // retourne un tableau associatif
+    // contenant pour chaque article
+    //  - son titre
+    //  - sa jaquette
+    //  - la note du rédacteur
+    //  - la note globale des utilisateurs
+    //  - la date de création + utilisateur concerné
+    //  - la date de dernière modification + utilisateur concerné
+    //  /!\ => compléter code pour mettre toutes les infos
+    $sql_input = "SELECT id_Article FROM Article";
+    $result = readDB($my_sqli, $sql_input);
+    return $result;
+}
+
 function Is_loginUnique ($my_sqli, $username) {
     // Vérifie si le login entre par le nouvel utilisateur est unique
 
