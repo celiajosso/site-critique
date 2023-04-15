@@ -27,7 +27,6 @@ $my_sqli = connectionDB();
         <link rel="stylesheet" href="styles/header.css">
         <link rel="stylesheet" href="styles/nav.css">
         <link rel="stylesheet" href="styles/footer.css">
-        <link rel="stylesheet" href="styles/form.css">
         <link rel="stylesheet" href="styles/bouton.css">
     </head>
 
@@ -35,81 +34,19 @@ $my_sqli = connectionDB();
     <?php include("./static/nav.php"); ?>
 
     <?php
-    
     echo "<div class='authentification-buttons'>";
     echo "<div>";
-    echo "Vous possédez déjà un compte Gamecrit ?";
+    echo "<h2>Vous possédez déjà un compte Gamecrit ?</h2>";
     echo "<br>";
-    echo "<button>Se connecter</button>";
+    echo "<a href='connection.php'><button>Se connecter</button></a>";
     echo "</div>";
     echo "<div>";
-    echo "Vous êtes nouveau ?";
+    echo "<h2>Vous êtes nouveau ?</h2>";
     echo "<br>";
-    echo "<button>S'inscrire</button>";
+    echo "<a href='registration.php'><button>S'inscrire</button></a>";
     echo "</div>";
     echo "</div>";
     ?>
 
-    <div class="form-style-5">
-            <form action="POST">
-              <fieldset>
-                <br>
-                <legend>
-                    <span class="number">
-                        1
-                    </span>
-                    Vos informations personnelles
-                </legend>
-                <div class="form-content">
-                    <div class="left-column">
-                        <input type="text" name="field1" placeholder="Nom *" required>
-                        <input type="text" name="field1" placeholder="Prénom *" required>
-                    </div>
-                    <div class="right-column">
-                        <input type="email" name="field2" placeholder="Adresse mail *" required>
-                        <input type="date" name="field2" placeholder="Date de naissance *" required>
-                    </div>
-                </div>
-                <br>
-                <legend>
-                    <span class="number">
-                        2
-                    </span>
-                    Vos identifiants
-                </legend>
-                <br>
-                <div class="form-content">
-                    <div class="left-column">
-                        <input type="text" name="field1" placeholder="Nom d'utilisateur *" required>
-                        <input type="text" name="field1" placeholder="Mot de passe *" required>
-                        <input type="text" name="field1" placeholder="Confirmation du mot de passe *" required>
-                    </div>
-                    <div class="right-column">
-                        <p class="question-form">Souhaitez-vous choisir maintenant votre photo de profil ?</p>
-                    <div id="case-pp" class="form-content">
-                            <div id="case-oui">
-                                <label class="container">Oui
-                                    <input id="a-cocher-pour-pp" type="radio" name="choix-pp">
-                                    <span class="radiomark"></span>
-                                    <br><br>
-                                    <div class="si-pp">
-                                    <p class="question-form">LAISSER CHOISIR PHOTO PROFIL</p>
-                                    </div>   
-                                </label>
-                            </div>
-                            <div class="right-column" id="case-non">
-                                <label class="container">Non
-                                    <input type="radio" name="choix-pp" checked>
-                                    <span class="radiomark"></span>
-                                </label>
-                            </div>
-                        </div> 
-                    </div>
-                </div>        
-            </fieldset>
-            <input type="submit" value="S'inscrire" disabled>                
-            </form>
-        </div>
-    <br><br><br><br>
     <?php include("./static/footer.php"); ?>
 <html>
