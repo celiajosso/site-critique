@@ -27,6 +27,8 @@ $prenom = $_POST["prenom"];
 
 $naissance = $_POST["naissance"];
 
+$mail = $_POST["mail"];
+
 $login = $_POST["login"];
 
 $mdp = $_POST["mdp"];
@@ -41,52 +43,16 @@ $age_valide = Is_enoughAged($naissance);
 
 $mdp_valide = Is_samePassword($mdp, $mdp_confirmation);
 
-
-if ($login_unique) {
-    echo "login unique";
+if (!$age_valide) {
+    header("Location: ../registration.php?nom=$nom&prenom=$prenom&mail=$mail&naissance=$naissance&login=$login&mdp=$mdp&mdp_confirmation=$mdp_confirmation&choix_pp=$choix_pp&erreur=age");
 }
-else {
-    echo "login pas unique";
+elseif (!$login_unique) {
+    header("Location: ../registration.php?nom=$nom&prenom=$prenom&mail=$mail&naissance=$naissance&login=$login&mdp=$mdp&mdp_confirmation=$mdp_confirmation&choix_pp=$choix_pp&erreur=login");
 }
-
-echo "<br>";
-
-if ($age_valide) {
-    echo "age valide";
+elseif (!$mdp_valide) {
+    header("Location: ../registration.php?nom=$nom&prenom=$prenom&mail=$mail&naissance=$naissance&login=$login&mdp=$mdp&mdp_confirmation=$mdp_confirmation&choix_pp=$choix_pp&erreur=mdp");
 }
-else {
-    echo "age pas valide";
+else{
+    header("Location: ../index.php");
 }
-
-echo "<br>";
-
-if ($mdp_valide) {
-    echo "mdp valide";
-}
-else {
-    echo "mdp pas valide";
-}
-
-
-// $is_dresseur = IsDresseur($my_sqli, $username, $password);
-
-// if ($is_dresseur) {
-//     $sql_id = "SELECT id_dresseur FROM dresseur WHERE nom_dresseur = '$username' AND mdp_dresseur= '$password'";
-//     $res_id = readDB($my_sqli, $sql_id);
-//     $id = $res_id[0]['id_dresseur'];
-     
-//     $_SESSION['username'] = $username;
-//     $_SESSION['id'] = $id;
-//     $_SESSION['is_connected'] = 1;
-//     closeDB($my_sqli);
-//     header("Location: ../index.php");
-// }
-// else {
-//     header("Location: ../connection.php");
-// }
-
-// echo "$username";
-// echo "$password";
-// echo "$is_dresseur";
-
 ?>

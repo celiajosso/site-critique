@@ -9,8 +9,8 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 require_once("./includes/constantes.php");      //constantes du site
 require_once("./includes/config-bdd.php");      //constantes du site
 include_once("./php/functions-DB.php");
-//include_once("./php/functions_query.php");
-//include_once("./php/functions_structure.php");
+include_once("./php/functions_query.php");
+include_once("./php/functions_structure.php");
 $my_sqli = connectionDB();
 
 ?>
@@ -33,6 +33,19 @@ $my_sqli = connectionDB();
     <?php include("./static/header.php"); ?>
     <?php include("./static/nav.php"); ?>
     <?php
+        if (isset($_GET["erreur"])) {
+            if ($_GET["erreur"] == "age") {
+                echo "Vous êtes trop jeune ! Vous devez avoir au moins 15 ans !";
+            }
+            if ($_GET["erreur"] == "login"){
+                echo "Ce nom d'utilisateur est déjà pris !";
+            }
+            if ($_GET["erreur"] == "mdp"){
+                echo "Le mot de passe confirmé est différent du mot de passe saisi !";
+            }
+    }
+    ?>
+    <?php
         echo "<div class='form-style-5'>";
             echo "<form action='./php/inscription.php' method='POST'>";
               echo "<fieldset>";
@@ -45,12 +58,41 @@ $my_sqli = connectionDB();
                 echo "</legend>";
                 echo "<div class='form-content'>";
                     echo "<div class='left-column'>";
-                        echo "<input type='text' name='nom' placeholder='Nom *' required>";
-                        echo "<input type='text' name='prenom' placeholder='Prénom *' required>";
+                        if (isset($_GET['nom'])) {
+                            $nom = $_GET['nom'];
+                            echo "<input type='text' name='nom' placeholder='Nom *' value='$nom' required>";
+                        }
+                        else {
+                            echo "<input type='text' name='nom' placeholder='Nom *' required>";
+                        }
+
+                        if (isset($_GET['prenom'])) {
+                            $prenom = $_GET['prenom'];
+                            echo "<input type='text' name='prenom' placeholder='Prénom *' value='$prenom' required>";
+                        }
+                        else {
+                            echo "<input type='text' name='prenom' placeholder='Prénom *' required>";
+                        }
+                        
+                        
                     echo "</div>";
                     echo "<div class='right-column'>";
+                    if (isset($_GET['mail'])) {
+                        $mail = $_GET['mail'];
+                        echo "<input type='email' name='mail' placeholder='Adresse mail *' value='$mail' required>";
+                    }
+                    else {
                         echo "<input type='email' name='mail' placeholder='Adresse mail *' required>";
+                    }
+
+                    if (isset($_GET['naissance'])) {
+                        $naissance = $_GET['naissance'];
+                        echo "<input type='date' name='naissance' placeholder='Date de naissance *' value='$naissance' required>";
+                    }
+                    else {
                         echo "<input type='date' name='naissance' placeholder='Date de naissance *' required>";
+                    }
+                    
                     echo "</div>";
                 echo "</div>";
                 echo "<br>";
@@ -63,9 +105,30 @@ $my_sqli = connectionDB();
                 echo "<br>";
                 echo "<div class='form-content'>";
                     echo "<div class='left-column'>";
+                    if (isset($_GET['login'])) {
+                        $login = $_GET['login'];
+                        echo "<input type='text' name='login' placeholder='Login *' value='$login' required>";
+                    }
+                    else {
                         echo "<input type='text' name='login' placeholder='Login *' required>";
-                        echo "<input type='text' name='mdp' placeholder='Mot de passe *' required>";
-                        echo "<input type='text' name='mdp-confirmation' placeholder='Confirmation du mot de passe *' required>";
+                    }
+
+                    if (isset($_GET['mdp'])) {
+                        $mdp = $_GET['mdp'];
+                        echo "<input type='password' name='mdp' placeholder='Mot de passe *' value='$mdp' required>";
+                    }
+                    else {
+                        echo "<input type='password' name='mdp' placeholder='Mot de passe *' required>";
+                    }
+
+                    if (isset($_GET['mdp_confirmation'])) {
+                        $mdp_confirmation = $_GET['mdp_confirmation'];
+                        echo "<input type='password' name='mdp-confirmation' placeholder='Confirmation du mot de passe *' value='$mdp_confirmation' required>";
+                    }
+                    else {
+                        echo "<input type='password' name='mdp-confirmation' placeholder='Confirmation du mot de passe *' required>";
+                    }
+
                     echo "</div>";
                     echo "<div class='right-column'>";
                         echo "<p class='question-form'>Souhaitez-vous choisir maintenant votre photo de profil ?</p>";
