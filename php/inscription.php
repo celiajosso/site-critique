@@ -1,0 +1,4 @@
+-> conditions :
+- login unique
+- mdp = mdf conf 
+- + de 15 ans (regarder jour auj -> voir 15 ans avant et voir si date entree < il y a 15 ans)
