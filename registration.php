@@ -32,67 +32,68 @@ $my_sqli = connectionDB();
 
     <?php include("./static/header.php"); ?>
     <?php include("./static/nav.php"); ?>
-
-    <div class="form-style-5">
-            <form action="POST">
-              <fieldset>
-                <br>
-                <legend>
-                    <span class="number">
-                        1
-                    </span>
-                    Vos informations personnelles
-                </legend>
-                <div class="form-content">
-                    <div class="left-column">
-                        <input type="text" name="field1" placeholder="Nom *" required>
-                        <input type="text" name="field1" placeholder="Prénom *" required>
-                    </div>
-                    <div class="right-column">
-                        <input type="email" name="field2" placeholder="Adresse mail *" required>
-                        <input type="date" name="field2" placeholder="Date de naissance *" required>
-                    </div>
-                </div>
-                <br>
-                <legend>
-                    <span class="number">
-                        2
-                    </span>
-                    Vos identifiants
-                </legend>
-                <br>
-                <div class="form-content">
-                    <div class="left-column">
-                        <input type="text" name="field1" placeholder="Nom d'utilisateur *" required>
-                        <input type="text" name="field1" placeholder="Mot de passe *" required>
-                        <input type="text" name="field1" placeholder="Confirmation du mot de passe *" required>
-                    </div>
-                    <div class="right-column">
-                        <p class="question-form">Souhaitez-vous choisir maintenant votre photo de profil ?</p>
-                    <div id="case-pp" class="form-content">
-                            <div id="case-oui">
-                                <label class="container">Oui
-                                    <input id="a-cocher-pour-pp" type="radio" name="choix-pp">
-                                    <span class="radiomark"></span>
-                                    <br><br>
-                                    <div class="si-pp">
-                                    <p class="question-form">LAISSER CHOISIR PHOTO PROFIL</p>
-                                    </div>   
-                                </label>
-                            </div>
-                            <div class="right-column" id="case-non">
-                                <label class="container">Non
-                                    <input type="radio" name="choix-pp" checked>
-                                    <span class="radiomark"></span>
-                                </label>
-                            </div>
-                        </div> 
-                    </div>
-                </div>        
-            </fieldset>
-            <input type="submit" value="S'inscrire" disabled>                
-            </form>
-        </div>
-    <br><br><br><br>
+    <?php
+        echo "<div class='form-style-5'>";
+            echo "<form action='POST'>";
+              echo "<fieldset>";
+                echo "<br>";
+                echo "<legend>";
+                    echo "<span class='number'>";
+                        echo "1";
+                    echo "</span>";
+                    echo "Vos informations personnelles";
+                echo "</legend>";
+                echo "<div class='form-content'>";
+                    echo "<div class='left-column'>";
+                        echo "<input type='text' name='field1' placeholder='Nom *' required>";
+                        echo "<input type='text' name='field1' placeholder='Prénom *' required>";
+                    echo "</div>";
+                    echo "<div class='right-column'>";
+                        echo "<input type='email' name='field2' placeholder='Adresse mail *' required>";
+                        echo "<input type='date' name='field2' placeholder='Date de naissance *' required>";
+                    echo "</div>";
+                echo "</div>";
+                echo "<br>";
+                echo "<legend>";
+                    echo "<span class='number'>";
+                        echo "2";
+                    echo "</span>";
+                    echo "Vos identifiants";
+                echo "</legend>";
+                echo "<br>";
+                echo "<div class='form-content'>";
+                    echo "<div class='left-column'>";
+                        echo "<input type='text' name='field1' placeholder='Nom d'utilisateur *' required>";
+                        echo "<input type='text' name='field1' placeholder='Mot de passe *' required>";
+                        echo "<input type='text' name='field1' placeholder='Confirmation du mot de passe *' required>";
+                    echo "</div>";
+                    echo "<div class='right-column'>";
+                        echo "<p class='question-form'>Souhaitez-vous choisir maintenant votre photo de profil ?</p>";
+                    echo "<div id='case-pp' class='form-content'>";
+                            echo "<div id='case-oui'>";
+                                echo "<label class='container'>Oui";
+                                    echo "<input id='a-cocher-pour-pp' type='radio' name='choix-pp'>";
+                                    echo "<span class='radiomark'></span>";
+                                    echo "<br><br>";
+                                    echo "<div class='si-pp'>";
+                                        echo "<p class='question-form'>LAISSER CHOISIR PHOTO PROFIL</p>";
+                                    echo "</div>";
+                                echo "</label>";
+                            echo "</div>";
+                            echo "<div class='right-column' id='case-non'>";
+                                echo "<label class='container'>Non";
+                                    echo "<input type='radio' name='choix-pp' checked>";
+                                    echo "<span class='radiomark'></span>";
+                                echo "</label>";
+                            echo "</div>";
+                        echo "</div>";
+                    echo "</div>";
+                echo "</div>";   
+            echo "</fieldset>";
+            echo "<input type='submit' value=`S'inscrire` disabled>";         
+            echo "</form>";
+        echo "</div>";
+    echo "<br><br><br><br>";
+    ?>
     <?php include("./static/footer.php"); ?>
 <html>
