@@ -27,21 +27,27 @@ function displayArticleInformations($article) {
     $titre_article = $article[0][0]["titre_Article"];
     $dateCrea_article = $article[0][0]["dateCreation_Article"];
     $dateModif_article = $article[0][0]["dateModification_Article"];
-    // $UtilisateurCrea_article = $article[0][0]["id_UtilisateurCreateur"];
-    // $UtilisateurModif_article = $article[0][0]["id_UtilisateurModifieur"];
     $contenu_article = $article[0][0]["contenu_Article"];
     $noteRedacteur_article = $article[0][0]["noteRedacteur_Article"];
+
+    $UtilisateurCrea_article = $article[1][0]["login_Utilisateur"];
     
-    // ajouter nom des redacteur et modifieur
+    if (!empty($article[2])) {
+        $UtilisateurModif_article = $article[2][0]["login_Utilisateur"];
+    }
+    else {
+        $UtilisateurModif_article = "";
+    }
+    
     // ajouter avis
 
-    $titre_jeu = $article[1][0]["nom"];
-    $prix_jeu = $article[1][0]["prix"];
-    $dateSortie_Jeu = $article[1][0]["date_sortie"];
-    $synopsis_jeu = $article[1][0]["synopsis"];
+    $titre_jeu = $article[3][0]["nom"];
+    $prix_jeu = $article[3][0]["prix"];
+    $dateSortie_Jeu = $article[3][0]["date_sortie"];
+    $synopsis_jeu = $article[3][0]["synopsis"];
 
-    $image_gameplay = $article[2][0]["chemin_Image"];
-    $image_jaquette = $article[2][1]["chemin_Image"];
+    $image_gameplay = $article[4][0]["chemin_Image"];
+    $image_jaquette = $article[4][1]["chemin_Image"];
 
     echo "<br><br><br><br><br><br><br><br><br><br><br><br>";
 }
