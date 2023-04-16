@@ -23,6 +23,21 @@ function displayArticles ($articles) {
 
 function displayArticleInformations($article) {
     echo "<pre>"; print_r($article); echo "</pre>";
+
+    $titre_article = $article[0][0]["titre_Article"];
+    $dateCrea_article = $article[0][0]["dateCreation_Article"];
+    $dateModif_article = $article[0][0]["dateModification_Article"];
+    $contenu_article = $article[0][0]["contenu_Article"];
+
+    // ajouter nom des redacteur et modifieur
+    // ajouter avis
+
+    $titre_jeu = $article[1][0]["nom"];
+    $prix_jeu = $article[1][0]["prix"];
+    $dateSortie_Jeu = $article[1][0]["date_sortie"];
+    $synopsis_jeu = $article[1][0]["synopsis"];
+
+    echo "<br><br><br><br><br><br><br><br><br><br><br><br>";
 }
 
 ?>

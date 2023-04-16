@@ -43,8 +43,6 @@ $my_sqli = connectionDB();
         <br>
         <?php
             $num = $_GET['numero'];
-            echo "Numero de l'article : $num<br><br>";
-            echo "faire page individuelle selon modele sur gdocs";
             $tab = getArticleInformations($my_sqli);
             displayArticleInformations($tab);
         ?>
