@@ -55,7 +55,13 @@ function getArticleInformations ($my_sqli) {
         $sql_images_article = "SELECT chemin_Image FROM Image INNER JOIN est_image ON Image.id_Image = est_Image.id_Image WHERE id_Article=$num";
         $sql_images_article_res = readDB($my_sqli, $sql_images_article);
 
-        return Array ($sql_article_res, $sql_login_crea_res, $sql_login_modif_res, $sql_jeu_res, $sql_images_article_res);
+        $sql_categorie = "SELECT id_Categorie FROM est_Categorie INNER JOIN Jeu ON est_Categorie.id_Jeu = Jeu.id_Jeu INNER JOIN Article on Jeu.id_Jeu=Article.id_Jeu WHERE Article.id_Article=$num";
+        $sql_categorie_res = readDB($my_sqli, $sql_categorie);
+
+        $sql_support = "SELECT id_Support FROM est_Support INNER JOIN Jeu ON est_Support.id_Jeu = Jeu.id_Jeu INNER JOIN Article on Jeu.id_Jeu=Article.id_Jeu WHERE Article.id_Article=$num";
+        $sql_support_res = readDB($my_sqli, $sql_support);
+
+        return Array ($sql_article_res, $sql_login_crea_res, $sql_login_modif_res, $sql_jeu_res, $sql_images_article_res, $sql_categorie_res, $sql_support_res);
     }
 }
 

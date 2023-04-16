@@ -22,7 +22,6 @@ function displayArticles ($articles) {
 }
 
 function displayArticleInformations($article) {
-    echo "<pre>"; print_r($article); echo "</pre>";
 
     $titre_article = $article[0][0]["titre_Article"];
     $dateCrea_article = $article[0][0]["dateCreation_Article"];
@@ -38,8 +37,6 @@ function displayArticleInformations($article) {
     else {
         $UtilisateurModif_article = "";
     }
-    
-    // ajouter avis
 
     $titre_jeu = $article[3][0]["nom"];
     $prix_jeu = $article[3][0]["prix"];
@@ -48,6 +45,45 @@ function displayArticleInformations($article) {
 
     $image_gameplay = $article[4][0]["chemin_Image"];
     $image_jaquette = $article[4][1]["chemin_Image"];
+
+    $jeu_categories = $article[5];
+    $jeu_supports = $article[6];
+
+    echo "<pre>";print_r($jeu_categories);echo "</pre>";
+    echo "<br>";
+    echo "<pre>";print_r($jeu_supports);echo "</pre>";
+
+    // ajouter avis
+
+    echo "<div class='titre-article-individuel'>$titre_article</div>";
+    echo "<div class='infos-pokemon'>";
+    echo "<div class='flex-content'>";
+    echo "<div class='left-column'>";
+
+    echo "<img class='image-pokemon-base' src=$image_jaquette>";
+
+    echo "</div>";
+    echo "<div class='right-column'>";
+    echo "$titre_jeu";
+    echo "<br><br>";
+
+    foreach ($jeu_categories as $cle => $val) {
+        foreach ($val as $cle1 => $val1) {
+            $chemin_type = "Images/Categories/" . $val1 . ".png";
+            echo "<img class='image-type' src='$chemin_type'>";
+        }
+    }
+
+    foreach ($jeu_supports as $cle => $val) {
+        foreach ($val as $cle1 => $val1) {
+            $chemin_type = "Images/Supports/" . $val1 . ".png";
+            echo "<img class='image-type' src='$chemin_type'>";
+        }
+    }
+
+    echo "</div>";
+
+    echo "</div>";
 
     echo "<br><br><br><br><br><br><br><br><br><br><br><br>";
 }
