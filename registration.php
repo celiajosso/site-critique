@@ -35,13 +35,13 @@ $my_sqli = connectionDB();
     <?php
         if (isset($_GET["erreur"])) {
             if ($_GET["erreur"] == "age") {
-                echo "Vous êtes trop jeune ! Vous devez avoir au moins 15 ans !";
+                echo "<div class='erreur-inscription'><h2>Erreur !</h2>Vous êtes trop jeune ! Vous devez avoir au moins 15 ans !<br><br></div>";
             }
             if ($_GET["erreur"] == "login"){
-                echo "Ce nom d'utilisateur est déjà pris !";
+                echo "<div class='erreur-inscription'><h2>Erreur !</h2>Ce nom d'utilisateur est déjà pris !<br><br></div>";
             }
             if ($_GET["erreur"] == "mdp"){
-                echo "Le mot de passe confirmé est différent du mot de passe saisi !";
+                echo "<div class='erreur-inscription'><h2>Erreur !</h2>Le mot de passe confirmé est différent du mot de passe saisi !<br><br></div>";
             }
     }
     ?>
