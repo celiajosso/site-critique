@@ -14,15 +14,15 @@ $lien = $_SERVER['REQUEST_URI'];
 $sep = explode('/', $lien);
 $page_courante= end($sep);
 
-if (isset ($_SESSION['login'])) {
+if (isset ($_SESSION['username'])) {
     echo "<nav>";
     echo "<ul class='ul-navigation'>";
 
         if ($page_courante == 'index.php') {
-            echo "<li class='li-navigation' id='active'>";
+            echo "<li class='li-navigation-threeparts' id='active'>";
         }
         else {
-            echo "<li class='li-navigation'>";
+            echo "<li class='li-navigation-threeparts'>";
         }
 
             echo "<a href='index.php'>";
@@ -30,17 +30,17 @@ if (isset ($_SESSION['login'])) {
             echo "</a>";
         echo "</li>";
 
-        echo "<li class='li-navigation'>";
+        echo "<li class='li-navigation-threeparts'>";
             echo "<a href='./php/logout.php'>";
                 echo "Déconnexion";
             echo "</a>";
         echo "</li>";
 
         if ($page_courante == 'updatepokedex.php') {
-            echo "<li class='li-navigation' id='active'>";
+            echo "<li class='li-navigation-threeparts' id='active'>";
         }
         else {
-            echo "<li class='li-navigation'>";
+            echo "<li class='li-navigation-threeparts'>";
         }
 
             echo "<a href='updatepokedex.php'>";
@@ -56,10 +56,10 @@ else {
     echo "<ul class='ul-navigation'>";
 
     if ($page_courante == 'index.php') {
-        echo "<li class='li-navigation' id='active'>";
+        echo "<li class='li-navigation-twoparts' id='active'>";
     }
     else {
-        echo "<li class='li-navigation'>";
+        echo "<li class='li-navigation-twoparts'>";
     }
 
         echo "<a href='index.php'>";
@@ -67,11 +67,11 @@ else {
         echo "</a>";
     echo "</li>";
 
-    if ($page_courante == 'authetification.php') {
-        echo "<li class='li-navigation' id='active'>";
+    if ($page_courante == 'authentification.php') {
+        echo "<li class='li-navigation-twoparts' id='active'>";
     }
     else {
-        echo "<li class='li-navigation'>";
+        echo "<li class='li-navigation-twoparts'>";
     }
 
         echo "<a href='authentification.php'>";

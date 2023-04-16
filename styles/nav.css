@@ -13,16 +13,16 @@ nav{
   background-color: #57B3D4;
 }
 
-.li-navigation {
+.li-navigation-threeparts {
   float: left;
-  width: 50%;
+  width: 33.33%;
 }
 
 #active{
   background-color: #295767;
 }
   
-.li-navigation a {
+.li-navigation-threeparts a {
   display: block;
   color: white;
   text-align: center;
@@ -31,7 +31,31 @@ nav{
   font-variant-caps: small-caps;
 }
 
-.li-navigation a:hover {
+.li-navigation-threeparts a:hover {
+  background-color: #295767;
+  color: white;
+  text-decoration: none;
+}
+
+.li-navigation-twoparts {
+  float: left;
+  width: 50%;
+}
+
+#active{
+  background-color: #295767;
+}
+  
+.li-navigation-twoparts a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 15px 15px;
+  text-decoration: none;
+  font-variant-caps: small-caps;
+}
+
+.li-navigation-twoparts a:hover {
   background-color: #295767;
   color: white;
   text-decoration: none;
