@@ -1,0 +1,99 @@
+.image-type{
+    width: 20%;
+    height: auto;
+    padding-right: 1%;
+}
+
+.image-pokemon-base{
+    margin: auto;
+    width: 75%;
+    display: block;
+    border: 1px solid;
+    border-radius: 15%;
+}
+
+.image-pokemon-base-inconnu{
+    margin: auto;
+    width: 75%;
+    display: block;
+    border: 1px solid;
+    border-radius: 15%;
+    opacity : 0.3;
+}
+
+.left-column {
+    width : 20%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.right-column {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.flex-content{
+    display: flex;
+    flex-direction: row;
+}
+
+.infos-pokemon{
+    width: 60%;
+    border: solid;
+    border-radius: 5% / 15%;
+    padding : 1%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-between;
+}
+
+table{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    border : 2px solid;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+td, th {
+    border : 2px solid;
+    padding : 1%;
+}
+
+.carte-evolution{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border: solid;
+    border-radius: 5%/10%;
+    padding: 1%;
+    width: 20%;
+    margin-left: 59%;
+}
+
+.pokeball {
+    width: 5%;
+    height : auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.texte-a-centrer{
+    text-align: center;
+}
+
+.ensemble-images-pokemon{
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 70%;
+}
+
+.rangee-image{
+    height: 100%;
+    image-rendering: crisp-edges; 
+}

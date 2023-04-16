@@ -48,11 +48,7 @@ function displayArticleInformations($article) {
 
     $jeu_categories = $article[5];
     $jeu_supports = $article[6];
-
-    echo "<pre>";print_r($jeu_categories);echo "</pre>";
-    echo "<br>";
-    echo "<pre>";print_r($jeu_supports);echo "</pre>";
-
+    
     // ajouter avis
 
     echo "<div class='titre-article-individuel'>$titre_article</div>";
