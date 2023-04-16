@@ -132,6 +132,7 @@ $my_sqli = connectionDB();
                     echo "</div>";
                     echo "<div class='right-column'>";
                         echo "<h3 class='a-centrer'>Choisissez votre photo de profil</h3>";
+                        echo "<p class='a-centrer'>(Répertoire : Images/PhotoProfil/)</p>";
                         echo "<input type=file name='choix-pp'";
                 echo "</div>";   
             echo "</fieldset>";
