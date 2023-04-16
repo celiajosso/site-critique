@@ -21,4 +21,8 @@ function displayArticles ($articles) {
 }
 }
 
+function displayArticleInformations($article) {
+    echo "<pre>"; print_r($article); echo "</pre>";
+}
+
 ?>

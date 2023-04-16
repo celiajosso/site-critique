@@ -45,9 +45,8 @@ $my_sqli = connectionDB();
             $num = $_GET['numero'];
             echo "Numero de l'article : $num<br><br>";
             echo "faire page individuelle selon modele sur gdocs";
-            // $tab = getPokemonInformations($my_sqli);
-            
-            // displayPokedexInformations($my_sqli, $tab);
+            $tab = getArticleInformations($my_sqli);
+            displayArticleInformations($tab);
         ?>
         <?php include("./static/footer.php"); ?>
     </body>            
