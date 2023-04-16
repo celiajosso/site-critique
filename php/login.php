@@ -26,16 +26,16 @@ $isMember = IsMember($my_sqli, $login, $mdp);
 if ($isMember) {
     $sql_id = "SELECT prenom_Utilisateur FROM Utilisateur WHERE login_Utilisateur = '$login' AND password_Utilisateur= '$mdp'";
     $res_id = readDB($my_sqli, $sql_id);
-    $prenom = $res_id[0]['id_dresseur'];
+    $prenom = $res_id[0]['prenom_Utilisateur'];
      
-    $_SESSION['username'] = $username;
+    $_SESSION['username'] = $login;
     $_SESSION['prenom'] = $prenom;
     $_SESSION['is_connected'] = 1;
     closeDB($my_sqli);
     header("Location: ../index.php");
 }
 else {
-    header("Location: ../connection.php?erreur=1");
+    header("Location: ../connection.php?login=$login&erreur=1");
 }
 
 

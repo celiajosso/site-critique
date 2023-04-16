@@ -14,7 +14,7 @@ $lien = $_SERVER['REQUEST_URI'];
 $sep = explode('/', $lien);
 $page_courante= end($sep);
 
-if (isset ($_SESSION['username'])) {
+if (isset ($_SESSION['login'])) {
     echo "<nav>";
     echo "<ul class='ul-navigation'>";
 
