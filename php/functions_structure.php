@@ -51,12 +51,13 @@ function displayArticleInformations($article) {
     
     // ajouter avis
 
-    echo "<div class='titre-article-individuel'>$titre_article</div>";
-    echo "<div class='infos-pokemon'>";
+    echo "<div class='titre-article-individuel'><h1>$titre_article</h1></div>";
+    echo "<br><br>";
+    echo "<div class='infos-article'>";
     echo "<div class='flex-content'>";
     echo "<div class='left-column'>";
 
-    echo "<img class='image-pokemon-base' src=$image_jaquette>";
+    echo "<img class='image-jaquette' src=$image_jaquette>";
 
     echo "</div>";
     echo "<div class='right-column'>";

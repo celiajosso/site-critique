@@ -1,10 +1,19 @@
+.titre-article-individuel{
+    width: 80%;
+    border : 3px solid;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 2.5%/25%;
+}
+
 .image-type{
     width: 15%;
     height: auto;
     padding-right: 1%;
 }
 
-.image-pokemon-base{
+.image-jaquette{
     margin: auto;
     width: 100%;
     display: block;
@@ -30,7 +39,7 @@
     flex-wrap: wrap;
 }
 
-.infos-pokemon{
+.infos-article{
     width: 80%;
     border: solid;
     border-radius: 3%;
