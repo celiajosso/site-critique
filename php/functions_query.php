@@ -48,7 +48,7 @@ function getArticleInformations ($my_sqli) {
 
         // ajouter ici pour avis (INNER JOIN entre avis et utilisateur)
 
-        $sql_images_article = "SELECT chemin_Image FROM Image INNER JOIN est_image ON Image.id_Image = est_Image.id_Article WHERE id_Article=$num";
+        $sql_images_article = "SELECT chemin_Image FROM Image INNER JOIN est_image ON Image.id_Image = est_Image.id_Image WHERE id_Article=$num";
         $sql_images_article_res = readDB($my_sqli, $sql_images_article);
 
         return Array ($sql_article_res, $sql_jeu_res, $sql_images_article_res);
