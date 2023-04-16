@@ -27,8 +27,11 @@ function displayArticleInformations($article) {
     $titre_article = $article[0][0]["titre_Article"];
     $dateCrea_article = $article[0][0]["dateCreation_Article"];
     $dateModif_article = $article[0][0]["dateModification_Article"];
+    // $UtilisateurCrea_article = $article[0][0]["id_UtilisateurCreateur"];
+    // $UtilisateurModif_article = $article[0][0]["id_UtilisateurModifieur"];
     $contenu_article = $article[0][0]["contenu_Article"];
-
+    $noteRedacteur_article = $article[0][0]["noteRedacteur_Article"];
+    
     // ajouter nom des redacteur et modifieur
     // ajouter avis
 
@@ -36,6 +39,9 @@ function displayArticleInformations($article) {
     $prix_jeu = $article[1][0]["prix"];
     $dateSortie_Jeu = $article[1][0]["date_sortie"];
     $synopsis_jeu = $article[1][0]["synopsis"];
+
+    $image_gameplay = $article[2][0]["chemin_Image"];
+    $image_jaquette = $article[2][1]["chemin_Image"];
 
     echo "<br><br><br><br><br><br><br><br><br><br><br><br>";
 }

@@ -38,10 +38,14 @@ function getArticleInformations ($my_sqli) {
     else {
         $num = $_GET['numero'];
 
-        $sql_article = "SELECT * FROM Article WHERE id_Article=$num";
+        $sql_article = "SELECT titre_Article, dateCreation_Article, dateModification_Article, contenu_Article, noteRedacteur_Article FROM Article WHERE id_Article=$num";
         $sql_article_res = readDB($my_sqli, $sql_article);
 
-        // recup login des redacteurs et modifieurs (INNER JOIN entre article et utilisateur)
+        $sql_login_modif = "SELECT login_Utilisateur FROM Utilisateur INNER JOIN Article on Utilisateur.id_Utilisateur = Article.id_UtilisateurModifieur WHERE Article.id_Article=$num";
+        $sql_login_modif_res = readDB($my_sqli, $sql_login_modif);
+
+        $sql_login_crea = "SELECT login_Utilisateur FROM Utilisateur INNER JOIN Article on Utilisateur.id_Utilisateur = Article.id_UtilisateurCreateur WHERE Article.id_Article=$num";
+        $sql_login_crea_res = readDB($my_sqli, $sql_login_crea);
 
         $sql_jeu = "SELECT nom, prix, date_sortie, synopsis FROM Jeu INNER JOIN Article ON Jeu.id_Jeu = Article.id_Jeu WHERE Article.id_Article=$num";
         $sql_jeu_res = readDB($my_sqli, $sql_jeu);
@@ -51,7 +55,7 @@ function getArticleInformations ($my_sqli) {
         $sql_images_article = "SELECT chemin_Image FROM Image INNER JOIN est_image ON Image.id_Image = est_Image.id_Image WHERE id_Article=$num";
         $sql_images_article_res = readDB($my_sqli, $sql_images_article);
 
-        return Array ($sql_article_res, $sql_jeu_res, $sql_images_article_res);
+        return Array ($sql_article_res, $sql_login_crea_res, $sql_login_modif_res, $sql_jeu_res, $sql_images_article_res);
     }
 }
 
