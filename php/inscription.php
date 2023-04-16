@@ -17,10 +17,6 @@ $my_sqli = connectionDB();
 
 <?php
 
-echo "<pre>";
-print_r($_POST);
-echo "</pre>";
-
 $nom = $_POST["nom"];
 
 $prenom = $_POST["prenom"];

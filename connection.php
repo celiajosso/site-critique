@@ -9,8 +9,8 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 require_once("./includes/constantes.php");      //constantes du site
 require_once("./includes/config-bdd.php");      //constantes du site
 include_once("./php/functions-DB.php");
-//include_once("./php/functions_query.php");
-//include_once("./php/functions_structure.php");
+include_once("./php/functions_query.php");
+include_once("./php/functions_structure.php");
 $my_sqli = connectionDB();
 
 ?>
@@ -32,68 +32,44 @@ $my_sqli = connectionDB();
 
     <?php include("./static/header.php"); ?>
     <?php include("./static/nav.php"); ?>
-
-    <h1 style="color: red;">A changer par rapport à l'inscription -> demander login + mdp seulement</h1>
-
+    <?php
+        if (isset($_GET["erreur"])) {
+            echo "<div class='erreur-inscription'><h2>Erreur !</h2>Utilisateur ou mot de passe incorrect.<br><br></div>";
+        }
+    ?>
     <?php
         echo "<div class='form-style-5'>";
-            echo "<form action='POST'>";
+            echo "<form action='./php/login.php' method='POST'>";
               echo "<fieldset>";
                 echo "<br>";
                 echo "<legend>";
-                    echo "<span class='number'>";
-                        echo "1";
-                    echo "</span>";
-                    echo "Vos informations personnelles";
+                    echo "<h2 class='a-centrer'>Connexion</h2>";
                 echo "</legend>";
                 echo "<div class='form-content'>";
                     echo "<div class='left-column'>";
-                        echo "<input type='text' name='field1' placeholder='Nom *' required>";
-                        echo "<input type='text' name='field1' placeholder='Prénom *' required>";
-                    echo "</div>";
-                    echo "<div class='right-column'>";
-                        echo "<input type='email' name='field2' placeholder='Adresse mail *' required>";
-                        echo "<input type='date' name='field2' placeholder='Date de naissance *' required>";
+                        if (isset($_GET['login'])) {
+                            $login = $_GET['login'];
+                            echo "<input type='text' name='login' placeholder='Login *' value='$login' required>";
+                        }
+                        else {
+                            echo "<input type='text' name='login' placeholder='Login *' required>";
+                        }
+
+                        if (isset($_GET['prenom'])) {
+                            $mdp = $_GET['mdp'];
+                            echo "<input type='text' name='mdp' placeholder='Mot de passe *' value='$mdp' required>";
+                        }
+                        else {
+                            echo "<input type='password' name='mdp' placeholder='Mot de passe *' required>";
+                        }
+                        
+                        
                     echo "</div>";
                 echo "</div>";
                 echo "<br>";
-                echo "<legend>";
-                    echo "<span class='number'>";
-                        echo "2";
-                    echo "</span>";
-                    echo "Vos identifiants";
-                echo "</legend>";
-                echo "<br>";
-                echo "<div class='form-content'>";
-                    echo "<div class='left-column'>";
-                        echo "<input type='text' name='field1' placeholder='Nom d'utilisateur *' required>";
-                        echo "<input type='text' name='field1' placeholder='Mot de passe *' required>";
-                        echo "<input type='text' name='field1' placeholder='Confirmation du mot de passe *' required>";
-                    echo "</div>";
-                    echo "<div class='right-column'>";
-                        echo "<p class='question-form'>Souhaitez-vous choisir maintenant votre photo de profil ?</p>";
-                    echo "<div id='case-pp' class='form-content'>";
-                            echo "<div id='case-oui'>";
-                                echo "<label class='container'>Oui";
-                                    echo "<input id='a-cocher-pour-pp' type='radio' name='choix-pp'>";
-                                    echo "<span class='radiomark'></span>";
-                                    echo "<br><br>";
-                                    echo "<div class='si-pp'>";
-                                        echo "<p class='question-form'>LAISSER CHOISIR PHOTO PROFIL</p>";
-                                    echo "</div>";
-                                echo "</label>";
-                            echo "</div>";
-                            echo "<div class='right-column' id='case-non'>";
-                                echo "<label class='container'>Non";
-                                    echo "<input type='radio' name='choix-pp' checked>";
-                                    echo "<span class='radiomark'></span>";
-                                echo "</label>";
-                            echo "</div>";
-                        echo "</div>";
-                    echo "</div>";
-                echo "</div>";   
+                
             echo "</fieldset>";
-            echo "<input type='submit' value=`S'inscrire` disabled>";         
+            echo "<input type='submit' value='Connexion'>";         
             echo "</form>";
         echo "</div>";
     echo "<br><br><br><br>";

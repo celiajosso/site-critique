@@ -89,4 +89,16 @@ function Is_samePassword ($password, $password_conf) {
     return $password == $password_conf;
 
 }
+
+function IsMember ($my_sqli, $username, $password) {
+    // Vérifie si un utilisateur existe dans la BDD
+    //      - Vérifie le login
+    //      - Vérifie le mdp
+    //      - retourne un tableau associatif
+
+    $sql_connexion = "SELECT id_Utilisateur FROM Utilisateur WHERE login_Utilisateur = '$username' AND password_Utilisateur = '$password'";
+    $res_login = readDB($my_sqli, $sql_connexion);
+
+    return (!empty($res_login));
+}
 ?>
