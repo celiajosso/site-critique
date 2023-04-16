@@ -91,6 +91,7 @@ function displayArticleInformations($article) {
     
     echo "<br><br>";
 
+    echo "<div class='text-content'>";
     echo "<table>";
         echo "<tr>";
         echo "<th class='col1'>Date de sortie</th>";
@@ -105,32 +106,30 @@ function displayArticleInformations($article) {
         echo "</tr>";
         
         echo "</table>";
+        echo "<div>";
 
+        echo "<br><br>";
 
-        echo "<h1>Critique</h1>";
-        echo "<br>";
-        echo "$contenu_article";
+        echo "<h1>Critique du rédacteur</h1>";
+        echo "<p class='to-justify'>$contenu_article<p>";
 
-        echo "<h1>Note du rédacteur</h1>";
-        echo "<br>";
-        echo "$noteRedacteur_article";
-        echo "<br>";
-
-        echo "<h1>Image Gameplay</h1>";
-        echo "<br>";
-        echo "<img src=$image_gameplay>";
-
-        echo "<h3>Créé par : $UtilisateurCrea_article le $dateCrea_article</h3>";
+        echo "<h2 class='to-place-right'>Note du rédacteur : $noteRedacteur_article</h2>";
         echo "<br>";
         
-        echo "<h3>Modifié par : $UtilisateurModif_article le $dateModif_article</h3>";
-        echo "<br>";
+        echo "<img class='image-gameplay' src=$image_gameplay>";
 
+        echo "<div class='to-place-right'>";
+        echo "<h3>Rédigé par : $UtilisateurCrea_article ($dateCrea_article)</h3>";        
+        if (!empty($UtilisateurModif_article)) {
+            echo "<h3>Modifié par : $UtilisateurModif_article le $dateModif_article</h3>";
+        }
+        echo "</div>";
 
         echo "</div>";
     echo "</div>";
+    echo "</div>";
 
-    echo "<br><br><br><br><br><br><br><br><br><br><br><br>";
+    echo "<br><br><br><br><br><br>";
 }
 
 

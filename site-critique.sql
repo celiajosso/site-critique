@@ -110,7 +110,7 @@ CREATE TABLE Article (
   titre_Article VARCHAR(100),
   dateCreation_Article DATE,
   dateModification_Article DATE,
-  contenu_Article VARCHAR(1000),
+  contenu_Article VARCHAR(2000),
   noteRedacteur_Article INT,
   id_Jeu INT,
   id_UtilisateurCreateur INT,

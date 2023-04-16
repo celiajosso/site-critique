@@ -33,7 +33,7 @@
 .infos-pokemon{
     width: 80%;
     border: solid;
-    border-radius: 5% / 15%;
+    border-radius: 3%;
     padding : 1%;
     margin-left: auto;
     margin-right: auto;
@@ -64,4 +64,20 @@ td, th {
 
 .to-justify{
     text-align: justify;
+}
+
+.text-content{
+    padding: 3%;
+}
+
+.to-place-right{
+    text-align: right;
+}
+
+.image-gameplay {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    padding: 2%;
 }
