@@ -24,12 +24,14 @@ $mdp = $_POST["mdp"];
 $isMember = IsMember($my_sqli, $login, $mdp);
 
 if ($isMember) {
-    $sql_id = "SELECT prenom_Utilisateur FROM Utilisateur WHERE login_Utilisateur = '$login' AND password_Utilisateur= '$mdp'";
+    $sql_id = "SELECT prenom_Utilisateur, id_Role FROM Utilisateur WHERE login_Utilisateur = '$login' AND password_Utilisateur= '$mdp'";
     $res_id = readDB($my_sqli, $sql_id);
     $prenom = $res_id[0]['prenom_Utilisateur'];
+    $role = $res_id[0]['id_Role'];
      
     $_SESSION['username'] = $login;
     $_SESSION['prenom'] = $prenom;
+    $_SESSION['role'] = $role;
     $_SESSION['is_connected'] = 1;
     closeDB($my_sqli);
     header("Location: ../index.php");

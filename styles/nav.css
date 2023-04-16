@@ -42,10 +42,6 @@ nav{
   width: 50%;
 }
 
-#active{
-  background-color: #295767;
-}
-  
 .li-navigation-twoparts a {
   display: block;
   color: white;
@@ -60,4 +56,28 @@ nav{
   color: white;
   text-decoration: none;
 }
+
+
+
+
+.li-navigation-fourparts {
+  float: left;
+  width: 25%;
+}
+
+.li-navigation-fourparts a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 15px 15px;
+  text-decoration: none;
+  font-variant-caps: small-caps;
+}
+
+.li-navigation-fourparts a:hover {
+  background-color: #295767;
+  color: white;
+  text-decoration: none;
+}
+
 

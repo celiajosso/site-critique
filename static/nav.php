@@ -15,40 +15,116 @@ $sep = explode('/', $lien);
 $page_courante= end($sep);
 
 if (isset ($_SESSION['username'])) {
-    echo "<nav>";
-    echo "<ul class='ul-navigation'>";
+    if ($_SESSION['role'] == 1){
+        echo "<nav>";
+        echo "<ul class='ul-navigation'>";
 
-        if ($page_courante == 'index.php') {
-            echo "<li class='li-navigation-threeparts' id='active'>";
-        }
-        else {
+            if ($page_courante == 'index.php') {
+                echo "<li class='li-navigation-twoparts' id='active'>";
+            }
+            else {
+                echo "<li class='li-navigation-twoparts'>";
+            }
+
+                echo "<a href='index.php'>";
+                    echo "Jeux Videos";
+                echo "</a>";
+            echo "</li>";
+
+            echo "<li class='li-navigation-twoparts'>";
+                echo "<a href='./php/logout.php'>";
+                    echo "Déconnexion";
+                echo "</a>";
+            echo "</li>";
+        echo "</ul>";
+    echo "</nav>";
+    }
+    
+    elseif ($_SESSION['role'] == 2){
+        echo "<nav>";
+        echo "<ul class='ul-navigation'>";
+
+            if ($page_courante == 'index.php') {
+                echo "<li class='li-navigation-threeparts' id='active'>";
+            }
+            else {
+                echo "<li class='li-navigation-threeparts'>";
+            }
+
+                echo "<a href='index.php'>";
+                    echo "Jeux Videos";
+                echo "</a>";
+            echo "</li>";
+
+            
+
+            if ($page_courante == 'redacArticle.php') {
+                echo "<li class='li-navigation-threeparts' id='active'>";
+            }
+            else {
+                echo "<li class='li-navigation-threeparts'>";
+            }
+
+                echo "<a href='redacArticle.php'>";
+                    echo "Rédiger un article";
+                echo "</a>";
+            echo "</li>";
+
             echo "<li class='li-navigation-threeparts'>";
-        }
+                echo "<a href='./php/logout.php'>";
+                    echo "Déconnexion";
+                echo "</a>";
+            echo "</li>";
+        echo "</ul>";
+    echo "</nav>";
+    }
+    else {
+        echo "<nav>";
+        echo "<ul class='ul-navigation'>";
 
-            echo "<a href='index.php'>";
-                echo "Jeux Videos";
-            echo "</a>";
-        echo "</li>";
+            if ($page_courante == 'index.php') {
+                echo "<li class='li-navigation-fourparts' id='active'>";
+            }
+            else {
+                echo "<li class='li-navigation-fourparts'>";
+            }
 
-        echo "<li class='li-navigation-threeparts'>";
-            echo "<a href='./php/logout.php'>";
-                echo "Déconnexion";
-            echo "</a>";
-        echo "</li>";
+                echo "<a href='index.php'>";
+                    echo "Jeux Videos";
+                echo "</a>";
+            echo "</li>";
 
-        if ($page_courante == 'updatepokedex.php') {
-            echo "<li class='li-navigation-threeparts' id='active'>";
-        }
-        else {
-            echo "<li class='li-navigation-threeparts'>";
-        }
+            if ($page_courante == 'redacArticle.php') {
+                echo "<li class='li-navigation-fourparts' id='active'>";
+            }
+            else {
+                echo "<li class='li-navigation-fourparts'>";
+            }
+                echo "<a href='redacArticle.php'>";
+                    echo "Rédiger un article";
+                echo "</a>";
+            echo "</li>";
 
-            echo "<a href='updatepokedex.php'>";
-                echo "Modifier";
-            echo "</a>";
-        echo "</li>";
-    echo "</ul>";
-echo "</nav>";
+
+            if ($page_courante == 'gestionRoles.php') {
+                echo "<li class='li-navigation-fourparts' id='active'>";
+            }
+            else {
+                echo "<li class='li-navigation-fourparts'>";
+            }
+                echo "<a href='gestionRoles.php'>";
+                    echo "Gérer les rôles";
+                echo "</a>";
+            echo "</li>";
+
+            echo "<li class='li-navigation-fourparts'>";
+                echo "<a href='./php/logout.php'>";
+                    echo "Déconnexion";
+                echo "</a>";
+            echo "</li>";
+        echo "</ul>";
+    echo "</nav>";
+    }
 }
 
 else {
