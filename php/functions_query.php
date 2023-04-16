@@ -43,7 +43,7 @@ function getArticleInformations ($my_sqli) {
 
         // recup login des redacteurs et modifieurs (INNER JOIN entre article et utilisateur)
 
-        $sql_jeu = "SELECT * FROM Jeu INNER JOIN Article ON Jeu.id_Jeu = Article.id_Jeu WHERE Article.id_Article=$num";
+        $sql_jeu = "SELECT nom, prix, date_sortie, synopsis FROM Jeu INNER JOIN Article ON Jeu.id_Jeu = Article.id_Jeu WHERE Article.id_Article=$num";
         $sql_jeu_res = readDB($my_sqli, $sql_jeu);
 
         // ajouter ici pour avis (INNER JOIN entre avis et utilisateur)
