@@ -48,11 +48,7 @@ function displayArticleInformations($article) {
 
     $jeu_categories = $article[5];
     $jeu_supports = $article[6];
-
-    echo "<pre>";print_r($jeu_categories);echo "</pre>";
-    echo "<br>";
-    echo "<pre>";print_r($jeu_supports);echo "</pre>";
-
+    
     // ajouter avis
 
     echo "<div class='titre-article-individuel'>$titre_article</div>";
@@ -64,15 +60,21 @@ function displayArticleInformations($article) {
 
     echo "</div>";
     echo "<div class='right-column'>";
-    echo "$titre_jeu";
+    echo "<h1>$titre_jeu</h1>";
     echo "<br><br>";
 
+    echo "<div class='flex-content'>";
     foreach ($jeu_categories as $cle => $val) {
         foreach ($val as $cle1 => $val1) {
             $chemin_type = "Images/Categories/" . $val1 . ".png";
             echo "<img class='image-type' src='$chemin_type'>";
         }
     }
+    echo "</div>";
+
+    echo "<br>";
+
+    echo "<div class='flex-content'>";
 
     foreach ($jeu_supports as $cle => $val) {
         foreach ($val as $cle1 => $val1) {
@@ -85,7 +87,51 @@ function displayArticleInformations($article) {
 
     echo "</div>";
 
+    echo "</div>";
+    
+    echo "<br><br>";
+
+    echo "<table>";
+        echo "<tr>";
+        echo "<th class='col1'>Date de sortie</th>";
+        echo "<th class='col2'>Prix</th>";
+        echo "<th class='col3'>Synopsis</th>";
+        echo "</tr>";
+    
+        echo "<tr>";
+            echo "<td>$dateSortie_Jeu</td>";
+            echo "<td>$prix_jeu €</td>";
+            echo "<td class='to-justify'>$synopsis_jeu</td>";
+        echo "</tr>";
+        
+        echo "</table>";
+
+
+        echo "<h1>Critique</h1>";
+        echo "<br>";
+        echo "$contenu_article";
+
+        echo "<h1>Note du rédacteur</h1>";
+        echo "<br>";
+        echo "$noteRedacteur_article";
+        echo "<br>";
+
+        echo "<h1>Image Gameplay</h1>";
+        echo "<br>";
+        echo "<img src=$image_gameplay>";
+
+        echo "<h3>Créé par : $UtilisateurCrea_article le $dateCrea_article</h3>";
+        echo "<br>";
+        
+        echo "<h3>Modifié par : $UtilisateurModif_article le $dateModif_article</h3>";
+        echo "<br>";
+
+
+        echo "</div>";
+    echo "</div>";
+
     echo "<br><br><br><br><br><br><br><br><br><br><br><br>";
 }
+
 
 ?>

@@ -35,6 +35,7 @@ $my_sqli = connectionDB();
         <link rel="stylesheet" href="styles/header.css">
         <link rel="stylesheet" href="styles/nav.css">
         <link rel="stylesheet" href="styles/footer.css">
+        <link rel="stylesheet" href="styles/infosArticle.css">
     </head>
 
     <body>

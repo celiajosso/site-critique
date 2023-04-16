@@ -1,0 +1,67 @@
+.image-type{
+    width: 15%;
+    height: auto;
+    padding-right: 1%;
+}
+
+.image-pokemon-base{
+    margin: auto;
+    width: 100%;
+    display: block;
+    border-radius: 10%;
+}
+
+.left-column {
+    width: 15%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.right-column {
+    width: 80%;
+    padding-left: 1%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.flex-content{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.infos-pokemon{
+    width: 80%;
+    border: solid;
+    border-radius: 5% / 15%;
+    padding : 1%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-between;
+}
+
+table{
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    border : 2px solid;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+td, th {
+    border : 2px solid;
+    padding : 1%;
+}
+
+.col1{
+    width : 15%;
+}
+
+.col2{
+    width : 15%;
+}
+
+.to-justify{
+    text-align: justify;
+}
