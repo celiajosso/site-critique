@@ -17,5 +17,5 @@ $my_sqli = connectionDB();
 
 <?php
 session_destroy();
-header("Location: ../page3.php");
+header("Location: ../index.php");
 ?>
