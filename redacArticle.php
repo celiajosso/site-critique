@@ -59,10 +59,10 @@ $my_sqli = connectionDB();
                 echo "<div class='form-content'>";
                     if (isset($_GET['nom_jeu'])) {
                         $nom_jeu = $_GET['nom_jeu'];
-                        echo "<input type='text' name='nom_jeu' placeholder='Nom du jeu *' value='$nom_jeu' required>";
+                        echo "<input type='text' maxlength='30' name='nom_jeu' placeholder='Nom du jeu *' value='$nom_jeu' required>";
                     }
                     else {
-                        echo "<input type='text' name='nom_jeu' placeholder='Nom du jeu *' required>";
+                        echo "<input type='text' maxlength='30' name='nom_jeu' placeholder='Nom du jeu *' required>";
                     } 
                 echo "</div>";
                     echo "<div class='form-content'>";
@@ -79,10 +79,10 @@ $my_sqli = connectionDB();
 
                     if (isset($_GET['prix'])) {
                         $prix = $_GET['prix'];
-                        echo "<input type='float' name='prix' placeholder='Prix du jeu *' value='$prix' required>";
+                        echo "<input type='float' min='0' step='0.01' name='prix' placeholder='Prix du jeu *' value='$prix' required>";
                         }
                         else {
-                            echo "<input type='number' name='prix' placeholder='Prix du jeu *' required>";
+                            echo "<input type='number' min='0' step='0.01' name='prix' placeholder='Prix du jeu *' required>";
                         }
                     
                     echo "</div>";
@@ -90,11 +90,11 @@ $my_sqli = connectionDB();
                 echo "<div class='form-content'>";
                 if (isset($_GET['synopsis'])) {
                     $synopsis = $_GET['synopsis'];
-                    echo "<textarea name='synopsis' rows='5' placeholder='Synopsis' value='$synopsis'></textarea>";
+                    echo "<textarea name='synopsis' maxlength='300' rows='5' placeholder='Synopsis' value='$synopsis' required='required'></textarea>";
 
                 }
                 else {
-                    echo "<textarea name='synopsis' rows='5' placeholder='Synopsis'></textarea>";
+                    echo "<textarea name='synopsis' maxlength='300' rows='5' placeholder='Synopsis' required='required'></textarea>";
                 } 
                 echo "</div>";
 
@@ -114,7 +114,7 @@ $my_sqli = connectionDB();
                                     $chemin_type = "Images/Categories/" . $val1 . ".png";
 
                                     echo "<div class='form-content'>";
-                                        echo "<div class='left-column-checkbox'><input type='checkbox' id='produit2' name='produit' value='Chocolat'/></div>";
+                                        echo "<div class='left-column-checkbox'><input type='checkbox' name='categorie'/></div>";
                                         echo "<div class='right-column-checkbox'><img class='icone-type' src='$chemin_type'></div>";
                                     echo "</div>";
                                     echo "<br><br>";
@@ -132,7 +132,7 @@ $my_sqli = connectionDB();
                                     $chemin_type = "Images/Supports/" . $val1 . ".png";
 
                                     echo "<div class='form-content'>";
-                                        echo "<div class='left-column-checkbox'><input type='checkbox' id='produit2' name='produit' value='Chocolat'/></div>";
+                                        echo "<div class='left-column-checkbox'><input type='checkbox' name='support'/></div>";
                                         echo "<div class='right-column-checkbox'><img class='icone-type' src='$chemin_type'></div>";
                                     echo "</div>";
                                     echo "<br><br>";
@@ -156,18 +156,18 @@ $my_sqli = connectionDB();
                     echo "<div class='left-column'>";
                     if (isset($_GET['note'])) {
                         $note = $_GET['note'];
-                        echo "<input type='number' name='note' placeholder='Note du jeu (/10) *' value='$note' required>";
+                        echo "<input type='number' min='0' max='10' name='note' placeholder='Note du jeu (/10) *' value='$note' required>";
                     }
                     else {
-                        echo "<input type='number' name='note' placeholder='Note du jeu (/10) *' required>";
+                        echo "<input type='number' min='0' max='10' name='note' placeholder='Note du jeu (/10) *' required>";
                     }
 
                     if (isset($_GET['critique'])) {
                         $critique = $_GET['critique'];
-                        echo "<textarea name='critique' rows='14' placeholder='Critique *' value='$critique' required></textarea>";
+                        echo "<textarea name='critique' maxlength='2000' rows='14' placeholder='Critique *' value='$critique' required='required'></textarea>";
                     }
                     else {
-                        echo "<textarea name='critique' rows='14' placeholder='Critique *''required></textarea>";
+                        echo "<textarea name='critique' maxlength='2000' rows='14' placeholder='Critique *' required='required'></textarea>";
                     }
 
 
@@ -176,12 +176,12 @@ $my_sqli = connectionDB();
                         echo "<div>";
                             echo "<h3 class='a-centrer'>Choisissez l'image de jaquette</h3>";
                             echo "<p class='a-centrer'>(Répertoire : Images/Jeu/)</p>";
-                            echo "<input type=file name='jaquette'";
+                            echo "<input type=file name='jaquette' required>";
                         echo "</div>";
                         echo "<div>";
                             echo "<h3 class='a-centrer'>Choisissez l'image de Gameplay</h3>";
                             echo "<p class='a-centrer'>(Répertoire : Images/Jeu/)</p>";
-                            echo "<input type=file name='gameplay'";
+                            echo "<input type=file name='gameplay' required>";
                         echo "</div>";
                 echo "</div>";   
             echo "</fieldset>";
