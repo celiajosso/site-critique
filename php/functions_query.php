@@ -73,6 +73,14 @@ function Is_loginUnique ($my_sqli, $username) {
     return (empty($res_inscription));
 }
 
+function Is_gameUnique($my_sqli, $game) {
+    // Vérifie si le jeu entre par l'utilisateur est unique
+
+    $sql_game = "SELECT * FROM Jeu WHERE nom = '$game'";
+    $res_game = readDB($my_sqli, $sql_game);
+    return (empty($res_game));
+}
+
 function Is_enoughAged ($naissance) {
     // Vérifie si le nouvel utilisateur a plus de 15 ans
     $naissance = new DateTime($naissance);

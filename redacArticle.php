@@ -33,17 +33,11 @@ $my_sqli = connectionDB();
     <?php include("./static/header.php"); ?>
     <?php include("./static/nav.php"); ?>
     <?php
-    //     if (isset($_GET["erreur"])) {
-    //         if ($_GET["erreur"] == "age") {
-    //             echo "<div class='erreur-inscription'><h2>Erreur !</h2>Vous êtes trop jeune ! Vous devez avoir au moins 15 ans !<br><br></div>";
-    //         }
-    //         if ($_GET["erreur"] == "login"){
-    //             echo "<div class='erreur-inscription'><h2>Erreur !</h2>Ce nom d'utilisateur est déjà pris !<br><br></div>";
-    //         }
-    //         if ($_GET["erreur"] == "mdp"){
-    //             echo "<div class='erreur-inscription'><h2>Erreur !</h2>Le mot de passe confirmé est différent du mot de passe saisi !<br><br></div>";
-    //         }
-    // }
+        if (isset($_GET["erreur"])) {
+            if ($_GET["erreur"] == "jeu") {
+                echo "<div class='erreur-inscription'><h2>Erreur !</h2>Un article a déjà été écrit sur ce jeu !<br><br></div>";
+            }
+    }
     ?>
     <?php
         echo "<div class='form-style-5'>";
@@ -98,7 +92,7 @@ $my_sqli = connectionDB();
                 echo "<div class='form-content'>";
                 if (isset($_GET['synopsis'])) {
                     $synopsis = $_GET['synopsis'];
-                    echo "<textarea name='synopsis' maxlength='300' rows='5' placeholder='Synopsis' value='$synopsis' required='required'></textarea>";
+                    echo "<textarea name='synopsis' maxlength='300' rows='5' placeholder='Synopsis' required='required'>$synopsis</textarea>";
 
                 }
                 else {
@@ -172,7 +166,7 @@ $my_sqli = connectionDB();
 
                     if (isset($_GET['critique'])) {
                         $critique = $_GET['critique'];
-                        echo "<textarea name='critique' maxlength='2000' rows='14' placeholder='Critique *' value='$critique' required='required'></textarea>";
+                        echo "<textarea name='critique' maxlength='2000' rows='14' placeholder='Critique *' required='required'>$critique</textarea>";
                     }
                     else {
                         echo "<textarea name='critique' maxlength='2000' rows='14' placeholder='Critique *' required='required'></textarea>";
