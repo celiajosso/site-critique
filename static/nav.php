@@ -19,7 +19,7 @@ if (isset ($_SESSION['username'])) {
         echo "<nav>";
         echo "<ul class='ul-navigation'>";
 
-            if ($page_courante == 'index.php') {
+            if ($page_courante == 'index.php' || str_starts_with($page_courante, 'article.php')) {
                 echo "<li class='li-navigation-twoparts' id='active'>";
             }
             else {
@@ -44,7 +44,7 @@ if (isset ($_SESSION['username'])) {
         echo "<nav>";
         echo "<ul class='ul-navigation'>";
 
-            if ($page_courante == 'index.php') {
+            if ($page_courante == 'index.php' || str_starts_with($page_courante, 'article.php')) {
                 echo "<li class='li-navigation-threeparts' id='active'>";
             }
             else {
@@ -82,7 +82,7 @@ if (isset ($_SESSION['username'])) {
         echo "<nav>";
         echo "<ul class='ul-navigation'>";
 
-            if ($page_courante == 'index.php') {
+            if ($page_courante == 'index.php' || str_starts_with($page_courante, 'article.php')) {
                 echo "<li class='li-navigation-fourparts' id='active'>";
             }
             else {
@@ -131,7 +131,7 @@ else {
     echo "<nav>";
     echo "<ul class='ul-navigation'>";
 
-    if ($page_courante == 'index.php') {
+    if ($page_courante == 'index.php' || str_starts_with($page_courante, 'article.php')) {
         echo "<li class='li-navigation-twoparts' id='active'>";
     }
     else {
@@ -143,7 +143,7 @@ else {
         echo "</a>";
     echo "</li>";
 
-    if ($page_courante == 'authentification.php') {
+    if ($page_courante == 'authentification.php' || $page_courante == 'registration.php' || $page_courante == 'connection.php') {
         echo "<li class='li-navigation-twoparts' id='active'>";
     }
     else {
