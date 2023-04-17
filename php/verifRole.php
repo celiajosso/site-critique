@@ -28,6 +28,13 @@ if (!$changement_role) {
     header("Location: ../gestionRoles.php?login=$login&role=$role&erreur=1");
 }
 else{
+    $sql_input = "SELECT id_Utilisateur FROM Utilisateur WHERE login_Utilisateur='$login'";
+    $sql_input_res = readDB($my_sqli, $sql_input);
+
+    $id = $sql_input_res[0]["id_Utilisateur"];
+
+    $sql_changement_role = "UPDATE Utilisateur SET id_Role=$role WHERE id_Utilisateur=$id";
+    $sql_changement_role_res = writeDB($my_sqli, $sql_changement_role);
     header("Location: ../index.php");
 }
 ?>
