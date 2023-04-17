@@ -101,4 +101,16 @@ function IsMember ($my_sqli, $username, $password) {
 
     return (!empty($res_login));
 }
+
+function Is_ChangedRole ($my_sqli, $login, $chosen_role) {
+    // Vérifie le role choisi est bien différent du role initial
+
+    $role_utilisateur = "SELECT id_Role FROM Utilisateur WHERE login_Utilisateur='$login'";
+    $role_utilisateur_res = readDB($my_sqli, $role_utilisateur);
+
+    $changed_role = "SELECT * FROM Utilisateur WHERE login_Utilisateur='$login' AND id_Role='$chosen_role'";
+    $changed_role_res = readDB($my_sqli, $changed_role);
+
+    return (empty($changed_role_res));
+}
 ?>

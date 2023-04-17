@@ -46,12 +46,18 @@ $my_sqli = connectionDB();
     //}
     ?>
     <?php
+
+        if (isset($_GET["erreur"])) {
+            $login = $_GET["login"];
+            echo "<div class='erreur-inscription'><h2>Erreur !</h2>$login possède déjà ce rôle.<br><br></div>";
+        }
+        
         $sql_noms = "SELECT login_Utilisateur FROM Utilisateur";
         $sql_noms_res = readDB($my_sqli, $sql_noms);
 
 
         echo "<div class='form-style-5'>";
-            echo "<form action='./php/verifRoles.php' method='POST'>";
+            echo "<form action='./php/verifRole.php' method='POST'>";
               echo "<fieldset>";   
                 echo "<div class='form-content'>";
                     echo "<div class='left-column'>";
