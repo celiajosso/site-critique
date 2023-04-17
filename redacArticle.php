@@ -1,1 +1,201 @@
--> faire formulaire de redaction article ici
+<?php
+session_start();
+//affichage des erreurs côté PHP et côté MYSQLI
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL); 
+mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+//Import du site - A completer
+require_once("./includes/constantes.php");      //constantes du site
+require_once("./includes/config-bdd.php");      //constantes du site
+include_once("./php/functions-DB.php");
+include_once("./php/functions_query.php");
+include_once("./php/functions_structure.php");
+$my_sqli = connectionDB();
+
+?>
+
+<!DOCTYPE html lang="fr">
+
+    <head>
+        <title>Gamecrit</title>
+        <meta name="author" content="NORTON Thomas, JOSSO Célia">
+        <meta name="author" content="ESIR, CUPGE">
+        
+        <link rel="icon" href="Images/icone.png">
+        <link rel="stylesheet" href="styles/general.css">
+        <link rel="stylesheet" href="styles/header.css">
+        <link rel="stylesheet" href="styles/nav.css">
+        <link rel="stylesheet" href="styles/footer.css">
+        <link rel="stylesheet" href="styles/form.css">
+    </head>
+
+    <?php include("./static/header.php"); ?>
+    <?php include("./static/nav.php"); ?>
+    <?php
+        if (isset($_GET["erreur"])) {
+            if ($_GET["erreur"] == "age") {
+                echo "<div class='erreur-inscription'><h2>Erreur !</h2>Vous êtes trop jeune ! Vous devez avoir au moins 15 ans !<br><br></div>";
+            }
+            if ($_GET["erreur"] == "login"){
+                echo "<div class='erreur-inscription'><h2>Erreur !</h2>Ce nom d'utilisateur est déjà pris !<br><br></div>";
+            }
+            if ($_GET["erreur"] == "mdp"){
+                echo "<div class='erreur-inscription'><h2>Erreur !</h2>Le mot de passe confirmé est différent du mot de passe saisi !<br><br></div>";
+            }
+    }
+    ?>
+    <?php
+        echo "<div class='form-style-5'>";
+            echo "<form action='./php/validationArticle.php' method='POST'>";
+              echo "<fieldset>";
+                echo "<br>";
+                echo "<legend>";
+                    echo "<span class='number'>";
+                        echo "1";
+                    echo "</span>";
+                    echo "Informations sur le jeu";
+                echo "</legend>";
+                echo "<div class='form-content'>";
+                    if (isset($_GET['nom_jeu'])) {
+                        $nom_jeu = $_GET['nom_jeu'];
+                        echo "<input type='text' name='nom_jeu' placeholder='Nom du jeu *' value='$nom_jeu' required>";
+                    }
+                    else {
+                        echo "<input type='text' name='nom_jeu' placeholder='Nom du jeu *' required>";
+                    } 
+                echo "</div>";
+                    echo "<div class='form-content'>";
+                        echo "<div class='left-column'>";
+                            if (isset($_GET['date_sortie'])) {
+                            $date_sortie = $_GET['date_sortie'];
+                            echo "<input type='date' name='date_sortie' placeholder='Date de sortie du jeu *' value='$date_sortie' required>";
+                            }
+                            else {
+                                echo "<input type='date' name='date_sortie' placeholder='Date de sortie du jeu *' required>";
+                            }    
+                        echo "</div>";
+                    echo "<div class='right-column'>";
+
+                    if (isset($_GET['prix'])) {
+                        $prix = $_GET['prix'];
+                        echo "<input type='float' name='prix' placeholder='Prix du jeu *' value='$prix' required>";
+                        }
+                        else {
+                            echo "<input type='number' name='prix' placeholder='Prix du jeu *' required>";
+                        }
+                    
+                    echo "</div>";
+                echo "</div>";
+                echo "<div class='form-content'>";
+                if (isset($_GET['synopsis'])) {
+                    $synopsis = $_GET['synopsis'];
+                    echo "<input type='text' name='synopsis' placeholder='Synopsis du jeu *' value='$synopsis' required>";
+                }
+                else {
+                    echo "<input type='text' name='synopsis' placeholder='Synopsis du jeu *' required>";
+                } 
+                echo "</div>";
+
+                $sql_categorie = "SELECT id_Categorie FROM Categorie";
+                $sql_categorie_res = readDB($my_sqli, $sql_categorie);
+        
+                $sql_support = "SELECT id_Support FROM Support";
+                $sql_support_res = readDB($my_sqli, $sql_support);
+
+                echo "<div class='form-content'>";
+                        echo "<div class=left-column'>";
+                            echo "<h3 class='a-centrer'>Catégories du jeu</h3>";
+
+                            // boucle
+                            foreach ($sql_categorie_res as $cle => $val) {
+                                foreach ($val as $cle1 => $val1) {
+                                    $chemin_type = "Images/Categories/" . $val1 . ".png";
+
+                                    echo "<div class='form-content'>";
+                                        echo "<div class='left-column'><input type='checkbox' id='produit2' name='produit' value='Chocolat'/></div>";
+                                        echo "<div class='right-column'><img class='icone-type' src='$chemin_type'></div>";
+                                    echo "</div>";
+                                    echo "<br><br>";
+                                }
+                            }
+                            echo "<div class='form-content'>";
+                            echo "<div class='left-column'><input type='checkbox' id='produit2' name='produit' value='Chocolat'/></div>";
+                            echo "<div class='right-column'>Autres</div>";
+                            echo "</div>";
+
+                        echo "</div>";
+
+                        echo "<div class=right-column'>";
+                            echo "<h3 class='a-centrer'>Supports du jeu</h3>";
+
+                            // boucle
+                            foreach ($sql_support_res as $cle => $val) {
+                                foreach ($val as $cle1 => $val1) {
+                                    $chemin_type = "Images/Supports/" . $val1 . ".png";
+
+                                    echo "<div class='form-content'>";
+                                        echo "<div class='left-column'><input type='checkbox' id='produit2' name='produit' value='Chocolat'/></div>";
+                                        echo "<div class='right-column'><img class='icone-type' src='$chemin_type'></div>";
+                                    echo "</div>";
+                                    echo "<br><br>";
+                                }
+                            }
+                            echo "<div class='form-content'>";
+                            echo "<div class='left-column'><input type='checkbox' id='produit2' name='produit' value='Chocolat'/></div>";
+                            echo "<div class='right-column'>Autres</div>";
+                            echo "</div>";
+
+
+
+                    echo "</div>";  
+                echo "</div>";
+
+                echo "<br>";
+                echo "<legend>";
+                    echo "<span class='number'>";
+                        echo "2";
+                    echo "</span>";
+                    echo "Votre critique";
+                echo "</legend>";
+                echo "<br>";
+                echo "<div class='form-content'>";
+                    echo "<div class='left-column'>";
+                    if (isset($_GET['note'])) {
+                        $note = $_GET['note'];
+                        echo "<input type='number' name='note' placeholder='Note du jeu (/10) *' value='$note' required>";
+                    }
+                    else {
+                        echo "<input type='number' name='note' placeholder='Note du jeu (/10) *' required>";
+                    }
+
+                    if (isset($_GET['critique'])) {
+                        $critique = $_GET['critique'];
+                        echo "<input type='text' name='critique' placeholder='Critique *' value='$critique' required>";
+                    }
+                    else {
+                        echo "<input type='text' name='critique' placeholder='Critique *' required>";
+                    }
+
+
+                    echo "</div>";
+                    echo "<div class='right-column'>";
+                        echo "<div>";
+                            echo "<h3 class='a-centrer'>Choisissez l'image de jaquette</h3>";
+                            echo "<p class='a-centrer'>(Répertoire : Images/Jeu/)</p>";
+                            echo "<input type=file name='jaquette'";
+                        echo "</div>";
+                        echo "<div>";
+                            echo "<h3 class='a-centrer'>Choisissez l'image de Gameplay</h3>";
+                            echo "<p class='a-centrer'>(Répertoire : Images/Jeu/)</p>";
+                            echo "<input type=file name='gameplay'";
+                        echo "</div>";
+                echo "</div>";   
+            echo "</fieldset>";
+            echo "<input type='submit' value='Envoyer'>";         
+            echo "</form>";
+        echo "</div>";
+    echo "<br><br><br><br>";
+    ?>
+    <?php include("./static/footer.php"); ?>
+<html>
