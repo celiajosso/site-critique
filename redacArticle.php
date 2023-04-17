@@ -111,15 +111,18 @@ $my_sqli = connectionDB();
                             echo "<h3 class='a-centrer'>Catégories du jeu</h3>";
 
                             // boucle
+                            $i = 1;
                             foreach ($sql_categorie_res as $cle => $val) {
                                 foreach ($val as $cle1 => $val1) {
                                     $chemin_type = "Images/Categories/" . $val1 . ".png";
+                                    $nom_champ = "categorie_" . "$i";
 
                                     echo "<div class='form-content'>";
-                                        echo "<div class='left-column-checkbox'><input type='checkbox' name='categorie'/></div>";
+                                        echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ'/></div>";
                                         echo "<div class='right-column-checkbox'><img class='icone-type' src='$chemin_type'></div>";
                                     echo "</div>";
                                     echo "<br><br>";
+                                    $i = $i + 1;
                                 }
                             }
 
@@ -129,15 +132,18 @@ $my_sqli = connectionDB();
                             echo "<h3 class='a-centrer'>Supports du jeu</h3>";
 
                             // boucle
+                            $i = 1;
                             foreach ($sql_support_res as $cle => $val) {
                                 foreach ($val as $cle1 => $val1) {
                                     $chemin_type = "Images/Supports/" . $val1 . ".png";
+                                    $nom_champ = "support_" . "$i";
 
                                     echo "<div class='form-content'>";
-                                        echo "<div class='left-column-checkbox'><input type='checkbox' name='support'/></div>";
+                                        echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ'/></div>";
                                         echo "<div class='right-column-checkbox'><img class='icone-type' src='$chemin_type'></div>";
                                     echo "</div>";
                                     echo "<br><br>";
+                                    $i = $i + 1;
                                 }
                             }
 

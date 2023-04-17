@@ -22,8 +22,6 @@ $nom_jeu = $_POST["nom_jeu"];
 $date_sortie = $_POST["date_sortie"];
 $prix = $_POST["prix"];
 $synopsis = $_POST["synopsis"];
-$categorie = $_POST["categorie"];
-$support = $_POST["support"];
 $note = $_POST["note"];
 $critique = $_POST["critique"];
 $jaquette = $_POST["jaquette"];
@@ -37,6 +35,69 @@ if (!$jeu_unique) {
     header("Location: ../redacArticle.php?titre_article=$titre_article&nom_jeu=$nom_jeu&date_sortie=$date_sortie&prix=$prix&synopsis=$synopsis&categorie=$categorie&support=$support&note=$note&critique=$critique&jaquette=$jaquette&gameplay=$gameplay&erreur=jeu");
 }
 else{
+    $sql_insert_jeu = "INSERT INTO Jeu (nom, prix, date_sortie, synopsis) VALUES ('$nom_jeu', '$prix', '$date_sortie', '$synopsis')";
+    // $sql_insert_jeu_res = writeDB($my_sqli, $sql_insert_jeu);
+
+    $nb_rows_jeu_input = "SELECT COUNT(*) as nb_rows FROM Jeu";
+    $nb_rows_jeu_res = readDB($my_sqli, $nb_rows_jeu_input);
+
+    $nb_rows_jeu = $nb_rows_jeu_res[0]["nb_rows"];
+    $today = date("Y-m-d");
+    
+    $login = $_SESSION["username"];
+    $sql_input_id = "SELECT id_Utilisateur FROM Utilisateur WHERE login_Utilisateur='$login'";
+    $sql_input_id_res = readDB($my_sqli, $sql_input_id);
+
+    $id_utilisateur = $sql_input_id_res[0]["id_Utilisateur"];
+
+    $sql_insert_article = "INSERT INTO Article (titre_Article, dateCreation_Article, id_Jeu, id_UtilisateurCreateur, contenu_Article, noteRedacteur_Article) VALUES ('$titre_article', '$today', $nb_rows_jeu, $id_utilisateur, '$critique', $note)";
+    // $sql_insert_article_res = writeDB($my_sqli, $sql_insert_article);
+
+    $checked_categories = Array();
+    $checked_supports = Array();
+
+    foreach ($_POST as $cle => $val) {
+        if (str_starts_with($cle, 'categorie')) {
+            $last_chr = substr($cle, -1);
+            $checked_categories[] = $last_chr;
+        }
+        elseif (str_starts_with($cle, 'support')) {
+            $last_chr = substr($cle, -1);
+            $checked_supports[] = $last_chr;
+        }
+    }
+
+    foreach ($checked_categories as $cle => $val) {
+        $sql_insert_categories = "INSERT INTO est_categorie (id_Jeu, id_Categorie) VALUES ($nb_rows_jeu, $val)";
+        // $sql_insert_categories_res = writeDB($my_sqli, $sql_insert_categories);
+    }
+
+    foreach ($checked_supports as $cle => $val) {
+        $sql_insert_supports = "INSERT INTO est_support (id_Jeu, id_Support) VALUES ($nb_rows_jeu, $val)";
+        // $sql_insert_supports_res = writeDB($my_sqli, $sql_insert_supports);
+    }
+
+    $image_path = "Images/Jeu/$nb_rows_jeu/";
+    $lien_gameplay = $image_path . 'gameplay.jpg';
+    $lien_jaquette = $image_path . 'jaquette.jpg';
+
+    $sql_insert_images = "INSERT INTO Image (chemin_image) VALUES ('$lien_gameplay'),('$lien_jaquette')";
+    // $sql_insert_images_res = writeDB($my_sqli, $sql_insert_images);
+
+    $nb_rows_article_input = "SELECT COUNT(*) as nb_rows FROM Article";
+    $nb_rows_article_res = readDB($my_sqli, $nb_rows_article_input);
+    $nb_rows_article = $nb_rows_article_res[0]["nb_rows"];
+
+    $nb_rows_image_input = "SELECT COUNT(*) as nb_rows FROM Image";
+    $nb_rows_image_res = readDB($my_sqli, $nb_rows_image_input);
+    $nb_rows_image = $nb_rows_image_res[0]["nb_rows"];
+
+    $id_gameplay = $nb_rows_image - 1;
+    $id_jaquette = $nb_rows_image;
+
+    $sql_insert_assoc = "INSERT INTO est_image (id_Article, id_Image) VALUES ($nb_rows_article, $id_gameplay), ($nb_rows_article, $id_jaquette)";
+    // $sql_insert_assoc_res = writeDB($my_sqli, $sql_insert_assoc);
+
     header("Location: ../index.php");
 }
 ?>
