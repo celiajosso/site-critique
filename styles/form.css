@@ -74,6 +74,15 @@ legend {
 	width : 50%;
 }
 
+.left-column-checkbox{
+	width : 20%;
+	margin-top: 10px;
+}
+
+.right-column-checkbox{
+	width : 80%;
+}
+
 .form-style-5{
 	width: 75%;
 	padding: 10px 20px;
@@ -199,4 +208,8 @@ display: block;
 .icone-type {
 	width: 150px;
 	height : auto;
+}
+
+textarea{
+	resize: none;
 }

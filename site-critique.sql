@@ -64,7 +64,8 @@ INSERT INTO Categorie (nom_Categorie) VALUES
     ('Course'),
     ('RPG'),
     ('Sport'),
-    ('Sandbox');
+    ('Sandbox'),
+    ('Autres');
 
 /* table Support */
 
@@ -79,7 +80,8 @@ INSERT INTO Support (nom_Support) VALUES
     ('Switch'),
     ('PC'),
     ('Xbox'),
-    ('Wii');
+    ('Wii'),
+    ('Autres');
 
 /* table Utilisateur */
 

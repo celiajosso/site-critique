@@ -33,17 +33,17 @@ $my_sqli = connectionDB();
     <?php include("./static/header.php"); ?>
     <?php include("./static/nav.php"); ?>
     <?php
-        if (isset($_GET["erreur"])) {
-            if ($_GET["erreur"] == "age") {
-                echo "<div class='erreur-inscription'><h2>Erreur !</h2>Vous êtes trop jeune ! Vous devez avoir au moins 15 ans !<br><br></div>";
-            }
-            if ($_GET["erreur"] == "login"){
-                echo "<div class='erreur-inscription'><h2>Erreur !</h2>Ce nom d'utilisateur est déjà pris !<br><br></div>";
-            }
-            if ($_GET["erreur"] == "mdp"){
-                echo "<div class='erreur-inscription'><h2>Erreur !</h2>Le mot de passe confirmé est différent du mot de passe saisi !<br><br></div>";
-            }
-    }
+    //     if (isset($_GET["erreur"])) {
+    //         if ($_GET["erreur"] == "age") {
+    //             echo "<div class='erreur-inscription'><h2>Erreur !</h2>Vous êtes trop jeune ! Vous devez avoir au moins 15 ans !<br><br></div>";
+    //         }
+    //         if ($_GET["erreur"] == "login"){
+    //             echo "<div class='erreur-inscription'><h2>Erreur !</h2>Ce nom d'utilisateur est déjà pris !<br><br></div>";
+    //         }
+    //         if ($_GET["erreur"] == "mdp"){
+    //             echo "<div class='erreur-inscription'><h2>Erreur !</h2>Le mot de passe confirmé est différent du mot de passe saisi !<br><br></div>";
+    //         }
+    // }
     ?>
     <?php
         echo "<div class='form-style-5'>";
@@ -90,10 +90,11 @@ $my_sqli = connectionDB();
                 echo "<div class='form-content'>";
                 if (isset($_GET['synopsis'])) {
                     $synopsis = $_GET['synopsis'];
-                    echo "<input type='text' name='synopsis' placeholder='Synopsis du jeu *' value='$synopsis' required>";
+                    echo "<textarea name='synopsis' rows='5' placeholder='Synopsis' value='$synopsis'></textarea>";
+
                 }
                 else {
-                    echo "<input type='text' name='synopsis' placeholder='Synopsis du jeu *' required>";
+                    echo "<textarea name='synopsis' rows='5' placeholder='Synopsis'></textarea>";
                 } 
                 echo "</div>";
 
@@ -113,16 +114,12 @@ $my_sqli = connectionDB();
                                     $chemin_type = "Images/Categories/" . $val1 . ".png";
 
                                     echo "<div class='form-content'>";
-                                        echo "<div class='left-column'><input type='checkbox' id='produit2' name='produit' value='Chocolat'/></div>";
-                                        echo "<div class='right-column'><img class='icone-type' src='$chemin_type'></div>";
+                                        echo "<div class='left-column-checkbox'><input type='checkbox' id='produit2' name='produit' value='Chocolat'/></div>";
+                                        echo "<div class='right-column-checkbox'><img class='icone-type' src='$chemin_type'></div>";
                                     echo "</div>";
                                     echo "<br><br>";
                                 }
                             }
-                            echo "<div class='form-content'>";
-                            echo "<div class='left-column'><input type='checkbox' id='produit2' name='produit' value='Chocolat'/></div>";
-                            echo "<div class='right-column'>Autres</div>";
-                            echo "</div>";
 
                         echo "</div>";
 
@@ -135,16 +132,12 @@ $my_sqli = connectionDB();
                                     $chemin_type = "Images/Supports/" . $val1 . ".png";
 
                                     echo "<div class='form-content'>";
-                                        echo "<div class='left-column'><input type='checkbox' id='produit2' name='produit' value='Chocolat'/></div>";
-                                        echo "<div class='right-column'><img class='icone-type' src='$chemin_type'></div>";
+                                        echo "<div class='left-column-checkbox'><input type='checkbox' id='produit2' name='produit' value='Chocolat'/></div>";
+                                        echo "<div class='right-column-checkbox'><img class='icone-type' src='$chemin_type'></div>";
                                     echo "</div>";
                                     echo "<br><br>";
                                 }
                             }
-                            echo "<div class='form-content'>";
-                            echo "<div class='left-column'><input type='checkbox' id='produit2' name='produit' value='Chocolat'/></div>";
-                            echo "<div class='right-column'>Autres</div>";
-                            echo "</div>";
 
 
 
@@ -171,10 +164,10 @@ $my_sqli = connectionDB();
 
                     if (isset($_GET['critique'])) {
                         $critique = $_GET['critique'];
-                        echo "<input type='text' name='critique' placeholder='Critique *' value='$critique' required>";
+                        echo "<textarea name='critique' rows='14' placeholder='Critique *' value='$critique' required></textarea>";
                     }
                     else {
-                        echo "<input type='text' name='critique' placeholder='Critique *' required>";
+                        echo "<textarea name='critique' rows='14' placeholder='Critique *''required></textarea>";
                     }
 
 
