@@ -36,7 +36,7 @@ if (!$jeu_unique) {
 }
 else{
     $sql_insert_jeu = "INSERT INTO Jeu (nom, prix, date_sortie, synopsis) VALUES ('$nom_jeu', '$prix', '$date_sortie', '$synopsis')";
-    // $sql_insert_jeu_res = writeDB($my_sqli, $sql_insert_jeu);
+    $sql_insert_jeu_res = writeDB($my_sqli, $sql_insert_jeu);
 
     $nb_rows_jeu_input = "SELECT COUNT(*) as nb_rows FROM Jeu";
     $nb_rows_jeu_res = readDB($my_sqli, $nb_rows_jeu_input);
@@ -51,7 +51,7 @@ else{
     $id_utilisateur = $sql_input_id_res[0]["id_Utilisateur"];
 
     $sql_insert_article = "INSERT INTO Article (titre_Article, dateCreation_Article, id_Jeu, id_UtilisateurCreateur, contenu_Article, noteRedacteur_Article) VALUES ('$titre_article', '$today', $nb_rows_jeu, $id_utilisateur, '$critique', $note)";
-    // $sql_insert_article_res = writeDB($my_sqli, $sql_insert_article);
+    $sql_insert_article_res = writeDB($my_sqli, $sql_insert_article);
 
     $checked_categories = Array();
     $checked_supports = Array();
@@ -69,12 +69,12 @@ else{
 
     foreach ($checked_categories as $cle => $val) {
         $sql_insert_categories = "INSERT INTO est_categorie (id_Jeu, id_Categorie) VALUES ($nb_rows_jeu, $val)";
-        // $sql_insert_categories_res = writeDB($my_sqli, $sql_insert_categories);
+        $sql_insert_categories_res = writeDB($my_sqli, $sql_insert_categories);
     }
 
     foreach ($checked_supports as $cle => $val) {
         $sql_insert_supports = "INSERT INTO est_support (id_Jeu, id_Support) VALUES ($nb_rows_jeu, $val)";
-        // $sql_insert_supports_res = writeDB($my_sqli, $sql_insert_supports);
+        $sql_insert_supports_res = writeDB($my_sqli, $sql_insert_supports);
     }
 
     $image_path = "Images/Jeu/$nb_rows_jeu/";
@@ -82,7 +82,7 @@ else{
     $lien_jaquette = $image_path . 'jaquette.jpg';
 
     $sql_insert_images = "INSERT INTO Image (chemin_image) VALUES ('$lien_gameplay'),('$lien_jaquette')";
-    // $sql_insert_images_res = writeDB($my_sqli, $sql_insert_images);
+    $sql_insert_images_res = writeDB($my_sqli, $sql_insert_images);
 
     $nb_rows_article_input = "SELECT COUNT(*) as nb_rows FROM Article";
     $nb_rows_article_res = readDB($my_sqli, $nb_rows_article_input);
@@ -96,7 +96,7 @@ else{
     $id_jaquette = $nb_rows_image;
 
     $sql_insert_assoc = "INSERT INTO est_image (id_Article, id_Image) VALUES ($nb_rows_article, $id_gameplay), ($nb_rows_article, $id_jaquette)";
-    // $sql_insert_assoc_res = writeDB($my_sqli, $sql_insert_assoc);
+    $sql_insert_assoc_res = writeDB($my_sqli, $sql_insert_assoc);
 
     header("Location: ../index.php");
 }
