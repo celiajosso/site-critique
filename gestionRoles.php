@@ -18,7 +18,7 @@ $my_sqli = connectionDB();
 <!DOCTYPE html lang="fr">
 
     <head>
-        <title>Gamecrit</title>
+        <title>Gamecrit - Gestion des rôles</title>
         <meta name="author" content="NORTON Thomas, JOSSO Célia">
         <meta name="author" content="ESIR, CUPGE">
         
@@ -32,19 +32,6 @@ $my_sqli = connectionDB();
 
     <?php include("./static/header.php"); ?>
     <?php include("./static/nav.php"); ?>
-    <?php
-        // if (isset($_GET["erreur"])) {
-        //     if ($_GET["erreur"] == "age") {
-        //         echo "<div class='erreur-inscription'><h2>Erreur !</h2>Vous êtes trop jeune ! Vous devez avoir au moins 15 ans !<br><br></div>";
-        //     }
-        //     if ($_GET["erreur"] == "login"){
-        //         echo "<div class='erreur-inscription'><h2>Erreur !</h2>Ce nom d'utilisateur est déjà pris !<br><br></div>";
-        //     }
-        //     if ($_GET["erreur"] == "mdp"){
-        //         echo "<div class='erreur-inscription'><h2>Erreur !</h2>Le mot de passe confirmé est différent du mot de passe saisi !<br><br></div>";
-        //     }
-    //}
-    ?>
     <?php
 
         if (isset($_GET["erreur"])) {

@@ -18,7 +18,7 @@ $my_sqli = connectionDB();
 <!DOCTYPE html lang="fr">
 
     <head>
-        <title>Gamecrit</title>
+        <title>Gamecrit - Acceuil</title>
         <meta name="author" content="NORTON Thomas, JOSSO Célia">
         <meta name="author" content="ESIR, CUPGE">
         

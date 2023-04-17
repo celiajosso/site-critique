@@ -18,13 +18,13 @@ $my_sqli = connectionDB();
 <!DOCTYPE html lang="fr">
     <head>
         <?php
-            // $num = $_GET['numero'];
-            // $sql_input = "SELECT nom from jeu WHERE id_pokemon=$num;";
-            // $res_sql_input = readDB($my_sqli, $sql_input);
+            $num = $_GET['numero'];
+            $sql_input = "SELECT nom from jeu WHERE id_Jeu=$num;";
+            $res_sql_input = readDB($my_sqli, $sql_input);
 
-            // $titre = $res_sql_input[0]['nom'];
+            $titre = $res_sql_input[0]['nom'];
 
-            // echo "<title>$titre</title>"
+            echo "<title>Gamecrit - $titre</title>"
         ?>
         
         <meta name="author" content="JOSSO Célia">
