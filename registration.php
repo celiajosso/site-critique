@@ -60,18 +60,18 @@ $my_sqli = connectionDB();
                     echo "<div class='left-column'>";
                         if (isset($_GET['nom'])) {
                             $nom = $_GET['nom'];
-                            echo "<input type='text' name='nom' placeholder='Nom *' value='$nom' required>";
+                            echo "<input type='text' maxlength='50' name='nom' placeholder='Nom *' value='$nom' required>";
                         }
                         else {
-                            echo "<input type='text' name='nom' placeholder='Nom *' required>";
+                            echo "<input type='text' maxlength='50' name='nom' placeholder='Nom *' required>";
                         }
 
                         if (isset($_GET['prenom'])) {
                             $prenom = $_GET['prenom'];
-                            echo "<input type='text' name='prenom' placeholder='Prénom *' value='$prenom' required>";
+                            echo "<input type='text' maxlength='50' name='prenom' placeholder='Prénom *' value='$prenom' required>";
                         }
                         else {
-                            echo "<input type='text' name='prenom' placeholder='Prénom *' required>";
+                            echo "<input type='text' maxlength='50' name='prenom' placeholder='Prénom *' required>";
                         }
                         
                         
@@ -79,10 +79,10 @@ $my_sqli = connectionDB();
                     echo "<div class='right-column'>";
                     if (isset($_GET['mail'])) {
                         $mail = $_GET['mail'];
-                        echo "<input type='email' name='mail' placeholder='Adresse mail *' value='$mail' required>";
+                        echo "<input type='email' maxlength='50' name='mail' placeholder='Adresse mail *' value='$mail' required>";
                     }
                     else {
-                        echo "<input type='email' name='mail' placeholder='Adresse mail *' required>";
+                        echo "<input type='email' maxlength='50' name='mail' placeholder='Adresse mail *' required>";
                     }
 
                     if (isset($_GET['naissance'])) {
@@ -107,33 +107,33 @@ $my_sqli = connectionDB();
                     echo "<div class='left-column'>";
                     if (isset($_GET['login'])) {
                         $login = $_GET['login'];
-                        echo "<input type='text' name='login' placeholder='Login *' value='$login' required>";
+                        echo "<input type='text' maxlength='50' name='login' placeholder='Login *' value='$login' required>";
                     }
                     else {
-                        echo "<input type='text' name='login' placeholder='Login *' required>";
+                        echo "<input type='text' maxlength='50' name='login' placeholder='Login *' required>";
                     }
 
                     if (isset($_GET['mdp'])) {
                         $mdp = $_GET['mdp'];
-                        echo "<input type='password' name='mdp' placeholder='Mot de passe *' value='$mdp' required>";
+                        echo "<input type='password' maxlength='50' name='mdp' placeholder='Mot de passe *' value='$mdp' required>";
                     }
                     else {
-                        echo "<input type='password' name='mdp' placeholder='Mot de passe *' required>";
+                        echo "<input type='password' maxlength='50' name='mdp' placeholder='Mot de passe *' required>";
                     }
 
                     if (isset($_GET['mdp_confirmation'])) {
                         $mdp_confirmation = $_GET['mdp_confirmation'];
-                        echo "<input type='password' name='mdp-confirmation' placeholder='Confirmation du mot de passe *' value='$mdp_confirmation' required>";
+                        echo "<input type='password' maxlength='50' name='mdp-confirmation' placeholder='Confirmation du mot de passe *' value='$mdp_confirmation' required>";
                     }
                     else {
-                        echo "<input type='password' name='mdp-confirmation' placeholder='Confirmation du mot de passe *' required>";
+                        echo "<input type='password' maxlength='50' name='mdp-confirmation' placeholder='Confirmation du mot de passe *' required>";
                     }
 
                     echo "</div>";
                     echo "<div class='right-column'>";
                         echo "<h3 class='a-centrer'>Choisissez votre photo de profil</h3>";
                         echo "<p class='a-centrer'>(Répertoire : Images/PhotoProfil/)</p>";
-                        echo "<input type=file name='choix-pp'";
+                        echo "<input type=file name='choix-pp'required>";
                 echo "</div>";   
             echo "</fieldset>";
             echo "<input type='submit' value='Inscription'>";         
