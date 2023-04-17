@@ -47,7 +47,7 @@ $my_sqli = connectionDB();
     ?>
     <?php
         echo "<div class='form-style-5'>";
-            echo "<form action='./php/validationArticle.php' method='POST'>";
+            echo "<form action='./php/ajoutArticle.php' method='POST'>";
               echo "<fieldset>";
                 echo "<br>";
                 echo "<legend>";
@@ -56,17 +56,17 @@ $my_sqli = connectionDB();
                     echo "</span>";
                     echo "Informations sur le jeu";
                 echo "</legend>";
-                echo "<div class='form-content'>";
-                    if (isset($_GET['nom_jeu'])) {
-                        $nom_jeu = $_GET['nom_jeu'];
-                        echo "<input type='text' maxlength='30' name='nom_jeu' placeholder='Nom du jeu *' value='$nom_jeu' required>";
-                    }
-                    else {
-                        echo "<input type='text' maxlength='30' name='nom_jeu' placeholder='Nom du jeu *' required>";
-                    } 
-                echo "</div>";
                     echo "<div class='form-content'>";
                         echo "<div class='left-column'>";
+
+                        if (isset($_GET['titre_article'])) {
+                            $titre_article = $_GET['titre_article'];
+                            echo "<input type='text' maxlength='100' name='titre_article' placeholder='Titre article *' value='$titre_article' required>";
+                        }
+                        else {
+                            echo "<input type='text' maxlength='100' name='titre_article' placeholder='Titre article *' required>";
+                        } 
+
                             if (isset($_GET['date_sortie'])) {
                             $date_sortie = $_GET['date_sortie'];
                             echo "<input type='date' name='date_sortie' placeholder='Date de sortie du jeu *' value='$date_sortie' required>";
@@ -76,6 +76,14 @@ $my_sqli = connectionDB();
                             }    
                         echo "</div>";
                     echo "<div class='right-column'>";
+
+                    if (isset($_GET['nom_jeu'])) {
+                        $nom_jeu = $_GET['nom_jeu'];
+                        echo "<input type='text' maxlength='30' name='nom_jeu' placeholder='Nom du jeu *' value='$nom_jeu' required>";
+                    }
+                    else {
+                        echo "<input type='text' maxlength='30' name='nom_jeu' placeholder='Nom du jeu *' required>";
+                    } 
 
                     if (isset($_GET['prix'])) {
                         $prix = $_GET['prix'];
