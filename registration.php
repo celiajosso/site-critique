@@ -87,10 +87,10 @@ $my_sqli = connectionDB();
 
                     if (isset($_GET['naissance'])) {
                         $naissance = $_GET['naissance'];
-                        echo "<input type='date' name='naissance' placeholder='Date de naissance *' value='$naissance' required>";
+                        echo "<input type='text' onfocus='(this.type=`date`)' name='naissance' placeholder='Date de naissance *' value='$naissance' required>";
                     }
                     else {
-                        echo "<input type='date' name='naissance' placeholder='Date de naissance *' required>";
+                        echo "<input type='text' onfocus='(this.type=`date`)' name='naissance' placeholder='Date de naissance *' required>";
                     }
                     
                     echo "</div>";
