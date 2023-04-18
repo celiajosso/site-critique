@@ -81,7 +81,7 @@ $my_sqli = connectionDB();
 
                     if (isset($_GET['prix'])) {
                         $prix = $_GET['prix'];
-                        echo "<input type='float' min='0' step='0.01' name='prix' placeholder='Prix du jeu *' value='$prix' required>";
+                        echo "<input type='number' min='0' step='0.01' name='prix' placeholder='Prix du jeu *' value='$prix' required>";
                         }
                         else {
                             echo "<input type='number' min='0' step='0.01' name='prix' placeholder='Prix du jeu *' required>";
