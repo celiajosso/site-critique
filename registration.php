@@ -85,12 +85,13 @@ $my_sqli = connectionDB();
                         echo "<input type='email' maxlength='50' name='mail' placeholder='Adresse mail *' required>";
                     }
 
+                    $today = date('Y-m-d'); 
                     if (isset($_GET['naissance'])) {
                         $naissance = $_GET['naissance'];
-                        echo "<input type='text' onfocus='(this.type=`date`)' name='naissance' placeholder='Date de naissance *' value='$naissance' required>";
+                        echo "<input type='text' onfocus='(this.type=`date`)' max='$today' name='naissance' placeholder='Date de naissance *' value='$naissance' required>";
                     }
                     else {
-                        echo "<input type='text' onfocus='(this.type=`date`)' name='naissance' placeholder='Date de naissance *' required>";
+                        echo "<input type='text' onfocus='(this.type=`date`)' max='$today' name='naissance' placeholder='Date de naissance *' required>";
                     }
                     
                     echo "</div>";

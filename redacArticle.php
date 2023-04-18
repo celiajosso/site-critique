@@ -63,13 +63,14 @@ $my_sqli = connectionDB();
                         else {
                             echo "<input type='text' maxlength='100' name='titre_article' placeholder='Titre article *' required>";
                         } 
-
+                            $today = date('Y-m-d'); 
                             if (isset($_GET['date_sortie'])) {
                             $date_sortie = $_GET['date_sortie'];
-                            echo "<input type='text' onfocus='(this.type=`date`)' name='date_sortie' placeholder='Date de sortie du jeu *' value='$date_sortie' required>";
+                            
+                            echo "<input type='text' onfocus='(this.type=`date`)' max='$today' name='date_sortie' placeholder='Date de sortie du jeu *' value='$date_sortie' required>";
                             }
                             else {
-                                echo "<input type='text' onfocus='(this.type=`date`)' name='date_sortie' placeholder='Date de sortie du jeu *' required>";
+                                echo "<input type='text' onfocus='(this.type=`date`)' max='$today' name='date_sortie' placeholder='Date de sortie du jeu *' required>";
                             }    
                         echo "</div>";
                     echo "<div class='right-column'>";

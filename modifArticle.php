@@ -71,7 +71,8 @@ $my_sqli = connectionDB();
 
                             echo "<input type='text' maxlength='100' name='titre_article' placeholder='Titre article *' value='$titre_article' required>";
                             
-                            echo "<input type='text' onfocus='(this.type=`date`)' name='date_sortie' placeholder='Date de sortie du jeu *' value='$date_sortie' required>";
+                            $today = date('Y-m-d'); 
+                            echo "<input type='text' onfocus='(this.type=`date`)' max='$today' name='date_sortie' placeholder='Date de sortie du jeu *' value='$date_sortie' required>";
                             
                         echo "</div>";
                     
