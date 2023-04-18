@@ -51,6 +51,9 @@ $my_sqli = connectionDB();
         $date_sortie = $sql_jeu_res[0]["date_sortie"];
         $synopsis = $sql_jeu_res[0]["synopsis"];
 
+        $titre_article = htmlspecialchars($titre_article, ENT_QUOTES);
+        $nom_jeu = htmlspecialchars($nom_jeu, ENT_QUOTES);
+
         echo "<div class='form-style-5'>";
             echo "<form action='./php/verifModifArticle.php?numero=$num' method='POST'>";
               echo "<fieldset>";
