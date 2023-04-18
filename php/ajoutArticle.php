@@ -29,8 +29,6 @@ $gameplay = $_POST["gameplay"];
 
 $jeu_unique = Is_gameUnique($my_sqli, $nom_jeu);
 
-echo "<pre>"; print_r($_POST); echo "</pre>";
-
 if (!$jeu_unique) {
     header("Location: ../redacArticle.php?titre_article=$titre_article&nom_jeu=$nom_jeu&date_sortie=$date_sortie&prix=$prix&synopsis=$synopsis&categorie=$categorie&support=$support&note=$note&critique=$critique&jaquette=$jaquette&gameplay=$gameplay&erreur=jeu");
 }

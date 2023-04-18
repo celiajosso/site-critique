@@ -51,7 +51,7 @@ $my_sqli = connectionDB();
         $synopsis = $sql_jeu_res[0]["synopsis"];
 
         echo "<div class='form-style-5'>";
-            echo "<form action='./php/verifModifArticle.php' method='POST'>";
+            echo "<form action='./php/verifModifArticle.php?numero=$num' method='POST'>";
               echo "<fieldset>";
                 echo "<br>";
                 echo "<legend>";
