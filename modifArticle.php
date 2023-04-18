@@ -45,6 +45,7 @@ $my_sqli = connectionDB();
         $sql_jeu = "SELECT * FROM Jeu INNER JOIN Article on Article.id_Jeu = Jeu.id_Jeu WHERE id_Article=$num";
         $sql_jeu_res = readDB($my_sqli, $sql_jeu);
 
+        $num_jeu = $sql_jeu_res[0]["id_Jeu"];
         $nom_jeu = $sql_jeu_res[0]["nom"];
         $prix = $sql_jeu_res[0]["prix"];
         $date_sortie = $sql_jeu_res[0]["date_sortie"];
@@ -89,6 +90,12 @@ $my_sqli = connectionDB();
                     $sql_support = "SELECT id_Support FROM Support";
                     $sql_support_res = readDB($my_sqli, $sql_support);
 
+                    $sql_selected_categories = "SELECT id_Categorie FROM est_Categorie WHERE id_Jeu = $num_jeu";
+                    $sql_selected_categories_res = readDB($my_sqli, $sql_selected_categories);
+
+                    $sql_selected_supports = "SELECT id_Support FROM est_Support WHERE id_Jeu = $num_jeu";
+                    $sql_selected_supports_res = readDB($my_sqli, $sql_selected_supports);
+
                 echo "<div class='form-content'>";
                         echo "<div class=left-column'>";
                             echo "<h3 class='a-centrer'>Catégories du jeu</h3>";
@@ -101,8 +108,19 @@ $my_sqli = connectionDB();
                                     $nom_champ = "categorie_" . "$i";
 
                                     echo "<div class='form-content'>";
-                                        echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ'/></div>";
-                                        echo "<div class='right-column-checkbox'><img class='icone-type' src='$chemin_type'></div>";
+                                        $c=0;
+                                        foreach ($sql_selected_categories_res as $cle2 => $val2) {
+                                            foreach ($val2 as $cle3 => $val3) {
+                                                if ($val3 == $i) {
+                                                    echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ' checked/></div>";
+                                                    $c=1;
+                                                }
+                                            }
+                                        }
+                                        if ($c==0) {
+                                            echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ'/></div>";
+                                        }
+                                            echo "<div class='right-column-checkbox'><img class='icone-type' src='$chemin_type'></div>";
                                     echo "</div>";
                                     echo "<br><br>";
                                     $i = $i + 1;
@@ -122,7 +140,20 @@ $my_sqli = connectionDB();
                                     $nom_champ = "support_" . "$i";
 
                                     echo "<div class='form-content'>";
-                                        echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ'/></div>";
+
+                                        $c=0;
+                                        foreach ($sql_selected_supports_res as $cle2 => $val2) {
+                                            foreach ($val2 as $cle3 => $val3) {
+                                                if ($val3 == $i) {
+                                                    echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ' checked/></div>";
+                                                    $c=1;
+                                                }
+                                            }
+                                        }
+                                        if ($c==0) {
+                                            echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ'/></div>";
+                                        }
+
                                         echo "<div class='right-column-checkbox'><img class='icone-type' src='$chemin_type'></div>";
                                     echo "</div>";
                                     echo "<br><br>";
