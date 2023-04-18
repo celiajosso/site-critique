@@ -12,6 +12,7 @@ include_once("./php/functions-DB.php");
 include_once("./php/functions_query.php");
 include_once("./php/functions_structure.php");
 $my_sqli = connectionDB();
+date_default_timezone_set('Europe/Paris');
 
 ?>
 
@@ -38,7 +39,6 @@ $my_sqli = connectionDB();
     }
     $tab = getArticles($my_sqli);
     displayArticles($tab);
-
 
     // echo "<h1>Article</h1>";            
     // $sql_input = "SELECT * FROM Article";

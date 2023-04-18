@@ -121,4 +121,75 @@ function Is_ChangedRole ($my_sqli, $login, $chosen_role) {
 
     return (empty($changed_role_res));
 }
+
+function Duration($date) {
+    $date = new DateTime($date);
+    $today = new DateTime(date('Y-m-d H:i'));
+
+    $interval = $date->diff($today);
+    $min = $interval->format('%i');
+    $hours = $interval->format('%h');
+    $days = $interval->format('%a');
+    $months = $interval->format('%m');
+    $years = $interval->format('%y');
+
+    if ($years == 0) {
+        if ($months == 0) {
+            if ($days == 0) {
+
+                if ($hours == 0) {
+                    if ($min == 0) {
+                        $expr = "moins d'une minute.";
+                    }
+                    else {
+                        if ($min == 1) {
+                            $expr = "1 minute.";
+                        }
+                        else {
+                            $expr = "$min minutes.";
+                        }
+                    }
+                }
+                else {
+                    if ($hours == 1) {
+                        $expr = "1 heure.";
+                    }
+                    else {
+                        $expr = "$hours heures.";
+                    }
+                }
+
+
+            }
+            else {
+                if ($days == 1) {
+                    $expr = "1 jour.";
+                }
+                else {
+                    $expr = "$days jours.";
+                }
+
+
+            }
+        }
+        else {
+            $expr = "$months mois.";
+        }
+
+    }
+    else {
+        if ($years == 1) {
+            $expr = "1 an.";
+        }
+        else {
+            $expr = "$years ans.";
+        }
+
+
+    }
+
+    return $expr;
+}
+
+
 ?>

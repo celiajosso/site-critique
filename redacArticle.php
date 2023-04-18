@@ -12,7 +12,7 @@ include_once("./php/functions-DB.php");
 include_once("./php/functions_query.php");
 include_once("./php/functions_structure.php");
 $my_sqli = connectionDB();
-
+date_default_timezone_set('Europe/Paris');
 ?>
 
 <!DOCTYPE html lang="fr">
