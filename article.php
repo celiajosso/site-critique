@@ -45,7 +45,7 @@ $my_sqli = connectionDB();
         <?php
             $num = $_GET['numero'];
             $tab = getArticleInformations($my_sqli);
-            displayArticleInformations($tab);
+            displayArticleInformations($tab, $num);
         ?>
         <?php include("./static/footer.php"); ?>
     </body>            

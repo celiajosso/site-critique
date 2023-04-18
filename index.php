@@ -32,7 +32,6 @@ $my_sqli = connectionDB();
     <?php include("./static/header.php"); ?>
     <?php include("./static/nav.php"); ?>
     <?php
-    
     $tab = getArticles($my_sqli);
     displayArticles($tab);
 
