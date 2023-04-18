@@ -118,7 +118,15 @@ $my_sqli = connectionDB();
                                     $nom_champ = "categorie_" . "$i";
 
                                     echo "<div class='form-content'>";
-                                        echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ'/></div>";
+                                        if (isset($_GET["cat_$i"])) {
+                                            if ($_GET["cat_$i"] == 1) {
+                                                echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ' checked/></div>";
+                                            }
+                                        }
+                                        else {
+                                            echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ'/></div>";
+                                        }
+                                        
                                         echo "<div class='right-column-checkbox'><img class='icone-type' src='$chemin_type'></div>";
                                     echo "</div>";
                                     echo "<br><br>";

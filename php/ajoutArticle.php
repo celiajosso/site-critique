@@ -32,10 +32,62 @@ $nom_jeu = addslashes($nom_jeu);
 $synopsis = addslashes($synopsis);
 $critique = addslashes($critique);
 
+$nb_rows_supports = "SELECT COUNT(*) FROM Support";
+$nb_rows_supports_res = readDB($my_sqli, $nb_rows_supports);
+$nb_sup = $nb_rows_supports_res[0];
+
+$nb_rows_categories = "SELECT COUNT(*) FROM Support";
+$nb_rows_categories_res = readDB($my_sqli, $nb_rows_categories);
+$nb_cat = $nb_rows_categories_res[0];
+
+
+$checked_categories = Array();
+$checked_supports = Array();
+
+foreach ($_POST as $cle => $val) {
+    if (str_starts_with($cle, 'categorie')) {
+        $last_chr = substr($cle, -1);
+        $checked_categories[] = $last_chr;
+    }
+    elseif (str_starts_with($cle, 'support')) {
+        $last_chr = substr($cle, -1);
+        $checked_supports[] = $last_chr;
+    }
+}
+
+// $chaine_supports = "";
+// for($i=1; $i<5; $i++) {
+//     $c=0;
+//     // foreach($checked_supports as $cle1 => $val1) {
+//     //     if ($val1 == $i) {
+//     //         $chaine_supports = $chaine_supports . "&sup_$i=1";
+//     //         $c=1;
+//     //     }
+//     // } 
+//     // if ($c == 0) {
+//     //     $chaine_supports = $chaine_supports . "&sup_$i=0";
+//     // }
+// }
+
+// $chaine_categories = "";
+// for($i=1; $i<$nb_cat; $i++) {
+//     $c=0;
+//     foreach($checked_categories as $cle1 => $val1) {
+//         if ($val1 == $i) {
+//             $chaine_categories = $chaine_categories . "&cat_$i=1";
+//             $c=1;
+//         }
+//     } 
+//     if ($c == 0) {
+//         $chaine_categories = $chaine_categories . "&cat_$i=0";
+//     }
+// }
+// //. $chaine_categories . $chaine_supports
+
 $jeu_unique = Is_gameUnique($my_sqli, $nom_jeu);
 
 if (!$jeu_unique) {
-    header("Location: ../redacArticle.php?titre_article=$titre_article&nom_jeu=$nom_jeu&date_sortie=$date_sortie&prix=$prix&synopsis=$synopsis&categorie=$categorie&support=$support&note=$note&critique=$critique&jaquette=$jaquette&gameplay=$gameplay&erreur=jeu");
+    header("Location: ../redacArticle.php?titre_article=$titre_article&nom_jeu=$nom_jeu&date_sortie=$date_sortie&prix=$prix&synopsis=$synopsis&note=$note&critique=$critique&jaquette=$jaquette&gameplay=$gameplay&erreur=jeu");
 }
 else{
     $sql_insert_jeu = "INSERT INTO Jeu (nom, prix, date_sortie, synopsis) VALUES ('$nom_jeu', '$prix', '$date_sortie', '$synopsis')";
@@ -55,20 +107,6 @@ else{
 
     $sql_insert_article = "INSERT INTO Article (titre_Article, dateCreation_Article, id_Jeu, id_UtilisateurCreateur, contenu_Article, noteRedacteur_Article) VALUES ('$titre_article', '$today', $nb_rows_jeu, $id_utilisateur, '$critique', $note)";
     $sql_insert_article_res = writeDB($my_sqli, $sql_insert_article);
-
-    $checked_categories = Array();
-    $checked_supports = Array();
-
-    foreach ($_POST as $cle => $val) {
-        if (str_starts_with($cle, 'categorie')) {
-            $last_chr = substr($cle, -1);
-            $checked_categories[] = $last_chr;
-        }
-        elseif (str_starts_with($cle, 'support')) {
-            $last_chr = substr($cle, -1);
-            $checked_supports[] = $last_chr;
-        }
-    }
 
     foreach ($checked_categories as $cle => $val) {
         $sql_insert_categories = "INSERT INTO est_categorie (id_Jeu, id_Categorie) VALUES ($nb_rows_jeu, $val)";
