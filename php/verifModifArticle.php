@@ -35,6 +35,11 @@ $critique = $_POST["critique"];
 $jaquette = $_POST["jaquette"];
 $gameplay = $_POST["gameplay"];
 
+$titre_article = addslashes($titre_article);
+$critique = addslashes($critique);
+$nom_jeu = addslashes($nom_jeu);
+$synopsis = addslashes($synopsis);
+
 $sql_update_titre_article = "UPDATE Article SET titre_Article = '$titre_article' WHERE id_Article=$num_article";
 $sql_update_titre_article_res = writeDB($my_sqli, $sql_update_titre_article);
 

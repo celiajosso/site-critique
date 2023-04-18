@@ -27,6 +27,11 @@ $critique = $_POST["critique"];
 $jaquette = $_POST["jaquette"];
 $gameplay = $_POST["gameplay"];
 
+$titre_article = addslashes($titre_article);
+$nom_jeu = addslashes($nom_jeu);
+$synopsis = addslashes($synopsis);
+$critique = addslashes($critique);
+
 $jeu_unique = Is_gameUnique($my_sqli, $nom_jeu);
 
 if (!$jeu_unique) {
