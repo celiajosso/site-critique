@@ -61,7 +61,12 @@ function displayArticleInformations($article, $num) {
 
     echo "</div>";
     echo "<div class='right-column'>";
-    echo "<a href='modifArticle.php?numero=$num'><img class='icone-modif' alt='Modifier article' title='Modifier article' src='Images/modif.png'></a>";
+    if (!empty($_SESSION)) {
+            if ($_SESSION['role'] == 2 || $_SESSION['role'] == 3) {
+        echo "<a href='modifArticle.php?numero=$num'><img class='icone-modif' alt='Modifier article' title='Modifier article' src='Images/modif.png'></a>";
+    }
+    }
+
     echo "<h1>$titre_jeu</h1>";
     echo "<br><br>";
 
