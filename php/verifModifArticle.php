@@ -75,7 +75,7 @@ $sql_del_categories = "DELETE FROM est_categorie WHERE id_Jeu=$num_jeu";
 $sql_del_categories_res = writeDB($my_sqli, $sql_del_categories);
 
 $sql_del_support = "DELETE FROM est_support WHERE id_Jeu=$num_jeu";
-$sql_del_categories_res = writeDB($my_sqli, $sql_del_categories);
+$sql_del_categories_res = writeDB($my_sqli, $sql_del_support);
 
 $checked_categories = Array();
 $checked_supports = Array();
