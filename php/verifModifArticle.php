@@ -119,6 +119,6 @@ $sql_modif_jaquette_res = writeDB($my_sqli, $sql_modif_jaquette);
 $sql_modif_gameplay = "UPDATE Image SET chemin_image = '$lien_gameplay' WHERE id_Image = $id_gameplay";
 $sql_modif_gameplay_res = writeDB($my_sqli, $sql_modif_gameplay);
 
-header("Location: ../index.php");
+header("Location: ../article.php?numero=$num_article&success=1");
 
 ?>

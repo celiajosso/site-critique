@@ -35,6 +35,6 @@ else{
 
     $sql_changement_role = "UPDATE Utilisateur SET id_Role=$role WHERE id_Utilisateur=$id";
     $sql_changement_role_res = writeDB($my_sqli, $sql_changement_role);
-    header("Location: ../index.php");
+    header("Location: ../gestionRoles.php?success=1");
 }
 ?>

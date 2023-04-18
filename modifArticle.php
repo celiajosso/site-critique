@@ -33,6 +33,8 @@ $my_sqli = connectionDB();
     <?php include("./static/header.php"); ?>
     <?php include("./static/nav.php"); ?>
     <?php
+
+
         $num = $_GET["numero"];
 
         $sql_article = "SELECT * FROM Article WHERE id_Article=$num";

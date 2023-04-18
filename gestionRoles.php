@@ -38,6 +38,9 @@ $my_sqli = connectionDB();
             $login = $_GET["login"];
             echo "<div class='erreur-inscription'><h2>Erreur !</h2>$login possède déjà ce rôle.<br><br></div>";
         }
+        if (isset($_GET["success"])) {
+            echo "<div class='erreur-inscription'><h2>Rôle changé avec succès !</div>";
+        }
         $login_admin = $_SESSION["username"];
         $sql_noms = "SELECT login_Utilisateur FROM Utilisateur WHERE login_Utilisateur <> '$login_admin'";
         $sql_noms_res = readDB($my_sqli, $sql_noms);

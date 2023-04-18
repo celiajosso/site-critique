@@ -37,7 +37,10 @@ $my_sqli = connectionDB();
             if ($_GET["erreur"] == "jeu") {
                 echo "<div class='erreur-inscription'><h2>Erreur !</h2>Un article a déjà été écrit sur ce jeu !<br><br></div>";
             }
-    }
+        }
+        if (isset($_GET["success"])) {
+            echo "<div class='erreur-inscription'><h2>Article envoyé avec succès !</div>";
+        }
     ?>
     <?php
         echo "<div class='form-style-5'>";
