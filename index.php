@@ -32,9 +32,12 @@ $my_sqli = connectionDB();
     <?php include("./static/header.php"); ?>
     <?php include("./static/nav.php"); ?>
     <?php
+    if (isset($_GET["inscription"])) {
+        $login = $_SESSION["username"];
+        echo "<div class='erreur-inscription'><h2>Bienvenue $login!</h2></div>";
+    }
     $tab = getArticles($my_sqli);
     displayArticles($tab);
-
 
 
     // echo "<h1>Article</h1>";            

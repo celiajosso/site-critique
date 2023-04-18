@@ -43,6 +43,18 @@ else{
     $today = date("Y-m-d");
     $sql_input = "INSERT INTO Utilisateur (login_Utilisateur, password_Utilisateur, photoProfil_Utilisateur, nom_Utilisateur, prenom_Utilisateur, id_role, mail_Utilisateur, dateNaissance_Utilisateur, dateCreation_Utilisateur, dateConnexion_Utilisateur) VALUES ('$login', '$mdp', '$img_path', '$nom', '$prenom', 1, '$mail', '$naissance', '$today', NULL)";
     $sql_input_res = writeDB($my_sqli, $sql_input);
-    header("Location: ../index.php");
+
+    $sql_id = "SELECT prenom_Utilisateur, id_Role FROM Utilisateur WHERE login_Utilisateur = '$login' AND password_Utilisateur= '$mdp'";
+    $res_id = readDB($my_sqli, $sql_id);
+    $prenom = $res_id[0]['prenom_Utilisateur'];
+    $role = $res_id[0]['id_Role'];
+     
+    $_SESSION['username'] = $login;
+    $_SESSION['prenom'] = $prenom;
+    $_SESSION['role'] = $role;
+    $_SESSION['is_connected'] = 1;
+    closeDB($my_sqli);
+
+    header("Location: ../index.php?inscription=1");
 }
 ?>
