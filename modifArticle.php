@@ -178,25 +178,11 @@ $my_sqli = connectionDB();
                     echo "Votre critique";
                 echo "</legend>";
                 echo "<br>";
-                echo "<div class='form-content'>";
-                    echo "<div class='left-column'>";
                     echo "<input type='number' min='0' max='10' name='note' placeholder='Note du jeu (/10) *' value='$note' required>";
                     
-                    echo "<textarea name='critique' maxlength='2000' rows='14' placeholder='Critique *' required='required'>$critique</textarea>";
+                    echo "<textarea name='critique' maxlength='2000' rows='8' placeholder='Critique *' required='required'>$critique</textarea>";
 
-                    echo "</div>";
-                    echo "<div class='right-column'>";
-                        echo "<div>";
-                            echo "<h3 class='a-centrer'>Choisissez l'image de jaquette</h3>";
-                            echo "<p class='a-centrer'>(Répertoire : Images/Jeu/)</p>";
-                            echo "<input type=file name='jaquette' required>";
-                        echo "</div>";
-                        echo "<div>";
-                            echo "<h3 class='a-centrer'>Choisissez l'image de Gameplay</h3>";
-                            echo "<p class='a-centrer'>(Répertoire : Images/Jeu/)</p>";
-                            echo "<input type=file name='gameplay' required>";
-                        echo "</div>";
-                echo "</div>";   
+                    
             echo "</fieldset>";
             echo "<input type='submit' value='Modifier'>";         
             echo "</form>";
