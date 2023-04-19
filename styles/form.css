@@ -21,44 +21,6 @@ legend {
 	font-weight: bold;
 }
 
-.radiomark {
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 17px;
-	width: 17px;
-	background-color: white;
-	border: 2px solid rgb(190, 190, 190);
-	border-radius: 50%;
-}
-
-.container:hover input ~ .radiomark{
-	background-color: #ccc;
-}
-
-.container input:checked ~ .radiomark {
-	background-color: #295767;
-}
-
-.radiomark:after {
-	content: "";
-	position: absolute;
-	display: none;
-}
-
-.container input:checked ~ .radiomark:after {
-	display: block;
-}
-
-.container .radiomark:after {
-	top : 4px;
-	left : 4px;
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: white;
-}
-
 .form-content{
 	display: flex;
 	flex-direction: row;
@@ -197,7 +159,7 @@ display: block;
 	margin-right: auto;
 	padding : 1%;
 	margin-top: 2%;
-	border-radius: 5%/25%;
+	border-radius: 40px;
 	text-align: center;
 }
 
