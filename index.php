@@ -33,10 +33,45 @@ date_default_timezone_set('Europe/Paris');
     <?php include("./static/header.php"); ?>
     <?php include("./static/nav.php"); ?>
     <?php
+
+
+    // debut script barre de recherche (par nom de jeu)
+    echo "<br>";
+    if(isset($_GET['q']) && !empty($_GET['q'])) {
+        $q = htmlspecialchars($_GET['q']);
+        $jeux = "SELECT nom FROM Jeu WHERE nom LIKE '%$q%'";
+        $jeux_res = readDB($my_sqli, $jeux);
+    }
+
+    echo "<form method='GET'>";
+    echo "<input type='search' size = '30' name='q' placeholder='Recherche par nom de jeu' />";
+    echo "<input type='submit' value='Valider' />";
+    echo "</form>";
+
+    if(!empty($jeux_res)) {
+        $len = count($jeux_res);
+        echo "$len résultats pour la recherche : <em>$q</em>";
+        echo "<ul>";
+        foreach($jeux_res as $cle => $val) {
+           echo "<li>";
+           print_r($val["nom"]);
+           echo "</li>";
+        } 
+        echo "</ul>";
+     }
+     else {
+        echo "Aucun résultat pour la recherche : <em>$q</em>";
+     }
+     echo "<br>";
+    // fin script barre de recherche
+
+
     if (isset($_GET["inscription"])) {
         $login = $_SESSION["username"];
         echo "<div class='erreur-inscription'><h2>Bienvenue $login!</h2></div>";
     }
+
+
 
     // lien vers pages de profil privée et publiques (temporaire)
     if (isset($_SESSION["username"])) {
