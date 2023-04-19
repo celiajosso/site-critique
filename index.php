@@ -28,6 +28,7 @@ date_default_timezone_set('Europe/Paris');
         <link rel="stylesheet" href="styles/header.css">
         <link rel="stylesheet" href="styles/nav.css">
         <link rel="stylesheet" href="styles/footer.css">
+        <link rel="stylesheet" href="styles/search.css">
     </head>
 
     <?php include("./static/header.php"); ?>
@@ -68,13 +69,79 @@ date_default_timezone_set('Europe/Paris');
      echo "<br>";
     // fin script barre de recherche
 
+    // debut script barre de recherche (par categorie)
+    echo "<br>";
+    $sql_categorie = "SELECT id_Categorie FROM Categorie";
+    $sql_categorie_res = readDB($my_sqli, $sql_categorie);
+
+    $nb_categories = count($sql_categorie_res);
+    
+    $selected_categories = Array();
+
+    for ($i=1; $i < $nb_categories+1; $i++) {
+        if(isset($_GET["c_$i"])) {
+            $selected_categories[] = 1;
+        }
+        else {
+            $selected_categories[] = 0;
+        }
+    }
+
+    $condition = " ";
+    foreach($selected_categories as $cle => $val) {
+        if ($val) {
+            $index = $cle + 1;
+            $condition = $condition . "id_Categorie = $index OR ";
+        }
+        }
+    $condition = substr($condition, 1,-3);
+
+    $jeux_1 = "SELECT id_Jeu FROM est_Categorie WHERE $condition";
+    $jeux_1_res = readDB($my_sqli, $jeux_1);
+
+    echo "<form method='GET'>";
+
+    // boucle
+    $i = 1;
+    foreach ($sql_categorie_res as $cle => $val) {
+        foreach ($val as $cle1 => $val1) {
+            $chemin_type = "Images/Categories/" . $val1 . ".png";
+            $nom_champ = "c_" . "$i";
+
+            echo "<div class='form-content'>";
+                
+                    echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ'/></div>";
+                    echo "<div class='right-column-checkbox'><img  class='icone-type' src='$chemin_type'></div>";
+            echo "</div>";
+            echo "<br><br>";
+            $i = $i + 1;
+        }}
+    echo "<input type='submit' value='Valider' />";
+    echo "</form>";
+
+    if (!empty($jeux_1_res)) {
+        $len = count($jeux_1_res);
+        echo "$len résultats pour cette recherche :";
+        echo "<ul>";
+        foreach($jeux_1_res as $cle => $val) {
+           echo "<li>";
+           print_r($val["id_Jeu"]);
+           echo "</li>";
+        } 
+        echo "</ul>";
+     }
+     else {
+        echo "Aucun résultat pour cette recherche";
+        
+     }
+     echo "<br>";
+    // fin script barre de recherche
+
 
     if (isset($_GET["inscription"])) {
         $login = $_SESSION["username"];
         echo "<div class='erreur-inscription'><h2>Bienvenue $login!</h2></div>";
     }
-
-
 
     // lien vers pages de profil privée et publiques (temporaire)
     if (isset($_SESSION["username"])) {
@@ -96,6 +163,8 @@ date_default_timezone_set('Europe/Paris');
 
     $tab = getArticles($my_sqli);
     displayArticles($tab);
+
+    echo "<br><br><br><br><br><br><br><br>";
 
     // echo "<h1>Article</h1>";            
     // $sql_input = "SELECT * FROM Article";
