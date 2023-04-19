@@ -36,7 +36,7 @@ date_default_timezone_set('Europe/Paris');
         <link rel="stylesheet" href="styles/header.css">
         <link rel="stylesheet" href="styles/nav.css">
         <link rel="stylesheet" href="styles/footer.css">
-        <link rel="stylesheet" href="styles/infosArticle.css">
+        <link rel="stylesheet" href="styles/pagePrive.css">
     </head>
 
     <body>

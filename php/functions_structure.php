@@ -156,14 +156,24 @@ function displayUserPrivateInformations($my_sqli, $tab) {
     $sql_input_res = readDB($my_sqli, $sql_input);
     $role = $sql_input_res[0]["nom_Role"];
 
+    echo "<div class='box-page-prive'>";
+
+    echo "<div class='flex-content'>";
+
+    echo "<div class='left-column'>";
+    echo "Photo de profil :<br>";
     echo "<img class='pp' src='$pp'><br><form action='./php/updateInfosPrivees.php?numero=$num&pp=1' method='POST'><input type = 'file' name='pp'><br><br><input type='submit' value='modifier'></form>";
     echo "<br><br>";
+
+    echo "</div>";
+
+    echo "<div class='right-column'>";
 
     echo "<form action='./php/updateInfosPrivees.php?numero=$num&login=1' method='POST'>Login : <input type = 'text' name='login' size= '30' maxlength = '50' value = '$login'> <input type='submit' value='modifier'></form>";
     echo "<br><br>";
 
     echo "Role : $role";
-    echo "<br><br>";
+    echo "<br><br><br>";
 
     echo "<form action='./php/updateInfosPrivees.php?numero=$num&nom=1' method='POST'>Nom : <input type = 'text' name='nom' maxlength = '50' size= '30' value = '$nom'> <input type='submit' value='modifier'></form>";
     echo "<br><br>";
@@ -178,11 +188,15 @@ function displayUserPrivateInformations($my_sqli, $tab) {
     echo "<form action='./php/updateInfosPrivees.php?numero=$num&naissance=1' method='POST'>Date de naissance : <input type = 'text' onfocus='(this.type=`date`)' max='$today' name='naissance' value = '$naissance'> <input type='submit' value='modifier'></form>";
     echo "<br><br>";
 
-    echo "<form action='./php/updateInfosPrivees.php?numero=$num&password=1' method='POST'>Mot de passe : <input type = 'password' name='password' maxlength = '50' size= '30' value = '$password'> Confirmation du mot de passe <input type = 'password' name='password_conf' value = '$password' size= '30'> <input type='submit' value='modifier'></form>";
+    echo "<form action='./php/updateInfosPrivees.php?numero=$num&password=1' method='POST'>Mot de passe : <input type = 'password' name='password' maxlength = '50' size= '30' value = '$password'><br><br><br>Confirmation du mot de passe : <input type = 'password' name='password_conf' value = '$password' size= '30'> <input type='submit' value='modifier'></form>";
     echo "<br><br>";
 
     echo "Date de création du compte : $creation";
-    echo "<br><br>";
+
+    echo "</div>";
+
+    echo "</div>";
+    echo "</div>";
 
 
     echo "<br><br>";echo "<br><br>";echo "<br><br>";echo "<br><br>";echo "<br><br>";

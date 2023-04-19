@@ -1,0 +1,33 @@
+.box-page-prive{
+    width: 80%;
+    border : 3px solid;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5%/10%;
+    padding : 50px;
+}
+
+.left-column {
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.right-column {
+    width: 55%;
+    padding-left: 1%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.flex-content{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+form {
+    padding : 0;
+    margin : 0;
+}
