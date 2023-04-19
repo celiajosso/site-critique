@@ -48,7 +48,7 @@ date_default_timezone_set('Europe/Paris');
     echo "<input type='submit' value='Valider' />";
     echo "</form>";
 
-    if (isset($jeux_res)) {
+    if (!empty($jeux_res)) {
         $len = count($jeux_res);
         echo "$len résultats pour la recherche : <em>$q</em>";
         echo "<ul>";
