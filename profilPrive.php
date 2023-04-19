@@ -52,8 +52,8 @@ date_default_timezone_set('Europe/Paris');
                 if ($_GET["erreur"] == "login"){
                     echo "<div class='erreur-inscription'><h2>Erreur !</h2>Ce nom d'utilisateur est déjà pris !<br><br></div>";
                 }
-                if ($_GET["erreur"] == "mdp"){
-                    echo "<div class='erreur-inscription'><h2>Erreur !</h2>Le mot de passe confirmé est différent du mot de passe saisi !<br><br></div>";
+                if ($_GET["erreur"] == "unchanged"){
+                    echo "<div class='erreur-inscription'><h2>Aucun champ modifié.<h2></div>";
                 }
             }
             if (isset($_GET["success"])) {

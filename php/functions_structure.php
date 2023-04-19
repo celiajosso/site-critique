@@ -155,7 +155,6 @@ function displayUserPrivateInformations($my_sqli, $tab) {
     $creation = $tab[0]["dateCreation_Utilisateur"];
     $id_role = $tab[0]["id_Role"];
 
-    $naissance = writeDate($naissance);
     $creation = writeDate($creation);
 
     $sql_input = "SELECT nom_Role FROM Role WHERE id_Role=$id_role";
@@ -202,16 +201,13 @@ function displayUserPrivateInformations($my_sqli, $tab) {
             echo "<td class='table-title'>Date de naissance :</td>";
             echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&naissance=1' method='POST'><input type = 'text' size='30' onfocus='(this.type=`date`)' max='$today' name='naissance' value = '$naissance'> <input type='submit' value='modifier'></form></td>";
         echo "</tr>";
-
+        
         echo "<tr>";
             echo "<td class='table-title'>Mot de passe :</td>";
-            echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&password=1' method='POST'><input type = 'password' name='password' maxlength = '50' size= '30' value = '$password'>";
+            echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&password=1' method='POST'><input type = 'password' name='password' maxlength = '50' size= '30' value = '$password'> <input type='submit' value='modifier'></form></td>";
         echo "</tr>";
 
-        echo "<tr>";
-            echo "<td class='table-title'>Mot de passe (confirmation) :</td>";
-            echo "<td><input type = 'password' name='password_conf' value = '$password' size= '30'> <input type='submit' value='modifier'></form></td></td>";
-        echo "</tr>";
+        echo "</form>";
 
         echo "<tr>";
             echo "<td class='table-title'>Rôle :</td>";

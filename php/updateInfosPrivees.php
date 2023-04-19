@@ -22,7 +22,15 @@ date_default_timezone_set('Europe/Paris');
         $login = $_POST["login"];
         $login_unique = Is_loginUnique($my_sqli, $login);
         if (!$login_unique) {
-            header("Location: ../profilPrive.php?numero=$num&erreur=login");
+            $sql_login_initial = "SELECT login_Utilisateur FROM Utilisateur WHERE id_Utilisateur = $num";
+            $sql_login_initial_res = readDB($my_sqli, $sql_login_initial);
+            $login_initial = $sql_login_initial_res[0]["login_Utilisateur"];
+            if ($login == $login_initial) {
+                header("Location: ../profilPrive.php?numero=$num&erreur=unchanged");
+            }
+            else {
+                header("Location: ../profilPrive.php?numero=$num&erreur=login");
+            } 
         }
         else {
             $sql_input = "UPDATE Utilisateur SET login_Utilisateur='$login' WHERE id_Utilisateur='$num'";
@@ -34,26 +42,49 @@ date_default_timezone_set('Europe/Paris');
 
     if (isset($_GET["nom"])) {
         $nom = $_POST["nom"];
-
-        $sql_input = "UPDATE Utilisateur SET nom_Utilisateur='$nom' WHERE id_Utilisateur='$num'";
-        $sql_input_res = writeDB($my_sqli, $sql_input);
-        header("Location: ../profilPrive.php?numero=$num&success=Nom");
+        $sql_nom_initial = "SELECT nom_Utilisateur FROM Utilisateur WHERE id_Utilisateur = $num";
+        $sql_nom_initial_res = readDB($my_sqli, $sql_nom_initial);
+        $nom_initial = $sql_nom_initial_res[0]["nom_Utilisateur"];
+        if ($nom == $nom_initial) {
+            header("Location: ../profilPrive.php?numero=$num&erreur=unchanged");
+        }
+        else {
+            $sql_input = "UPDATE Utilisateur SET nom_Utilisateur='$nom' WHERE id_Utilisateur='$num'";
+            $sql_input_res = writeDB($my_sqli, $sql_input);
+            header("Location: ../profilPrive.php?numero=$num&success=Nom");
+        } 
     }
 
     if (isset($_GET["prenom"])) {
         $prenom = $_POST["prenom"];
 
-        $sql_input = "UPDATE Utilisateur SET prenom_Utilisateur='$prenom' WHERE id_Utilisateur='$num'";
-        $sql_input_res = writeDB($my_sqli, $sql_input);
-        header("Location: ../profilPrive.php?numero=$num&success=Prénom");
+        $sql_prenom_initial = "SELECT prenom_Utilisateur FROM Utilisateur WHERE id_Utilisateur = $num";
+        $sql_prenom_initial_res = readDB($my_sqli, $sql_prenom_initial);
+        $prenom_initial = $sql_prenom_initial_res[0]["prenom_Utilisateur"];
+        if ($prenom == $prenom_initial) {
+            header("Location: ../profilPrive.php?numero=$num&erreur=unchanged");
+        }
+        else {
+            $sql_input = "UPDATE Utilisateur SET prenom_Utilisateur='$prenom' WHERE id_Utilisateur='$num'";
+            $sql_input_res = writeDB($my_sqli, $sql_input);
+            header("Location: ../profilPrive.php?numero=$num&success=Prénom");
+        }
     }
 
     if (isset($_GET["mail"])) {
         $mail = $_POST["mail"];
 
-        $sql_input = "UPDATE Utilisateur SET mail_Utilisateur='$mail' WHERE id_Utilisateur='$num'";
-        $sql_input_res = writeDB($my_sqli, $sql_input);
-        header("Location: ../profilPrive.php?numero=$num&success=Adresse mail");
+        $sql_mail_initial = "SELECT mail_Utilisateur FROM Utilisateur WHERE id_Utilisateur = $num";
+        $sql_mail_initial_res = readDB($my_sqli, $sql_mail_initial);
+        $mail_initial = $sql_mail_initial_res[0]["mail_Utilisateur"];
+        if ($mail == $mail_initial) {
+            header("Location: ../profilPrive.php?numero=$num&erreur=unchanged");
+        }
+        else {
+            $sql_input = "UPDATE Utilisateur SET mail_Utilisateur='$mail' WHERE id_Utilisateur='$num'";
+            $sql_input_res = writeDB($my_sqli, $sql_input);
+            header("Location: ../profilPrive.php?numero=$num&success=Adresse mail");
+        }
     }
 
     if (isset($_GET["naissance"])) {
@@ -63,18 +94,29 @@ date_default_timezone_set('Europe/Paris');
             header("Location: ../profilPrive.php?numero=$num&erreur=age");
         }
         else {
-            $sql_input = "UPDATE Utilisateur SET dateNaissance_Utilisateur='$naissance' WHERE id_Utilisateur='$num'";
-            $sql_input_res = writeDB($my_sqli, $sql_input);
-            header("Location: ../profilPrive.php?numero=$num&success=Date de naissance");
+            $sql_naissance_initial = "SELECT dateNaissance_Utilisateur FROM Utilisateur WHERE id_Utilisateur = $num";
+            $sql_naissance_initial_res = readDB($my_sqli, $sql_naissance_initial);
+            $naissance_initial = $sql_naissance_initial_res[0]["dateNaissance_Utilisateur"];
+            if ($naissance == $naissance_initial) {
+                header("Location: ../profilPrive.php?numero=$num&erreur=unchanged");
+            }
+            else {
+                $sql_input = "UPDATE Utilisateur SET dateNaissance_Utilisateur='$naissance' WHERE id_Utilisateur='$num'";
+                $sql_input_res = writeDB($my_sqli, $sql_input);
+                header("Location: ../profilPrive.php?numero=$num&success=Date de naissance");
+            }
+
         }
     }
 
     if (isset($_GET["password"])) {
         $mdp = $_POST["password"];
-        $mdp_conf = $_POST["password_conf"];
-        $mdp_valide = Is_samePassword($mdp, $mdp_conf);
-        if (!$mdp_valide) {
-            header("Location: ../profilPrive.php?numero=$num&erreur=mdp");
+
+        $sql_mdp_initial = "SELECT password_Utilisateur FROM Utilisateur WHERE id_Utilisateur = $num";
+        $sql_mdp_initial_res = readDB($my_sqli, $sql_mdp_initial);
+        $mdp_initial = $sql_mdp_initial_res[0]["password_Utilisateur"];
+        if ($mdp == $mdp_initial) {
+            header("Location: ../profilPrive.php?numero=$num&erreur=unchanged");
         }
         else {
             $sql_input = "UPDATE Utilisateur SET password_Utilisateur='$mdp' WHERE id_Utilisateur='$num'";
@@ -87,8 +129,16 @@ date_default_timezone_set('Europe/Paris');
         $pp = $_POST["pp"];
         $img_path = "Images/PhotoProfil/" . $pp;
 
-        $sql_input = "UPDATE Utilisateur SET photoProfil_Utilisateur='$img_path' WHERE id_Utilisateur='$num'";
-        $sql_input_res = writeDB($my_sqli, $sql_input);
-        header("Location: ../profilPrive.php?numero=$num&success=Photo de profil");
+        $sql_pp_initial = "SELECT photoProfil_Utilisateur FROM Utilisateur WHERE id_Utilisateur = $num";
+        $sql_pp_initial_res = readDB($my_sqli, $sql_pp_initial);
+        $pp_initial = $sql_pp_initial_res[0]["photoProfil_Utilisateur"];
+        if ($img_path == $pp_initial) {
+            header("Location: ../profilPrive.php?numero=$num&erreur=unchanged");
+        }
+        else {
+            $sql_input = "UPDATE Utilisateur SET photoProfil_Utilisateur='$img_path' WHERE id_Utilisateur='$num'";
+            $sql_input_res = writeDB($my_sqli, $sql_input);
+            header("Location: ../profilPrive.php?numero=$num&success=Photo de profil");
+        }
     }
 ?>
