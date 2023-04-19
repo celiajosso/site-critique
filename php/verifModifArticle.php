@@ -17,8 +17,6 @@ $my_sqli = connectionDB();
 
 <?php
 
-echo "<pre>"; print_r($_POST); echo "</pre>";
-
 $num_article = $_GET["numero"];
 
 $sql_id_jeu = "SELECT Jeu.id_Jeu FROM Jeu INNER JOIN Article ON Article.id_Jeu = Jeu.id_Jeu WHERE id_Article=$num_article";

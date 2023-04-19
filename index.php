@@ -39,7 +39,6 @@ date_default_timezone_set('Europe/Paris');
     }
 
     // lien vers page de profil privée (temporaire)
-    print_r($_SESSION);
     if (isset($_SESSION["username"])) {
         $login_user = $_SESSION["username"];
         $sql_id_user = "SELECT id_Utilisateur FROM Utilisateur WHERE login_Utilisateur='$login_user'";
