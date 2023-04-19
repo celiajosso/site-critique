@@ -30,6 +30,8 @@ function displayArticleInformations($article, $num) {
     $contenu_article = $article[0][0]["contenu_Article"];
     $noteRedacteur_article = $article[0][0]["noteRedacteur_Article"];
 
+    $dateCrea_article = writeDate($dateCrea_article);
+
     $UtilisateurCrea_article = $article[1][0]["login_Utilisateur"];
     
     if (!empty($article[2])) {
@@ -129,7 +131,8 @@ function displayArticleInformations($article, $num) {
         echo "<div class='to-place-right'>";
         echo "<h3>Rédigé par : $UtilisateurCrea_article ($dateCrea_article)</h3>";        
         if (!empty($UtilisateurModif_article)) {
-            echo "<h3>Modifié par : $UtilisateurModif_article le $dateModif_article</h3>";
+            $dateModif_article = writeDate($dateModif_article);
+            echo "<h3>Modifié par : $UtilisateurModif_article ($dateModif_article)</h3>";
         }
         echo "</div>";
 
@@ -151,6 +154,9 @@ function displayUserPrivateInformations($my_sqli, $tab) {
     $naissance = $tab[0]["dateNaissance_Utilisateur"];
     $creation = $tab[0]["dateCreation_Utilisateur"];
     $id_role = $tab[0]["id_Role"];
+
+    $naissance = writeDate($naissance);
+    $creation = writeDate($creation);
 
     $sql_input = "SELECT nom_Role FROM Role WHERE id_Role=$id_role";
     $sql_input_res = readDB($my_sqli, $sql_input);
@@ -238,6 +244,7 @@ function displayUserPublicInformations($my_sqli, $tab) {
     $id_role = $tab[0]["id_Role"];
 
     $duree = Duration($connexion);
+    $creation = writeDate($creation);
 
     $sql_input = "SELECT nom_Role FROM Role WHERE id_Role=$id_role";
     $sql_input_res = readDB($my_sqli, $sql_input);

@@ -207,10 +207,16 @@ function writeDate($date) {
     $months = $date->format('m');
     $years = $date->format('y');
 
-    $years = "20$years";
+    if ($years < 50) {
+        $years = "20$years";
+    }
+    else {
+        $years = "19$years";
+    }
+    
     $months_list = Array('janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre');
     $months = $months_list[$months-1];
-    
+
     return "$days $months $years";
 }
 
