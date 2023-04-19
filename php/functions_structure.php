@@ -161,7 +161,7 @@ function displayUserPrivateInformations($my_sqli, $tab) {
     echo "<div class='flex-content'>";
 
     echo "<div class='left-column'>";
-    echo "Photo de profil :<br>";
+    echo "<p class='table-title'>Photo de profil :</p><br>";
     echo "<img class='pp' src='$pp'><br><form action='./php/updateInfosPrivees.php?numero=$num&pp=1' method='POST'><input type = 'file' name='pp'><br><br><input type='submit' value='modifier'></form>";
     echo "<br><br>";
 
@@ -169,29 +169,57 @@ function displayUserPrivateInformations($my_sqli, $tab) {
 
     echo "<div class='right-column'>";
 
-    echo "<form action='./php/updateInfosPrivees.php?numero=$num&login=1' method='POST'>Login : <input type = 'text' name='login' size= '30' maxlength = '50' value = '$login'> <input type='submit' value='modifier'></form>";
-    echo "<br><br>";
-
-    echo "Role : $role";
-    echo "<br><br><br>";
-
-    echo "<form action='./php/updateInfosPrivees.php?numero=$num&nom=1' method='POST'>Nom : <input type = 'text' name='nom' maxlength = '50' size= '30' value = '$nom'> <input type='submit' value='modifier'></form>";
-    echo "<br><br>";
-
-    echo "<form action='./php/updateInfosPrivees.php?numero=$num&prenom=1' method='POST'>Prenom : <input type = 'text' name='prenom' maxlength = '50' size= '30' value = '$prenom'> <input type='submit' value='modifier'></form>";
-    echo "<br><br>";
-
-    echo "<form action='./php/updateInfosPrivees.php?numero=$num&mail=1' method='POST'>Adresse mail : <input type = 'email' name='mail' maxlength = '50' size= '30' value = '$mail'> <input type='submit' value='modifier'></form>";
-    echo "<br><br>";
-
     $today = date('Y-m-d');
-    echo "<form action='./php/updateInfosPrivees.php?numero=$num&naissance=1' method='POST'>Date de naissance : <input type = 'text' onfocus='(this.type=`date`)' max='$today' name='naissance' value = '$naissance'> <input type='submit' value='modifier'></form>";
-    echo "<br><br>";
 
-    echo "<form action='./php/updateInfosPrivees.php?numero=$num&password=1' method='POST'>Mot de passe : <input type = 'password' name='password' maxlength = '50' size= '30' value = '$password'><br><br><br>Confirmation du mot de passe : <input type = 'password' name='password_conf' value = '$password' size= '30'> <input type='submit' value='modifier'></form>";
-    echo "<br><br>";
+    echo "<table>";
+        echo "<tr>";
+            echo "<td class='table-title'>Login :</td>";
+            echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&login=1' method='POST'><input type = 'text' name='login' size= '30' maxlength = '50' value = '$login'> <input type='submit' value='modifier'></form></td>";
+        echo "</tr>";
 
-    echo "Date de création du compte : $creation";
+        echo "<tr>";
+            echo "<td class='table-title'>Nom :</td>";
+            echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&nom=1' method='POST'><input type = 'text' name='nom' maxlength = '50' size= '30' value = '$nom'> <input type='submit' value='modifier'></form></td>";
+        echo "</tr>";
+
+        echo "<tr>";
+            echo "<td class='table-title'>Prenom :</td>";
+            echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&prenom=1' method='POST'><input type = 'text' name='prenom' maxlength = '50' size= '30' value = '$prenom'> <input type='submit' value='modifier'></form></td>";
+        echo "</tr>";
+
+        echo "<tr>";
+            echo "<td class='table-title'>Adresse mail :</td>";
+            echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&mail=1' method='POST'><input type = 'email' name='mail' maxlength = '50' size= '30' value = '$mail'> <input type='submit' value='modifier'></form></td>";
+        echo "</tr>";
+
+        echo "<tr>";
+            echo "<td class='table-title'>Date de naissance :</td>";
+            echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&naissance=1' method='POST'><input type = 'text' size='30' onfocus='(this.type=`date`)' max='$today' name='naissance' value = '$naissance'> <input type='submit' value='modifier'></form></td>";
+        echo "</tr>";
+
+        echo "<tr>";
+            echo "<td class='table-title'>Mot de passe :</td>";
+            echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&password=1' method='POST'><input type = 'password' name='password' maxlength = '50' size= '30' value = '$password'>";
+        echo "</tr>";
+
+        echo "<tr>";
+            echo "<td class='table-title'>Mot de passe (confirmation) :</td>";
+            echo "<td><input type = 'password' name='password_conf' value = '$password' size= '30'> <input type='submit' value='modifier'></form></td></td>";
+        echo "</tr>";
+
+        echo "<tr>";
+            echo "<td class='table-title'>Rôle :</td>";
+            echo "<td>$role</td>";
+        echo "</tr>";
+
+        echo "<tr>";
+            echo "<td class='table-title'>Date de création du compte :</td>";
+            echo "<td>$creation</td>";
+        echo "</tr>";
+
+    echo "</table>";
+
+
 
     echo "</div>";
 

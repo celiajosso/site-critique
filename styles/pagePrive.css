@@ -5,7 +5,7 @@
     margin-right: auto;
     border-radius: 5%/10%;
     padding : 50px;
-    margin-top: 50px;
+    margin-top: 10px;
 }
 
 .left-column {
@@ -62,4 +62,13 @@ select {
 	-moz-box-sizing: border-box; 
 	background-color: #e8eeef;
 	color:#72787c;
+}
+
+td {
+    padding : 10px;
+}
+
+.table-title {
+    font-weight: bold;
+    font-size: 18px;
 }
