@@ -201,6 +201,19 @@ function Duration($date) {
     return $expr;
 }
 
+function writeDate($date) {
+    $date = date_create($date);
+    $days = $date->format('j');
+    $months = $date->format('m');
+    $years = $date->format('y');
+
+    $years = "20$years";
+    $months_list = Array('janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre');
+    $months = $months_list[$months-1];
+    
+    return "$days $months $years";
+}
+
 function avis($mysqli,$id_Utilisateur,$id_Jeu){
     $tableau = readDB($mysqli,"SELECT avis.titre_Avis, avis.contenu_Avis, avis.dateCreation_Avis, avis.note_Avis, utilisateur.login_Utilisateur FROM avis JOIN utilisateur ON avis.id_Utilisateur=utilisateur.id_Utilisateur WHERE avis.id_Jeu=$id_Jeu AND avis.id_Utilisateur=$id_Utilisateur");
     return $tableau;

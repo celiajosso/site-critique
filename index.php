@@ -38,6 +38,8 @@ date_default_timezone_set('Europe/Paris');
         echo "<div class='erreur-inscription'><h2>Bienvenue $login!</h2></div>";
     }
 
+    //echo writeDate('2019-09-17');
+
     // lien vers pages de profil privée et publiques (temporaire)
     if (isset($_SESSION["username"])) {
         $login_user = $_SESSION["username"];
