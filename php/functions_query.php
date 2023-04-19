@@ -219,7 +219,7 @@ function writeDate($date) {
 
 function avis($mysqli,$id_Utilisateur,$id_Jeu){
     // Permet d'accéder à l'avis (Titre,Contenu,Note,id_utilisateur)
-    $tableau = readDB($mysqli,"SELECT avis.titre_Avis, avis.contenu_Avis, avis.dateCreation_Avis, avis.note_Avis, utilisateur.login_Utilisateur FROM avis JOIN utilisateur ON avis.id_Utilisateur=utilisateur.id_Utilisateur WHERE avis.id_Jeu=$id_Jeu AND avis.id_Utilisateur=$id_Utilisateur");
+    $tableau = readDB($mysqli,"SELECT avis.titre_Avis, avis.contenu_Avis, avis.dateCreation_Avis, avis.note_Avis, utilisateur.login_Utilisateur, utilisateur.photoProfil_Utilisateur FROM avis JOIN utilisateur ON avis.id_Utilisateur=utilisateur.id_Utilisateur WHERE avis.id_Jeu=$id_Jeu AND avis.id_Utilisateur=$id_Utilisateur");
     return $tableau;
 }
 
