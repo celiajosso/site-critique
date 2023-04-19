@@ -12,7 +12,7 @@ include_once("../php/functions-DB.php");
 include_once("../php/functions_query.php");
 // include_once("../php/functions_structure.php");
 $my_sqli = connectionDB();
-
+date_default_timezone_set('Europe/Paris');
 ?>
 
 <?php
@@ -33,6 +33,16 @@ if ($isMember) {
     $_SESSION['prenom'] = $prenom;
     $_SESSION['role'] = $role;
     $_SESSION['is_connected'] = 1;
+
+    $sql_id_user = "SELECT id_Utilisateur FROM Utilisateur WHERE login_Utilisateur='$login'";
+    $sql_id_user_res = readDB($my_sqli, $sql_id_user);
+    $id_user = $sql_id_user_res[0]["id_Utilisateur"];
+
+    $today_with_h_m = date("Y-m-d h:i");
+
+    $sql_update_date_connexion = "UPDATE Utilisateur SET dateConnexion_Utilisateur='$today_with_h_m' WHERE id_Utilisateur=$id_user";
+    $sql_update_date_connexion_res = writeDB($my_sqli, $sql_update_date_connexion);
+
     closeDB($my_sqli);
     header("Location: ../index.php");
 }

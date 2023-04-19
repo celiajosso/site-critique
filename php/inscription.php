@@ -12,7 +12,7 @@ include_once("../php/functions-DB.php");
 include_once("../php/functions_query.php");
 //include_once("../php/functions_structure.php");
 $my_sqli = connectionDB();
-
+date_default_timezone_set('Europe/Paris');
 ?>
 
 <?php
@@ -41,7 +41,8 @@ elseif (!$mdp_valide) {
 else{
     $img_path = "Images/PhotoProfil/" . $choix_pp;
     $today = date("Y-m-d");
-    $sql_input = "INSERT INTO Utilisateur (login_Utilisateur, password_Utilisateur, photoProfil_Utilisateur, nom_Utilisateur, prenom_Utilisateur, id_role, mail_Utilisateur, dateNaissance_Utilisateur, dateCreation_Utilisateur, dateConnexion_Utilisateur) VALUES ('$login', '$mdp', '$img_path', '$nom', '$prenom', 1, '$mail', '$naissance', '$today', NULL)";
+    $today_with_h_m = date("Y-m-d h:i");
+    $sql_input = "INSERT INTO Utilisateur (login_Utilisateur, password_Utilisateur, photoProfil_Utilisateur, nom_Utilisateur, prenom_Utilisateur, id_role, mail_Utilisateur, dateNaissance_Utilisateur, dateCreation_Utilisateur, dateConnexion_Utilisateur) VALUES ('$login', '$mdp', '$img_path', '$nom', '$prenom', 1, '$mail', '$naissance', '$today', '$today_with_h_m')";
     $sql_input_res = writeDB($my_sqli, $sql_input);
 
     $sql_id = "SELECT prenom_Utilisateur, id_Role FROM Utilisateur WHERE login_Utilisateur = '$login' AND password_Utilisateur= '$mdp'";
