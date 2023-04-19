@@ -38,16 +38,25 @@ date_default_timezone_set('Europe/Paris');
         echo "<div class='erreur-inscription'><h2>Bienvenue $login!</h2></div>";
     }
 
-    // lien vers page de profil privée (temporaire)
+    // lien vers pages de profil privée et publiques (temporaire)
     if (isset($_SESSION["username"])) {
         $login_user = $_SESSION["username"];
         $sql_id_user = "SELECT id_Utilisateur FROM Utilisateur WHERE login_Utilisateur='$login_user'";
         $sql_id_user_res = readDB($my_sqli, $sql_id_user);
         $id_user = $sql_id_user_res[0]["id_Utilisateur"];
         echo "<a href='profilPrive.php?numero=$id_user'>Profil privé de $login_user</a>";
-        echo "<br>";
+        echo "<br><br>";
+        $sql_input_other_users = "SELECT id_Utilisateur, login_Utilisateur FROM Utilisateur WHERE id_Utilisateur <> $id_user ORDER BY id_Utilisateur";
+        $sql_input_other_users_res = readDB($my_sqli, $sql_input_other_users);
+        foreach($sql_input_other_users_res as $cle => $val) {
+            $login_user = $val["login_Utilisateur"];
+            $id_user = $val["id_Utilisateur"];
+            echo "<a href='profilPublic.php?numero=$id_user'>Profil public de $login_user</a>";
+            echo "<br>";
+        }
     }
-    
+
+    echo "<br>";
 
     $tab = getArticles($my_sqli);
     displayArticles($tab);

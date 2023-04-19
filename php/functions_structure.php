@@ -230,6 +230,67 @@ function displayUserPrivateInformations($my_sqli, $tab) {
     echo "<br><br>";echo "<br><br>";echo "<br><br>";echo "<br><br>";echo "<br><br>";
 }
 
+function displayUserPublicInformations($my_sqli, $tab) {
+    $login = $tab[0]["login_Utilisateur"];
+    $pp = $tab[0]["photoProfil_Utilisateur"];
+    $creation = $tab[0]["dateCreation_Utilisateur"];
+    $connexion = $tab[0]["dateConnexion_Utilisateur"];
+    $id_role = $tab[0]["id_Role"];
+
+    $duree = Duration($connexion);
+
+    $sql_input = "SELECT nom_Role FROM Role WHERE id_Role=$id_role";
+    $sql_input_res = readDB($my_sqli, $sql_input);
+    $role = $sql_input_res[0]["nom_Role"];
+
+    echo "<div class='box-page-prive'>";
+
+    echo "<div class='flex-content'>";
+
+    echo "<div class='left-column'>";
+    echo "<p class='table-title'>Photo de profil :</p>";
+    echo "<img class='pp' src='$pp'>";
+
+    echo "</div>";
+
+    echo "<div class='right-column'>";
+
+    $today = date('Y-m-d h:i');
+
+    echo "<table>";
+        echo "<tr>";
+            echo "<td class='table-title'>Login :</td>";
+            echo "<td>$login</td>";
+        echo "</tr>";
+
+        echo "<tr>";
+            echo "<td class='table-title'>Rôle :</td>";
+            echo "<td>$role</td>";
+        echo "</tr>";
+
+        echo "<tr>";
+            echo "<td class='table-title'>Date de création du compte :</td>";
+            echo "<td>$creation</td>";
+        echo "</tr>";
+
+        echo "<tr>";
+            echo "<td class='table-title'>Dernière connexion :</td>";
+            echo "<td>Il y a $duree</td>";
+        echo "</tr>";
+
+    echo "</table>";
+
+
+
+    echo "</div>";
+
+    echo "</div>";
+    echo "</div>";
+
+
+    echo "<br><br>";echo "<br><br>";echo "<br><br>";echo "<br><br>";echo "<br><br>";
+}
+
 function display_Avis($avis) {
     foreach($avis as $tableau){
         echo "$tableau[titre_Avis]<br>";

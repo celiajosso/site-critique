@@ -1,0 +1,76 @@
+.box-page-prive{
+    width: 80%;
+    border : 3px solid;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 100px;
+    padding : 50px;
+    margin-top: 10px;
+}
+
+.left-column {
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.right-column {
+    width: 55%;
+    padding-left: 1%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.flex-content{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+form {
+    padding : 0;
+    margin : 0;
+}
+
+input[type="submit"]{
+    border : none;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #295767;
+    color : white;
+    font-weight: 600;
+}
+
+.pp {
+    border : 2px solid;
+    border-radius: 100px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 30%;
+    height: auto;
+}
+
+input,
+textarea,
+select {
+	border: 1px solid #687477;
+	border-radius: 4px;
+	margin: 0;
+	outline: 0;
+	padding: 10px;
+	box-sizing: border-box; 
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box; 
+	background-color: #e8eeef;
+	color:#72787c;
+}
+
+td {
+    padding : 20px;
+}
+
+.table-title {
+    font-weight: bold;
+    font-size: 18px;
+}
