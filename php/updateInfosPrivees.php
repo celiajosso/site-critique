@@ -132,7 +132,7 @@ date_default_timezone_set('Europe/Paris');
         $sql_pp_initial = "SELECT photoProfil_Utilisateur FROM Utilisateur WHERE id_Utilisateur = $num";
         $sql_pp_initial_res = readDB($my_sqli, $sql_pp_initial);
         $pp_initial = $sql_pp_initial_res[0]["photoProfil_Utilisateur"];
-        if ($img_path == $pp_initial || $pp = $pp_initial) {
+        if ($img_path == $pp_initial || empty($pp)) {
             header("Location: ../profilPrive.php?numero=$num&erreur=unchanged");
         }
         else {

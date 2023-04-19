@@ -282,15 +282,9 @@ function displayUserPublicInformations($my_sqli, $tab) {
         echo "</tr>";
 
     echo "</table>";
-
-
-
-    echo "</div>";
-
     echo "</div>";
     echo "</div>";
-
-
+    echo "</div>";
     echo "<br><br>";echo "<br><br>";echo "<br><br>";echo "<br><br>";echo "<br><br>";
 }
 
@@ -301,8 +295,6 @@ function display_Avis($avis) {
         echo "$tableau[dateCreation_Avis]<br>";
         echo "$tableau[note_Avis]<br>";
         echo "$tableau[id_Utilisateur]<br>";
-
     }
 }
-
 ?>

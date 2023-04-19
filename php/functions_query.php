@@ -194,10 +194,7 @@ function Duration($date) {
         else {
             $expr = "$years ans.";
         }
-
-
     }
-
     return $expr;
 }
 
