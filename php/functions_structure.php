@@ -258,7 +258,7 @@ function displayUserPublicInformations($my_sqli, $tab) {
 
     echo "<div class='right-column'>";
 
-    $today = date('Y-m-d h:i');
+    $today = date('Y-m-d H:i');
 
     echo "<table>";
         echo "<tr>";
