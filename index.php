@@ -48,7 +48,7 @@ date_default_timezone_set('Europe/Paris');
     echo "<input type='submit' value='Valider' />";
     echo "</form>";
 
-    if(!empty($jeux_res)) {
+    if (isset($jeux_res)) {
         $len = count($jeux_res);
         echo "$len résultats pour la recherche : <em>$q</em>";
         echo "<ul>";
@@ -60,7 +60,10 @@ date_default_timezone_set('Europe/Paris');
         echo "</ul>";
      }
      else {
-        echo "Aucun résultat pour la recherche : <em>$q</em>";
+        if (isset($q)) {
+            echo "Aucun résultat pour la recherche : <em>$q</em>";
+        }
+        
      }
      echo "<br>";
     // fin script barre de recherche
