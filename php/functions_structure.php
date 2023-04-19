@@ -187,4 +187,15 @@ function displayUserPrivateInformations($my_sqli, $tab) {
     echo "<br><br>";echo "<br><br>";echo "<br><br>";echo "<br><br>";echo "<br><br>";
 }
 
+function display_Avis($avis) {
+    foreach($avis as $tableau){
+        echo "$tableau[titre_Avis]<br>";
+        echo "$tableau[contenu_Avis]<br>";
+        echo "$tableau[dateCreation_Avis]<br>";
+        echo "$tableau[note_Avis]<br>";
+        echo "$tableau[id_Utilisateur]<br>";
+
+    }
+}
+
 ?>
