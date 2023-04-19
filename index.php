@@ -40,7 +40,7 @@ date_default_timezone_set('Europe/Paris');
     echo "<br>";
     if(isset($_GET['q']) && !empty($_GET['q'])) {
         $q = htmlspecialchars($_GET['q']);
-        $jeux = "SELECT nom FROM Jeu WHERE nom LIKE '%$q%'";
+        $jeux = "SELECT DISTINCT nom FROM Jeu WHERE nom LIKE '%$q%'";
         $jeux_res = readDB($my_sqli, $jeux);
     }
 
@@ -96,7 +96,7 @@ date_default_timezone_set('Europe/Paris');
         }
     $condition = substr($condition, 1,-3);
 
-    $jeux_1 = "SELECT id_Jeu FROM est_Categorie WHERE $condition";
+    $jeux_1 = "SELECT DISTINCT id_Jeu FROM est_Categorie WHERE $condition";
     $jeux_1_res = readDB($my_sqli, $jeux_1);
 
     echo "<form method='GET'>";
@@ -136,7 +136,6 @@ date_default_timezone_set('Europe/Paris');
      }
      echo "<br>";
     // fin script barre de recherche
-
 
     if (isset($_GET["inscription"])) {
         $login = $_SESSION["username"];
