@@ -37,6 +37,19 @@ date_default_timezone_set('Europe/Paris');
         $login = $_SESSION["username"];
         echo "<div class='erreur-inscription'><h2>Bienvenue $login!</h2></div>";
     }
+
+    // lien vers page de profil privée (temporaire)
+    print_r($_SESSION);
+    if (isset($_SESSION["username"])) {
+        $login_user = $_SESSION["username"];
+        $sql_id_user = "SELECT id_Utilisateur FROM Utilisateur WHERE login_Utilisateur='$login_user'";
+        $sql_id_user_res = readDB($my_sqli, $sql_id_user);
+        $id_user = $sql_id_user_res[0]["id_Utilisateur"];
+        echo "<a href='profilPrive.php?numero=$id_user'>Profil privé de $login_user</a>";
+        echo "<br>";
+    }
+    
+
     $tab = getArticles($my_sqli);
     displayArticles($tab);
 

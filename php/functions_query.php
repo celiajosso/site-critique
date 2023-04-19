@@ -65,6 +65,16 @@ function getArticleInformations ($my_sqli) {
     }
 }
 
+function getUserPrivateInformations($my_sqli, $id_user) {
+    $sql_input = "SELECT * FROM Utilisateur WHERE id_Utilisateur = $id_user";
+    $sql_input_res = readDB($my_sqli, $sql_input);
+
+    // Bonus : mettre les avis rédigés par la personnne
+    // Bonus : quand les avis seront fait -> mettre les avis rédigés par la personnne
+
+    return $sql_input_res;
+}
+
 function Is_loginUnique ($my_sqli, $username) {
     // Vérifie si le login entre par le nouvel utilisateur est unique
 
