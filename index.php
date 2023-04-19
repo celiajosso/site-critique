@@ -96,8 +96,11 @@ date_default_timezone_set('Europe/Paris');
         }
     $condition = substr($condition, 1,-3);
 
-    $jeux_1 = "SELECT DISTINCT id_Jeu FROM est_Categorie WHERE $condition";
-    $jeux_1_res = readDB($my_sqli, $jeux_1);
+    if (!empty($condition)) {
+        $jeux_1 = "SELECT DISTINCT id_Jeu FROM est_Categorie WHERE $condition";
+        $jeux_1_res = readDB($my_sqli, $jeux_1);
+    }
+
 
     echo "<form method='GET'>";
 
@@ -122,41 +125,43 @@ date_default_timezone_set('Europe/Paris');
     if (!empty($jeux_1_res)) {
         $len = count($jeux_1_res);
         echo "$len résultats pour cette recherche :";
-        echo "<ul>";
+    echo "<ul>";
         foreach($jeux_1_res as $cle => $val) {
            echo "<li>";
            print_r($val["id_Jeu"]);
            echo "</li>";
         } 
         echo "</ul>";
-     }
-     else {
-        echo "Aucun résultat pour cette recherche";
+    }
+    else {
+        if (isset($jeux_1_res)) {
+            echo "Aucun résultat pour cette recherche";
+        }
         
-     }
-     echo "<br>";
+    }
+    echo "<br>";
     // fin script barre de recherche
 
-    if (isset($_GET["inscription"])) {
-        $login = $_SESSION["username"];
-        echo "<div class='erreur-inscription'><h2>Bienvenue $login!</h2></div>";
-    }
+    // if (isset($_GET["inscription"])) {
+    //     $login = $_SESSION["username"];
+    //     echo "<div class='erreur-inscription'><h2>Bienvenue $login!</h2></div>";
+    // }
 
-    // lien vers pages de profil privée et publiques (temporaire)
-    if (isset($_SESSION["username"])) {
-        $login_user = $_SESSION["username"];
-        $sql_id_user = "SELECT id_Utilisateur FROM Utilisateur WHERE login_Utilisateur='$login_user'";
-        $sql_id_user_res = readDB($my_sqli, $sql_id_user);
-        $id_user = $sql_id_user_res[0]["id_Utilisateur"];
-        $sql_input_other_users = "SELECT id_Utilisateur, login_Utilisateur FROM Utilisateur WHERE id_Utilisateur <> $id_user ORDER BY id_Utilisateur";
-        $sql_input_other_users_res = readDB($my_sqli, $sql_input_other_users);
-        foreach($sql_input_other_users_res as $cle => $val) {
-            $login_user = $val["login_Utilisateur"];
-            $id_user = $val["id_Utilisateur"];
-            echo "<a href='profilPublic.php?numero=$id_user'>Profil public de $login_user</a>";
-            echo "<br>";
-        }
-    }
+    // // lien vers pages de profil privée et publiques (temporaire)
+    // if (isset($_SESSION["username"])) {
+    //     $login_user = $_SESSION["username"];
+    //     $sql_id_user = "SELECT id_Utilisateur FROM Utilisateur WHERE login_Utilisateur='$login_user'";
+    //     $sql_id_user_res = readDB($my_sqli, $sql_id_user);
+    //     $id_user = $sql_id_user_res[0]["id_Utilisateur"];
+    //     $sql_input_other_users = "SELECT id_Utilisateur, login_Utilisateur FROM Utilisateur WHERE id_Utilisateur <> $id_user ORDER BY id_Utilisateur";
+    //     $sql_input_other_users_res = readDB($my_sqli, $sql_input_other_users);
+    //     foreach($sql_input_other_users_res as $cle => $val) {
+    //         $login_user = $val["login_Utilisateur"];
+    //         $id_user = $val["id_Utilisateur"];
+    //         echo "<a href='profilPublic.php?numero=$id_user'>Profil public de $login_user</a>";
+    //         echo "<br>";
+    //     }
+    // }
 
     echo "<br>";
 
