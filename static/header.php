@@ -11,18 +11,35 @@ date_default_timezone_set('Europe/Paris');
 
 
 <header>
-    <a href="index.php">
-        <img id="logo" src="Images/logo.png" alt="Image d'un pokedex">
-    </a>
     <?php
-    // if (isset ($_SESSION['username'])) {
-    //     $username=$_SESSION['username'];
-    //     $id=$_SESSION['id'];
+    if (isset ($_SESSION['username'])) {
 
-    //     echo "<h2>Bonjour $username ! (dresseur #$id)</h2>";
-    // }
-    // else {
-    //     echo "<h2>Connecte-toi !</h2>";
-    // }
-    //?>
+        $username=$_SESSION['username'];
+
+        $sql_pp = "SELECT photoProfil_Utilisateur FROM Utilisateur WHERE login_Utilisateur='$username'";
+        $sql_pp_res = readDB($my_sqli, $sql_pp);
+        $pp = $sql_pp_res[0]["photoProfil_Utilisateur"];
+
+        $sql_id_user = "SELECT id_Utilisateur FROM Utilisateur WHERE login_Utilisateur='$username'";
+        $sql_id_user_res = readDB($my_sqli, $sql_id_user);
+        $id_user = $sql_id_user_res[0]["id_Utilisateur"];
+
+        echo "<div class='left-header'><a id='lien-logo' href='index.php'>";
+            echo "<img id='logo-connected' src='Images/logo.png' alt='Logo de Gamecrit'>";
+        echo "</a></div>";
+        echo "<div id='separator'></div>";
+        echo "<div class='right-header'>";
+        echo "<a href='profilPrive.php?numero=$id_user'>";
+        echo "<img id='pp-connected' src='$pp' alt='Photo de profil de l'utilisateur connecté'>";
+        echo "</a>";
+        echo "<p class='a-centrer'>Bonjour $username !</p>";
+        echo "</div>";
+
+    }
+    else {
+        echo "<a href='index.php'>";
+            echo "<img id='logo' src='Images/logo.png' alt='Logo de Gamecrit'>";
+        echo "</a>";
+    }
+    ?>
 </header>
