@@ -11,15 +11,94 @@ include_once("./php/functions_structure.php");
 $my_sqli = connectionDB();
 date_default_timezone_set('Europe/Paris');
 
-function displayArticles ($articles) {
-    $i = 0;
-    foreach ($articles as $cle => $val ) {
-        $id = $articles[$i]["id_Article"];
+function displayArticles ($my_sqli, $jeux_res) {
+    // === RECHERCHE PAR NOM DE JEU ===
+    echo "<br>";
+    echo "<form method='GET'>";
+    echo "<input type='search' size = '30' name='q' placeholder='Recherche par nom de jeu' />";
+    echo "<input type='submit' value='Valider' />";
+    echo "</form>";
+
+    // === RECHERCHE PAR CATEGORIE DE JEU ===
+    echo "<form method='GET'>";
+    $sql_categorie = "SELECT id_Categorie FROM Categorie";
+    $sql_categorie_res = readDB($my_sqli, $sql_categorie);
+    $i = 1;
+    foreach ($sql_categorie_res as $cle => $val) {
+        foreach ($val as $cle1 => $val1) {
+            $chemin_type = "Images/Categories/" . $val1 . ".png";
+            $nom_champ = "c_" . "$i";
+
+            echo "<div class='form-content'>";
+                    echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ'/></div>";
+                    echo "<div class='right-column-checkbox'><img  class='icone-type' src='$chemin_type'></div>";
+            echo "</div>";
+            echo "<br><br>";
+            $i = $i + 1;
+        }}
+    echo "<input type='submit' value='Valider' />";
+    echo "</form>";
+
+    // === AFFICHAGE POUR LA RECHERCHE PAR NOM DE JEU ===
+    if (isset($_GET["q"])) {
+        $q = $_GET ["q"];
+        if (!empty($jeux_res) && !empty($q)) {
+            $len = count($jeux_res);
+            echo "$len résultats pour la recherche : <em>$q</em><br><br>";
+            foreach($jeux_res as $cle => $val) {
+                $id = $val["id_Article"];
+                echo "<a href='article.php?numero=$id'>";
+                print_r($val["id_Article"]);
+                echo "</a><br>";
+            } 
+        }
+        else {
+            if (!empty($q)) {
+                echo "Aucun résultat pour la recherche : <em>$q</em>";
+            }
+            else {
+                $i = 0;
+                foreach ($jeux_res as $cle => $val ) {
+                    $id = $jeux_res[$i]["id_Article"];
+                    
+                    echo "<a href='article.php?numero=$id'>$id</a>";
+                    echo "<br>";
+                    $i = $i + 1;
+                }
+            }
+            echo "<br>";
+        }
+    }
+    // === AFFICHAGE POUR LA RECHERCHE PAR CATEGORIE DE JEU ===
+    elseif (!isset($_GET["q"]) && !empty($_GET)) {
+        if (!empty($jeux_res)) {
+            $len = count($jeux_res);
+            echo "$len résultats pour cette recherche par catégorie:<br>";
+            foreach($jeux_res as $cle => $val) {
+                $id = $val["id_Article"];
+                echo "<a href='article.php?numero=$id'>";
+                print_r($val["id_Article"]);
+                echo "</a><br>";
+            } 
+        }
+        else {
+            if (isset($jeux_res)) {
+                echo "Aucun résultat pour cette recherche";
+            }
         
-        echo "<a href='article.php?numero=$id'>Article #$id</a>";
-        echo "<br><br>";
-        $i = $i + 1;
-}
+        }
+    }
+    else {
+        $i = 0;
+        foreach ($jeux_res as $cle => $val ) {
+            $id = $jeux_res[$i]["id_Article"];
+            
+            echo "<a href='article.php?numero=$id'>$id</a>";
+            echo "<br>";
+            $i = $i + 1;
+        }
+    }
+    echo "<br>";
 }
 
 function displayArticleInformations($article, $num) {

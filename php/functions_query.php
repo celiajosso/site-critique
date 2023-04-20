@@ -10,9 +10,64 @@ function getArticles ($my_sqli) {
     //  - la date de création + utilisateur concerné
     //  - la date de dernière modification + utilisateur concerné
     //  /!\ => compléter code pour mettre toutes les infos
-    $sql_input = "SELECT id_Article FROM Article";
-    $result = readDB($my_sqli, $sql_input);
-    return $result;
+
+    // $sql_input = "SELECT id_Article FROM Article";
+    // $result = readDB($my_sqli, $sql_input);
+    // return $result;
+
+    // si la barre de recherche par nom de jeu est utilisée
+    if(isset($_GET['q']) && !empty($_GET['q'])) {
+        $q = htmlspecialchars($_GET['q']);
+        $jeux = "SELECT id_Article FROM Article INNER JOIN Jeu ON Jeu.id_Jeu = Article.id_Jeu WHERE Jeu.nom LIKE '%$q%'";
+        $jeux_res = readDB($my_sqli, $jeux);
+    }
+    // ELSEIF la barre de recherche par categorie de jeu est utilisée
+    elseif (isset($_GET) && !empty($_GET) && !isset($_GET['q'])) {
+        $sql_categorie = "SELECT id_Categorie FROM Categorie";
+        $sql_categorie_res = readDB($my_sqli, $sql_categorie);
+    
+        $nb_categories = count($sql_categorie_res);
+        
+        $selected_categories = Array();
+    
+        for ($i=1; $i < $nb_categories+1; $i++) {
+            if(isset($_GET["c_$i"])) {
+                $selected_categories[] = 1;
+            }
+            else {
+                $selected_categories[] = 0;
+            }
+        }
+    
+        $condition = " ";
+        foreach($selected_categories as $cle => $val) {
+            if ($val) {
+                $index = $cle + 1;
+                $condition = $condition . "id_Categorie = $index OR ";
+            }
+            }
+        $condition = substr($condition, 1,-3);
+    
+        if (!empty($condition)) {
+            $jeux = "SELECT DISTINCT id_Article FROM Article INNER JOIN Jeu ON Jeu.id_Jeu = Article.id_Jeu INNER JOIN est_Categorie ON est_Categorie.id_Jeu = Article.id_Jeu WHERE $condition";
+            $jeux_res = readDB($my_sqli, $jeux);
+        }
+        else {
+            $jeux = "SELECT id_Article FROM Article";
+            $jeux_res = readDB($my_sqli, $jeux);            
+        }
+        
+        
+    }
+    // si aucune barre de recherche est utilisée
+    else {
+        $jeux = "SELECT id_Article FROM Article";
+        $jeux_res = readDB($my_sqli, $jeux);
+                
+    }
+    return $jeux_res;
+    
+    // fin script barre de recherche
 }
 
 function getArticleInformations ($my_sqli) {
