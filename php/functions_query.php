@@ -18,7 +18,7 @@ function getArticles ($my_sqli) {
     // si la barre de recherche par nom de jeu est utilisée
     if(isset($_GET['q']) && !empty($_GET['q'])) {
         $q = htmlspecialchars($_GET['q']);
-        $jeux = "SELECT id_Article FROM Article INNER JOIN Jeu ON Jeu.id_Jeu = Article.id_Jeu WHERE Jeu.nom LIKE '%$q%'";
+        $jeux = "SELECT id_Article FROM Article INNER JOIN Jeu ON Jeu.id_Jeu = Article.id_Jeu WHERE Jeu.nom LIKE '%$q%' ORDER BY dateCreation_Article DESC";
         $jeux_res = readDB($my_sqli, $jeux);
     }
     // ELSEIF la barre de recherche par categorie de jeu est utilisée
@@ -49,17 +49,17 @@ function getArticles ($my_sqli) {
         $condition = substr($condition, 1,-3);
     
         if (!empty($condition)) {
-            $jeux = "SELECT DISTINCT id_Article FROM Article INNER JOIN Jeu ON Jeu.id_Jeu = Article.id_Jeu INNER JOIN est_Categorie ON est_Categorie.id_Jeu = Article.id_Jeu WHERE $condition";
+            $jeux = "SELECT id_Article FROM Article INNER JOIN Jeu ON Jeu.id_Jeu = Article.id_Jeu INNER JOIN est_Categorie ON est_Categorie.id_Jeu = Article.id_Jeu WHERE $condition GROUP BY id_Article ORDER BY dateCreation_Article DESC";
             $jeux_res = readDB($my_sqli, $jeux);
         }
         else {
-            $jeux = "SELECT id_Article FROM Article";
-            $jeux_res = readDB($my_sqli, $jeux);            
+            $jeux = "SELECT id_Article FROM Article ORDER BY dateCreation_Article DESC";
+            $jeux_res = readDB($my_sqli, $jeux); 
         }    
     }
     // si aucune barre de recherche est utilisée
     else {
-        $jeux = "SELECT id_Article FROM Article";
+        $jeux = "SELECT id_Article FROM Article ORDER BY dateCreation_Article DESC";
         $jeux_res = readDB($my_sqli, $jeux);
                 
     }
