@@ -102,6 +102,8 @@ function displayArticlesBySearch($my_sqli, $jeux_res) {
         }
         array_push($all_data, $sql_data_article_res);echo"<pre>";
         }
+
+        // formater les donnees de $all_data ici
     }
 }
 
