@@ -1,5 +1,5 @@
 .icone-type {
-	width: 150px;
+	width: 100px;
 	height : auto;
 }
 
@@ -7,14 +7,43 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
-    width: 20%;
+    width: 200px;
+	padding: 5px;
 }
 
 .left-column-checkbox{
-	width : 10%;
-	margin-top: 10px;
+	width : 30px;
+	margin-top: 2px;
 }
 
 .right-column-checkbox{
 	width : 90%;
+}
+
+.search-content{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+.left{
+	margin: auto;
+}
+
+input[type="submit"]{
+    border : none;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #295767;
+    color : white;
+    font-weight: 600;
+	margin-top: 2px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.right{
+	width: 140px;
+
 }

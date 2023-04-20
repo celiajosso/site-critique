@@ -14,12 +14,17 @@ date_default_timezone_set('Europe/Paris');
 function displayArticles ($my_sqli, $jeux_res) {
     // === RECHERCHE PAR NOM DE JEU ===
     echo "<br>";
+    echo "<div class='search-content'>";
+
+    echo "<div class='left>";
     echo "<form method='GET'>";
     echo "<input type='search' size = '30' name='q' placeholder='Recherche par nom de jeu' />";
-    echo "<input type='submit' value='Valider' />";
+    echo "<br><br><input type='submit' value='Valider' />";
     echo "</form>";
+    echo "</div>";
 
     // === RECHERCHE PAR CATEGORIE DE JEU ===
+    echo "<div class='right>";
     echo "<form method='GET'>";
     $sql_categorie = "SELECT id_Categorie FROM Categorie";
     $sql_categorie_res = readDB($my_sqli, $sql_categorie);
@@ -28,16 +33,18 @@ function displayArticles ($my_sqli, $jeux_res) {
         foreach ($val as $cle1 => $val1) {
             $chemin_type = "Images/Categories/" . $val1 . ".png";
             $nom_champ = "c_" . "$i";
-
             echo "<div class='form-content'>";
                     echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ'/></div>";
                     echo "<div class='right-column-checkbox'><img  class='icone-type' src='$chemin_type'></div>";
             echo "</div>";
-            echo "<br><br>";
+            
             $i = $i + 1;
         }}
-    echo "<input type='submit' value='Valider' />";
+    
+    echo "<br><input type='submit' value='Valider' />";
     echo "</form>";
+    echo "</div>";
+    echo "</div>";
 
     // === AFFICHAGE POUR LA RECHERCHE PAR NOM DE JEU ===
     if (isset($_GET["q"])) {
@@ -75,6 +82,7 @@ function displayArticles ($my_sqli, $jeux_res) {
         displayArticlesBySearch($my_sqli, $jeux_res);
     }
     echo "<br>";
+    echo "</section>";
 }
 
 function displayArticlesBySearch($my_sqli, $jeux_res) {
