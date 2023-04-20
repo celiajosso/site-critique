@@ -87,23 +87,43 @@ function displayArticlesBySearch($my_sqli, $jeux_res) {
         $sql_data_utilisateur = "SELECT login_Utilisateur FROM Utilisateur INNER JOIN Article ON Article.id_UtilisateurCreateur = Utilisateur.id_Utilisateur WHERE id_Article=$id";
         $sql_data_utilisateur_res = readDB($my_sqli, $sql_data_utilisateur);
 
-        $sql_data_jaquette = "SELECT chemin_Image FROM Image INNER JOIN est_Image ON est_Image.id_Image = Image.id_Image INNER JOIN Article ON Article.id_Article = est_Image.id_Article WHERE Article.id_Article=$id";
+        $sql_data_jaquette = "SELECT chemin_Image FROM Image INNER JOIN est_Image ON est_Image.id_Image = Image.id_Image INNER JOIN Article ON Article.id_Article = est_Image.id_Article WHERE Article.id_Article=$id AND chemin_Image LIKE '%jaquette%'";
         $sql_data_jaquette_res = readDB($my_sqli, $sql_data_jaquette);
 
         // A decommenter quand on aura les avis -> on devra regrouper ce tableau avec les autres
-        // $sql_data_note = "SELECT Article.id_Article, AVG(note_Avis) as note_moyenne FROM Avis INNER JOIN Jeu ON Jeu.id_Jeu = Avis.id_Jeu INNER JOIN Article on Article.id_Jeu = Jeu.id_Jeu WHERE Article.id_Article=$id";
+        // $sql_data_note = "SELECT AVG(note_Avis) as note_moyenne FROM Avis INNER JOIN Jeu ON Jeu.id_Jeu = Avis.id_Jeu INNER JOIN Article on Article.id_Jeu = Jeu.id_Jeu WHERE Article.id_Article=$id";
         // $sql_data_note_res = readDB($my_sqli, $sql_data_note);
 
         foreach ($sql_data_article_res as $cle => $val) {
             $login = Array("login_Utilisateur" => $sql_data_utilisateur_res[0]["login_Utilisateur"]);
             $jaquette = Array("chemin_Image" => $sql_data_jaquette_res[0]["chemin_Image"]);
+            // $note_moy = Array("note_moy" => $sql_data_note_res[0]["note_moy"]);
             array_push($sql_data_article_res[$cle], $login, $jaquette);
             
         }
-        array_push($all_data, $sql_data_article_res);echo"<pre>";
+        array_push($all_data, $sql_data_article_res);
         }
+    }
 
-        // formater les donnees de $all_data ici
+    // formater les donnees de $all_data ici
+    foreach($all_data as $cle => $val) {
+        foreach ($val as $cle1 => $val1) {
+            echo "<h1>========================================</h1>";
+            $id_article = $val1["id_Article"];
+            $titre = $val1["titre_Article"];
+            $note_redacteur = $val1["noteRedacteur_Article"];
+            $date_crea = writeDate($val1["dateCreation_Article"]);
+            $login_crea = $val1[0]["login_Utilisateur"];
+            $chemin_jaquette = $val1[1]["chemin_Image"];
+
+            echo $titre;
+            echo "<br>";
+            echo "Note du rédacteur : $note_redacteur";
+            echo "<br>";
+            echo "Rédigé par $login_crea ($date_crea)";
+            echo "<br>";
+            echo "<a href='article.php?numero=$id_article'><img style='height:20%' src='$chemin_jaquette' /><a>";
+        }
     }
 }
 
