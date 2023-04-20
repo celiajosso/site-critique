@@ -45,26 +45,14 @@ function displayArticles ($my_sqli, $jeux_res) {
         if (!empty($jeux_res) && !empty($q)) {
             $len = count($jeux_res);
             echo "$len résultats pour la recherche : <em>$q</em><br><br>";
-            foreach($jeux_res as $cle => $val) {
-                $id = $val["id_Article"];
-                echo "<a href='article.php?numero=$id'>";
-                print_r($val["id_Article"]);
-                echo "</a><br>";
-            } 
+            displayArticlesBySearch($jeux_res);
         }
         else {
             if (!empty($q)) {
                 echo "Aucun résultat pour la recherche : <em>$q</em>";
             }
             else {
-                $i = 0;
-                foreach ($jeux_res as $cle => $val ) {
-                    $id = $jeux_res[$i]["id_Article"];
-                    
-                    echo "<a href='article.php?numero=$id'>$id</a>";
-                    echo "<br>";
-                    $i = $i + 1;
-                }
+                displayArticlesBySearch($jeux_res);
             }
             echo "<br>";
         }
@@ -74,12 +62,7 @@ function displayArticles ($my_sqli, $jeux_res) {
         if (!empty($jeux_res)) {
             $len = count($jeux_res);
             echo "$len résultats pour cette recherche par catégorie:<br>";
-            foreach($jeux_res as $cle => $val) {
-                $id = $val["id_Article"];
-                echo "<a href='article.php?numero=$id'>";
-                print_r($val["id_Article"]);
-                echo "</a><br>";
-            } 
+            displayArticlesBySearch($jeux_res);
         }
         else {
             if (isset($jeux_res)) {
@@ -89,16 +72,18 @@ function displayArticles ($my_sqli, $jeux_res) {
         }
     }
     else {
-        $i = 0;
-        foreach ($jeux_res as $cle => $val ) {
-            $id = $jeux_res[$i]["id_Article"];
-            
-            echo "<a href='article.php?numero=$id'>$id</a>";
-            echo "<br>";
-            $i = $i + 1;
-        }
+        displayArticlesBySearch($jeux_res);
     }
     echo "<br>";
+}
+
+function displayArticlesBySearch($jeux_res) {
+    foreach($jeux_res as $cle => $val) {
+        $id = $val["id_Article"];
+        echo "<a href='article.php?numero=$id'>";
+        print_r($val["id_Article"]);
+        echo "</a><br>";
+    } 
 }
 
 function displayArticleInformations($article, $num) {

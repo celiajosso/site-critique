@@ -55,9 +55,7 @@ function getArticles ($my_sqli) {
         else {
             $jeux = "SELECT id_Article FROM Article";
             $jeux_res = readDB($my_sqli, $jeux);            
-        }
-        
-        
+        }    
     }
     // si aucune barre de recherche est utilisée
     else {
@@ -65,8 +63,7 @@ function getArticles ($my_sqli) {
         $jeux_res = readDB($my_sqli, $jeux);
                 
     }
-    return $jeux_res;
-    
+    return $jeux_res;    
     // fin script barre de recherche
 }
 
