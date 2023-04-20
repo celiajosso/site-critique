@@ -16,16 +16,15 @@ function displayArticles ($my_sqli, $jeux_res) {
     echo "<br>";
     echo "<div class='search-content'>";
 
-    echo "<div class='left>";
-    echo "<form method='GET'>";
+    echo "<form class='left' method='GET'>";
+    echo "<h2>Recherche par nom de jeu :</h2>";
     echo "<input type='search' size = '30' name='q' placeholder='Recherche par nom de jeu' />";
     echo "<br><br><input type='submit' value='Valider' />";
     echo "</form>";
-    echo "</div>";
 
     // === RECHERCHE PAR CATEGORIE DE JEU ===
-    echo "<div class='right>";
-    echo "<form method='GET'>";
+    echo "<form class='right' method='GET'>";
+    echo "<h2>Recherche par catégorie :</h2>";
     $sql_categorie = "SELECT id_Categorie FROM Categorie";
     $sql_categorie_res = readDB($my_sqli, $sql_categorie);
     $i = 1;
@@ -43,7 +42,6 @@ function displayArticles ($my_sqli, $jeux_res) {
     
     echo "<br><input type='submit' value='Valider' />";
     echo "</form>";
-    echo "</div>";
     echo "</div>";
 
     // === AFFICHAGE POUR LA RECHERCHE PAR NOM DE JEU ===
