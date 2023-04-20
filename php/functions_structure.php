@@ -45,14 +45,14 @@ function displayArticles ($my_sqli, $jeux_res) {
         if (!empty($jeux_res) && !empty($q)) {
             $len = count($jeux_res);
             echo "$len résultats pour la recherche : <em>$q</em><br><br>";
-            displayArticlesBySearch($jeux_res);
+            displayArticlesBySearch($my_sqli, $jeux_res);
         }
         else {
             if (!empty($q)) {
                 echo "Aucun résultat pour la recherche : <em>$q</em>";
             }
             else {
-                displayArticlesBySearch($jeux_res);
+                displayArticlesBySearch($my_sqli, $jeux_res);
             }
             echo "<br>";
         }
@@ -62,7 +62,7 @@ function displayArticles ($my_sqli, $jeux_res) {
         if (!empty($jeux_res)) {
             $len = count($jeux_res);
             echo "$len résultats pour cette recherche par catégorie:<br>";
-            displayArticlesBySearch($jeux_res);
+            displayArticlesBySearch($my_sqli, $jeux_res);
         }
         else {
             if (isset($jeux_res)) {
@@ -72,18 +72,37 @@ function displayArticles ($my_sqli, $jeux_res) {
         }
     }
     else {
-        displayArticlesBySearch($jeux_res);
+        displayArticlesBySearch($my_sqli, $jeux_res);
     }
     echo "<br>";
 }
 
-function displayArticlesBySearch($jeux_res) {
+function displayArticlesBySearch($my_sqli, $jeux_res) {
+    $all_data = Array();
     foreach($jeux_res as $cle => $val) {
-        $id = $val["id_Article"];
-        echo "<a href='article.php?numero=$id'>";
-        print_r($val["id_Article"]);
-        echo "</a><br>";
-    } 
+        foreach ($val as $cle1 => $id) {
+        $sql_data_article = "SELECT id_Article, titre_Article, noteRedacteur_Article, dateCreation_Article FROM Article INNER JOIN Utilisateur ON Article.id_UtilisateurCreateur = Utilisateur.id_Utilisateur WHERE id_Article=$id";
+        $sql_data_article_res = readDB($my_sqli, $sql_data_article);
+        
+        $sql_data_utilisateur = "SELECT login_Utilisateur FROM Utilisateur INNER JOIN Article ON Article.id_UtilisateurCreateur = Utilisateur.id_Utilisateur WHERE id_Article=$id";
+        $sql_data_utilisateur_res = readDB($my_sqli, $sql_data_utilisateur);
+
+        $sql_data_jaquette = "SELECT chemin_Image FROM Image INNER JOIN est_Image ON est_Image.id_Image = Image.id_Image INNER JOIN Article ON Article.id_Article = est_Image.id_Article WHERE Article.id_Article=$id";
+        $sql_data_jaquette_res = readDB($my_sqli, $sql_data_jaquette);
+
+        // A decommenter quand on aura les avis -> on devra regrouper ce tableau avec les autres
+        // $sql_data_note = "SELECT Article.id_Article, AVG(note_Avis) as note_moyenne FROM Avis INNER JOIN Jeu ON Jeu.id_Jeu = Avis.id_Jeu INNER JOIN Article on Article.id_Jeu = Jeu.id_Jeu WHERE Article.id_Article=$id";
+        // $sql_data_note_res = readDB($my_sqli, $sql_data_note);
+
+        foreach ($sql_data_article_res as $cle => $val) {
+            $login = Array("login_Utilisateur" => $sql_data_utilisateur_res[0]["login_Utilisateur"]);
+            $jaquette = Array("chemin_Image" => $sql_data_jaquette_res[0]["chemin_Image"]);
+            array_push($sql_data_article_res[$cle], $login, $jaquette);
+            
+        }
+        array_push($all_data, $sql_data_article_res);echo"<pre>";
+        }
+    }
 }
 
 function displayArticleInformations($article, $num) {
