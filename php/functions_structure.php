@@ -17,7 +17,7 @@ function displayArticles ($my_sqli, $jeux_res) {
     echo "<div class='search-content'>";
 
     echo "<form class='left' method='GET'>";
-    echo "<h2>Recherche par nom de jeu :</h2>";
+    echo "<h3>Recherche par nom de jeu :</h3>";
     if (isset($_GET['q'])) {
         $q = $_GET['q'];
         echo "<input type='search' size = '30' name='q' value='$q' placeholder='Recherche par nom de jeu' />";
@@ -30,7 +30,7 @@ function displayArticles ($my_sqli, $jeux_res) {
 
     // === RECHERCHE PAR CATEGORIE DE JEU ===
     echo "<form class='right' method='GET'>";
-    echo "<h2>Recherche par catégorie :</h2>";
+    echo "<h3 class='a-centrer'>Recherche par catégorie :</h3>";
     $sql_categorie = "SELECT id_Categorie FROM Categorie";
     $sql_categorie_res = readDB($my_sqli, $sql_categorie);
     $i = 1;
