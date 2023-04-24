@@ -275,7 +275,7 @@ function displayArticleInformations($article, $num, $my_sqli) {
         echo "<h1>Critique du rédacteur</h1>";
         echo "<p class='to-justify'>$contenu_article<p>";
 
-        echo "<h2 class='to-place-right'>Note du rédacteur : $noteRedacteur_article</h2>";
+        echo "<h2 class='to-place-right'>Note du rédacteur : <img class='image-note' src='Images/note/$noteRedacteur_article.png' title='$noteRedacteur_article/10'></h2>";
         echo "<br>";
         
         echo "<img class='image-gameplay' src=$image_gameplay>";
