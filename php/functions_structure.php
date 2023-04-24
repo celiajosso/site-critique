@@ -39,8 +39,13 @@ function displayArticles ($my_sqli, $jeux_res) {
             $chemin_type = "Images/Categories/" . $val1 . ".png";
             $nom_champ = "c_" . "$i";
             echo "<div class='form-content'>";
-                    echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ'/></div>";
-                    echo "<div class='right-column-checkbox'><img  class='icone-type' src='$chemin_type'></div>";
+            if (isset($_GET[$nom_champ])) {
+                echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ'checked/></div>";
+            }
+            else {
+                echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ'/></div>";
+            }        
+            echo "<div class='right-column-checkbox'><img  class='icone-type' src='$chemin_type'></div>";
             echo "</div>";
             
             $i = $i + 1;
