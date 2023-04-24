@@ -367,7 +367,13 @@ function displayAvis($avis, $moyenne, $num, $my_sqli) {
         }
         echo "$login";
         echo "<br>";
-        echo "<a href='profilPublic.php?numero=$id_user'><img src='$pp'/><a>";
+        if ($id_user != $id_connected) {
+            echo "<a href='profilPublic.php?numero=$id_user'><img src='$pp'/><a>";
+        }
+        else {
+            echo "<a href='profilPrive.php?numero=$id_user'><img src='$pp'/><a>";
+        }
+        
         echo "<br>";        
         echo "$titre";
         echo "<br>";
