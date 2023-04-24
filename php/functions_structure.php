@@ -145,7 +145,7 @@ function displayArticlesBySearch($my_sqli, $jeux_res) {
 
             echo $titre;
             echo "<br>";
-            echo "Note du rédacteur : $note_redacteur";
+            echo "Note du rédacteur : <img class='image-note' src='Images/note/$note_redacteur.png' title='$note_redacteur/10'>";
             echo "<br>";
             echo "Rédigé par $login_crea ($date_crea)";
             echo "<br>";

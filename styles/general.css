@@ -30,3 +30,8 @@ position: relative;
 	border-radius: 40px;
 	text-align: center;
 }
+
+.image-note{
+	width: 100px;
+	height: auto;
+}
