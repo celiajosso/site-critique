@@ -17,7 +17,7 @@ function displayArticles ($my_sqli, $jeux_res) {
     echo "<div class='search-content'>";
 
     echo "<form class='left' method='GET'>";
-    echo "<h3>Recherche par nom de jeu :</h3><br><br>";
+    echo "<h3>Recherche par nom de jeu :</h3><br><br><br>";
     if (isset($_GET['q'])) {
         $q = $_GET['q'];
         echo "<input type='search' size = '30' name='q' value='$q' placeholder='Recherche par nom de jeu' />";
