@@ -126,6 +126,9 @@ date_default_timezone_set('Europe/Paris');
                                             if ($_GET["cat_$i"] == 1) {
                                                 echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ' checked/></div>";
                                             }
+                                            else {
+                                                echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ'/></div>";
+                                            }
                                         }
                                         else {
                                             echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ'/></div>";
@@ -151,7 +154,27 @@ date_default_timezone_set('Europe/Paris');
                                     $nom_champ = "support_" . "$i";
 
                                     echo "<div class='form-content'>";
+
+                                    if (isset($_GET["sup_$i"])) {
+                                        if ($_GET["sup_$i"] == 1) {
+                                            echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ' checked/></div>";
+                                        }
+                                        else {
+                                            echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ'/></div>";
+                                        }
+                                    }
+                                    else {
                                         echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ'/></div>";
+                                    }
+
+
+
+
+
+
+
+
+
                                         echo "<div class='right-column-checkbox'><img class='icone-type' src='$chemin_type'></div>";
                                     echo "</div>";
                                     echo "<br><br>";

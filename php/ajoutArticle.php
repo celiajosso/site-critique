@@ -55,39 +55,28 @@ foreach ($_POST as $cle => $val) {
     }
 }
 
-// $chaine_supports = "";
-// for($i=1; $i<5; $i++) {
-//     $c=0;
-//     // foreach($checked_supports as $cle1 => $val1) {
-//     //     if ($val1 == $i) {
-//     //         $chaine_supports = $chaine_supports . "&sup_$i=1";
-//     //         $c=1;
-//     //     }
-//     // } 
-//     // if ($c == 0) {
-//     //     $chaine_supports = $chaine_supports . "&sup_$i=0";
-//     // }
-// }
+$chaine_supports = "";
+foreach($checked_supports as $cle => $val) {
+    $chaine_supports = $chaine_supports . "&sup_$val=1";
+}
 
-// $chaine_categories = "";
-// for($i=1; $i<$nb_cat; $i++) {
-//     $c=0;
-//     foreach($checked_categories as $cle1 => $val1) {
-//         if ($val1 == $i) {
-//             $chaine_categories = $chaine_categories . "&cat_$i=1";
-//             $c=1;
-//         }
-//     } 
-//     if ($c == 0) {
-//         $chaine_categories = $chaine_categories . "&cat_$i=0";
-//     }
-// }
-// //. $chaine_categories . $chaine_supports
+if (empty($chaine_supports)) {
+    $chaine_categories = "&";
+}
+else {
+    $chaine_categories = "";
+}
+
+foreach($checked_categories as $cle => $val) {
+    $chaine_categories = $chaine_categories . "&cat_$val=1";
+}
 
 $jeu_unique = Is_gameUnique($my_sqli, $nom_jeu);
 
 if (!$jeu_unique) {
-    header("Location: ../redacArticle.php?titre_article=$titre_article&nom_jeu=$nom_jeu&date_sortie=$date_sortie&prix=$prix&synopsis=$synopsis&note=$note&critique=$critique&jaquette=$jaquette&gameplay=$gameplay&erreur=jeu");
+    $page = "../redacArticle.php?titre_article=$titre_article&nom_jeu=$nom_jeu&date_sortie=$date_sortie&prix=$prix&synopsis=$synopsis&note=$note&critique=$critique&jaquette=$jaquette&gameplay=$gameplay&erreur=jeu";
+    $page = $page . $chaine_categories . $chaine_supports;
+    header("Location: $page");
 }
 else{
     $sql_insert_jeu = "INSERT INTO Jeu (nom, prix, date_sortie, synopsis) VALUES ('$nom_jeu', '$prix', '$date_sortie', '$synopsis')";
