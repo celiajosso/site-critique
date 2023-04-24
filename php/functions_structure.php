@@ -17,7 +17,7 @@ function displayArticles ($my_sqli, $jeux_res) {
     echo "<div class='search-content'>";
 
     echo "<form class='left' method='GET'>";
-    echo "<h3>Recherche par nom de jeu :</h3>";
+    echo "<h3>Recherche par nom de jeu :</h3><br><br>";
     if (isset($_GET['q'])) {
         $q = $_GET['q'];
         echo "<input type='search' size = '30' name='q' value='$q' placeholder='Recherche par nom de jeu' />";
@@ -25,7 +25,7 @@ function displayArticles ($my_sqli, $jeux_res) {
     else {
         echo "<input type='search' size = '30' name='q' placeholder='Recherche par nom de jeu' />";
     }
-    echo "<br><br><input type='submit' value='Valider' />";
+    echo "<input type='submit' value='Valider' />";
     echo "</form>";
 
     // === RECHERCHE PAR CATEGORIE DE JEU ===
@@ -51,7 +51,7 @@ function displayArticles ($my_sqli, $jeux_res) {
             $i = $i + 1;
         }}
     
-    echo "<br><input type='submit' value='Valider' />";
+    echo "<input type='submit' value='Valider' />";
     echo "</form>";
     echo "</div>";
 
@@ -147,7 +147,6 @@ function displayArticlesBySearch($my_sqli, $jeux_res) {
             $chemin_jaquette = $val1[1]["chemin_Image"];
 
             echo "<div class='article-seul'>";
-            
             
             echo "<div class='flex-content-index'>";
             echo "<div class='left-column-index'>";

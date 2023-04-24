@@ -8,7 +8,7 @@
 	flex-direction: row;
 	justify-content: space-around;
     width: 125px;
-	padding: 5px;
+	padding: 2px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -29,25 +29,33 @@
 }
 
 .left{
-	margin: auto;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	height: 250px;
 }
 
 .right{
+	position: relative;
 	width: 250px;
+	height: 250px;
 	margin-right: 20%;
 }
 
 input[type="submit"]{
     border : none;
     padding: 10px;
+	width: 80px;
     border-radius: 8px;
     background-color: #295767;
     color : white;
     font-weight: 600;
-	margin-top: 2px;
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
+	position: absolute;
+	bottom: 0;
+	left: 75px;
 }
 
 input[type="search"]{
