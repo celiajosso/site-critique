@@ -102,7 +102,11 @@ function getArticleInformations ($my_sqli) {
         $sql_jeu = "SELECT nom, prix, date_sortie, synopsis FROM Jeu INNER JOIN Article ON Jeu.id_Jeu = Article.id_Jeu WHERE Article.id_Article=$num";
         $sql_jeu_res = readDB($my_sqli, $sql_jeu);
 
-        // ajouter ici pour avis (INNER JOIN entre avis et utilisateur)
+        $sql_avis = "SELECT contenu_avis, dateCreation_avis, id_Utilisateur, note_Avis, titre_Avis FROM Avis INNER JOIN Article ON Article.id_Article = Avis.id_Article WHERE Article.id_Article=$num";
+        $sql_avis_res = readDB($my_sqli, $sql_avis);
+
+        $sql_moyenne = "SELECT AVG(note_avis) as moyenne FROM Avis INNER JOIN Article ON Article.id_Article = Avis.id_Article WHERE Article.id_Article=$num";
+        $sql_moyenne_res = readDB($my_sqli, $sql_moyenne);
 
         $sql_images_article = "SELECT chemin_Image FROM Image INNER JOIN est_image ON Image.id_Image = est_Image.id_Image WHERE id_Article=$num";
         $sql_images_article_res = readDB($my_sqli, $sql_images_article);
@@ -113,7 +117,7 @@ function getArticleInformations ($my_sqli) {
         $sql_support = "SELECT id_Support FROM est_Support INNER JOIN Jeu ON est_Support.id_Jeu = Jeu.id_Jeu INNER JOIN Article on Jeu.id_Jeu=Article.id_Jeu WHERE Article.id_Article=$num";
         $sql_support_res = readDB($my_sqli, $sql_support);
 
-        return Array ($sql_article_res, $sql_login_crea_res, $sql_login_modif_res, $sql_jeu_res, $sql_images_article_res, $sql_categorie_res, $sql_support_res);
+        return Array ($sql_article_res, $sql_login_crea_res, $sql_login_modif_res, $sql_jeu_res, $sql_images_article_res, $sql_categorie_res, $sql_support_res, $sql_avis_res, $sql_moyenne_res);
     }
 }
 
@@ -280,10 +284,5 @@ function note_moyenne($mysqli,$id_Jeu){
     $tableau = readDB($mysqli,"SELECT AVG(note_Avis) FROM avis WHERE id_Jeu=$id_Jeu");
     return $tableau;
 }
-
-
-
-
-
 
 ?>

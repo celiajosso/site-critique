@@ -49,7 +49,7 @@ date_default_timezone_set('Europe/Paris');
             }
             $num = $_GET['numero'];
             $tab = getArticleInformations($my_sqli);
-            displayArticleInformations($tab, $num);
+            displayArticleInformations($tab, $num, $my_sqli);
         ?>
         <?php include("./static/footer.php"); ?>
     </body>            

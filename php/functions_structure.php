@@ -173,7 +173,7 @@ function displayArticlesBySearch($my_sqli, $jeux_res) {
     echo "<br><br>";
 }
 
-function displayArticleInformations($article, $num) {
+function displayArticleInformations($article, $num, $my_sqli) {
 
     $titre_article = $article[0][0]["titre_Article"];
     $dateCrea_article = $article[0][0]["dateCreation_Article"];
@@ -202,8 +202,9 @@ function displayArticleInformations($article, $num) {
 
     $jeu_categories = $article[5];
     $jeu_supports = $article[6];
-    
-    // ajouter avis
+
+    $avis = $article[7];
+    $moyenne = $article[8][0]["moyenne"];
 
     echo "<div class='titre-article-individuel'><h1>$titre_article</h1></div>";
     echo "<br><br>";
@@ -291,6 +292,41 @@ function displayArticleInformations($article, $num) {
     echo "</div>";
     echo "</div>";
 
+    if (!empty($avis)) {
+        $note_arrondie = round($moyenne);
+        echo "Note moyenne des utilisateurs : <img class='image-note' src='Images/note/$note_arrondie.png' title='$moyenne/10'>";
+        echo "<br><br>";
+    }
+
+    foreach ($avis as $cle => $val) {
+        $titre = $val["titre_Avis"];
+        $note = $val["note_Avis"];
+        $id_user = $val["id_Utilisateur"];
+        $date_crea_avis = $val["dateCreation_avis"];
+        $contenu_avis = $val["contenu_avis"];
+
+        $temps_avis = Duration($date_crea_avis);
+        $date_avis = writeDate($date_crea_avis);
+
+        $sql_user = "SELECT login_Utilisateur, photoProfil_Utilisateur FROM Utilisateur WHERE id_Utilisateur=$id_user";
+        $sql_user_res = readDB($my_sqli, $sql_user);
+
+        $login = $sql_user_res[0]["login_Utilisateur"];
+        $pp = $sql_user_res[0]["photoProfil_Utilisateur"];
+
+        echo "<h1>========================</h1>";
+        echo "$login";
+        echo "<br>";
+        echo "<a href='profilPublic.php?numero=$id_user'><img src='$pp'/><a>";
+        echo "<br>";        
+        echo "$titre";
+        echo "<br>";
+        echo "<img class='image-note' src='Images/note/$note.png' title='$note/10'>";
+        echo "<br>";
+        echo "Il y a $temps_avis ($date_avis)";
+        echo "<br><br>";
+        echo "$contenu_avis";
+    }
     echo "<br><br><br><br><br><br>";
 }
 
