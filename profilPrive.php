@@ -58,7 +58,7 @@ date_default_timezone_set('Europe/Paris');
             }
             if (isset($_GET["success"])) {
                 $champ = $_GET["success"];
-                echo "<div class='erreur-inscription'><h2>$champ modifié avec succès !</div><br><br>";
+                echo "<div class='erreur-inscription'><h2>Champ « $champ » modifié avec succès !</div><br><br>";
             }
             $num = $_GET['numero'];
             $tab = getUserPrivateInformations($my_sqli, $num);
