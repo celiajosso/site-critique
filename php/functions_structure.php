@@ -18,7 +18,13 @@ function displayArticles ($my_sqli, $jeux_res) {
 
     echo "<form class='left' method='GET'>";
     echo "<h2>Recherche par nom de jeu :</h2>";
-    echo "<input type='search' size = '30' name='q' placeholder='Recherche par nom de jeu' />";
+    if (isset($_GET['q'])) {
+        $q = $_GET['q'];
+        echo "<input type='search' size = '30' name='q' value='$q' placeholder='Recherche par nom de jeu' />";
+    }
+    else {
+        echo "<input type='search' size = '30' name='q' placeholder='Recherche par nom de jeu' />";
+    }
     echo "<br><br><input type='submit' value='Valider' />";
     echo "</form>";
 
