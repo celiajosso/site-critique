@@ -144,10 +144,10 @@ CREATE TABLE Avis (
   dateCreation_Avis DATE,
   note_Avis INT,
   id_Utilisateur INT,
-  id_Jeu INT,
+  id_Article INT,
   PRIMARY KEY (id_Avis),
   FOREIGN KEY (id_Utilisateur) REFERENCES Utilisateur(id_Utilisateur),
-  FOREIGN KEY (id_Jeu) REFERENCES Jeu(id_Jeu)
+  FOREIGN KEY (id_Article) REFERENCES Article(id_Article)
 );
 
 /* table est_Categorie */
