@@ -49,7 +49,12 @@ function displayArticles ($my_sqli, $jeux_res) {
         $q = $_GET ["q"];
         if (!empty($jeux_res) && !empty($q)) {
             $len = count($jeux_res);
-            echo "$len résultats pour la recherche : <em>$q</em><br><br>";
+            if ($len == 1) {
+                echo "$len résultat pour la recherche : <em>$q</em><br><br>";
+            }
+            else {
+                echo "$len résultats pour la recherche : <em>$q</em><br><br>";
+            }
             displayArticlesBySearch($my_sqli, $jeux_res);
         }
         else {
@@ -66,7 +71,12 @@ function displayArticles ($my_sqli, $jeux_res) {
     elseif (!isset($_GET["q"]) && !empty($_GET)) {
         if (!empty($jeux_res)) {
             $len = count($jeux_res);
-            echo "$len résultats pour cette recherche par catégorie:<br>";
+            if ($len == 1) {
+                echo "$len résultat pour cette recherche par catégorie:<br>";
+            }
+            else {
+                echo "$len résultats pour cette recherche par catégorie:<br>";
+            }
             displayArticlesBySearch($my_sqli, $jeux_res);
         }
         else {
