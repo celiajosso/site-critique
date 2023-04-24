@@ -133,9 +133,9 @@ function displayArticlesBySearch($my_sqli, $jeux_res) {
     }
 
     // formater les donnees de $all_data ici
+    echo "<div class='boite-article'>";
     foreach($all_data as $cle => $val) {
         foreach ($val as $cle1 => $val1) {
-            echo "<h1>========================================</h1>";
             $id_article = $val1["id_Article"];
             $titre = $val1["titre_Article"];
             $note_redacteur = $val1["noteRedacteur_Article"];
@@ -143,15 +143,28 @@ function displayArticlesBySearch($my_sqli, $jeux_res) {
             $login_crea = $val1[0]["login_Utilisateur"];
             $chemin_jaquette = $val1[1]["chemin_Image"];
 
-            echo $titre;
+            echo "<div class='article-seul'>";
+            
+            
+            echo "<div class='flex-content-index'>";
+            echo "<div class='left-column-index'>";
+            echo "<a href='article.php?numero=$id_article'><img class='acceuil-jaquette' src='$chemin_jaquette' /><a>";
+            echo "</div>";
+
+            echo "<div class='right-column-index'>";
+            echo "<h3>$titre</h3>";
             echo "<br>";
             echo "Note du rédacteur : <img class='image-note' src='Images/note/$note_redacteur.png' title='$note_redacteur/10'>";
             echo "<br>";
             echo "Rédigé par $login_crea ($date_crea)";
-            echo "<br>";
-            echo "<a href='article.php?numero=$id_article'><img style='height:20%' src='$chemin_jaquette' /><a>";
+            echo "</div>";
+            
+            echo "</div>";
+            echo "</div>";
         }
     }
+    echo "</div>";
+    echo "<br><br>";
 }
 
 function displayArticleInformations($article, $num) {

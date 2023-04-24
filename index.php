@@ -29,6 +29,7 @@ date_default_timezone_set('Europe/Paris');
         <link rel="stylesheet" href="styles/nav.css">
         <link rel="stylesheet" href="styles/footer.css">
         <link rel="stylesheet" href="styles/search.css">
+        <link rel="stylesheet" href="styles/index.css">
     </head>
 
     <?php include("./static/header.php"); ?>
@@ -68,11 +69,11 @@ date_default_timezone_set('Europe/Paris');
     //     }
     // }
 
-    echo "<br>";
+   
 
 
 
-    echo "<br><br><br><br><br><br><br><br>";
+    
 
     // echo "<h1>Article</h1>";            
     // $sql_input = "SELECT * FROM Article";
