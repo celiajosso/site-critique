@@ -120,16 +120,14 @@ function displayArticlesBySearch($my_sqli, $jeux_res) {
         $sql_data_jaquette = "SELECT chemin_Image FROM Image INNER JOIN est_Image ON est_Image.id_Image = Image.id_Image INNER JOIN Article ON Article.id_Article = est_Image.id_Article WHERE Article.id_Article=$id AND chemin_Image LIKE '%jaquette%'";
         $sql_data_jaquette_res = readDB($my_sqli, $sql_data_jaquette);
 
-        // A decommenter quand on aura les avis -> on devra regrouper ce tableau avec les autres
-        // $sql_data_note = "SELECT AVG(note_Avis) as note_moyenne FROM Avis INNER JOIN Jeu ON Jeu.id_Jeu = Avis.id_Jeu INNER JOIN Article on Article.id_Jeu = Jeu.id_Jeu WHERE Article.id_Article=$id";
-        // $sql_data_note_res = readDB($my_sqli, $sql_data_note);
+        $sql_data_note = "SELECT AVG(note_Avis) as note_moy FROM Avis INNER JOIN Article ON Article.id_Article = Avis.id_Article WHERE Article.id_Article=$id";
+        $sql_data_note_res = readDB($my_sqli, $sql_data_note);
 
         foreach ($sql_data_article_res as $cle => $val) {
             $login = Array("login_Utilisateur" => $sql_data_utilisateur_res[0]["login_Utilisateur"]);
             $jaquette = Array("chemin_Image" => $sql_data_jaquette_res[0]["chemin_Image"]);
-            // $note_moy = Array("note_moy" => $sql_data_note_res[0]["note_moy"]);
-            array_push($sql_data_article_res[$cle], $login, $jaquette);
-            
+            $note_moy = Array("note_moy" => $sql_data_note_res[0]["note_moy"]);
+            array_push($sql_data_article_res[$cle], $login, $jaquette, $note_moy);
         }
         array_push($all_data, $sql_data_article_res);
         }
@@ -145,6 +143,7 @@ function displayArticlesBySearch($my_sqli, $jeux_res) {
             $date_crea = writeDate($val1["dateCreation_Article"]);
             $login_crea = $val1[0]["login_Utilisateur"];
             $chemin_jaquette = $val1[1]["chemin_Image"];
+            $note_users = $val1[2]["note_moy"];
 
             echo "<div class='article-seul'>";
             
@@ -155,9 +154,14 @@ function displayArticlesBySearch($my_sqli, $jeux_res) {
 
             echo "<div class='right-column-index'>";
             echo "<h3>$titre</h3>";
-            echo "<br>";
             echo "Note du rédacteur : <img class='image-note' src='Images/note/$note_redacteur.png' title='$note_redacteur/10'>";
             echo "<br><br>";
+            if (!empty($note_users)) {
+                $note_arrondie = round($note_users);
+                echo "Note moyenne des utilisateurs : <img class='image-note' src='Images/note/$note_arrondie.png' title='$note_users/10'>";
+                echo "<br><br>";
+            }
+            
             echo "Rédigé par $login_crea ($date_crea)";
             echo "</div>";
             
