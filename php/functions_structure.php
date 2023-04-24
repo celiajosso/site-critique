@@ -293,11 +293,40 @@ function displayArticleInformations($article, $num, $my_sqli) {
     echo "</div>";
 
     if (!empty($avis)) {
-        $note_arrondie = round($moyenne);
-        echo "Note moyenne des utilisateurs : <img class='image-note' src='Images/note/$note_arrondie.png' title='$moyenne/10'>";
-        echo "<br><br>";
+        displayAvis($avis, $moyenne, $num, $my_sqli);
     }
+    else {
+        echo "Aucun avis pour cet article.";
+    }
+    echo "<br><br><br><br><br><br>";
+}
 
+function displayAvis($avis, $moyenne, $num, $my_sqli) {
+    $note_arrondie = round($moyenne);
+    echo "Note moyenne des utilisateurs : <img class='image-note' src='Images/note/$note_arrondie.png' title='$moyenne/10'>";
+    echo "<br><br>";
+
+    if (!empty($_SESSION)) {
+        $login_connected = $_SESSION["username"];
+        $sql_id_connected = "SELECT id_Utilisateur, id_role FROM Utilisateur WHERE login_Utilisateur='$login_connected'";
+        $sql_id_connected_res = readDB($my_sqli, $sql_id_connected);
+        $id_connected = $sql_id_connected_res[0]["id_Utilisateur"];
+        $role = $sql_id_connected_res[0]["id_role"];
+
+        $sql_avis_ecrit = "SELECT * FROM Avis WHERE id_Utilisateur=$id_connected AND id_Article=$num";
+        $sql_avis_ecrit_res = readDB($my_sqli, $sql_avis_ecrit);
+
+        $sql_createur_modifieur = "SELECT id_UtilisateurCreateur, id_UtilisateurModifieur FROM Article WHERE id_Article=$num";
+        $sql_createur_modifieur_res = readDB($my_sqli, $sql_createur_modifieur);
+        $id_createur = $sql_createur_modifieur_res[0]["id_UtilisateurCreateur"];
+        $id_modifieur = $sql_createur_modifieur_res[0]["id_UtilisateurModifieur"];
+
+
+        if (empty($sql_avis_ecrit_res) && $id_connected != $id_createur && $id_connected != $id_modifieur) {
+            echo "BOUTON AJOUTER";
+        } 
+    }
+    
     foreach ($avis as $cle => $val) {
         $titre = $val["titre_Avis"];
         $note = $val["note_Avis"];
@@ -314,7 +343,17 @@ function displayArticleInformations($article, $num, $my_sqli) {
         $login = $sql_user_res[0]["login_Utilisateur"];
         $pp = $sql_user_res[0]["photoProfil_Utilisateur"];
 
+
         echo "<h1>========================</h1>";
+        if (!empty($_SESSION)) {
+            if ($role == 3) {
+                echo "BOUTON SUPPRIMER<br>";
+            }
+            elseif ($id_user == $id_connected) {
+                echo "BOUTON MODIF + BOUTON SUPPRIMER<br>";
+            }
+            
+        }
         echo "$login";
         echo "<br>";
         echo "<a href='profilPublic.php?numero=$id_user'><img src='$pp'/><a>";
@@ -327,7 +366,6 @@ function displayArticleInformations($article, $num, $my_sqli) {
         echo "<br><br>";
         echo "$contenu_avis";
     }
-    echo "<br><br><br><br><br><br>";
 }
 
 function displayUserPrivateInformations($my_sqli, $tab) {
