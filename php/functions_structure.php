@@ -297,6 +297,9 @@ function displayArticleInformations($article, $num, $my_sqli) {
     }
     else {
         echo "Aucun avis pour cet article.";
+        if (!empty($_SESSION)) {
+            echo "<br>BOUTON AJOUTER";
+        }
     }
     echo "<br><br><br><br><br><br>";
 }
@@ -347,12 +350,20 @@ function displayAvis($avis, $moyenne, $num, $my_sqli) {
         echo "<h1>========================</h1>";
         if (!empty($_SESSION)) {
             if ($role == 3) {
-                echo "BOUTON SUPPRIMER<br>";
+                if ($id_user != $id_connected) {
+                    echo "BOUTON SUPPRIMER<br>";
+                }
+                else {
+                    echo "BOUTON MODIF + BOUTON SUPPRIMER<br>";
+                }
+                
             }
-            elseif ($id_user == $id_connected) {
-                echo "BOUTON MODIF + BOUTON SUPPRIMER<br>";
-            }
-            
+            else  {
+                if ($id_user == $id_connected) {
+                    echo "BOUTON MODIF + BOUTON SUPPRIMER<br>";
+                }
+                
+            }            
         }
         echo "$login";
         echo "<br>";

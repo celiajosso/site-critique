@@ -1,0 +1,42 @@
+.boite-article{
+    width: 90%;
+    display : flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.article-seul{
+    width: 45%;
+    height: 175px;
+    flex-wrap: wrap;
+    margin: 0;
+    border: 3px solid #A7A7A7;
+    margin-bottom: 50px;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.acceuil-jaquette{
+    width: 100%;
+    border-radius: 10px;
+}
+
+.left-column-index {
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 100%;
+}
+
+.right-column-index {
+    float: right;
+    width: 75%;
+    padding-left: 1%;
+    margin-left: auto;
+    margin-right: auto;
+}
