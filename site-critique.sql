@@ -150,6 +150,17 @@ CREATE TABLE Avis (
   FOREIGN KEY (id_Article) REFERENCES Article(id_Article)
 );
 
+INSERT INTO Avis (titre_Avis, contenu_Avis, dateCreation_Avis, note_Avis, id_Utilisateur, id_Article) VALUES
+  ("Pas d'accord sur tous les points", "Selon moi, il reste quand-même certains beugs persistants dans cette nouvelle édition de Fifa par rapport aux Fifas précédents, ce qui explique ma note sur ton article. Y as-tu joué ne serait-ce qu'une partie avant écrire des bêtises pareilles ?", "2023-03-05", 5, 5, 1),
+  ("Véridique, pas de réels changements par rapport à Fifa 20", "C'est vrai que personnellement j'ai eu l'impression de rejouer à Fifa 20, j'ai dû revoir la couverture de mon jeu pour m'assurer que je n'avais recommandé le Fifa 20 !", "2023-03-10", 7, 2, 1),
+  ("Tu as résumé ma pensée !", "Je n'aurais pas dit mieux sur ce jeu, à quand ta prochaine critique ? Je l'attends avec impatience !", "2023-03-13", 9, 6, 1),
+  ("Amusant, mais notre jeunesse est avantagée !", "Moi qui comptais payer un abonnement à la salle, je suis ravi, mais ma petite fille me bat à chaque fois ! Sinon, il est vrai que de nouveaux modes sur le jeu serait une bonne initiative. A quand la variété française ?", "2022-07-11", 6, 4, 5),
+  ("Légendaire ce jeu !", "En tant que prof de physique, tu dois être fasciné par ce jeu et ça se ressent dans ton article. Ce jeu est tout simplement une pépite !!", "2022-05-20", 10, 1, 3),
+  ("Un must-have !", "Je rejoins tout ce que tu dis Franck. Aux rares n'ayant toujours pas acheté ce jeu, foncez sans plus attendre !", "2022-05-22", 9, 3, 3),
+  ("Alerte à la jeunesse : n'achetez pas ce jeu !", "Acheté à mon petit-fils pour son 13ème anniversaire, le jeu lui plaît tout particulièrement. Mais quelle ne fut pas ma surprise lorsque je suis retourné chez ma fille ! Je l'ai vu joué avec et le jeu est d'une violence inégalée ! Je n'avais pas vu le PEGI 18 !!", "2022-01-01", 6, 4, 4),
+  ("Très réaliste", "Je suis ravie de cette nouvelle version de GTA comme toi, je ne sais pas si le prochain pourra l'égaler tellement il est bien fait !", "2022-01-01", 8, 2, 4),
+  ("Le jeu où tout est permis", "Rien à redire sur ton article, simple et efficace comme toujours !", "2022-01-05", 9, 6, 4);
+
 /* table est_Categorie */
 
 CREATE TABLE est_Categorie (
