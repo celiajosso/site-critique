@@ -35,3 +35,9 @@ position: relative;
 	width: 100px;
 	height: auto;
 }
+
+hr{
+	color : #e4e4e4;
+	margin-top: 30px;
+	margin-bottom: 50px;
+}

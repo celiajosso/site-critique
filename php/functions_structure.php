@@ -61,18 +61,20 @@ function displayArticles ($my_sqli, $jeux_res) {
         if (!empty($jeux_res) && !empty($q)) {
             $len = count($jeux_res);
             if ($len == 1) {
-                echo "$len résultat pour la recherche : <em>$q</em><br><br>";
+                echo "<h2 class='a-centrer'>$len résultat pour la recherche : <em>$q</em></h2>";
             }
             else {
-                echo "$len résultats pour la recherche : <em>$q</em><br><br>";
+                echo "<h2 class='a-centrer'>$len résultats pour la recherche : <em>$q</em></h2>";
             }
+            echo "<hr>";
             displayArticlesBySearch($my_sqli, $jeux_res);
         }
         else {
             if (!empty($q)) {
-                echo "Aucun résultat pour la recherche : <em>$q</em>";
+                echo "<h2 class='a-centrer'>Aucun résultat pour la recherche : <em>$q</em></h2>";
             }
             else {
+                echo "<hr>";
                 displayArticlesBySearch($my_sqli, $jeux_res);
             }
             echo "<br>";
@@ -83,21 +85,22 @@ function displayArticles ($my_sqli, $jeux_res) {
         if (!empty($jeux_res)) {
             $len = count($jeux_res);
             if ($len == 1) {
-                echo "$len résultat pour cette recherche par catégorie:<br>";
+                echo "<h2 class='a-centrer'>$len résultat pour cette recherche par catégorie :</h2>";
             }
             else {
-                echo "$len résultats pour cette recherche par catégorie:<br>";
+                echo "<h2 class='a-centrer'>$len résultats pour cette recherche par catégorie :</h2>";
             }
+            echo "<hr>";
             displayArticlesBySearch($my_sqli, $jeux_res);
         }
         else {
             if (isset($jeux_res)) {
-                echo "Aucun résultat pour cette recherche";
+                echo "<h2 class='a-centrer'>Aucun résultat pour cette recherche</h2>";
             }
-        
         }
     }
     else {
+        echo "<hr>";
         displayArticlesBySearch($my_sqli, $jeux_res);
     }
     echo "<br>";
@@ -155,7 +158,7 @@ function displayArticlesBySearch($my_sqli, $jeux_res) {
             echo "<h3>$titre</h3>";
             echo "<br>";
             echo "Note du rédacteur : <img class='image-note' src='Images/note/$note_redacteur.png' title='$note_redacteur/10'>";
-            echo "<br>";
+            echo "<br><br>";
             echo "Rédigé par $login_crea ($date_crea)";
             echo "</div>";
             
