@@ -9,7 +9,6 @@ require_once("./includes/constantes.php");      //constantes du site
 date_default_timezone_set('Europe/Paris');
 ?>
 
-
 <header>
     <?php
     if (isset ($_SESSION['username'])) {

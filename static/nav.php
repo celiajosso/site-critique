@@ -57,8 +57,6 @@ if (isset ($_SESSION['username'])) {
                 echo "</a>";
             echo "</li>";
 
-            
-
             if ($page_courante == 'redacArticle.php') {
                 echo "<li class='li-navigation-threeparts' id='active'>";
             }

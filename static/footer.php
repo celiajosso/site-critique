@@ -9,14 +9,15 @@ require_once("./includes/constantes.php");      //constantes du site
 date_default_timezone_set('Europe/Paris');
 ?>
 
-<div id="footer-parent">
-            <footer>
-                <p id="footer-group">
-                    <p id="author">Auteurs : NORTON Thomas, JOSSO Célia<br> Groupe B</p>
-                    <p id="contact">Contact</p>
-                </p>
-                
-                <p id="copyright">© 2023 CUPGE2</p>
-            </footer>
-        </div>
-    </body>
+<footer>
+    <div id="footer-parent">
+        <footer>
+            <p id="footer-group">
+                <p id="author">Auteurs : NORTON Thomas, JOSSO Célia<br> Groupe B</p>
+                <p id="contact">Contact</p>
+            </p>
+            
+            <p id="copyright">© 2023 CUPGE2</p>
+        </footer>
+    </div>
+</footer>
