@@ -11,13 +11,18 @@ include_once("./php/functions_structure.php");
 $my_sqli = connectionDB();
 date_default_timezone_set('Europe/Paris');
 
-function displayArticles ($my_sqli, $jeux_res) {
+function displayArticles ($my_sqli, $jeux) {
+    $jeux_res = $jeux[0];
+    $sql_categorie_res = $jeux[1];
+
     // === RECHERCHE PAR NOM DE JEU ===
+
     echo "<br>";
     echo "<div class='search-content'>";
 
     echo "<form class='left' method='GET'>";
     echo "<h3>Recherche par nom de jeu :</h3><br><br><br>";
+
     if (isset($_GET['q'])) {
         $q = $_GET['q'];
         echo "<input type='search' size = '30' name='q' value='$q' placeholder='Recherche par nom de jeu' />";
@@ -29,47 +34,54 @@ function displayArticles ($my_sqli, $jeux_res) {
     echo "</form>";
 
     // === RECHERCHE PAR CATEGORIE DE JEU ===
+
     echo "<form class='right' method='GET'>";
     echo "<h3 class='a-centrer'>Recherche par catégorie :</h3>";
-    $sql_categorie = "SELECT id_Categorie FROM Categorie";
-    $sql_categorie_res = readDB($my_sqli, $sql_categorie);
+
     $i = 1;
     foreach ($sql_categorie_res as $cle => $val) {
         foreach ($val as $cle1 => $val1) {
             $chemin_type = "Images/Categories/" . $val1 . ".png";
             $nom_champ = "c_" . "$i";
             echo "<div class='form-content'>";
+
             if (isset($_GET[$nom_champ])) {
                 echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ'checked/></div>";
             }
             else {
                 echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ'/></div>";
-            }        
+            }       
+
             echo "<div class='right-column-checkbox'><img  class='icone-type' src='$chemin_type'></div>";
             echo "</div>";
-            
+
             $i = $i + 1;
         }}
-    
+
     echo "<input type='submit' value='Valider' />";
     echo "</form>";
     echo "</div>";
 
     // === AFFICHAGE POUR LA RECHERCHE PAR NOM DE JEU ===
+
     if (isset($_GET["q"])) {
         $q = $_GET ["q"];
+
         if (!empty($jeux_res) && !empty($q)) {
             $len = count($jeux_res);
+
             if ($len == 1) {
                 echo "<h2 class='a-centrer'>$len résultat pour la recherche : <em>$q</em></h2>";
             }
             else {
                 echo "<h2 class='a-centrer'>$len résultats pour la recherche : <em>$q</em></h2>";
             }
+
             echo "<hr>";
             displayArticlesBySearch($my_sqli, $jeux_res);
         }
         else {
+
             if (!empty($q)) {
                 echo "<h2 class='a-centrer'>Aucun résultat pour la recherche : <em>$q</em></h2>";
             }
@@ -77,23 +89,29 @@ function displayArticles ($my_sqli, $jeux_res) {
                 echo "<hr>";
                 displayArticlesBySearch($my_sqli, $jeux_res);
             }
+
             echo "<br>";
         }
     }
+
     // === AFFICHAGE POUR LA RECHERCHE PAR CATEGORIE DE JEU ===
     elseif (!isset($_GET["q"]) && !empty($_GET)) {
+
         if (!empty($jeux_res)) {
             $len = count($jeux_res);
+
             if ($len == 1) {
                 echo "<h2 class='a-centrer'>$len résultat pour cette recherche par catégorie :</h2>";
             }
             else {
                 echo "<h2 class='a-centrer'>$len résultats pour cette recherche par catégorie :</h2>";
             }
+
             echo "<hr>";
             displayArticlesBySearch($my_sqli, $jeux_res);
         }
         else {
+            
             if (isset($jeux_res)) {
                 echo "<h2 class='a-centrer'>Aucun résultat pour cette recherche</h2>";
             }

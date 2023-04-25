@@ -63,8 +63,10 @@ function getArticles ($my_sqli) {
         $jeux_res = readDB($my_sqli, $jeux);
                 
     }
-    return $jeux_res;    
-    // fin script barre de recherche
+
+    $sql_categorie_res = idCategories($my_sqli);
+
+    return Array($jeux_res, $sql_categorie_res);    
 }
 
 function getArticleInformations ($my_sqli) {
@@ -271,6 +273,12 @@ function writeDate($date) {
     $months = $months_list[$months-1];
 
     return "$days $months $years";
+}
+
+function idCategories($my_sqli) {
+    $sql_categorie = "SELECT id_Categorie FROM Categorie";
+    $sql_categorie_res = readDB($my_sqli, $sql_categorie);
+    return $sql_categorie_res;
 }
 
 function avis($mysqli,$id_Utilisateur,$id_Jeu){
