@@ -42,7 +42,6 @@ date_default_timezone_set('Europe/Paris');
     <body>
         <?php include("./static/header.php"); ?>
         <?php include("./static/nav.php"); ?>
-        <br>
         <?php
             $num = $_GET['numero'];
             $tab = getUserPrivateInformations($my_sqli, $num);

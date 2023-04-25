@@ -44,22 +44,6 @@ date_default_timezone_set('Europe/Paris');
         <?php include("./static/nav.php"); ?>
         <br>
         <?php
-
-            if (isset($_GET["erreur"])) {
-                if ($_GET["erreur"] == "age") {
-                    echo "<div class='erreur-inscription'><h2>Erreur !</h2>Vous êtes trop jeune ! Vous devez avoir au moins 15 ans !<br><br></div>";
-                }
-                if ($_GET["erreur"] == "login"){
-                    echo "<div class='erreur-inscription'><h2>Erreur !</h2>Ce nom d'utilisateur est déjà pris !<br><br></div>";
-                }
-                if ($_GET["erreur"] == "unchanged"){
-                    echo "<div class='erreur-inscription'><h2>Aucun champ modifié.<h2></div>";
-                }
-            }
-            if (isset($_GET["success"])) {
-                $champ = $_GET["success"];
-                echo "<div class='erreur-inscription'><h2>Champ « $champ » modifié avec succès !</div><br><br>";
-            }
             $num = $_GET['numero'];
             $tab = getUserPrivateInformations($my_sqli, $num);
             displayUserPrivateInformations($my_sqli, $tab);

@@ -409,71 +409,86 @@ function displayUserPrivateInformations($my_sqli, $tab) {
 
     $role = recupRole($my_sqli, $id_role);
 
+    if (isset($_GET["erreur"])) {
+        if ($_GET["erreur"] == "age") {
+            echo "<div class='erreur-inscription'><h2>Erreur !</h2>Vous êtes trop jeune ! Vous devez avoir au moins 15 ans !<br><br></div>";
+        }
+        if ($_GET["erreur"] == "login"){
+            echo "<div class='erreur-inscription'><h2>Erreur !</h2>Ce nom d'utilisateur est déjà pris !<br><br></div>";
+        }
+        if ($_GET["erreur"] == "unchanged"){
+            echo "<div class='erreur-inscription'><h2>Aucun champ modifié.<h2></div>";
+        }
+    }
+
+    if (isset($_GET["success"])) {
+        $champ = $_GET["success"];
+        echo "<div class='erreur-inscription'><h2>Champ « $champ » modifié avec succès !</div><br><br>";
+    }
+
     echo "<div class='box-page-prive'>";
 
-    echo "<div class='flex-content'>";
+        echo "<div class='flex-content'>";
 
-    echo "<div class='left-column'>";
-    echo "<p class='table-title'>Photo de profil :</p><br>";
-    echo "<img class='pp' src='$pp'><br><form action='./php/updateInfosPrivees.php?numero=$num&pp=1' method='POST'><input type = 'file' name='pp'><br><br><input type='submit' value='modifier'></form>";
-    echo "<br><br>";
+            echo "<div class='left-column'>";
+                echo "<p class='table-title'>Photo de profil :</p><br>";
+                echo "<img class='pp' src='$pp'><br><form action='./php/updateInfosPrivees.php?numero=$num&pp=1' method='POST'><input type = 'file' name='pp'><br><br><input type='submit' value='modifier'></form>";
+                echo "<br><br>";
+            echo "</div>";
+
+            echo "<div class='right-column'>";
+
+            $today = date('Y-m-d');
+
+            echo "<table>";
+                echo "<tr>";
+                    echo "<td class='table-title'>Login :</td>";
+                    echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&login=1' method='POST'><input type = 'text' name='login' size= '30' maxlength = '50' value = '$login'> <input type='submit' value='modifier'></form></td>";
+                echo "</tr>";
+
+                echo "<tr>";
+                    echo "<td class='table-title'>Nom :</td>";
+                    echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&nom=1' method='POST'><input type = 'text' name='nom' maxlength = '50' size= '30' value = '$nom'> <input type='submit' value='modifier'></form></td>";
+                echo "</tr>";
+
+                echo "<tr>";
+                    echo "<td class='table-title'>Prenom :</td>";
+                    echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&prenom=1' method='POST'><input type = 'text' name='prenom' maxlength = '50' size= '30' value = '$prenom'> <input type='submit' value='modifier'></form></td>";
+                echo "</tr>";
+
+                echo "<tr>";
+                    echo "<td class='table-title'>Adresse mail :</td>";
+                    echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&mail=1' method='POST'><input type = 'email' name='mail' maxlength = '50' size= '30' value = '$mail'> <input type='submit' value='modifier'></form></td>";
+                echo "</tr>";
+
+                echo "<tr>";
+                    echo "<td class='table-title'>Date de naissance :</td>";
+                    echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&naissance=1' method='POST'><input type = 'text' size='30' onfocus='(this.type=`date`)' max='$today' name='naissance' value = '$naissance'> <input type='submit' value='modifier'></form></td>";
+                echo "</tr>";
+                
+                echo "<tr>";
+                    echo "<td class='table-title'>Mot de passe :</td>";
+                    echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&password=1' method='POST'><input type = 'password' name='password' maxlength = '50' size= '30' value = '$password'> <input type='submit' value='modifier'></form></td>";
+                echo "</tr>";
+
+                echo "</form>";
+
+                echo "<tr>";
+                    echo "<td class='table-title'>Rôle :</td>";
+                    echo "<td>$role</td>";
+                echo "</tr>";
+
+                echo "<tr>";
+                    echo "<td class='table-title'>Date de création du compte :</td>";
+                    echo "<td>$creation</td>";
+                echo "</tr>";
+
+            echo "</table>";
+
+        echo "</div>";
 
     echo "</div>";
-
-    echo "<div class='right-column'>";
-
-    $today = date('Y-m-d');
-
-    echo "<table>";
-        echo "<tr>";
-            echo "<td class='table-title'>Login :</td>";
-            echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&login=1' method='POST'><input type = 'text' name='login' size= '30' maxlength = '50' value = '$login'> <input type='submit' value='modifier'></form></td>";
-        echo "</tr>";
-
-        echo "<tr>";
-            echo "<td class='table-title'>Nom :</td>";
-            echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&nom=1' method='POST'><input type = 'text' name='nom' maxlength = '50' size= '30' value = '$nom'> <input type='submit' value='modifier'></form></td>";
-        echo "</tr>";
-
-        echo "<tr>";
-            echo "<td class='table-title'>Prenom :</td>";
-            echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&prenom=1' method='POST'><input type = 'text' name='prenom' maxlength = '50' size= '30' value = '$prenom'> <input type='submit' value='modifier'></form></td>";
-        echo "</tr>";
-
-        echo "<tr>";
-            echo "<td class='table-title'>Adresse mail :</td>";
-            echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&mail=1' method='POST'><input type = 'email' name='mail' maxlength = '50' size= '30' value = '$mail'> <input type='submit' value='modifier'></form></td>";
-        echo "</tr>";
-
-        echo "<tr>";
-            echo "<td class='table-title'>Date de naissance :</td>";
-            echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&naissance=1' method='POST'><input type = 'text' size='30' onfocus='(this.type=`date`)' max='$today' name='naissance' value = '$naissance'> <input type='submit' value='modifier'></form></td>";
-        echo "</tr>";
-        
-        echo "<tr>";
-            echo "<td class='table-title'>Mot de passe :</td>";
-            echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&password=1' method='POST'><input type = 'password' name='password' maxlength = '50' size= '30' value = '$password'> <input type='submit' value='modifier'></form></td>";
-        echo "</tr>";
-
-        echo "</form>";
-
-        echo "<tr>";
-            echo "<td class='table-title'>Rôle :</td>";
-            echo "<td>$role</td>";
-        echo "</tr>";
-
-        echo "<tr>";
-            echo "<td class='table-title'>Date de création du compte :</td>";
-            echo "<td>$creation</td>";
-        echo "</tr>";
-
-    echo "</table>";
-
     echo "</div>";
-
-    echo "</div>";
-    echo "</div>";
-
     echo "<br><br><br><br><br><br><br><br><br><br>";
 }
 
@@ -491,41 +506,40 @@ function displayUserPublicInformations($my_sqli, $tab) {
 
     echo "<div class='box-page-prive'>";
 
-    echo "<div class='flex-content'>";
+        echo "<div class='flex-content'>";
 
-    echo "<div class='left-column'>";
-    echo "<p class='table-title'>Photo de profil :</p>";
-    echo "<img class='pp' src='$pp'>";
+        echo "<div class='left-column'>";
+            echo "<p class='table-title'>Photo de profil :</p>";
+            echo "<img class='pp' src='$pp'>";
+        echo "</div>";
 
-    echo "</div>";
+        echo "<div class='right-column'>";
 
-    echo "<div class='right-column'>";
+            $today = date('Y-m-d H:i');
 
-    $today = date('Y-m-d H:i');
+            echo "<table>";
+                echo "<tr>";
+                    echo "<td class='table-title'>Login :</td>";
+                    echo "<td>$login</td>";
+                echo "</tr>";
 
-    echo "<table>";
-        echo "<tr>";
-            echo "<td class='table-title'>Login :</td>";
-            echo "<td>$login</td>";
-        echo "</tr>";
+                echo "<tr>";
+                    echo "<td class='table-title'>Rôle :</td>";
+                    echo "<td>$role</td>";
+                echo "</tr>";
 
-        echo "<tr>";
-            echo "<td class='table-title'>Rôle :</td>";
-            echo "<td>$role</td>";
-        echo "</tr>";
+                echo "<tr>";
+                    echo "<td class='table-title'>Date de création du compte :</td>";
+                    echo "<td>$creation</td>";
+                echo "</tr>";
 
-        echo "<tr>";
-            echo "<td class='table-title'>Date de création du compte :</td>";
-            echo "<td>$creation</td>";
-        echo "</tr>";
+                echo "<tr>";
+                    echo "<td class='table-title'>Dernière connexion :</td>";
+                    echo "<td>Il y a $duree</td>";
+                echo "</tr>";
 
-        echo "<tr>";
-            echo "<td class='table-title'>Dernière connexion :</td>";
-            echo "<td>Il y a $duree</td>";
-        echo "</tr>";
-
-    echo "</table>";
-    echo "</div>";
+            echo "</table>";
+        echo "</div>";
     echo "</div>";
     echo "</div>";
     echo "<br><br><br><br><br><br><br><br><br><br>";
