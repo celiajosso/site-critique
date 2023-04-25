@@ -294,6 +294,14 @@ function idCategories($my_sqli) {
     return $sql_categorie_res;
 }
 
+function idSupports($my_sqli) {
+    // Renvoie les identifiants des supports
+
+    $sql_support = "SELECT id_Support FROM Support";
+    $sql_support_res = readDB($my_sqli, $sql_support);
+    return $sql_support_res;
+}
+
 function avis($mysqli,$id_Utilisateur,$id_Jeu){
     // Permet d'accéder à l'avis (Titre,Contenu,Note,id_utilisateur)
     $tableau = readDB($mysqli,"SELECT avis.titre_Avis, avis.contenu_Avis, avis.dateCreation_Avis, avis.note_Avis, utilisateur.login_Utilisateur, utilisateur.photoProfil_Utilisateur FROM avis JOIN utilisateur ON avis.id_Utilisateur=utilisateur.id_Utilisateur WHERE avis.id_Jeu=$id_Jeu AND avis.id_Utilisateur=$id_Utilisateur");
