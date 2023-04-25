@@ -348,6 +348,16 @@ function createurModifieurArticle($my_sqli, $num){
     return Array($id_createur, $id_modifieur);
 }
 
+function loginPpAvis($my_sqli, $id_user){
+    $sql_user = "SELECT login_Utilisateur, photoProfil_Utilisateur FROM Utilisateur WHERE id_Utilisateur=$id_user";
+    $sql_user_res = readDB($my_sqli, $sql_user);
+
+    $login = $sql_user_res[0]["login_Utilisateur"];
+    $pp = $sql_user_res[0]["photoProfil_Utilisateur"];
+
+    return Array($login, $pp);
+}
+
 
 
 ?>

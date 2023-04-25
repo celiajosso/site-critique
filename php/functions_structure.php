@@ -342,12 +342,9 @@ function displayAvis($avis, $moyenne, $num, $my_sqli) {
         $temps_avis = Duration($date_crea_avis);
         $date_avis = writeDate($date_crea_avis);
 
-        $sql_user = "SELECT login_Utilisateur, photoProfil_Utilisateur FROM Utilisateur WHERE id_Utilisateur=$id_user";
-        $sql_user_res = readDB($my_sqli, $sql_user);
-
-        $login = $sql_user_res[0]["login_Utilisateur"];
-        $pp = $sql_user_res[0]["photoProfil_Utilisateur"];
-
+        $tab = loginPpAvis($my_sqli, $id_user);
+        $login = $tab[0];
+        $pp = $tab[1];
 
         echo "<h1>========================</h1>";
         if (!empty($_SESSION)) {
