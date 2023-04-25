@@ -1141,6 +1141,21 @@ function displayConnection () {
     echo "<br><br><br><br>";
 }
 
+function displayAuthentification () {
+    echo "<div class='authentification-buttons'>";
+        echo "<div>";
+            echo "<h2>Vous possédez déjà un compte Gamecrit ?</h2>";
+            echo "<br>";
+            echo "<a href='connection.php'><button>Se connecter</button></a>";
+        echo "</div>";
+    echo "<div>";
+            echo "<h2>Vous êtes nouveau ?</h2>";
+            echo "<br>";
+            echo "<a href='registration.php'><button>S'inscrire</button></a>";
+            echo "</div>";
+    echo "</div>";
+}
+
 function display_Avis($avis) {
     foreach($avis as $tableau){
         echo "$tableau[titre_Avis]<br>";

@@ -9,11 +9,10 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 require_once("./includes/constantes.php");      //constantes du site
 require_once("./includes/config-bdd.php");      //constantes du site
 include_once("./php/functions-DB.php");
-//include_once("./php/functions_query.php");
-//include_once("./php/functions_structure.php");
+include_once("./php/functions_query.php");
+include_once("./php/functions_structure.php");
 $my_sqli = connectionDB();
 date_default_timezone_set('Europe/Paris');
-
 ?>
 
 <!DOCTYPE html lang="fr">
@@ -33,21 +32,6 @@ date_default_timezone_set('Europe/Paris');
 
     <?php include("./static/header.php"); ?>
     <?php include("./static/nav.php"); ?>
-
-    <?php
-    echo "<div class='authentification-buttons'>";
-    echo "<div>";
-    echo "<h2>Vous possédez déjà un compte Gamecrit ?</h2>";
-    echo "<br>";
-    echo "<a href='connection.php'><button>Se connecter</button></a>";
-    echo "</div>";
-    echo "<div>";
-    echo "<h2>Vous êtes nouveau ?</h2>";
-    echo "<br>";
-    echo "<a href='registration.php'><button>S'inscrire</button></a>";
-    echo "</div>";
-    echo "</div>";
-    ?>
-
+    <?php displayAuthentification() ?>
     <?php include("./static/footer.php"); ?>
 <html>
