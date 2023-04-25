@@ -99,10 +99,10 @@ function getArticleInformations ($my_sqli) {
         $sql_article = "SELECT titre_Article, dateCreation_Article, dateModification_Article, contenu_Article, noteRedacteur_Article FROM Article WHERE id_Article=$num";
         $sql_article_res = readDB($my_sqli, $sql_article);
 
-        $sql_login_modif = "SELECT login_Utilisateur FROM Utilisateur INNER JOIN Article on Utilisateur.id_Utilisateur = Article.id_UtilisateurModifieur WHERE Article.id_Article=$num";
+        $sql_login_modif = "SELECT login_Utilisateur, id_Utilisateur FROM Utilisateur INNER JOIN Article on Utilisateur.id_Utilisateur = Article.id_UtilisateurModifieur WHERE Article.id_Article=$num";
         $sql_login_modif_res = readDB($my_sqli, $sql_login_modif);
 
-        $sql_login_crea = "SELECT login_Utilisateur FROM Utilisateur INNER JOIN Article on Utilisateur.id_Utilisateur = Article.id_UtilisateurCreateur WHERE Article.id_Article=$num";
+        $sql_login_crea = "SELECT login_Utilisateur, id_Utilisateur FROM Utilisateur INNER JOIN Article on Utilisateur.id_Utilisateur = Article.id_UtilisateurCreateur WHERE Article.id_Article=$num";
         $sql_login_crea_res = readDB($my_sqli, $sql_login_crea);
 
         $sql_jeu = "SELECT nom, prix, date_sortie, synopsis FROM Jeu INNER JOIN Article ON Jeu.id_Jeu = Article.id_Jeu WHERE Article.id_Article=$num";
@@ -332,7 +332,7 @@ function articlesBySearch($my_sqli, $jeux_res) {
         $sql_data_article = "SELECT id_Article, titre_Article, noteRedacteur_Article, dateCreation_Article FROM Article INNER JOIN Utilisateur ON Article.id_UtilisateurCreateur = Utilisateur.id_Utilisateur WHERE id_Article=$id";
         $sql_data_article_res = readDB($my_sqli, $sql_data_article);
 
-        $sql_data_utilisateur = "SELECT login_Utilisateur FROM Utilisateur INNER JOIN Article ON Article.id_UtilisateurCreateur = Utilisateur.id_Utilisateur WHERE id_Article=$id";
+        $sql_data_utilisateur = "SELECT login_Utilisateur, id_Utilisateur FROM Utilisateur INNER JOIN Article ON Article.id_UtilisateurCreateur = Utilisateur.id_Utilisateur WHERE id_Article=$id";
         $sql_data_utilisateur_res = readDB($my_sqli, $sql_data_utilisateur);
 
         $sql_data_jaquette = "SELECT chemin_Image FROM Image INNER JOIN est_Image ON est_Image.id_Image = Image.id_Image INNER JOIN Article ON Article.id_Article = est_Image.id_Article WHERE Article.id_Article=$id AND chemin_Image LIKE '%jaquette%'";
@@ -343,10 +343,11 @@ function articlesBySearch($my_sqli, $jeux_res) {
 
         foreach ($sql_data_article_res as $cle => $val) {
             $login = Array("login_Utilisateur" => $sql_data_utilisateur_res[0]["login_Utilisateur"]);
+            $id = Array("id_Utilisateur" => $sql_data_utilisateur_res[0]["id_Utilisateur"]);
             $jaquette = Array("chemin_Image" => $sql_data_jaquette_res[0]["chemin_Image"]);
             $note_moy = Array("note_moy" => $sql_data_note_res[0]["note_moy"]);
 
-            array_push($sql_data_article_res[$cle], $login, $jaquette, $note_moy);
+            array_push($sql_data_article_res[$cle], $login, $jaquette, $note_moy, $id);
         }
 
         array_push($all_data, $sql_data_article_res);

@@ -147,6 +147,7 @@ function displayArticlesBySearch($my_sqli, $jeux_res) {
             $login_crea = $val1[0]["login_Utilisateur"];
             $chemin_jaquette = $val1[1]["chemin_Image"];
             $note_users = $val1[2]["note_moy"];
+            $id_crea = $val1[3]["id_Utilisateur"];
 
             echo "<div class='article-seul'>";
             
@@ -168,7 +169,7 @@ function displayArticlesBySearch($my_sqli, $jeux_res) {
                 echo "<br><br>";
             }
             
-            echo "Rédigé par $login_crea ($date_crea)";
+            echo "Rédigé par <a href='profilPublic.php?numero=$id_crea'>$login_crea</a> ($date_crea)";
             
             echo "</div>";
             
@@ -196,9 +197,11 @@ function displayArticleInformations($article, $num, $my_sqli) {
     $dateCrea_article = writeDate($dateCrea_article);
 
     $UtilisateurCrea_article = $article[1][0]["login_Utilisateur"];
+    $idCrea_article = $article[1][0]["id_Utilisateur"];
     
     if (!empty($article[2])) {
         $UtilisateurModif_article = $article[2][0]["login_Utilisateur"];
+        $idModif_article = $article[2][0]["id_Utilisateur"];
     }
     else {
         $UtilisateurModif_article = "";
@@ -298,10 +301,10 @@ function displayArticleInformations($article, $num, $my_sqli) {
         echo "<img class='image-gameplay' src=$image_gameplay>";
 
         echo "<div class='to-place-right'>";
-        echo "<h3>Rédigé par : $UtilisateurCrea_article ($dateCrea_article)</h3>";        
+        echo "<h3>Rédigé par : <a href='profilPublic.php?numero=$idCrea_article'>$UtilisateurCrea_article</a> ($dateCrea_article)</h3>";        
         if (!empty($UtilisateurModif_article)) {
             $dateModif_article = writeDate($dateModif_article);
-            echo "<h3>Modifié par : $UtilisateurModif_article ($dateModif_article)</h3>";
+            echo "<h3>Modifié par : <a href='profilPublic.php?numero=$idModif_article'>$UtilisateurModif_article</a> ($dateModif_article)</h3>";
         }
         echo "</div>";
 
@@ -386,9 +389,12 @@ function displayAvis($avis, $moyenne, $num, $my_sqli) {
             if ($id_user != $id_connected) {
                 echo "<a href='profilPublic.php?numero=$id_user'><img src='$pp'/><a>";
             }
+            else {
+                echo "<a href='profilPrive.php?numero=$id_user'><img src='$pp'/><a>";
+            }
         }
         else {
-            echo "<a href='profilPrive.php?numero=$id_user'><img src='$pp'/><a>";
+            echo "<a href='profilPublic.php?numero=$id_user'><img src='$pp'/><a>";
         }
         
         echo "<br>";        
