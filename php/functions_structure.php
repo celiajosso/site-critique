@@ -398,9 +398,7 @@ function displayUserPrivateInformations($my_sqli, $tab) {
 
     $creation = writeDate($creation);
 
-    $sql_input = "SELECT nom_Role FROM Role WHERE id_Role=$id_role";
-    $sql_input_res = readDB($my_sqli, $sql_input);
-    $role = $sql_input_res[0]["nom_Role"];
+    $role = recupRole($my_sqli, $id_role);
 
     echo "<div class='box-page-prive'>";
 
@@ -483,9 +481,7 @@ function displayUserPublicInformations($my_sqli, $tab) {
     $duree = Duration($connexion);
     $creation = writeDate($creation);
 
-    $sql_input = "SELECT nom_Role FROM Role WHERE id_Role=$id_role";
-    $sql_input_res = readDB($my_sqli, $sql_input);
-    $role = $sql_input_res[0]["nom_Role"];
+    $role = recupRole($my_sqli, $id_role);
 
     echo "<div class='box-page-prive'>";
 

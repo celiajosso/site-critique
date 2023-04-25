@@ -358,6 +358,11 @@ function loginPpAvis($my_sqli, $id_user){
     return Array($login, $pp);
 }
 
-
+function recupRole($my_sqli, $id_role) {
+    $sql_input = "SELECT nom_Role FROM Role WHERE id_Role=$id_role";
+    $sql_input_res = readDB($my_sqli, $sql_input);
+    $role = $sql_input_res[0]["nom_Role"];
+    return $role;
+}
 
 ?>
