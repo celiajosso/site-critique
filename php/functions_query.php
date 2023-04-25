@@ -323,4 +323,31 @@ function articlesBySearch($my_sqli, $jeux_res) {
     }
     return $all_data;
 }
+
+function connectedInfos($my_sqli, $login_connected) {
+    $sql_id_connected = "SELECT id_Utilisateur, id_role FROM Utilisateur WHERE login_Utilisateur='$login_connected'";
+    $sql_id_connected_res = readDB($my_sqli, $sql_id_connected);
+
+    $id_connected = $sql_id_connected_res[0]["id_Utilisateur"];
+    $role = $sql_id_connected_res[0]["id_role"];
+
+    return Array($id_connected, $role);
+}
+
+function avisEcrits($my_sqli, $id_connected, $num) {
+    $sql_avis_ecrit = "SELECT * FROM Avis WHERE id_Utilisateur=$id_connected AND id_Article=$num";
+    $sql_avis_ecrit_res = readDB($my_sqli, $sql_avis_ecrit);
+    return $sql_avis_ecrit_res;
+}
+
+function createurModifieurArticle($my_sqli, $num){
+    $sql_createur_modifieur = "SELECT id_UtilisateurCreateur, id_UtilisateurModifieur FROM Article WHERE id_Article=$num";
+    $sql_createur_modifieur_res = readDB($my_sqli, $sql_createur_modifieur);
+    $id_createur = $sql_createur_modifieur_res[0]["id_UtilisateurCreateur"];
+    $id_modifieur = $sql_createur_modifieur_res[0]["id_UtilisateurModifieur"];
+    return Array($id_createur, $id_modifieur);
+}
+
+
+
 ?>
