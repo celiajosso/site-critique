@@ -861,6 +861,175 @@ function displayRedacArticle ($my_sqli) {
     echo "<br><br><br><br>";
 }
 
+function displayModifArticleInfos ($my_sqli) {
+    $num = $_GET["numero"];
+
+    $tab = modifArticleInfosArticleJeu($my_sqli, $num);
+    $sql_article_res = $tab[0];
+    $sql_jeu_res = $tab[1];
+
+    $titre_article = $sql_article_res[0]["titre_Article"];
+    $critique = $sql_article_res[0]["contenu_Article"];
+    $note = $sql_article_res[0]["noteRedacteur_Article"];
+
+    $num_jeu = $sql_jeu_res[0]["id_Jeu"];
+    $nom_jeu = $sql_jeu_res[0]["nom"];
+    $prix = $sql_jeu_res[0]["prix"];
+    $date_sortie = $sql_jeu_res[0]["date_sortie"];
+    $synopsis = $sql_jeu_res[0]["synopsis"];
+
+    $titre_article = htmlspecialchars($titre_article, ENT_QUOTES);
+    $nom_jeu = htmlspecialchars($nom_jeu, ENT_QUOTES);
+
+    echo "<div class='form-style-5'>";
+
+        echo "<form action='./php/verifModifArticle.php?numero=$num' method='POST'>";
+
+            echo "<fieldset>";
+            echo "<br>";
+            
+                echo "<legend>";
+                    echo "<span class='number'>1</span>";
+                    echo "Informations sur le jeu";
+                echo "</legend>";
+
+                echo "<div class='form-content'>";
+
+                    echo "<div class='left-column'>";
+
+                        echo "<input type='text' maxlength='100' name='titre_article' placeholder='Titre article *' value='$titre_article' required>";
+                        
+                        $today = date('Y-m-d'); 
+                        echo "<input type='text' onfocus='(this.type=`date`)' max='$today' name='date_sortie' placeholder='Date de sortie du jeu *' value='$date_sortie' required>";
+                        
+                    echo "</div>";
+                
+                    echo "<div class='right-column'>";
+
+                        echo "<input type='text' maxlength='30' name='nom_jeu' placeholder='Nom du jeu *' value='$nom_jeu' required>";
+                
+                        echo "<input type='number' min='0' step='0.01' name='prix' placeholder='Prix du jeu *' value='$prix' required>";
+                
+                    echo "</div>";
+            
+                echo "</div>";
+                
+                echo "<div class='form-content'>";
+                    echo "<textarea name='synopsis' maxlength='300' rows='5' placeholder='Synopsis' required='required'>$synopsis</textarea>";
+                echo "</div>";
+
+                $sql_categorie_res = idCategories($my_sqli);
+                $sql_support_res = idSupports($my_sqli);
+
+                $tab = modifArticleInfosCatSup($my_sqli, $num_jeu);
+                $sql_selected_categories_res = $tab[0];
+                $sql_selected_supports_res = $tab[1];
+
+            echo "<div class='form-content'>";
+
+                    echo "<div class=left-column'>";
+
+                        echo "<h3 class='a-centrer'>Catégories du jeu</h3>";
+
+                        $i = 1;
+
+                        foreach ($sql_categorie_res as $cle => $val) {
+
+                            foreach ($val as $cle1 => $val1) {
+                                $chemin_type = "Images/Categories/" . $val1 . ".png";
+                                $nom_champ = "categorie_" . "$i";
+
+                                echo "<div class='form-content'>";
+                                    $c = 0;
+
+                                    foreach ($sql_selected_categories_res as $cle2 => $val2) {
+
+                                        foreach ($val2 as $cle3 => $val3) {
+
+                                            if ($val3 == $i) {
+                                                echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ' checked/></div>";
+                                                $c = 1;
+                                            }
+
+                                        }
+                                    }
+
+                                    if ($c==0) {
+                                        echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ'/></div>";
+                                    }
+
+                                    echo "<div class='right-column-checkbox'><img class='icone-type' src='$chemin_type'></div>";
+                                echo "</div>";
+                                echo "<br><br>";
+
+                                $i = $i + 1;
+                            }
+                        }
+
+                    echo "</div>";
+
+                    echo "<div class=right-column'>";
+                        echo "<h3 class='a-centrer'>Supports du jeu</h3>";
+
+                        $i = 1;
+
+                        foreach ($sql_support_res as $cle => $val) {
+
+                            foreach ($val as $cle1 => $val1) {
+
+                                $chemin_type = "Images/Supports/" . $val1 . ".png";
+                                $nom_champ = "support_" . "$i";
+
+                                echo "<div class='form-content'>";
+
+                                    $c = 0;
+
+                                    foreach ($sql_selected_supports_res as $cle2 => $val2) {
+
+                                        foreach ($val2 as $cle3 => $val3) {
+
+                                            if ($val3 == $i) {
+                                                echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ' checked/></div>";
+                                                $c = 1;
+                                            }
+                                        }
+                                    }
+
+                                    if ($c == 0) {
+                                        echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ'/></div>";
+                                    }
+
+                                    echo "<div class='right-column-checkbox'><img class='icone-type' src='$chemin_type'></div>";
+
+                                echo "</div>";
+                                echo "<br><br>";
+
+                                $i = $i + 1;
+                            }
+                        }
+
+                    echo "</div>";  
+            
+                echo "</div>";
+
+            echo "<br>";
+            echo "<legend>";
+                echo "<span class='number'>2</span>";
+                echo "Votre critique";
+            echo "</legend>";
+            echo "<br>";
+
+            echo "<input type='number' min='0' max='10' name='note' placeholder='Note du jeu (/10) *' value='$note' required>";
+            echo "<textarea name='critique' maxlength='2000' rows='8' placeholder='Critique *' required='required'>$critique</textarea>";
+
+        echo "</fieldset>";
+
+        echo "<input type='submit' value='Modifier'>";         
+    echo "</form>";
+    echo "</div>";
+    echo "<br><br><br><br>";
+}
+
 function display_Avis($avis) {
     foreach($avis as $tableau){
         echo "$tableau[titre_Avis]<br>";
