@@ -53,17 +53,21 @@ legend {
 	padding: 20px;
 	border-radius: 8px;
 }
+
 .form-style-5 fieldset{
 	border: none;
 }
+
 .form-style-5 legend {
 	margin-bottom: 10px;
 }
+
 .form-style-5 label {
 	display: block;
 	margin-bottom: 8px;
 	margin-top: 0;
 }
+
 .form-style-5 input,
 .form-style-5 textarea,
 .form-style-5 select {
@@ -117,6 +121,7 @@ legend {
 	text-align: center;
 	width: 100%;
 }
+
 .form-style-5 input[type="submit"]:hover,
 .form-style-5 input[type="button"]:hover
 {
@@ -125,7 +130,7 @@ legend {
 
 .si-pp {
 	display: none;
-  }
+}
   
 #a-cocher-pour-pp:checked ~  .si-pp {
 display: block;

@@ -22,10 +22,10 @@ button {
     display: block;
   }
 
-  button:hover {
-    background-color: #295767;
-  }
+button:hover {
+  background-color: #295767;
+}
 
-  a{
-    text-decoration: none;
-  }
+a{
+  text-decoration: none;
+}
