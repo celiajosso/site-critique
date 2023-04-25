@@ -36,3 +36,4 @@ date_default_timezone_set('Europe/Paris');
     <?php displayConnection() ?>
     <?php include("./static/footer.php"); ?>
 <html>
+<?php closeDB($my_sqli); ?>

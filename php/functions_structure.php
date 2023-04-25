@@ -361,6 +361,9 @@ function displayAvis($avis, $moyenne, $num, $my_sqli) {
 
         echo "<h1>========================</h1>";
         if (!empty($_SESSION)) {
+            $tab = connectedInfos($my_sqli, $login_connected);
+            $id_connected = $tab[0];
+            $role = $tab[1];
             if ($role == 3) {
                 if ($id_user != $id_connected) {
                     echo "BOUTON SUPPRIMER<br>";
@@ -379,8 +382,10 @@ function displayAvis($avis, $moyenne, $num, $my_sqli) {
         }
         echo "$login";
         echo "<br>";
-        if ($id_user != $id_connected) {
-            echo "<a href='profilPublic.php?numero=$id_user'><img src='$pp'/><a>";
+        if (isset($id_connected)) {
+            if ($id_user != $id_connected) {
+                echo "<a href='profilPublic.php?numero=$id_user'><img src='$pp'/><a>";
+            }
         }
         else {
             echo "<a href='profilPrive.php?numero=$id_user'><img src='$pp'/><a>";

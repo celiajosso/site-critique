@@ -54,3 +54,4 @@ date_default_timezone_set('Europe/Paris');
                 
     <?php closeDB($my_sqli); ?>
 </html>
+<?php closeDB($my_sqli); ?>

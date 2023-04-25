@@ -131,3 +131,4 @@ else{
     header("Location: ../redacArticle.php?success=1");
 }
 ?>
+<?php closeDB($my_sqli); ?>
