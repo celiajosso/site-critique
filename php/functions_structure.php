@@ -460,15 +460,12 @@ function displayUserPrivateInformations($my_sqli, $tab) {
 
     echo "</table>";
 
-
-
     echo "</div>";
 
     echo "</div>";
     echo "</div>";
 
-
-    echo "<br><br>";echo "<br><br>";echo "<br><br>";echo "<br><br>";echo "<br><br>";
+    echo "<br><br><br><br><br><br><br><br><br><br>";
 }
 
 function displayUserPublicInformations($my_sqli, $tab) {
@@ -522,7 +519,7 @@ function displayUserPublicInformations($my_sqli, $tab) {
     echo "</div>";
     echo "</div>";
     echo "</div>";
-    echo "<br><br>";echo "<br><br>";echo "<br><br>";echo "<br><br>";echo "<br><br>";
+    echo "<br><br><br><br><br><br><br><br><br><br>";
 }
 
 function display_Avis($avis) {
