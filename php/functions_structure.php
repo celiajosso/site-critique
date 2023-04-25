@@ -99,7 +99,7 @@ function displayArticles ($my_sqli, $jeux) {
 
     // === AFFICHAGE POUR LA RECHERCHE PAR CATEGORIE DE JEU ===
 
-    elseif (!isset($_GET["q"]) && !empty($_GET)) {
+    elseif (!isset($_GET["q"]) && !empty($_GET) && !isset($_GET["inscription"])) {
 
         if (!empty($jeux_res)) {
             $len = count($jeux_res);
