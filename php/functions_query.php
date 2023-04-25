@@ -16,6 +16,7 @@ function getArticles ($my_sqli) {
         $jeux = "SELECT id_Article FROM Article INNER JOIN Jeu ON Jeu.id_Jeu = Article.id_Jeu WHERE Jeu.nom LIKE '%$q%' ORDER BY dateCreation_Article DESC";
         $jeux_res = readDB($my_sqli, $jeux);
     }
+
     // si la barre de recherche par categorie de jeu est utilisée
     elseif (isset($_GET) && !empty($_GET) && !isset($_GET['q'])) {
         $sql_categorie = "SELECT id_Categorie FROM Categorie";
@@ -54,6 +55,7 @@ function getArticles ($my_sqli) {
             $jeux_res = readDB($my_sqli, $jeux); 
         }    
     }
+
     // si aucune barre de recherche est utilisée
     else {
         $jeux = "SELECT id_Article FROM Article ORDER BY dateCreation_Article DESC";
@@ -140,6 +142,7 @@ function Is_loginUnique ($my_sqli, $username) {
 
     $sql_inscription = "SELECT login_Utilisateur FROM Utilisateur WHERE login_Utilisateur = '$username'";
     $res_inscription = readDB($my_sqli, $sql_inscription);
+
     return (empty($res_inscription));
 }
 
@@ -148,6 +151,7 @@ function Is_gameUnique($my_sqli, $game) {
 
     $sql_game = "SELECT * FROM Jeu WHERE nom = '$game'";
     $res_game = readDB($my_sqli, $sql_game);
+
     return (empty($res_game));
 }
 
@@ -255,6 +259,7 @@ function Duration($date) {
             $expr = "$years ans.";
         }
     }
+
     return $expr;
 }
 
@@ -339,6 +344,7 @@ function articlesBySearch($my_sqli, $jeux_res) {
         array_push($all_data, $sql_data_article_res);
         }
     }
+
     return $all_data;
 }
 
