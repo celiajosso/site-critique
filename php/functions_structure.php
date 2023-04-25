@@ -1090,6 +1090,57 @@ function displayGestionRoles ($my_sqli) {
     echo "<br><br><br><br>";
 }
 
+function displayConnection () {
+
+    if (isset($_GET["erreur"])) {
+        echo "<div class='erreur-inscription'><h2>Erreur !</h2>Utilisateur ou mot de passe incorrect.<br><br></div>";
+    }
+
+    echo "<div class='form-style-5'>";
+
+        echo "<form action='./php/login.php' method='POST'>";
+
+            echo "<fieldset>";
+            echo "<br>";
+
+                echo "<legend>";
+                    echo "<h2 class='a-centrer'>Connexion</h2>";
+                echo "</legend>";
+
+                echo "<div class='form-content'>";
+
+                    echo "<div class='left-column'>";
+
+                        if (isset($_GET['login'])) {
+                            $login = $_GET['login'];
+                            echo "<input type='text' name='login' placeholder='Login *' value='$login' required>";
+                        }
+                        else {
+                            echo "<input type='text' name='login' placeholder='Login *' required>";
+                        }
+
+                        if (isset($_GET['prenom'])) {
+                            $mdp = $_GET['mdp'];
+                            echo "<input type='text' name='mdp' placeholder='Mot de passe *' value='$mdp' required>";
+                        }
+                        else {
+                            echo "<input type='password' name='mdp' placeholder='Mot de passe *' required>";
+                        }
+                        
+                    echo "</div>";
+
+                echo "</div>";
+                echo "<br>";
+                
+            echo "</fieldset>";
+
+            echo "<input type='submit' value='Connexion'>";   
+
+        echo "</form>";
+    echo "</div>";
+    echo "<br><br><br><br>";
+}
+
 function display_Avis($avis) {
     foreach($avis as $tableau){
         echo "$tableau[titre_Avis]<br>";
