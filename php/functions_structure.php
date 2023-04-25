@@ -183,6 +183,10 @@ function displayArticlesBySearch($my_sqli, $jeux_res) {
 
 function displayArticleInformations($article, $num, $my_sqli) {
 
+    if (isset($_GET["success"])) {
+        echo "<div class='erreur-inscription'><h2>Article modifié avec succès !</div><br><br>";
+    }
+    
     $titre_article = $article[0][0]["titre_Article"];
     $dateCrea_article = $article[0][0]["dateCreation_Article"];
     $dateModif_article = $article[0][0]["dateModification_Article"];

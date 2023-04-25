@@ -44,9 +44,6 @@ date_default_timezone_set('Europe/Paris');
         <?php include("./static/nav.php"); ?>
         <br>
         <?php
-            if (isset($_GET["success"])) {
-                echo "<div class='erreur-inscription'><h2>Article modifié avec succès !</div><br><br>";
-            }
             $num = $_GET['numero'];
             $tab = getArticleInformations($my_sqli);
             displayArticleInformations($tab, $num, $my_sqli);
