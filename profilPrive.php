@@ -13,7 +13,6 @@ include_once("./php/functions_query.php");
 include_once("./php/functions_structure.php");
 $my_sqli = connectionDB();
 date_default_timezone_set('Europe/Paris');
-
 ?>
 
 <!DOCTYPE html lang="fr">
@@ -42,13 +41,16 @@ date_default_timezone_set('Europe/Paris');
     <body>
         <?php include("./static/header.php"); ?>
         <?php include("./static/nav.php"); ?>
-        <br>
+        
         <?php
             $num = $_GET['numero'];
             $tab = getUserPrivateInformations($my_sqli, $num);
             displayUserPrivateInformations($my_sqli, $tab);
         ?>
+
         <?php include("./static/footer.php"); ?>
-    </body>            
+
+    </body>
+                
     <?php closeDB($my_sqli); ?>
 </html>

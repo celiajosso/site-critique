@@ -34,19 +34,15 @@ date_default_timezone_set('Europe/Paris');
     <?php include("./static/header.php"); ?>
     <?php include("./static/nav.php"); ?>
     <?php
-
-
         $num = $_GET["numero"];
 
-        $sql_article = "SELECT * FROM Article WHERE id_Article=$num";
-        $sql_article_res = readDB($my_sqli, $sql_article);
+        $tab = modifArticleInfosArticleJeu($my_sqli, $num);
+        $sql_article_res = $tab[0];
+        $sql_jeu_res = $tab[1];
 
         $titre_article = $sql_article_res[0]["titre_Article"];
         $critique = $sql_article_res[0]["contenu_Article"];
         $note = $sql_article_res[0]["noteRedacteur_Article"];
-
-        $sql_jeu = "SELECT * FROM Jeu INNER JOIN Article on Article.id_Jeu = Jeu.id_Jeu WHERE id_Article=$num";
-        $sql_jeu_res = readDB($my_sqli, $sql_jeu);
 
         $num_jeu = $sql_jeu_res[0]["id_Jeu"];
         $nom_jeu = $sql_jeu_res[0]["nom"];
@@ -58,16 +54,19 @@ date_default_timezone_set('Europe/Paris');
         $nom_jeu = htmlspecialchars($nom_jeu, ENT_QUOTES);
 
         echo "<div class='form-style-5'>";
+
             echo "<form action='./php/verifModifArticle.php?numero=$num' method='POST'>";
-              echo "<fieldset>";
+
+                echo "<fieldset>";
                 echo "<br>";
-                echo "<legend>";
-                    echo "<span class='number'>";
-                        echo "1";
-                    echo "</span>";
-                    echo "Informations sur le jeu";
-                echo "</legend>";
+                
+                    echo "<legend>";
+                        echo "<span class='number'>1</span>";
+                        echo "Informations sur le jeu";
+                    echo "</legend>";
+
                     echo "<div class='form-content'>";
+
                         echo "<div class='left-column'>";
 
                             echo "<input type='text' maxlength='100' name='titre_article' placeholder='Titre article *' value='$titre_article' required>";
@@ -91,23 +90,19 @@ date_default_timezone_set('Europe/Paris');
                         echo "<textarea name='synopsis' maxlength='300' rows='5' placeholder='Synopsis' required='required'>$synopsis</textarea>";
                     echo "</div>";
 
-                    $sql_categorie = "SELECT id_Categorie FROM Categorie";
-                    $sql_categorie_res = readDB($my_sqli, $sql_categorie);
-            
-                    $sql_support = "SELECT id_Support FROM Support";
-                    $sql_support_res = readDB($my_sqli, $sql_support);
+                    $sql_categorie_res = idCategories($my_sqli);
+                    $sql_support_res = idSupports($my_sqli);
 
-                    $sql_selected_categories = "SELECT id_Categorie FROM est_Categorie WHERE id_Jeu = $num_jeu";
-                    $sql_selected_categories_res = readDB($my_sqli, $sql_selected_categories);
-
-                    $sql_selected_supports = "SELECT id_Support FROM est_Support WHERE id_Jeu = $num_jeu";
-                    $sql_selected_supports_res = readDB($my_sqli, $sql_selected_supports);
+                    $tab = modifArticleInfosCatSup($my_sqli, $num_jeu);
+                    $sql_selected_categories_res = $tab[0];
+                    $sql_selected_supports_res = $tab[1];
 
                 echo "<div class='form-content'>";
+
                         echo "<div class=left-column'>";
+
                             echo "<h3 class='a-centrer'>Catégories du jeu</h3>";
 
-                            // boucle
                             $i = 1;
                             foreach ($sql_categorie_res as $cle => $val) {
                                 foreach ($val as $cle1 => $val1) {
@@ -139,7 +134,6 @@ date_default_timezone_set('Europe/Paris');
                         echo "<div class=right-column'>";
                             echo "<h3 class='a-centrer'>Supports du jeu</h3>";
 
-                            // boucle
                             $i = 1;
                             foreach ($sql_support_res as $cle => $val) {
                                 foreach ($val as $cle1 => $val1) {
@@ -168,30 +162,26 @@ date_default_timezone_set('Europe/Paris');
                                 }
                             }
 
-
-
                         echo "</div>";  
                 
                     echo "</div>";
 
                 echo "<br>";
                 echo "<legend>";
-                    echo "<span class='number'>";
-                        echo "2";
-                    echo "</span>";
+                    echo "<span class='number'>2</span>";
                     echo "Votre critique";
                 echo "</legend>";
                 echo "<br>";
-                    echo "<input type='number' min='0' max='10' name='note' placeholder='Note du jeu (/10) *' value='$note' required>";
-                    
-                    echo "<textarea name='critique' maxlength='2000' rows='8' placeholder='Critique *' required='required'>$critique</textarea>";
 
-                    
+                echo "<input type='number' min='0' max='10' name='note' placeholder='Note du jeu (/10) *' value='$note' required>";
+                echo "<textarea name='critique' maxlength='2000' rows='8' placeholder='Critique *' required='required'>$critique</textarea>";
+     
             echo "</fieldset>";
+
             echo "<input type='submit' value='Modifier'>";         
-            echo "</form>";
-        echo "</div>";
+        echo "</form>";
+    echo "</div>";
     echo "<br><br><br><br>";
-    ?>
-    <?php include("./static/footer.php"); ?>
+?>
+<?php include("./static/footer.php"); ?>
 <html>

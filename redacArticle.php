@@ -34,4 +34,5 @@ date_default_timezone_set('Europe/Paris');
     <?php include("./static/nav.php"); ?>
     <?php displayRedacArticle($my_sqli) ?>
     <?php include("./static/footer.php"); ?>
+
 <html>

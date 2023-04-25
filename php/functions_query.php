@@ -417,4 +417,28 @@ function recupRole($my_sqli, $id_role) {
     return $role;
 }
 
+function modifArticleInfosArticleJeu ($my_sqli, $num) {
+    // retourne les infos necessaires à la modification d'un article
+
+    $sql_article = "SELECT * FROM Article WHERE id_Article=$num";
+    $sql_article_res = readDB($my_sqli, $sql_article);
+
+    $sql_jeu = "SELECT * FROM Jeu INNER JOIN Article on Article.id_Jeu = Jeu.id_Jeu WHERE id_Article=$num";
+    $sql_jeu_res = readDB($my_sqli, $sql_jeu);
+
+    return Array($sql_article_res, $sql_jeu_res);
+}
+
+function modifArticleInfosCatSup ($my_sqli, $num_jeu) {
+    // retourne les infos necessaires à la modification d'un article
+
+    $sql_selected_categories = "SELECT id_Categorie FROM est_Categorie WHERE id_Jeu = $num_jeu";
+    $sql_selected_categories_res = readDB($my_sqli, $sql_selected_categories);
+
+    $sql_selected_supports = "SELECT id_Support FROM est_Support WHERE id_Jeu = $num_jeu";
+    $sql_selected_supports_res = readDB($my_sqli, $sql_selected_supports);
+
+    return Array($sql_selected_categories_res, $sql_selected_supports_res);
+}
+
 ?>
