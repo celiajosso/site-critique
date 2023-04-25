@@ -293,4 +293,34 @@ function note_moyenne($mysqli,$id_Jeu){
     return $tableau;
 }
 
+function articlesBySearch($my_sqli, $jeux_res) {
+    $all_data = Array();
+
+    foreach($jeux_res as $cle => $val) {
+
+        foreach ($val as $cle1 => $id) {
+        $sql_data_article = "SELECT id_Article, titre_Article, noteRedacteur_Article, dateCreation_Article FROM Article INNER JOIN Utilisateur ON Article.id_UtilisateurCreateur = Utilisateur.id_Utilisateur WHERE id_Article=$id";
+        $sql_data_article_res = readDB($my_sqli, $sql_data_article);
+        $sql_data_utilisateur = "SELECT login_Utilisateur FROM Utilisateur INNER JOIN Article ON Article.id_UtilisateurCreateur = Utilisateur.id_Utilisateur WHERE id_Article=$id";
+        $sql_data_utilisateur_res = readDB($my_sqli, $sql_data_utilisateur);
+
+        $sql_data_jaquette = "SELECT chemin_Image FROM Image INNER JOIN est_Image ON est_Image.id_Image = Image.id_Image INNER JOIN Article ON Article.id_Article = est_Image.id_Article WHERE Article.id_Article=$id AND chemin_Image LIKE '%jaquette%'";
+        $sql_data_jaquette_res = readDB($my_sqli, $sql_data_jaquette);
+
+        $sql_data_note = "SELECT AVG(note_Avis) as note_moy FROM Avis INNER JOIN Article ON Article.id_Article = Avis.id_Article WHERE Article.id_Article=$id";
+        $sql_data_note_res = readDB($my_sqli, $sql_data_note);
+
+        foreach ($sql_data_article_res as $cle => $val) {
+            $login = Array("login_Utilisateur" => $sql_data_utilisateur_res[0]["login_Utilisateur"]);
+            $jaquette = Array("chemin_Image" => $sql_data_jaquette_res[0]["chemin_Image"]);
+            $note_moy = Array("note_moy" => $sql_data_note_res[0]["note_moy"]);
+
+            array_push($sql_data_article_res[$cle], $login, $jaquette, $note_moy);
+        }
+
+        array_push($all_data, $sql_data_article_res);
+        }
+    }
+    return $all_data;
+}
 ?>

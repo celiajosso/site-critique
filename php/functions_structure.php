@@ -95,6 +95,7 @@ function displayArticles ($my_sqli, $jeux) {
     }
 
     // === AFFICHAGE POUR LA RECHERCHE PAR CATEGORIE DE JEU ===
+
     elseif (!isset($_GET["q"]) && !empty($_GET)) {
 
         if (!empty($jeux_res)) {
@@ -121,40 +122,21 @@ function displayArticles ($my_sqli, $jeux) {
         echo "<hr>";
         displayArticlesBySearch($my_sqli, $jeux_res);
     }
+
     echo "<br>";
     echo "</section>";
 }
 
 function displayArticlesBySearch($my_sqli, $jeux_res) {
-    $all_data = Array();
-    foreach($jeux_res as $cle => $val) {
-        foreach ($val as $cle1 => $id) {
-        $sql_data_article = "SELECT id_Article, titre_Article, noteRedacteur_Article, dateCreation_Article FROM Article INNER JOIN Utilisateur ON Article.id_UtilisateurCreateur = Utilisateur.id_Utilisateur WHERE id_Article=$id";
-        $sql_data_article_res = readDB($my_sqli, $sql_data_article);
-        
-        $sql_data_utilisateur = "SELECT login_Utilisateur FROM Utilisateur INNER JOIN Article ON Article.id_UtilisateurCreateur = Utilisateur.id_Utilisateur WHERE id_Article=$id";
-        $sql_data_utilisateur_res = readDB($my_sqli, $sql_data_utilisateur);
+    
+    $all_data = ArticlesBySearch($my_sqli, $jeux_res);
 
-        $sql_data_jaquette = "SELECT chemin_Image FROM Image INNER JOIN est_Image ON est_Image.id_Image = Image.id_Image INNER JOIN Article ON Article.id_Article = est_Image.id_Article WHERE Article.id_Article=$id AND chemin_Image LIKE '%jaquette%'";
-        $sql_data_jaquette_res = readDB($my_sqli, $sql_data_jaquette);
-
-        $sql_data_note = "SELECT AVG(note_Avis) as note_moy FROM Avis INNER JOIN Article ON Article.id_Article = Avis.id_Article WHERE Article.id_Article=$id";
-        $sql_data_note_res = readDB($my_sqli, $sql_data_note);
-
-        foreach ($sql_data_article_res as $cle => $val) {
-            $login = Array("login_Utilisateur" => $sql_data_utilisateur_res[0]["login_Utilisateur"]);
-            $jaquette = Array("chemin_Image" => $sql_data_jaquette_res[0]["chemin_Image"]);
-            $note_moy = Array("note_moy" => $sql_data_note_res[0]["note_moy"]);
-            array_push($sql_data_article_res[$cle], $login, $jaquette, $note_moy);
-        }
-        array_push($all_data, $sql_data_article_res);
-        }
-    }
-
-    // formater les donnees de $all_data ici
     echo "<div class='boite-article'>";
+
     foreach($all_data as $cle => $val) {
+
         foreach ($val as $cle1 => $val1) {
+
             $id_article = $val1["id_Article"];
             $titre = $val1["titre_Article"];
             $note_redacteur = $val1["noteRedacteur_Article"];
@@ -166,14 +148,17 @@ function displayArticlesBySearch($my_sqli, $jeux_res) {
             echo "<div class='article-seul'>";
             
             echo "<div class='flex-content-index'>";
+
             echo "<div class='left-column-index'>";
             echo "<a href='article.php?numero=$id_article'><img class='acceuil-jaquette' src='$chemin_jaquette' /><a>";
             echo "</div>";
 
             echo "<div class='right-column-index'>";
+
             echo "<h3>$titre</h3>";
             echo "Note du rédacteur : <img class='image-note' src='Images/note/$note_redacteur.png' title='$note_redacteur/10'>";
             echo "<br><br>";
+
             if (!empty($note_users)) {
                 $note_arrondie = round($note_users);
                 echo "Note moyenne des utilisateurs : <img class='image-note' src='Images/note/$note_arrondie.png' title='$note_users/10'>";
@@ -181,9 +166,11 @@ function displayArticlesBySearch($my_sqli, $jeux_res) {
             }
             
             echo "Rédigé par $login_crea ($date_crea)";
+            
             echo "</div>";
             
             echo "</div>";
+
             echo "</div>";
         }
     }
