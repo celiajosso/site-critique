@@ -441,4 +441,10 @@ function modifArticleInfosCatSup ($my_sqli, $num_jeu) {
     return Array($sql_selected_categories_res, $sql_selected_supports_res);
 }
 
+function usernamesChangementRole ($my_sqli, $login_admin) {
+    $sql_noms = "SELECT login_Utilisateur FROM Utilisateur WHERE login_Utilisateur <> '$login_admin'";
+    $sql_noms_res = readDB($my_sqli, $sql_noms);
+    return $sql_noms_res;
+}
+
 ?>

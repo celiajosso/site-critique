@@ -13,7 +13,6 @@ include_once("./php/functions_query.php");
 include_once("./php/functions_structure.php");
 $my_sqli = connectionDB();
 date_default_timezone_set('Europe/Paris');
-
 ?>
 
 <!DOCTYPE html lang="fr">
@@ -33,54 +32,6 @@ date_default_timezone_set('Europe/Paris');
 
     <?php include("./static/header.php"); ?>
     <?php include("./static/nav.php"); ?>
-    <?php
-
-        if (isset($_GET["erreur"])) {
-            $login = $_GET["login"];
-            echo "<div class='erreur-inscription'><h2>Erreur !</h2>$login possède déjà ce rôle.<br><br></div>";
-        }
-        if (isset($_GET["success"])) {
-            echo "<div class='erreur-inscription'><h2>Rôle changé avec succès !</div>";
-        }
-        $login_admin = $_SESSION["username"];
-        $sql_noms = "SELECT login_Utilisateur FROM Utilisateur WHERE login_Utilisateur <> '$login_admin'";
-        $sql_noms_res = readDB($my_sqli, $sql_noms);
-
-
-        echo "<div class='form-style-5'>";
-            echo "<form action='./php/verifRole.php' method='POST'>";
-              echo "<fieldset>";   
-                echo "<div class='form-content'>";
-                    echo "<div class='left-column'>";
-                        echo "<h3 class='a-centrer'>Login Utilisateur</h3>";
-                            echo "<select name='login' class='select-option'>";
-
-                                foreach($sql_noms_res as $cle => $val) {
-                                        $login = $val['login_Utilisateur'];
-                                        echo "<option value='$login'>$login</option>";
-                                }
-        
-                            echo "</select>";
-                    echo "</div>";
-                    echo "<div class='right-column'>";
-                    echo "<h3 class='a-centrer'>Rôle attribué</h3>";
-                    
-
-                    echo "<select name='role' class='select-option'>";
-                        echo "<option value='1'>Membre</option>";
-                        echo "<option value='2'>Rédacteur</option>";
-                        echo "<option value='3'>Administrateur</option>";
-                    echo "</select>";
-
-
-                    echo "</div>";
-                echo "</div>";
-                
-            echo "</fieldset>";
-            echo "<input type='submit' value='Changer le rôle'>";         
-            echo "</form>";
-        echo "</div>";
-    echo "<br><br><br><br>";
-    ?>
+    <?php displayGestionRoles($my_sqli); ?>
     <?php include("./static/footer.php"); ?>
 <html>
