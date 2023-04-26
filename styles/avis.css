@@ -1,0 +1,58 @@
+@font-face {
+    font-family: 'utilisateur_avis';
+    src: url('OpenSans-Medium.ttf');
+}
+
+@font-face {
+    font-family: 'texte_avis';
+    src: url('OpenSans-Light.ttf');
+}
+
+@font-face {
+    font-family: 'titre_avis';
+    src: url('OpenSans-ExtraBold.ttf');
+}
+
+.texte_avis {
+    font-family: texte_avis;
+    color: white;
+}
+
+.titre_avis {
+    font-family: titre_avis;
+    color: white;
+}
+
+.utilisateur_avis {
+    font-family: utilisateur_avis;
+    color: white;
+}
+
+.onglet_avis {
+    background-color: #61c5dc;
+    border-radius: 30px;
+    margin :10px 100px;
+    padding: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.aligne {
+    display : flex;
+    padding: 0;
+    gap: 10px;
+    padding: 5px;
+ }
+
+.photo_utilisateur {
+    border-radius: 50%;
+    height: 8rem;
+}
+
+.p_avis {
+    width: 100px;
+}
+
+.etoile {
+    width: 8rem;
+}
