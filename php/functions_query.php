@@ -448,4 +448,24 @@ function usernamesChangementRole ($my_sqli, $login_admin) {
     return $sql_noms_res;
 }
 
+function avis($mysqli,$id_Utilisateur,$id_Jeu){
+    // Retourne l'avis d'un jeu. 
+    $tableau = readDB($mysqli,"SELECT avis.titre_Avis, avis.contenu_Avis, avis.dateCreation_Avis, avis.note_Avis, utilisateur.login_Utilisateur, utilisateur.photoProfil_Utilisateur FROM avis JOIN utilisateur ON avis.id_Utilisateur=utilisateur.id_Utilisateur JOIN article ON avis.id_Article=article.id_Article WHERE avis.id_Article=$id_Jeu AND avis.id_Utilisateur=$id_Utilisateur");
+    return $tableau;
+}
+
+function note_moyenne($mysqli,$id_Jeu){
+    // Retourne la note moyenne d'un jeu.
+    $tableau = readDB($mysqli,"SELECT AVG(note_Avis) FROM avis WHERE id_Jeu=$id_Jeu");
+    return $tableau;
+}
+
+function avis_totale($mysqli,$id_Utilisateur){
+    // Retourne le nombre d'avis totale d'un utilisateur. 
+    $tableau = readDB($mysqli,"SELECT COUNT(*) FROM avis WHERE avis.id_Utilisateur=$id_Utilisateur");
+    return $tableau[0]['COUNT(*)'];
+}
+
+
+
 ?>
