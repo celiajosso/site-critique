@@ -302,18 +302,6 @@ function idSupports($my_sqli) {
     return $sql_support_res;
 }
 
-function avis($mysqli,$id_Utilisateur,$id_Jeu){
-    // Permet d'accéder à l'avis (Titre,Contenu,Note,id_utilisateur)
-    $tableau = readDB($mysqli,"SELECT avis.titre_Avis, avis.contenu_Avis, avis.dateCreation_Avis, avis.note_Avis, utilisateur.login_Utilisateur, utilisateur.photoProfil_Utilisateur FROM avis JOIN utilisateur ON avis.id_Utilisateur=utilisateur.id_Utilisateur WHERE avis.id_Jeu=$id_Jeu AND avis.id_Utilisateur=$id_Utilisateur");
-    return $tableau;
-}
-
-function note_moyenne($mysqli,$id_Jeu){
-    // Retourne la note moyenne d'un jeu
-    $tableau = readDB($mysqli,"SELECT AVG(note_Avis) FROM avis WHERE id_Jeu=$id_Jeu");
-    return $tableau;
-}
-
 function articlesBySearch($my_sqli, $jeux_res) {
     // retourne toutes les informations que doit faire retourner la recherche
     // informations sur : 
@@ -456,8 +444,8 @@ function avis($mysqli,$id_Utilisateur,$id_Jeu){
 
 function note_moyenne($mysqli,$id_Jeu){
     // Retourne la note moyenne d'un jeu.
-    $tableau = readDB($mysqli,"SELECT AVG(note_Avis) FROM avis WHERE id_Jeu=$id_Jeu");
-    return $tableau;
+    $tableau = readDB($mysqli,"SELECT AVG(note_Avis) FROM avis WHERE id_Article=$id_Jeu");
+    return $tableau[0]["AVG(note_Avis)"];
 }
 
 function avis_totale($mysqli,$id_Utilisateur){
@@ -466,6 +454,11 @@ function avis_totale($mysqli,$id_Utilisateur){
     return $tableau[0]['COUNT(*)'];
 }
 
-
+function utilisateurAvis ($my_sqli, $id_article) {
+    // Retourne les id des utilisateurs ayant laissé leur avis sur un jeu
+    $sql_utilisateur_avis = "SELECT id_Utilisateur FROM Avis WHERE id_Article=$id_article";
+    $sql_utilisateur_avis_res = readDB($my_sqli, $sql_utilisateur_avis);
+    return $sql_utilisateur_avis_res;
+}
 
 ?>

@@ -164,8 +164,9 @@ function displayArticlesBySearch($my_sqli, $jeux_res) {
             echo "<br><br>";
 
             if (!empty($note_users)) {
-                $note_arrondie = round($note_users);
-                echo "Note moyenne des utilisateurs : <img class='image-note' src='Images/note/$note_arrondie.png' title='$note_users/10'>";
+                $moyenne = note_moyenne($my_sqli, $id_article);
+                $note_arrondie = round($moyenne);
+                echo "Note moyenne des utilisateurs : <img class='image-note' src='Images/note/$note_arrondie.png' title='$moyenne/10'>";
                 echo "<br><br>";
             }
             
@@ -217,9 +218,6 @@ function displayArticleInformations($article, $num, $my_sqli) {
 
     $jeu_categories = $article[5];
     $jeu_supports = $article[6];
-
-    $avis = $article[7];
-    $moyenne = $article[8][0]["moyenne"];
 
     echo "<div class='titre-article-individuel'><h1>$titre_article</h1></div>";
     echo "<br><br>";
@@ -312,8 +310,40 @@ function displayArticleInformations($article, $num, $my_sqli) {
     echo "</div>";
     echo "</div>";
 
-    if (!empty($avis)) {
-        displayAvis($avis, $moyenne, $num, $my_sqli);
+    $tab_utilisateurs = utilisateurAvis($my_sqli, $num);
+
+    if (!empty($tab_utilisateurs)) {
+        $moyenne = note_moyenne($my_sqli, $num);
+        $note_arrondie = round($moyenne);
+        echo "Note moyenne des utilisateurs : <img class='image-note' src='Images/note/$note_arrondie.png' title='$moyenne/10'>";
+        echo "<br><br>";
+
+        if (!empty($_SESSION)) {
+            $login_connected = $_SESSION["username"];
+    
+            $tab = connectedInfos($my_sqli, $login_connected);
+            $id_connected = $tab[0];
+            $role = $tab[1];
+    
+            $sql_avis_ecrit_res = avisEcrits($my_sqli, $id_connected, $num);
+    
+            $tab = createurModifieurArticle($my_sqli, $num);
+            $id_createur = $tab[0];
+            $id_modifieur = $tab[1];
+    
+            if (empty($sql_avis_ecrit_res) && $id_connected != $id_createur && $id_connected != $id_modifieur) {
+                echo "BOUTON AJOUTER";
+            } 
+        }
+
+        foreach ($tab_utilisateurs as $cle => $val) {
+            $id_utilisateur = $val["id_Utilisateur"];
+            $avis = avis($my_sqli,$id_utilisateur,$num);
+
+            if (!empty($avis)) {            
+                display_Avis($avis,$id_utilisateur,$my_sqli, $num);
+            }
+        }
     }
     else {
         echo "Aucun avis pour cet article.";
@@ -324,87 +354,64 @@ function displayArticleInformations($article, $num, $my_sqli) {
     echo "<br><br><br><br><br><br>";
 }
 
-function displayAvis($avis, $moyenne, $num, $my_sqli) {
-    $note_arrondie = round($moyenne);
-    echo "Note moyenne des utilisateurs : <img class='image-note' src='Images/note/$note_arrondie.png' title='$moyenne/10'>";
-    echo "<br><br>";
+function display_Avis($avis,$id_utilisateur,$my_sqli, $num) {
 
-    if (!empty($_SESSION)) {
-        $login_connected = $_SESSION["username"];
+    foreach($avis as $tableau){
+        echo "<div class='onglet_avis'>";
 
-        $tab = connectedInfos($my_sqli, $login_connected);
-        $id_connected = $tab[0];
-        $role = $tab[1];
-
-        $sql_avis_ecrit_res = avisEcrits($my_sqli, $id_connected, $num);
-
-        $tab = createurModifieurArticle($my_sqli, $num);
-        $id_createur = $tab[0];
-        $id_modifieur = $tab[1];
-
-        if (empty($sql_avis_ecrit_res) && $id_connected != $id_createur && $id_connected != $id_modifieur) {
-            echo "BOUTON AJOUTER";
-        } 
-    }
-    
-    foreach ($avis as $cle => $val) {
-
-        $titre = $val["titre_Avis"];
-        $note = $val["note_Avis"];
-        $id_user = $val["id_Utilisateur"];
-        $date_crea_avis = $val["dateCreation_avis"];
-        $contenu_avis = $val["contenu_avis"];
-
-        $temps_avis = Duration($date_crea_avis);
-        $date_avis = writeDate($date_crea_avis);
-
-        $tab = loginPpAvis($my_sqli, $id_user);
-        $login = $tab[0];
-        $pp = $tab[1];
-
-        echo "<h1>========================</h1>";
         if (!empty($_SESSION)) {
+
+            $login_connected = $_SESSION["username"];
+
             $tab = connectedInfos($my_sqli, $login_connected);
             $id_connected = $tab[0];
             $role = $tab[1];
             if ($role == 3) {
-                if ($id_user != $id_connected) {
+                if ($id_utilisateur != $id_connected) {
                     echo "BOUTON SUPPRIMER<br>";
                 }
                 else {
                     echo "BOUTON MODIF + BOUTON SUPPRIMER<br>";
                 }
-                
+
             }
             else  {
-                if ($id_user == $id_connected) {
+                if ($id_utilisateur == $id_connected) {
                     echo "BOUTON MODIF + BOUTON SUPPRIMER<br>";
                 }
-                
+
             }            
         }
-        echo "$login";
-        echo "<br>";
+
+        echo "<div>";
+
         if (isset($id_connected)) {
-            if ($id_user != $id_connected) {
-                echo "<a href='profilPublic.php?numero=$id_user'><img src='$pp'/><a>";
+            if ($id_utilisateur != $id_connected) {
+                echo "<a href='profilPublic.php?numero=$id_utilisateur'><img class='photo_utilisateur' src='$tableau[photoProfil_Utilisateur]'></a>";
             }
             else {
-                echo "<a href='profilPrive.php?numero=$id_user'><img src='$pp'/><a>";
+                echo "<a href='profilPrive.php?numero=$id_utilisateur'><img class='photo_utilisateur' src='$tableau[photoProfil_Utilisateur]'></a>";
             }
         }
         else {
-            echo "<a href='profilPublic.php?numero=$id_user'><img src='$pp'/><a>";
+            echo "<a href='profilPublic.php?numero=$id_utilisateur'><img class='photo_utilisateur' src='$tableau[photoProfil_Utilisateur]'></a>";
         }
+        echo "<br>";
+
+        $date = writeDate($tableau["dateCreation_Avis"]);
+        $temps = Duration($tableau["dateCreation_Avis"]);
         
-        echo "<br>";        
-        echo "$titre";
-        echo "<br>";
-        echo "<img class='image-note' src='Images/note/$note.png' title='$note/10'>";
-        echo "<br>";
-        echo "Il y a $temps_avis ($date_avis)";
-        echo "<br><br>";
-        echo "$contenu_avis";
+        echo "</div>";
+        echo "<div>";
+        echo "<p class='titre_avis'>$tableau[titre_Avis]</p>";
+        echo "<p class='utilisateur_avis'>Utilisateur : $tableau[login_Utilisateur]</p>";
+        echo "<p class='utilisateur_avis'>" . avis_totale($my_sqli,$id_utilisateur) . " avis </p>";
+        echo "<p class='texte_avis'>$tableau[contenu_Avis]</p>";
+        echo "<img class='etoile' src='Images/Note/$tableau[note_Avis].png'>";
+        echo "<p class='texte_avis'>Article écrit le : $date (il y a $temps)</p>";
+        echo "</div>";
+        echo "</div>";
+        
     }
 }
 
@@ -1169,33 +1176,6 @@ function displayAuthentification () {
             echo "<a href='registration.php'><button>S'inscrire</button></a>";
             echo "</div>";
     echo "</div>";
-}
-
-function display_Avis($avis) {
-    foreach($avis as $tableau){
-        echo "$tableau[titre_Avis]<br>";
-        echo "$tableau[contenu_Avis]<br>";
-        echo "$tableau[dateCreation_Avis]<br>";
-        echo "$tableau[note_Avis]<br>";
-        echo "$tableau[id_Utilisateur]<br>";
-    }
-}
-
-function display_Avis($avis,$id_utilisateur,$mysqli) {
-    foreach($avis as $tableau){
-        echo "<div>";
-        echo "<img class='photo_utilisateur' src='$tableau[photoProfil_Utilisateur]'><br>";
-        echo "</div>";
-        echo "<div>";
-        echo "<p class='titre_avis'>$tableau[titre_Avis]</p>";
-        echo "<p class='utilisateur_avis'>Utilisateur : $tableau[login_Utilisateur]</p>";
-        echo "<p class='utilisateur_avis'>" . avis_totale($mysqli,$id_utilisateur) . " avis </p>";
-        echo "<p class='texte_avis'>$tableau[contenu_Avis]</p>";
-        echo "<img class='etoile' src='Images/Notes/$tableau[note_Avis].png'>";
-        echo "<p class='texte_avis'>Article écrit le : $tableau[dateCreation_Avis]</p>";
-        echo "</div>";
-        
-    }
 }
 ?>
 

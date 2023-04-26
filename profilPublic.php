@@ -27,7 +27,7 @@ date_default_timezone_set('Europe/Paris');
             echo "<title>Gamecrit - $titre</title>"
         ?>
         
-        <meta name="author" content="JOSSO Célia">
+        <meta name="author" content="JOSSO Célia, NORTON Thomas">
         <meta name="author" content="ESIR, CUPGE">
 
         <link rel="icon" href="Images/icone.png">

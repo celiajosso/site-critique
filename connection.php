@@ -20,7 +20,7 @@ date_default_timezone_set('Europe/Paris');
 
     <head>
         <title>Gamecrit - Connexion</title>
-        <meta name="author" content="NORTON Thomas, JOSSO Célia">
+        <meta name="author" content="NORTON Thomas, JOSSO Célia, NORTON Thomas">
         <meta name="author" content="ESIR, CUPGE">
         
         <link rel="icon" href="Images/icone.png">
