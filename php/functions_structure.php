@@ -1180,4 +1180,22 @@ function display_Avis($avis) {
         echo "$tableau[id_Utilisateur]<br>";
     }
 }
+
+function display_Avis($avis,$id_utilisateur,$mysqli) {
+    foreach($avis as $tableau){
+        echo "<div>";
+        echo "<img class='photo_utilisateur' src='$tableau[photoProfil_Utilisateur]'><br>";
+        echo "</div>";
+        echo "<div>";
+        echo "<p class='titre_avis'>$tableau[titre_Avis]</p>";
+        echo "<p class='utilisateur_avis'>Utilisateur : $tableau[login_Utilisateur]</p>";
+        echo "<p class='utilisateur_avis'>" . avis_totale($mysqli,$id_utilisateur) . " avis </p>";
+        echo "<p class='texte_avis'>$tableau[contenu_Avis]</p>";
+        echo "<img class='etoile' src='Images/Notes/$tableau[note_Avis].png'>";
+        echo "<p class='texte_avis'>Article écrit le : $tableau[dateCreation_Avis]</p>";
+        echo "</div>";
+        
+    }
+}
 ?>
+
