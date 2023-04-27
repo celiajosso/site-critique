@@ -512,7 +512,6 @@ function displayUserPrivateInformations($my_sqli, $tab) {
 
     echo "</div>";
     echo "</div>";
-    echo "<br><br><br><br><br><br><br><br><br><br>";
 }
 
 function displayUserPublicInformations($my_sqli, $tab) {

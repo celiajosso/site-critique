@@ -1,11 +1,13 @@
 .box-page-prive{
     width: 80%;
-    border : 3px solid;
+    border : 1px solid;
     margin-left: auto;
     margin-right: auto;
     border-radius: 80px;
     padding : 50px;
-    margin-top: 10px;
+    margin-top: 50px;
+    margin-bottom: 65px;
+    background-color: #e4edf4;
 }
 
 .left-column {
@@ -48,7 +50,7 @@ input[type="submit"]:hover{
 }
 
 .pp {
-    border : 2px solid;
+    border : 1px solid;
     border-radius: 100px;
     margin-top: 10px;
     margin-bottom: 10px;
