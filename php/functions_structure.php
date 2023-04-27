@@ -314,6 +314,9 @@ function displayArticleInformations($article, $num, $my_sqli) {
     $tab_utilisateurs = utilisateurAvis($my_sqli, $num);
 
     if (!empty($tab_utilisateurs)) {
+        $nb_avis = count($tab_utilisateurs);
+        echo "<br><h2 class='a-centrer'>$nb_avis avis pour cet article.</h2>";
+
         $moyenne = note_moyenne($my_sqli, $num);
         $note_arrondie = round($moyenne);
         echo "Note moyenne des utilisateurs : <img class='image-note' src='Images/note/$note_arrondie.png' title='$moyenne/10'>";
