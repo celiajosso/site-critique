@@ -220,7 +220,7 @@ function displayArticleInformations($article, $num, $my_sqli) {
     $jeu_supports = $article[6];
 
     echo "<div class='titre-article-individuel'><h1>$titre_article</h1></div>";
-    echo "<br><br>";
+    echo "<br>";
     echo "<div class='infos-article'>";
     echo "<div class='flex-content'>";
     echo "<div class='left-column'>";
@@ -280,7 +280,8 @@ function displayArticleInformations($article, $num, $my_sqli) {
         echo "</tr>";
     
         echo "<tr>";
-            echo "<td>$dateSortie_Jeu</td>";
+            $date_sortie = writeDate($dateSortie_Jeu);
+            echo "<td>$date_sortie</td>";
             echo "<td>$prix_jeu €</td>";
             echo "<td class='to-justify'>$synopsis_jeu</td>";
         echo "</tr>";
@@ -299,10 +300,10 @@ function displayArticleInformations($article, $num, $my_sqli) {
         echo "<img class='image-gameplay' src=$image_gameplay>";
 
         echo "<div class='to-place-right'>";
-        echo "<h3>Rédigé par : <a href='profilPublic.php?numero=$idCrea_article'>$UtilisateurCrea_article</a> ($dateCrea_article)</h3>";        
+        echo "<h3>Rédigé par : <a class='lien-texte' href='profilPublic.php?numero=$idCrea_article'>$UtilisateurCrea_article</a> ($dateCrea_article)</h3>";        
         if (!empty($UtilisateurModif_article)) {
             $dateModif_article = writeDate($dateModif_article);
-            echo "<h3>Modifié par : <a href='profilPublic.php?numero=$idModif_article'>$UtilisateurModif_article</a> ($dateModif_article)</h3>";
+            echo "<h3>Modifié par : <a class='lien-texte' href='profilPublic.php?numero=$idModif_article'>$UtilisateurModif_article</a> ($dateModif_article)</h3>";
         }
         echo "</div>";
 
@@ -346,7 +347,7 @@ function displayArticleInformations($article, $num, $my_sqli) {
         }
     }
     else {
-        echo "Aucun avis pour cet article.";
+        echo "<br><h2 class='a-centrer'>Aucun avis pour cet article.</h2>";
         if (!empty($_SESSION)) {
             echo "<br>BOUTON AJOUTER";
         }

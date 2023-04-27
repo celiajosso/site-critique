@@ -41,3 +41,12 @@ hr{
 	margin-top: 30px;
 	margin-bottom: 50px;
 }
+
+.lien-texte{
+    color: black;
+	transition : color 0.2s;
+}
+
+.lien-texte:hover{
+    color : #295767;
+}

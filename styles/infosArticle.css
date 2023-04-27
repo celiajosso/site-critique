@@ -1,10 +1,11 @@
 .titre-article-individuel{
-    width: 90%;
-    border : 3px solid;
+    width: 82%;
+    border : 1px solid rgb(70, 70, 70);
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 100px;
+    background-color: #e4edf4;
+    border-radius: 30px;
 }
 
 .image-type{
@@ -41,21 +42,25 @@
 
 .infos-article{
     width: 80%;
-    border: solid;
+    border: 1px solid rgb(70, 70, 70);
     border-radius: 30px;
     padding : 1%;
     margin-left: auto;
     margin-right: auto;
     justify-content: space-between;
+    background-color: #e4edf4;
+    line-height: 1.5;
 }
 
 table{
+    background-color: rgb(247, 247, 247);
     width: 70%;
     margin-left: auto;
     margin-right: auto;
     border : 2px solid;
     border-collapse: collapse;
     text-align: center;
+    line-height: 1.5;
 }
 
 td, th {
@@ -76,7 +81,7 @@ td, th {
 }
 
 .text-content{
-    padding: 3%;
+    padding: 2%;
 }
 
 .to-place-right{
@@ -84,6 +89,7 @@ td, th {
 }
 
 .image-gameplay {
+    border-radius: 50px;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
