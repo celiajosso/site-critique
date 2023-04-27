@@ -40,6 +40,11 @@ input[type="submit"]{
     background-color: #295767;
     color : white;
     font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+input[type="submit"]:hover{
+    background-color: #57B3D4;
 }
 
 .pp {

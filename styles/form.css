@@ -120,6 +120,7 @@ legend {
     border: none;
 	text-align: center;
 	width: 100%;
+	transition: background-color 0.2s;
 }
 
 .form-style-5 input[type="submit"]:hover,
