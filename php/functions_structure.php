@@ -170,7 +170,7 @@ function displayArticlesBySearch($my_sqli, $jeux_res) {
                 echo "<br><br>";
             }
             
-            echo "Rédigé par <a href='profilPublic.php?numero=$id_crea'>$login_crea</a> ($date_crea)";
+            echo "Rédigé par <a class='lien-texte' href='profilPublic.php?numero=$id_crea'>$login_crea</a> ($date_crea)";
             
             echo "</div>";
             
