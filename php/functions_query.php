@@ -283,7 +283,13 @@ function writeDate($date) {
     $months_list = Array('janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre');
     $months = $months_list[$months-1];
 
-    return "$days $months $years";
+    if ($days == 1) {
+        return "$days". "er " . "$months $years";
+    }
+    else {
+        return "$days $months $years";
+    }
+    
 }
 
 function idCategories($my_sqli) {
