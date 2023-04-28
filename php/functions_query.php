@@ -2,13 +2,7 @@
 
 function getArticles ($my_sqli) {
     // retourne un tableau associatif
-    // contenant pour chaque article
-    //  - son titre
-    //  - sa jaquette
-    //  - la note du rédacteur
-    //  - la note globale des utilisateurs
-    //  - la date de création + utilisateur concerné
-    //  - la date de dernière modification + utilisateur concerné
+    // avec les identifiants des articles éligibles à la recherche
 
     // si la barre de recherche par nom de jeu est utilisée
     if(isset($_GET['q']) && !empty($_GET['q'])) {
