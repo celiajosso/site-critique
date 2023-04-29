@@ -382,7 +382,13 @@ function displayArticleInformations($article, $num, $my_sqli) {
             $login_connected = $_SESSION["username"];
             $tab = connectedInfos($my_sqli, $login_connected);
             $id_connected = $tab[0];
-            echo "<a href='ajout_avis.php?numero=$num&id_connected=$id_connected'><button>Ajouter un avis</button></a>";
+
+            $tab = createurModifieurArticle($my_sqli, $num);
+            $id_createur = $tab[0];
+            
+            if ($id_createur !== $id_connected) {
+                echo "<a href='ajout_avis.php?numero=$num&id_connected=$id_connected'><button>Ajouter un avis</button></a>";
+            }   
         }
     }
     echo "<br><br><br><br><br><br>";
