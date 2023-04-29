@@ -461,4 +461,21 @@ function utilisateurAvis ($my_sqli, $id_article) {
     return $sql_utilisateur_avis_res;
 }
 
+function add_review($mysqli,$titre_Avis,$contenu_Avis,$date,$note_Avis,$id_connected,$id_article){
+    writeDB($mysqli,"INSERT INTO avis (titre_Avis, contenu_Avis, dateCreation_avis, note_Avis, id_Utilisateur, id_Article) VALUES ('$titre_Avis','$contenu_Avis','$date',$note_Avis,$id_connected,$id_article)");
+
+}
+
+function supprime_avis($mysqli,$id_connected,$id_article){
+    writeDB($mysqli,"DELETE FROM avis WHERE avis.id_Utilisateur=$id_connected and avis.id_Article=$id_article");
+}
+
+function modifie_avis($mysqli,$titre_Avis,$contenu_Avis,$note_Avis,$id_connected,$id_article){
+    writeDB($mysqli,"UPDATE avis SET avis.titre_Avis='$titre_Avis', avis.contenu_Avis='$contenu_Avis', avis.note_Avis=$note_Avis  WHERE avis.id_Utilisateur=$id_connected AND avis.id_Article=$id_article");
+}
+
+function get_avis($mysqli,$id_connected,$id_article){
+    $tableau=readDB($mysqli,"SELECT avis.titre_Avis, avis.contenu_Avis, avis.note_Avis FROM avis WHERE avis.id_Utilisateur=$id_connected AND avis.id_Article=$id_article");
+    return $tableau;
+}
 ?>
