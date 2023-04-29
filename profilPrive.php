@@ -36,6 +36,7 @@ date_default_timezone_set('Europe/Paris');
         <link rel="stylesheet" href="styles/nav.css">
         <link rel="stylesheet" href="styles/footer.css">
         <link rel="stylesheet" href="styles/pagePrive.css">
+        <link rel="stylesheet" href="styles/avis.css">
     </head>
 
     <body>
@@ -51,10 +52,21 @@ date_default_timezone_set('Europe/Paris');
             $tab = getUserPrivateInformations($my_sqli, $num);
             displayUserPrivateInformations($my_sqli, $tab); 
 
-            $tab_articles = articlesOnPrivatePage($my_sqli, $num);            
-            displayArticlesOnPrivatePage($my_sqli, $tab_articles, $role);
+            echo "<div class='redaction-site'>";
 
-            echo "<br><br><br><br>";
+            echo "<div class='redac-articles'>";
+                $tab_articles = articlesOnPrivatePage($my_sqli, $num);            
+                displayArticlesOnPrivatePage($my_sqli, $tab_articles, $role);
+            echo "</div>";
+
+            echo "<div class='redac-avis'>";
+                $tab_avis = avisUser($my_sqli, $num);
+                displayAvisUserOnPrivatePage($my_sqli, $tab_avis);
+            echo "</div>";
+
+            echo "</div>";
+
+            echo "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
         ?>
 
         <?php include("./static/footer.php"); ?>

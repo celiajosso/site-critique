@@ -35,6 +35,10 @@ form {
     margin : 0;
 }
 
+.redaction-site{
+    display: flex;
+}
+
 input[type="submit"]{
     border : none;
     padding: 10px;
@@ -91,12 +95,12 @@ td {
 }
 
 .article-seul{
-    width: 45%;
+    width: 90%;
     height: 175px;
     flex-wrap: wrap;
     margin: 0;
     border: 1px solid #A7A7A7;
-    margin-bottom: 50px;
+    margin-bottom: 35px;
     padding: 20px;
     border-radius: 20px;
     background-color: rgb(233, 242, 249);
@@ -122,4 +126,12 @@ td {
     padding-left: 1%;
     margin-left: auto;
     margin-right: auto;
+}
+
+.redac-articles{
+    width: 50%;
+}
+
+.redac-avis{
+    width: 50%;
 }

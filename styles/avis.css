@@ -37,6 +37,14 @@
     margin-right: 10px;
 }
 
+.onglet_avis_prive {
+    background-color: #61c5dc;
+    border-radius: 30px;
+    padding: 10px;
+    width: 90%;
+    margin-bottom: 20px;
+}
+
 .aligne {
     display : flex;
     padding: 0;
@@ -47,6 +55,11 @@
 .photo_utilisateur {
     border-radius: 50%;
     height: 8rem;
+}
+
+.image-jaquette-avis {
+    height: 200px;
+    border-radius: 10px;
 }
 
 .p_avis {

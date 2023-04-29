@@ -489,6 +489,12 @@ function avis($mysqli,$id_Utilisateur,$id_Jeu){
     return $tableau;
 }
 
+function avisUser($mysqli,$id_Utilisateur){
+    // Retourne tous les avis d'un utilisateur
+    $tableau = readDB($mysqli,"SELECT avis.titre_Avis, avis.contenu_Avis, avis.dateCreation_Avis, avis.note_Avis, Article.id_Article, Image.chemin_Image FROM avis INNER JOIN article ON avis.id_Article=article.id_Article INNER JOIN est_image ON est_image.id_Article = article.id_Article INNER JOIN Image ON image.id_Image = est_image.id_Image WHERE avis.id_Utilisateur=$id_Utilisateur AND chemin_Image LIKE '%jaquette%'");
+    return $tableau;
+}
+
 function note_moyenne($mysqli,$id_Jeu){
     // Retourne la note moyenne d'un jeu.
     $tableau = readDB($mysqli,"SELECT AVG(note_Avis) FROM avis WHERE id_Article=$id_Jeu");

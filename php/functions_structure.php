@@ -203,7 +203,13 @@ function displayArticlesOnPrivatePage($my_sqli, $jeux_res, $role) {
         }
     }
     else {
-        echo "<h2 class='a-centrer'>$len articles rédigés</h2>";
+        if ($len == 1) {
+            echo "<h2 class='a-centrer'>$len article rédigé.</h2>";
+        }
+        else {
+            echo "<h2 class='a-centrer'>$len articles rédigés.</h2>";
+        }
+
         if ($role == 1) {
             echo "<h3 class='a-centrer'>Tu dois être rédacteur ou administrateur pour rédiger un article.</h3>";
         }
@@ -525,8 +531,47 @@ function display_Avis($avis,$id_utilisateur,$my_sqli, $num) {
 
         echo "</div>";
 
+    }
+}
 
+function displayAvisUserOnPrivatePage($my_sqli, $avis) {
+
+    $len = count($avis);
+
+    if ($len == 0) {
+        echo "<h2 class='a-centrer'>Aucun avis rédigé.</h2>";
+    }
+    elseif ($len == 1) {
+        echo "<h2 class='a-centrer'>1 avis rédigé.</h2>";
+    }
+    else {
+        echo "<h2 class='a-centrer'>$len avis rédigés.</h2>";
+    }
+
+    foreach($avis as $tableau){
+        echo "<div class='onglet_avis_prive'>";
+
+        echo "<div class='aligne'>";
+
+        echo "<div>";
+
+        echo "<a href='article.php?numero=$tableau[id_Article]'><img class='image-jaquette-avis' src='$tableau[chemin_Image]'></a>";
+            
+        echo "<br>";
+        echo "</div>";
+        $date = writeDate($tableau["dateCreation_Avis"]);
         
+        
+        echo "<div>";
+        echo "<p class='titre_avis'>$tableau[titre_Avis]</p>";
+        echo "<p class='texte_avis'>$tableau[contenu_Avis]</p>";
+        echo "<img class='etoile' src='Images/Note/$tableau[note_Avis].png' title='$tableau[note_Avis]/10'>";
+        echo "<p class='texte_avis'>Article écrit le : $date</p>";
+        echo "</div>";
+        echo "</div>";
+
+        echo "</div>";
+
     }
 }
 
