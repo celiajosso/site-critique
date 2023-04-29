@@ -14,7 +14,7 @@ date_default_timezone_set('Europe/Paris');
         <footer>
             <p id="footer-group">
                 <p id="author">Auteurs : NORTON Thomas, JOSSO Célia<br> Groupe B</p>
-                <p id="contact">Contact</p>
+                <p id="contact"><a id="contact-link" target="_blank" href="https://github.com/celiajso/site-critique">Dépôt Github</a></p>
             </p>
             
             <p id="copyright">© 2023 CUPGE2</p>
