@@ -1,4 +1,5 @@
 <?php
+session_start();
 //affichage des erreurs côté PHP et côté MYSQLI
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -24,30 +25,45 @@ date_default_timezone_set('Europe/Paris');
         <link rel="stylesheet" href="styles/header.css">
         <link rel="stylesheet" href="styles/nav.css">
         <link rel="stylesheet" href="styles/footer.css">
-        <link rel="stylesheet" href="styles/search.css">
         <link rel="stylesheet" href="styles/index.css">
+        <link rel="stylesheet" href="styles/modifie_ajout.css">
+        <link rel="stylesheet" href="styles/form.css">
     </head>
-
     <?php include("./static/header.php"); ?>
     <?php include("./static/nav.php"); ?>
-    <p>Ajouter un avis</p>
-    <form action="add_review.php?numero=<?php echo $_GET['numero']; ?>&id_connected=<?php echo $_GET['id_connected']; ?>" method="POST" name="nomForm2">
-    <label for="note" class="">Note sur 10 :</label>    
-		<select id="note" name="note">
+
+    <div class="onglet_titre">
+        <div class="center">
+            <img class="star_img" src="Images/stars.png">
+            <p class="texte_titre">Ajouter un avis</p>
+            <img class="star_img" src="Images/stars.png">
+        </div>
+    </div>
+
+    <form action="add_review.php?numero=<?php echo $_GET['numero']; ?>&id_connected=<?php echo $_GET['id_connected']; ?>" method="POST" name="nomForm2" class="onglet_form">
+        <div class="center">
+            <label for="note" class="texte">Note sur 10 :</label>    
+            <select id="note" name="note">
                 <?php 
                 foreach(range(0,10) as $numero){
                     echo "<option>$numero</option>";
                 }
                 ?>
-            </select><br>
-            <label for="avis_titre">Titre avis :</label>
+                </select>
+        </div>
+        <label for="avis_titre" class="center texte">Titre avis :</label>
+        <div class="center">
             <textarea name="avis_titre" rows="1" cols="30"></textarea>
-            <label for="avis_texte" class="">Avis :</label>
+        </div>
+        <label for="avis_texte" class="center texte">Avis :</label>
+        <div class="center">
             <textarea name="avis_texte" rows="10" cols="30"></textarea>
-            <input type="submit" value="Submit" id="btn_submit"/>
-            
+        </div>
+        <div class="button-center">
+            <input type="submit" value="Ajouter">
+        </div>
 	</form>
-    
+    <br><br><br><br>
     <?php include("./static/footer.php"); ?>
 
 </html>

@@ -25,15 +25,16 @@ session_start()
         <link rel="stylesheet" href="styles/header.css">
         <link rel="stylesheet" href="styles/nav.css">
         <link rel="stylesheet" href="styles/footer.css">
-        <link rel="stylesheet" href="styles/search.css">
         <link rel="stylesheet" href="styles/index.css">
+        <link rel="stylesheet" href="styles/modifie_ajout.css">
+        <link rel="stylesheet" href="styles/form.css">
     </head>
 
     <?php include("./static/header.php"); ?>
     <?php include("./static/nav.php"); ?>
-    <p>Modifier un avis</p>
-    <form action="change_review.php?numero=<?php echo $_GET['numero']; ?>&id_connected=<?php echo $_GET['id_connected']; ?>" method="POST" name="nomForm2">
-    <label for="note" class="">Note sur 10 :</label>    
+    <div class="onglet_titre"><div class="center"><p class="texte_titre">Modifier un avis :</p></div></div>
+    <form action="change_review.php?numero=<?php echo $_GET['numero']; ?>&id_connected=<?php echo $_GET['id_connected']; ?>" method="POST" name="nomForm2" class="onglet_form">
+    <div class="center"><label for="note" class="texte">Note sur 10 :</label>    
 		<select id="note" name="note">
                 <?php 
                 foreach(range(0,10) as $numero){
@@ -46,18 +47,19 @@ session_start()
                     }
                 }
                 ?>
-            </select><br>
-            <label for="avis_titre">Titre avis :</label>
-            <textarea name="avis_titre" rows="1" cols="30"><?php $titre=get_avis($my_sqli,$_GET['id_connected'],$_GET['numero'])[0]['titre_Avis'];
+            </select></div>
+            <label for="avis_titre" class="center texte">Titre avis :</label>
+            <div class="center"><textarea name="avis_titre" rows="1" cols="30"><?php $titre=get_avis($my_sqli,$_GET['id_connected'],$_GET['numero'])[0]['titre_Avis'];
                                                                 echo $titre;
-                                                            ?></textarea>
-            <label for="avis_texte" class="">Avis :</label>
-            <textarea name="avis_texte" rows="10" cols="30"><?php $texte=get_avis($my_sqli,$_GET['id_connected'],$_GET['numero'])[0]['contenu_Avis'];
+                                                            ?></textarea></div>
+            <label for="avis_texte" class="center texte">Avis :</label>
+            <div class="center"><textarea name="avis_texte" rows="10" cols="30"><?php $texte=get_avis($my_sqli,$_GET['id_connected'],$_GET['numero'])[0]['contenu_Avis'];
                                                                 echo $texte;
-                                                            ?></textarea>
-            <input type="submit" value="Submit" id="btn_submit"/>
+                                                            ?></textarea></div>
+            <div class="button_center"><input type="submit" class="text" value="Modidier" id="btn_submit"/></div>
             
 	</form>
+    <br><br><br><br>
     
     <?php include("./static/footer.php"); ?>
 

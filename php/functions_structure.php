@@ -344,7 +344,7 @@ function displayArticleInformations($article, $num, $my_sqli) {
             $id_modifieur = $tab[1];
     
             if (empty($sql_avis_ecrit_res) && $id_connected != $id_createur && $id_connected != $id_modifieur) {
-                echo "BOUTON AJOUTER";
+                echo "<a href='ajout_avis.php?numero=$num&id_connected=$id_connected'><button>Ajouter un avis</button></a>";
             } 
         }
 
@@ -360,7 +360,10 @@ function displayArticleInformations($article, $num, $my_sqli) {
     else {
         echo "<br><h2 class='a-centrer'>Aucun avis pour cet article.</h2>";
         if (!empty($_SESSION)) {
-            echo "<br>BOUTON AJOUTER";
+            $login_connected = $_SESSION["username"];
+            $tab = connectedInfos($my_sqli, $login_connected);
+            $id_connected = $tab[0];
+            echo "<a href='ajout_avis.php?numero=$num&id_connected=$id_connected'><button>Ajouter un avis</button></a>";
         }
     }
     echo "<br><br><br><br><br><br>";
@@ -380,16 +383,18 @@ function display_Avis($avis,$id_utilisateur,$my_sqli, $num) {
             $role = $tab[1];
             if ($role == 3) {
                 if ($id_utilisateur != $id_connected) {
-                    echo "BOUTON SUPPRIMER<br>";
+                    echo "<a href='delete_avis.php?numero=$num&id_connected=$id_utilisateur'><button>Supprimer cet avis</button></a>";
                 }
                 else {
-                    echo "BOUTON MODIF + BOUTON SUPPRIMER<br>";
+                    echo "<a href='delete_avis.php?numero=$num&id_connected=$id_connected'><button>Supprimer cet avis</button></a>";
+                    echo "<a href='modifie_avis.php?numero=$num&id_connected=$id_connected'><button>Modifier cet avis</button></a>";
                 }
 
             }
             else  {
                 if ($id_utilisateur == $id_connected) {
-                    echo "BOUTON MODIF + BOUTON SUPPRIMER<br>";
+                    echo "<a href='delete_avis.php?numero=$num&id_connected=$id_connected'><button>Supprimer cet avis</button></a>";
+                    echo "<a href='modifie_avis.php?numero=$num&id_connected=$id_connected'><button>Modifier cet avis</button></a>";
                 }
 
             }            

@@ -466,8 +466,8 @@ function add_review($mysqli,$titre_Avis,$contenu_Avis,$date,$note_Avis,$id_conne
 
 }
 
-function supprime_avis($mysqli,$id_connected,$id_article){
-    writeDB($mysqli,"DELETE FROM avis WHERE avis.id_Utilisateur=$id_connected and avis.id_Article=$id_article");
+function supprime_avis($mysqli,$id_user,$id_article){
+    writeDB($mysqli,"DELETE FROM avis WHERE avis.id_Utilisateur=$id_user and avis.id_Article=$id_article");
 }
 
 function modifie_avis($mysqli,$titre_Avis,$contenu_Avis,$note_Avis,$id_connected,$id_article){
