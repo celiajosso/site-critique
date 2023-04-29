@@ -553,7 +553,7 @@ function displayAvisUserOnPrivatePage($my_sqli, $avis) {
 
         echo "<div class='aligne'>";
 
-        echo "<div>";
+        echo "<div class='div-jaquette'>";
 
         echo "<a href='article.php?numero=$tableau[id_Article]'><img class='image-jaquette-avis' src='$tableau[chemin_Image]'></a>";
             
