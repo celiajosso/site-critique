@@ -24,8 +24,6 @@ $prix = $_POST["prix"];
 $synopsis = $_POST["synopsis"];
 $note = $_POST["note"];
 $critique = $_POST["critique"];
-$jaquette = $_POST["jaquette"];
-$gameplay = $_POST["gameplay"];
 
 $titre_article = addslashes($titre_article);
 $nom_jeu = addslashes($nom_jeu);
@@ -74,7 +72,7 @@ foreach($checked_categories as $cle => $val) {
 $jeu_unique = Is_gameUnique($my_sqli, $nom_jeu);
 
 if (!$jeu_unique) {
-    $page = "../redacArticle.php?titre_article=$titre_article&nom_jeu=$nom_jeu&date_sortie=$date_sortie&prix=$prix&synopsis=$synopsis&note=$note&critique=$critique&jaquette=$jaquette&gameplay=$gameplay&erreur=jeu";
+    $page = "../redacArticle.php?titre_article=$titre_article&nom_jeu=$nom_jeu&date_sortie=$date_sortie&prix=$prix&synopsis=$synopsis&note=$note&critique=$critique&erreur=jeu";
     $page = $page . $chaine_categories . $chaine_supports;
     header("Location: $page");
 }
@@ -108,6 +106,17 @@ else{
     }
 
     $image_path = "Images/Jeu/$nb_rows_jeu/";
+
+    $rep = scandir($image_path);
+    foreach ($rep as $cle => $val) {
+        if (strpos($val, "jaquette")) {
+            $jaquette = $image_path . $val;
+        }
+        if (strpos($val, "gameplay")) {
+            $gameplay = $image_path . $val;
+        }
+    }
+
     $lien_gameplay = $image_path . 'gameplay.jpg';
     $lien_jaquette = $image_path . 'jaquette.jpg';
 
