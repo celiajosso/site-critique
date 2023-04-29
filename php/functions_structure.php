@@ -400,6 +400,8 @@ function display_Avis($avis,$id_utilisateur,$my_sqli, $num) {
             }            
         }
 
+        echo "<div class='aligne'>";
+
         echo "<div>";
 
         if (isset($id_connected)) {
@@ -414,11 +416,11 @@ function display_Avis($avis,$id_utilisateur,$my_sqli, $num) {
             echo "<a href='profilPublic.php?numero=$id_utilisateur'><img class='photo_utilisateur' src='$tableau[photoProfil_Utilisateur]'></a>";
         }
         echo "<br>";
-
+        echo "</div>";
         $date = writeDate($tableau["dateCreation_Avis"]);
         $temps = Duration($tableau["dateCreation_Avis"]);
         
-        echo "</div>";
+        
         echo "<div>";
         echo "<p class='titre_avis'>$tableau[titre_Avis]</p>";
         echo "<p class='utilisateur_avis'>Utilisateur : $tableau[login_Utilisateur]</p>";
@@ -426,6 +428,7 @@ function display_Avis($avis,$id_utilisateur,$my_sqli, $num) {
         echo "<p class='texte_avis'>$tableau[contenu_Avis]</p>";
         echo "<img class='etoile' src='Images/Note/$tableau[note_Avis].png' title='$tableau[note_Avis]/10'>";
         echo "<p class='texte_avis'>Article écrit le : $date (il y a $temps)</p>";
+        echo "</div>";
         echo "</div>";
         echo "</div>";
         
