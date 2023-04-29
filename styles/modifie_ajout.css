@@ -1,0 +1,54 @@
+.onglet_form {
+    background-color: #61c5dc;
+    border-radius: 30px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.onglet_titre {
+    background-color: #61c5dc;
+    border-radius: 30px;
+    padding: 10px;
+    margin: 10px;
+
+}
+
+@font-face {
+    font-family: 'texte';
+    src: url('OpenSans-ExtraBold.ttf');
+}
+
+@font-face {
+    font-family: 'texte_titre';
+    src: url('Say_Comic.ttf');
+}
+
+.texte_titre {
+    font-family: texte_titre;
+    color:white;
+    font-size: 2rem;
+
+}
+
+.texte {
+    font-family: texte;
+    color: white;
+    font-size: 1rem;
+}
+
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button_center {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+.star_img {
+    height: 4rem;
+    filter : invert(1);
+}
