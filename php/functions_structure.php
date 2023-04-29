@@ -12,6 +12,11 @@ $my_sqli = connectionDB();
 date_default_timezone_set('Europe/Paris');
 
 function displayArticles ($my_sqli, $jeux) {
+    if (isset($_GET["inscription"])) {
+        $login = $_SESSION["username"];
+        echo "<div class='erreur-inscription'><h2>Bienvenue $login !</div><br><br>";
+    }
+
     $jeux_res = $jeux[0];
     $sql_categorie_res = $jeux[1];
 
