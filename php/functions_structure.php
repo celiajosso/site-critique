@@ -374,32 +374,6 @@ function display_Avis($avis,$id_utilisateur,$my_sqli, $num) {
     foreach($avis as $tableau){
         echo "<div class='onglet_avis'>";
 
-        if (!empty($_SESSION)) {
-
-            $login_connected = $_SESSION["username"];
-
-            $tab = connectedInfos($my_sqli, $login_connected);
-            $id_connected = $tab[0];
-            $role = $tab[1];
-            if ($role == 3) {
-                if ($id_utilisateur != $id_connected) {
-                    echo "<a href='delete_avis.php?numero=$num&id_connected=$id_utilisateur'><button>Supprimer cet avis</button></a>";
-                }
-                else {
-                    echo "<a href='delete_avis.php?numero=$num&id_connected=$id_connected'><button>Supprimer cet avis</button></a>";
-                    echo "<a href='modifie_avis.php?numero=$num&id_connected=$id_connected'><button>Modifier cet avis</button></a>";
-                }
-
-            }
-            else  {
-                if ($id_utilisateur == $id_connected) {
-                    echo "<a href='delete_avis.php?numero=$num&id_connected=$id_connected'><button>Supprimer cet avis</button></a>";
-                    echo "<a href='modifie_avis.php?numero=$num&id_connected=$id_connected'><button>Modifier cet avis</button></a>";
-                }
-
-            }            
-        }
-
         echo "<div class='aligne'>";
 
         echo "<div>";
@@ -430,7 +404,40 @@ function display_Avis($avis,$id_utilisateur,$my_sqli, $num) {
         echo "<p class='texte_avis'>Article écrit le : $date (il y a $temps)</p>";
         echo "</div>";
         echo "</div>";
+
+        if (!empty($_SESSION)) {
+
+            $login_connected = $_SESSION["username"];
+
+            $tab = connectedInfos($my_sqli, $login_connected);
+            $id_connected = $tab[0];
+            $role = $tab[1];
+            if ($role == 3) {
+                if ($id_utilisateur != $id_connected) {
+                    echo "<a href='delete_avis.php?numero=$num&id_connected=$id_utilisateur'><button>Supprimer cet avis</button></a>";
+                }
+                else {
+                    echo "<div class='aligned-buttons'>";
+                    echo "<div><a href='delete_avis.php?numero=$num&id_connected=$id_connected'><button>Supprimer cet avis</button></a></div>";
+                    echo "<div><a href='modifie_avis.php?numero=$num&id_connected=$id_connected'><button>Modifier cet avis</button></a></div>";
+                    echo "</div>";
+                }
+
+            }
+            else  {
+                if ($id_utilisateur == $id_connected) {
+                    echo "<div class='aligned-buttons'>";
+                    echo "<div><a href='delete_avis.php?numero=$num&id_connected=$id_connected'><button>Supprimer cet avis</button></a></div>";
+                    echo "<div><a href='modifie_avis.php?numero=$num&id_connected=$id_connected'><button>Modifier cet avis</button></a></div>";
+                    echo "</div>";
+                }
+
+            }            
+        }
+
         echo "</div>";
+
+
         
     }
 }
