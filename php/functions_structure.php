@@ -196,6 +196,24 @@ function displayArticleInformations($article, $num, $my_sqli) {
     if (isset($_GET["success"])) {
         echo "<div class='erreur-inscription'><h2>Article modifié avec succès !</div><br><br>";
     }
+    if (isset($_GET["ajout"])) {
+        echo "<div class='erreur-inscription'><h2>Avis ajouté avec succès !</div><br><br>";
+    }
+    if (isset($_GET["modif"])) {
+        echo "<div class='erreur-inscription'><h2>Avis modifié avec succès !</div><br><br>";
+    }
+    if (isset($_GET["del"])) {
+        $id_user = $_GET["del"];
+        $login = recupUsername($my_sqli, $id_user);
+
+        if ($_SESSION["username"] == $login) {
+            echo "<div class='erreur-inscription'><h2>Votre avis a été supprimé.</div><br><br>";
+        }
+        else {
+            echo "<div class='erreur-inscription'><h2>L'avis de « $login » a été supprimé.</div><br><br>";
+        }
+        
+    }
     
     $titre_article = $article[0][0]["titre_Article"];
     $dateCrea_article = $article[0][0]["dateCreation_Article"];

@@ -15,5 +15,5 @@ session_start()
 
 <?php
 modifie_avis($my_sqli,addslashes($_POST['avis_titre']),addslashes($_POST['avis_texte']),$_POST['note'],$_GET['id_connected'],$_GET['numero']);
-header("Location: article.php?numero=$_GET[numero]");
+header("Location: article.php?numero=$_GET[numero]&modif=on");
 ?>

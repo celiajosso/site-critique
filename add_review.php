@@ -17,5 +17,5 @@ session_start()
 
 $date = date("Y-m-d"); 
 add_review($my_sqli,addslashes($_POST['avis_titre']),addslashes($_POST['avis_texte']),$date,$_POST['note'],$_GET['id_connected'],$_GET['numero']);
-header("Location: article.php?numero=$_GET[numero]");
+header("Location: article.php?numero=$_GET[numero]&ajout=on");
 ?>

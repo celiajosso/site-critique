@@ -406,6 +406,17 @@ function recupRole($my_sqli, $id_role) {
     return $role;
 }
 
+function recupUsername($my_sqli, $id_user) {
+    // recupere le pseudo a partir de l'id de l'utilisateur
+
+    $sql_input = "SELECT login_Utilisateur FROM Utilisateur WHERE id_Utilisateur=$id_user";
+    $sql_input_res = readDB($my_sqli, $sql_input);
+
+    $login = $sql_input_res[0]["login_Utilisateur"];
+
+    return $login;
+}
+
 function modifArticleInfosArticleJeu ($my_sqli, $num) {
     // retourne les infos necessaires à la modification d'un article
 

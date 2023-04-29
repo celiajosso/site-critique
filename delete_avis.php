@@ -15,5 +15,5 @@ session_start()
 
 <?php
 supprime_avis($my_sqli,$_GET['id_connected'],$_GET['numero']);
-header("Location: article.php?numero=$_GET[numero]");
+header("Location: article.php?numero=$_GET[numero]&del=$_GET[id_connected]");
 ?>
