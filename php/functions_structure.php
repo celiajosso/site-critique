@@ -16,6 +16,9 @@ function displayArticles ($my_sqli, $jeux) {
         $login = $_SESSION["username"];
         echo "<div class='erreur-inscription'><h2>Bienvenue $login !</div><br><br>";
     }
+    if (isset($_GET["envoi"])) {
+        echo "<div class='erreur-inscription'><h2>Article envoyé avec succès !</div>";
+    }
 
     $jeux_res = $jeux[0];
     $sql_categorie_res = $jeux[1];
@@ -104,7 +107,7 @@ function displayArticles ($my_sqli, $jeux) {
 
     // === AFFICHAGE POUR LA RECHERCHE PAR CATEGORIE DE JEU ===
 
-    elseif (!isset($_GET["q"]) && !empty($_GET) && !isset($_GET["inscription"])) {
+    elseif (!isset($_GET["q"]) && !empty($_GET) && !isset($_GET["inscription"]) && !isset($_GET["envoi"])) {
 
         if (!empty($jeux_res)) {
             $len = count($jeux_res);
@@ -703,9 +706,6 @@ function displayRedacArticle ($my_sqli) {
         if ($_GET["erreur"] == "jeu") {
             echo "<div class='erreur-inscription'><h2>Erreur !</h2>Un article a déjà été écrit sur ce jeu !<br><br></div>";
         }
-    }
-    if (isset($_GET["success"])) {
-        echo "<div class='erreur-inscription'><h2>Article envoyé avec succès !</div>";
     }
 
     echo "<div class='form-style-5'>";

@@ -128,7 +128,7 @@ else{
     $sql_insert_assoc = "INSERT INTO est_image (id_Article, id_Image) VALUES ($nb_rows_article, $id_gameplay), ($nb_rows_article, $id_jaquette)";
     $sql_insert_assoc_res = writeDB($my_sqli, $sql_insert_assoc);
 
-    header("Location: ../redacArticle.php?success=1");
+    header("Location: ../index.php?envoi=1");
 }
 ?>
 <?php closeDB($my_sqli); ?>
