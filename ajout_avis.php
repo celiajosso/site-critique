@@ -40,7 +40,7 @@ date_default_timezone_set('Europe/Paris');
         </div>
     </div>
 
-    <form action="add_review.php?numero=<?php echo $_GET['numero']; ?>&id_connected=<?php echo $_GET['id_connected']; ?>" method="POST" name="nomForm2" class="onglet_form">
+    <form action="php/add_review.php?numero=<?php echo $_GET['numero']; ?>&id_connected=<?php echo $_GET['id_connected']; ?>" method="POST" name="nomForm2" class="onglet_form">
         <div class="center">
             <label for="note" class="texte">Note sur 10 :</label>    
             <select id="note" name="note">

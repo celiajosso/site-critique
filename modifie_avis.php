@@ -33,7 +33,7 @@ session_start()
     <?php include("./static/header.php"); ?>
     <?php include("./static/nav.php"); ?>
     <div class="onglet_titre"><div class="center"><p class="texte_titre">Modifier un avis :</p></div></div>
-    <form action="change_review.php?numero=<?php echo $_GET['numero']; ?>&id_connected=<?php echo $_GET['id_connected']; ?>" method="POST" name="nomForm2" class="onglet_form">
+    <form action="php/change_review.php?numero=<?php echo $_GET['numero']; ?>&id_connected=<?php echo $_GET['id_connected']; ?>" method="POST" name="nomForm2" class="onglet_form">
     <div class="center"><label for="note" class="texte">Note sur 10 :</label>    
 		<select id="note" name="note">
                 <?php 
