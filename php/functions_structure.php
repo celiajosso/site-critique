@@ -892,6 +892,11 @@ function displayRedacArticle ($my_sqli) {
 }
 
 function displayModifArticleInfos ($my_sqli) {
+
+    if (isset($_GET["erreur"])) {
+        echo "<div class='erreur-inscription'><h2>Erreur !</h2>Un article a déjà été écrit sur ce jeu !<br><br></div>";
+    }
+
     $num = $_GET["numero"];
 
     $tab = modifArticleInfosArticleJeu($my_sqli, $num);
