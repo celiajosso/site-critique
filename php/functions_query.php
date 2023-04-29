@@ -456,7 +456,7 @@ function avis_totale($mysqli,$id_Utilisateur){
 
 function utilisateurAvis ($my_sqli, $id_article) {
     // Retourne les id des utilisateurs ayant laissé leur avis sur un jeu
-    $sql_utilisateur_avis = "SELECT id_Utilisateur FROM Avis WHERE id_Article=$id_article";
+    $sql_utilisateur_avis = "SELECT id_Utilisateur FROM Avis WHERE id_Article=$id_article ORDER BY dateCreation_Avis DESC";
     $sql_utilisateur_avis_res = readDB($my_sqli, $sql_utilisateur_avis);
     return $sql_utilisateur_avis_res;
 }

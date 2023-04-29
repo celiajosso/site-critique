@@ -392,7 +392,6 @@ function display_Avis($avis,$id_utilisateur,$my_sqli, $num) {
         echo "<br>";
         echo "</div>";
         $date = writeDate($tableau["dateCreation_Avis"]);
-        $temps = Duration($tableau["dateCreation_Avis"]);
         
         
         echo "<div>";
@@ -401,7 +400,7 @@ function display_Avis($avis,$id_utilisateur,$my_sqli, $num) {
         echo "<p class='utilisateur_avis'>" . avis_totale($my_sqli,$id_utilisateur) . " avis </p>";
         echo "<p class='texte_avis'>$tableau[contenu_Avis]</p>";
         echo "<img class='etoile' src='Images/Note/$tableau[note_Avis].png' title='$tableau[note_Avis]/10'>";
-        echo "<p class='texte_avis'>Article écrit le : $date (il y a $temps)</p>";
+        echo "<p class='texte_avis'>Article écrit le : $date</p>";
         echo "</div>";
         echo "</div>";
 
