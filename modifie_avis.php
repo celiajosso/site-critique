@@ -56,7 +56,7 @@ session_start()
             <div class="center"><textarea name="avis_texte" rows="10" cols="30"><?php $texte=get_avis($my_sqli,$_GET['id_connected'],$_GET['numero'])[0]['contenu_Avis'];
                                                                 echo $texte;
                                                             ?></textarea></div>
-            <div class="button_center"><input type="submit" class="text" value="Modidier" id="btn_submit"/></div>
+            <div class="button_center"><input type="submit" class="text" value="Modifier" id="btn_submit"/></div>
             
 	</form>
     <br><br><br><br>
