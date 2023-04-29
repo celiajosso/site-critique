@@ -323,11 +323,11 @@ function displayArticleInformations($article, $num, $my_sqli) {
 
     if (!empty($tab_utilisateurs)) {
         $nb_avis = count($tab_utilisateurs);
-        echo "<br><h2 class='a-centrer'>$nb_avis avis pour cet article.</h2>";
+        echo "<br><br><h2 class='a-centrer'>$nb_avis avis pour cet article.</h2>";
 
         $moyenne = note_moyenne($my_sqli, $num);
         $note_arrondie = round($moyenne);
-        echo "Note moyenne des utilisateurs : <img class='image-note' src='Images/note/$note_arrondie.png' title='$moyenne/10'>";
+        echo "<h3 class='a-centrer'>Note moyenne des utilisateurs : <img class='image-note' src='Images/note/$note_arrondie.png' title='$moyenne/10'></h3>";
         echo "<br><br>";
 
         if (!empty($_SESSION)) {
@@ -344,7 +344,7 @@ function displayArticleInformations($article, $num, $my_sqli) {
             $id_modifieur = $tab[1];
     
             if (empty($sql_avis_ecrit_res) && $id_connected != $id_createur && $id_connected != $id_modifieur) {
-                echo "<a href='ajout_avis.php?numero=$num&id_connected=$id_connected'><button>Ajouter un avis</button></a>";
+                echo "<a href='ajout_avis.php?numero=$num&id_connected=$id_connected'><button>Ajouter un avis</button></a><br><br>";
             } 
         }
 
