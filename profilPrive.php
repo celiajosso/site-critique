@@ -44,14 +44,20 @@ date_default_timezone_set('Europe/Paris');
         
         <?php
             $num = $_GET['numero'];
+
             $tab = getUserPrivateInformations($my_sqli, $num);
-            displayUserPrivateInformations($my_sqli, $tab);
+            displayUserPrivateInformations($my_sqli, $tab); 
+
+            $tab_articles = articlesOnPrivatePage($my_sqli, $num);
+            echo "<pre>";print_r($tab_articles);echo "</pre>";
+            //displayArticlesOnPrivatePage($my_sqli, $tab_articles);
+
+            echo "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
         ?>
 
         <?php include("./static/footer.php"); ?>
 
     </body>
                 
-    <?php closeDB($my_sqli); ?>
 </html>
 <?php closeDB($my_sqli); ?>

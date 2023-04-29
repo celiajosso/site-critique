@@ -192,6 +192,55 @@ function displayArticlesBySearch($my_sqli, $jeux_res) {
     echo "<br><br>";
 }
 
+function displayArticlesOnPrivatePage($my_sqli, $jeux_res) {
+
+    echo "<div class='boite-article'>";
+
+    foreach($jeux_res as $cle => $val) {
+
+        foreach ($val as $cle1 => $val1) {
+
+            $id_article = $val1["id_Article"];
+            $titre = $val1["titre_Article"];
+            $note_redacteur = $val1["noteRedacteur_Article"];
+            $date_crea = writeDate($val1["dateCreation_Article"]);
+            $chemin_jaquette = $val1[0]["chemin_Image"];
+            $note_users = $val1[1]["note_moy"];
+
+            echo "<div class='article-seul'>";
+            
+            echo "<div class='flex-content-index'>";
+
+            echo "<div class='left-column-index'>";
+            echo "<a href='article.php?numero=$id_article'><img class='acceuil-jaquette' src='$chemin_jaquette' /><a>";
+            echo "</div>";
+
+            echo "<div class='right-column-index'>";
+
+            echo "<h3>$titre</h3>";
+            echo "Note du rédacteur : <img class='image-note' src='Images/note/$note_redacteur.png' title='$note_redacteur/10'>";
+            echo "<br><br>";
+
+            if (!empty($note_users)) {
+                $moyenne = note_moyenne($my_sqli, $id_article);
+                $note_arrondie = round($moyenne);
+                echo "Note moyenne des utilisateurs : <img class='image-note' src='Images/note/$note_arrondie.png' title='$moyenne/10'>";
+                echo "<br><br>";
+            }
+            
+            echo "Rédigé le $date_crea";
+            
+            echo "</div>";
+            
+            echo "</div>";
+
+            echo "</div>";
+        }
+    }
+    echo "</div>";
+    echo "<br><br>";
+}
+
 function displayArticleInformations($article, $num, $my_sqli) {
 
     if (isset($_GET["success"])) {
