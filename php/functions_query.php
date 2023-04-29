@@ -134,6 +134,7 @@ function getUserPrivateInformations($my_sqli, $id_user) {
 function Is_loginUnique ($my_sqli, $username) {
     // Vérifie si le login entre par le nouvel utilisateur est unique
 
+    $username = htmlspecialchars($username, ENT_QUOTES);
     $sql_inscription = "SELECT login_Utilisateur FROM Utilisateur WHERE login_Utilisateur = '$username'";
     $res_inscription = readDB($my_sqli, $sql_inscription);
 

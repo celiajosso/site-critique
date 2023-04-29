@@ -20,7 +20,7 @@ date_default_timezone_set('Europe/Paris');
 
     if (isset($_GET["login"])) {
 
-        $login = $_POST["login"];
+        $login = addslashes($_POST["login"]);
         $login_unique = Is_loginUnique($my_sqli, $login);
 
         if (!$login_unique) {
@@ -37,6 +37,7 @@ date_default_timezone_set('Europe/Paris');
 
         }
         else {
+            $login = addslashes($_POST["login"]);
             $sql_input = "UPDATE Utilisateur SET login_Utilisateur='$login' WHERE id_Utilisateur='$num'";
             $sql_input_res = writeDB($my_sqli, $sql_input);
             $_SESSION["username"] = $login;
@@ -45,7 +46,7 @@ date_default_timezone_set('Europe/Paris');
     }
 
     if (isset($_GET["nom"])) {
-        $nom = $_POST["nom"];
+        $nom = addslashes($_POST["nom"]);
         $sql_nom_initial = "SELECT nom_Utilisateur FROM Utilisateur WHERE id_Utilisateur = $num";
         $sql_nom_initial_res = readDB($my_sqli, $sql_nom_initial);
         $nom_initial = $sql_nom_initial_res[0]["nom_Utilisateur"];
@@ -62,7 +63,7 @@ date_default_timezone_set('Europe/Paris');
     }
 
     if (isset($_GET["prenom"])) {
-        $prenom = $_POST["prenom"];
+        $prenom = addslashes($_POST["prenom"]);
 
         $sql_prenom_initial = "SELECT prenom_Utilisateur FROM Utilisateur WHERE id_Utilisateur = $num";
         $sql_prenom_initial_res = readDB($my_sqli, $sql_prenom_initial);
@@ -80,7 +81,7 @@ date_default_timezone_set('Europe/Paris');
     }
 
     if (isset($_GET["mail"])) {
-        $mail = $_POST["mail"];
+        $mail = addslashes($_POST["mail"]);
 
         $sql_mail_initial = "SELECT mail_Utilisateur FROM Utilisateur WHERE id_Utilisateur = $num";
         $sql_mail_initial_res = readDB($my_sqli, $sql_mail_initial);
@@ -122,7 +123,7 @@ date_default_timezone_set('Europe/Paris');
     }
 
     if (isset($_GET["password"])) {
-        $mdp = $_POST["password"];
+        $mdp = addslashes($_POST["password"]);
 
         $sql_mdp_initial = "SELECT password_Utilisateur FROM Utilisateur WHERE id_Utilisateur = $num";
         $sql_mdp_initial_res = readDB($my_sqli, $sql_mdp_initial);

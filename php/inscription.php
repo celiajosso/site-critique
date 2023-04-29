@@ -17,19 +17,26 @@ date_default_timezone_set('Europe/Paris');
 
 <?php
 
-$nom = $_POST["nom"];
-$prenom = $_POST["prenom"];
+$nom = addslashes($_POST["nom"]);
+$prenom = addslashes($_POST["prenom"]);
 $naissance = $_POST["naissance"];
-$mail = $_POST["mail"];
-$login = $_POST["login"];
-$mdp = $_POST["mdp"];
-$mdp_confirmation = $_POST["mdp-confirmation"];
+$mail = addslashes($_POST["mail"]);
+$login = addslashes($_POST["login"]);
+$mdp = addslashes($_POST["mdp"]);
+$mdp_confirmation = addslashes($_POST["mdp-confirmation"]);
 $choix_pp = $_POST["choix-pp"];
+
 $login_unique = Is_loginUnique($my_sqli, $login);
 $age_valide = Is_enoughAged($naissance);
 $mdp_valide = Is_samePassword($mdp, $mdp_confirmation);
 
 if (!$age_valide) {
+    $nom = htmlspecialchars($nom, ENT_QUOTES);
+    $prenom = htmlspecialchars($prenom, ENT_QUOTES);
+    $mail = htmlspecialchars($mail, ENT_QUOTES);
+    $login = htmlspecialchars($login, ENT_QUOTES);
+    $mdp = htmlspecialchars($mdp, ENT_QUOTES);
+    $mdp_confirmation = htmlspecialchars($mdp_confirmation, ENT_QUOTES);
     header("Location: ../registration.php?nom=$nom&prenom=$prenom&mail=$mail&naissance=$naissance&login=$login&mdp=$mdp&mdp_confirmation=$mdp_confirmation&choix_pp=$choix_pp&erreur=age");
 }
 elseif (!$login_unique) {

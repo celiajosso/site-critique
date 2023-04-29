@@ -17,9 +17,9 @@ date_default_timezone_set('Europe/Paris');
 
 <?php
 
-$login = $_POST["login"];
+$login = addslashes($_POST["login"]);
 
-$mdp = $_POST["mdp"];
+$mdp = addslashes($_POST["mdp"]);
 
 $isMember = IsMember($my_sqli, $login, $mdp);
 

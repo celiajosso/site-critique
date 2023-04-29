@@ -13,7 +13,7 @@ date_default_timezone_set('Europe/Paris');
 
 function displayArticles ($my_sqli, $jeux) {
     if (isset($_GET["inscription"])) {
-        $login = $_SESSION["username"];
+        $login = stripslashes($_SESSION["username"]);
         echo "<div class='erreur-inscription'><h2>Bienvenue $login !</div><br><br>";
     }
     if (isset($_GET["envoi"])) {
@@ -33,7 +33,8 @@ function displayArticles ($my_sqli, $jeux) {
 
     if (isset($_GET['q'])) {
         $q = $_GET['q'];
-        echo "<input type='search' size = '30' name='q' value='$q' placeholder='Recherche par nom de jeu' />";
+        $q_secure = htmlspecialchars($_GET['q']);
+        echo "<input type='search' size = '30' name='q' value='$q_secure' placeholder='Recherche par nom de jeu' />";
     }
     else {
         echo "<input type='search' size = '30' name='q' placeholder='Recherche par nom de jeu' />";
@@ -505,6 +506,11 @@ function displayUserPrivateInformations($my_sqli, $tab) {
             echo "<div class='right-column'>";
 
             $today = date('Y-m-d');
+            $login = htmlspecialchars($login, ENT_QUOTES);
+            $nom = htmlspecialchars($nom, ENT_QUOTES);
+            $prenom = htmlspecialchars($prenom, ENT_QUOTES);
+            $mail = htmlspecialchars($mail, ENT_QUOTES);
+            $password = htmlspecialchars($password, ENT_QUOTES);
 
             echo "<table>";
                 echo "<tr>";
@@ -640,7 +646,7 @@ function displayInscription() {
                 echo "<div class='left-column'>";
 
                     if (isset($_GET['nom'])) {
-                        $nom = $_GET['nom'];
+                        $nom = stripslashes($_GET['nom']);
                         echo "<input type='text' maxlength='50' name='nom' placeholder='Nom *' value='$nom' required>";
                     }
                     else {
@@ -648,7 +654,7 @@ function displayInscription() {
                     }
 
                     if (isset($_GET['prenom'])) {
-                        $prenom = $_GET['prenom'];
+                        $prenom = stripslashes($_GET['prenom']);
                         echo "<input type='text' maxlength='50' name='prenom' placeholder='Prénom *' value='$prenom' required>";
                     }
                     else {
@@ -660,7 +666,7 @@ function displayInscription() {
                 echo "<div class='right-column'>";
 
                 if (isset($_GET['mail'])) {
-                    $mail = $_GET['mail'];
+                    $mail = stripslashes($_GET['mail']);
                     echo "<input type='email' maxlength='50' name='mail' placeholder='Adresse mail *' value='$mail' required>";
                 }
                 else {
@@ -693,7 +699,7 @@ function displayInscription() {
                 echo "<div class='left-column'>";
 
                 if (isset($_GET['login'])) {
-                    $login = $_GET['login'];
+                    $login = stripslashes($_GET['login']);
                     echo "<input type='text' maxlength='50' name='login' placeholder='Login *' value='$login' required>";
                 }
                 else {
@@ -701,7 +707,7 @@ function displayInscription() {
                 }
 
                 if (isset($_GET['mdp'])) {
-                    $mdp = $_GET['mdp'];
+                    $mdp = stripslashes($_GET['mdp']);
                     echo "<input type='password' maxlength='50' name='mdp' placeholder='Mot de passe *' value='$mdp' required>";
                 }
                 else {
@@ -709,7 +715,7 @@ function displayInscription() {
                 }
 
                 if (isset($_GET['mdp_confirmation'])) {
-                    $mdp_confirmation = $_GET['mdp_confirmation'];
+                    $mdp_confirmation = stripslashes($_GET['mdp_confirmation']);
                     echo "<input type='password' maxlength='50' name='mdp-confirmation' placeholder='Confirmation du mot de passe *' value='$mdp_confirmation' required>";
                 }
                 else {
@@ -1179,7 +1185,7 @@ function displayConnection () {
                     echo "<div class='left-column'>";
 
                         if (isset($_GET['login'])) {
-                            $login = $_GET['login'];
+                            $login = stripslashes($_GET['login']);
                             echo "<input type='text' name='login' placeholder='Login *' value='$login' required>";
                         }
                         else {
@@ -1187,7 +1193,7 @@ function displayConnection () {
                         }
 
                         if (isset($_GET['prenom'])) {
-                            $mdp = $_GET['mdp'];
+                            $mdp = stripslashes($_GET['mdp']);
                             echo "<input type='text' name='mdp' placeholder='Mot de passe *' value='$mdp' required>";
                         }
                         else {

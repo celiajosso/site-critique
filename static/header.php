@@ -31,6 +31,7 @@ date_default_timezone_set('Europe/Paris');
         echo "<a href='profilPrive.php?numero=$id_user'>";
         echo "<img id='pp-connected' src='$pp' alt='Photo de profil de l'utilisateur connecté'>";
         echo "</a>";
+        $username = stripslashes($username);
         echo "<p class='a-centrer'>Bonjour $username !</p>";
         echo "</div>";
 
