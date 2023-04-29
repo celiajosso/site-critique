@@ -346,6 +346,41 @@ function articlesBySearch($my_sqli, $jeux_res) {
     return $all_data;
 }
 
+function articlesOnPrivatePage($my_sqli, $id_connected) {
+
+    $all_data = Array();
+
+    $sql_data_article = "SELECT id_Article, titre_Article, noteRedacteur_Article, dateCreation_Article FROM Article INNER JOIN Utilisateur ON Article.id_UtilisateurCreateur = Utilisateur.id_Utilisateur WHERE id_Utilisateur=$id_connected ORDER BY dateCreation_Article DESC";
+    $sql_data_article_res = readDB($my_sqli, $sql_data_article);
+
+    $sql_data_jaquette = "SELECT chemin_Image FROM Image INNER JOIN est_Image ON est_Image.id_Image = Image.id_Image INNER JOIN Article ON Article.id_Article = est_Image.id_Article WHERE Article.id_UtilisateurCreateur=$id_connected AND chemin_Image LIKE '%jaquette%' ORDER BY dateCreation_Article DESC";
+    $sql_data_jaquette_res = readDB($my_sqli, $sql_data_jaquette);
+
+    $sql_data_note = "SELECT Article.id_Article, AVG(Avis.note_Avis) as note_moy FROM Avis INNER JOIN Article ON Article.id_Article = Avis.id_Article WHERE Article.id_UtilisateurCreateur=$id_connected GROUP BY Article.id_Article ORDER BY Article.dateCreation_Article DESC";
+    $sql_data_note_res = readDB($my_sqli, $sql_data_note);
+
+    foreach ($sql_data_article_res as $cle => $val) {
+        $jaquette = Array("chemin_Image" => $sql_data_jaquette_res[$cle]["chemin_Image"]);
+
+        foreach ($sql_data_note_res as $cle1 => $val1) {
+            if ($sql_data_article_res[$cle]["id_Article"] == $val1["id_Article"]) {
+                $note_moy = Array("note_moy" => $val1["note_moy"]);
+            }
+        }
+        
+        if (isset($note_moy)) {
+            array_push($sql_data_article_res[$cle], $jaquette, $note_moy);
+        }
+        else {
+            array_push($sql_data_article_res[$cle], $jaquette);
+        }
+        
+    }
+
+    array_push($all_data, $sql_data_article_res);
+    return $all_data;
+}
+
 function connectedInfos($my_sqli, $login_connected) {
     // retourne les identifiants de l'utilisateur
     //    - indentifiant personnel
