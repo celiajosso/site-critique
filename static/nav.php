@@ -20,7 +20,7 @@ if (isset ($_SESSION['username'])) {
         echo "<nav>";
         echo "<ul class='ul-navigation'>";
 
-            if ($page_courante == 'index.php' || str_starts_with($page_courante, 'article.php')) {
+            if ($page_courante == 'index.php' || str_starts_with($page_courante, 'article.php') || str_starts_with($page_courante, 'modifArticle.php') || str_starts_with($page_courante, 'modifie_avis.php') || str_starts_with($page_courante, 'ajout_avis.php') || str_starts_with($page_courante, 'profilPublic.php')) {
                 echo "<li class='li-navigation-twoparts' id='active'>";
             }
             else {
@@ -45,7 +45,7 @@ if (isset ($_SESSION['username'])) {
         echo "<nav>";
         echo "<ul class='ul-navigation'>";
 
-            if ($page_courante == 'index.php' || str_starts_with($page_courante, 'article.php')) {
+            if ($page_courante == 'index.php' || str_starts_with($page_courante, 'article.php') || str_starts_with($page_courante, 'modifArticle.php') || str_starts_with($page_courante, 'modifie_avis.php') || str_starts_with($page_courante, 'ajout_avis.php') || str_starts_with($page_courante, 'profilPublic.php')) {
                 echo "<li class='li-navigation-threeparts' id='active'>";
             }
             else {
@@ -81,7 +81,7 @@ if (isset ($_SESSION['username'])) {
         echo "<nav>";
         echo "<ul class='ul-navigation'>";
 
-            if ($page_courante == 'index.php' || str_starts_with($page_courante, 'article.php')) {
+            if ($page_courante == 'index.php' || str_starts_with($page_courante, 'article.php') || str_starts_with($page_courante, 'modifArticle.php') || str_starts_with($page_courante, 'modifie_avis.php') || str_starts_with($page_courante, 'ajout_avis.php') || str_starts_with($page_courante, 'profilPublic.php')) {
                 echo "<li class='li-navigation-fourparts' id='active'>";
             }
             else {
@@ -130,7 +130,7 @@ else {
     echo "<nav>";
     echo "<ul class='ul-navigation'>";
 
-    if ($page_courante == 'index.php' || str_starts_with($page_courante, 'article.php')) {
+    if ($page_courante == 'index.php' || str_starts_with($page_courante, 'article.php') || str_starts_with($page_courante, 'modifArticle.php') || str_starts_with($page_courante, 'modifie_avis.php') || str_starts_with($page_courante, 'ajout_avis.php') || str_starts_with($page_courante, 'profilPublic.php')) {
         echo "<li class='li-navigation-twoparts' id='active'>";
     }
     else {
