@@ -181,3 +181,7 @@ display: block;
 textarea{
 	resize: none;
 }
+
+#note{
+	margin-left: 5px;
+}

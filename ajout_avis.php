@@ -53,11 +53,11 @@ date_default_timezone_set('Europe/Paris');
         </div>
         <label for="avis_titre" class="center texte">Titre avis :</label>
         <div class="center">
-            <textarea name="avis_titre" rows="1" cols="30"></textarea>
+            <textarea name="avis_titre" rows="2" cols="50"></textarea>
         </div>
         <label for="avis_texte" class="center texte">Avis :</label>
         <div class="center">
-            <textarea name="avis_texte" rows="10" cols="30"></textarea>
+            <textarea name="avis_texte" rows="8" cols="50"></textarea>
         </div>
         <div class="button-center">
             <input type="submit" value="Ajouter">

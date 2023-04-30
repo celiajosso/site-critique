@@ -49,11 +49,11 @@ session_start()
                 ?>
             </select></div>
             <label for="avis_titre" class="center texte">Titre avis :</label>
-            <div class="center"><textarea name="avis_titre" rows="1" cols="30"><?php $titre=get_avis($my_sqli,$_GET['id_connected'],$_GET['numero'])[0]['titre_Avis'];
+            <div class="center"><textarea name="avis_titre" rows="2" cols="50"><?php $titre=get_avis($my_sqli,$_GET['id_connected'],$_GET['numero'])[0]['titre_Avis'];
                                                                 echo $titre;
                                                             ?></textarea></div>
             <label for="avis_texte" class="center texte">Avis :</label>
-            <div class="center"><textarea name="avis_texte" rows="10" cols="30"><?php $texte=get_avis($my_sqli,$_GET['id_connected'],$_GET['numero'])[0]['contenu_Avis'];
+            <div class="center"><textarea name="avis_texte" rows="8" cols="50"><?php $texte=get_avis($my_sqli,$_GET['id_connected'],$_GET['numero'])[0]['contenu_Avis'];
                                                                 echo $texte;
                                                             ?></textarea></div>
             <div class="button_center"><input type="submit" class="text" value="Modifier" id="btn_submit"/></div>
