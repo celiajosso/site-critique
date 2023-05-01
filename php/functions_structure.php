@@ -573,6 +573,32 @@ function display_ajoutAvis ($my_sqli) {
     echo "<br><br><br><br>";
 }
 
+function displayPrivatePage($my_sqli) {
+    $num = $_GET['numero'];
+
+    $tab_connected = connectedInfos($my_sqli, $_SESSION["username"]);
+    $role = $tab_connected[1];
+
+    $tab = getUserPrivateInformations($my_sqli, $num);
+    displayUserPrivateInformations($my_sqli, $tab); 
+
+    echo "<div class='redaction-site'>";
+
+    echo "<div class='redac-articles'>";
+        $tab_articles = articlesOnPrivatePage($my_sqli, $num);            
+        displayArticlesOnPrivatePage($my_sqli, $tab_articles, $role);
+    echo "</div>";
+
+    echo "<div class='redac-avis'>";
+        $tab_avis = avisUser($my_sqli, $num);
+        displayAvisUserOnPrivatePage($my_sqli, $tab_avis);
+    echo "</div>";
+
+    echo "</div>";
+
+    echo "<br><br><br><br>";
+}
+
 function displayAvisUserOnPrivatePage($my_sqli, $avis) {
 
     $len = count($avis);
