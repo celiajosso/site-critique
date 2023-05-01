@@ -534,6 +534,45 @@ function display_Avis($avis,$id_utilisateur,$my_sqli, $num) {
     }
 }
 
+function display_ajoutAvis ($my_sqli) {
+
+    echo "<div class='onglet_titre'>";
+        echo "<div class='center'>";
+            echo "<img class='star_img' src='Images/stars.png'>";
+            echo "<p class='texte_titre'>Ajouter un avis</p>";
+            echo "<img class='star_img' src='Images/stars.png'>";
+        echo "</div>";
+    echo "</div>";
+
+    $numero = $_GET['numero'];
+    $id_connected = $_GET['id_connected'];
+
+    echo "<form action='php/add_review.php?numero='$numero'&id_connected='$id_connected' method='POST' name='nomForm2' class='onglet_form'>";
+        echo "<div class='center'>";
+            echo "<label for='note' class='texte'>Note sur 10 :</label>";    
+            echo "<select id='note' name='note'>"; 
+                foreach(range(0,10) as $numero){
+                    echo "<option>$numero</option>";
+                }
+
+            echo "</select>";
+        echo "</div>";
+
+        echo "<label for='avis_titre' class='center texte'>Titre avis :</label>";
+        echo "<div class='center'>";
+            echo "<textarea name='avis_titre' rows='2' cols='50'></textarea>";
+        echo "</div>";
+        echo "<label for='avis_texte' class='center texte'>Avis :</label>";
+        echo "<div class='center'>";
+            echo "<textarea name='avis_texte' rows='8' cols='50'></textarea>";
+        echo "</div>";
+        echo "<div class='button-center'>";
+            echo "<input type='submit' value='Ajouter'>";
+        echo "</div>";
+    echo "</form>";
+    echo "<br><br><br><br>";
+}
+
 function displayAvisUserOnPrivatePage($my_sqli, $avis) {
 
     $len = count($avis);
