@@ -573,6 +573,38 @@ function display_ajoutAvis ($my_sqli) {
     echo "<br><br><br><br>";
 }
 
+function display_modifAvis ($my_sqli) {
+    echo "<div class='onglet_titre'><div class='center'><p class='texte_titre'>Modifier un avis :</p></div></div>";
+    $numero = $_GET['numero'];
+    $id_connected = $_GET['id_connected'];
+    echo "<form action='php/change_review.php?numero=$numero&id_connected=$id_connected' method='POST' name='nomForm2' class='onglet_form'>";
+    echo "<div class='center'><label for='note' class='texte'>Note sur 10 :</label>";    
+		echo "<select id='note' name='note'>";
+                foreach(range(0,10) as $numero){
+                    if ($numero==get_avis($my_sqli,$_GET['id_connected'],$_GET['numero'])[0]['note_Avis']){
+                        echo "<option selected>$numero</option>";
+
+                    }
+                    else{
+                        echo "<option>$numero</option>";
+                    }
+                }
+            echo "</select></div>";
+            echo "<label for='avis_titre' class='center texte'>Titre avis :</label>";
+
+            $titre = get_avis($my_sqli,$_GET['id_connected'],$_GET['numero'])[0]['titre_Avis'];
+
+            echo "<div class='center'><textarea name='avis_titre' rows='2' cols='50'>$titre</textarea></div>";
+            echo "<label for='avis_texte' class='center texte'>Avis :</label>";
+
+            $texte=get_avis($my_sqli,$_GET['id_connected'],$_GET['numero'])[0]['contenu_Avis'];
+
+            echo "<div class='center'><textarea name='avis_texte' rows='8' cols='50'>$texte</textarea></div>";
+            echo "<div class='button_center'><input type='submit' class='text' value='Modifier' id='btn_submit'/></div>";    
+	echo "</form>";
+    echo "<br><br><br><br>";
+}
+
 function displayPrivatePage($my_sqli) {
     $num = $_GET['numero'];
 
