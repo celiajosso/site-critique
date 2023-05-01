@@ -38,3 +38,4 @@ session_start()
     <?php include("./static/footer.php"); ?>
 
 </html>
+<?php closeDB($my_sqli); ?>
