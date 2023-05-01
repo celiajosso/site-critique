@@ -66,7 +66,7 @@ date_default_timezone_set('Europe/Paris');
 
             echo "</div>";
 
-            echo "<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>";
+            echo "<br><br><br><br>";
         ?>
 
         <?php include("./static/footer.php"); ?>
