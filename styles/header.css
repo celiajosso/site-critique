@@ -1,4 +1,4 @@
-#logo{
+#logo {
     display: block;
     width : 30%;
     height: auto;
@@ -7,11 +7,11 @@
     transition: filter 0.5s;
 }
 
-#logo:hover{
+#logo:hover {
     filter: brightness(50%);
 }
 
-header{
+header {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -20,28 +20,28 @@ header{
     background-color: #f7f3f5;
   }
 
-.left-header{
+.left-header {
     width: 25%;
 }
 
-#lien-logo{
+#lien-logo {
     width: 100%;
 }
 
-#logo-connected{
+#logo-connected {
     width: 100%;
     transition: filter 0.5s;
 }
 
-#logo-connected:hover{
+#logo-connected:hover {
     filter: brightness(50%);
 }
 
-.right-header{
+.right-header {
     width: 10%;
 }
 
-#pp-connected{
+#pp-connected {
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -51,10 +51,10 @@ header{
     border : 1px solid black;
 }
 
-#separator{
+#separator {
     width: 30%;
 }
 
-.a-centrer{
+.a-centrer {
 	text-align: center;
 }

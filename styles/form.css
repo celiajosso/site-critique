@@ -21,31 +21,31 @@ legend {
 	font-weight: bold;
 }
 
-.form-content{
+.form-content {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
 }
 
-.left-column{
+.left-column {
 	width : 50%;
 	margin-right: 1%;
 }
 
-.right-column{
+.right-column {
 	width : 50%;
 }
 
-.left-column-checkbox{
+.left-column-checkbox {
 	width : 20%;
 	margin-top: 10px;
 }
 
-.right-column-checkbox{
+.right-column-checkbox {
 	width : 80%;
 }
 
-.form-style-5{
+.form-style-5 {
 	width: 75%;
 	padding: 10px 20px;
 	background: #e4edf4;
@@ -54,7 +54,7 @@ legend {
 	border-radius: 8px;
 }
 
-.form-style-5 fieldset{
+.form-style-5 fieldset {
 	border: none;
 }
 
@@ -87,7 +87,7 @@ legend {
 
 .form-style-5 input:focus,
 .form-style-5 textarea:focus,
-.form-style-5 select:focus{
+.form-style-5 select:focus {
 	background: #d2d9dd;
 }
 .form-style-5 select{
@@ -137,27 +137,27 @@ legend {
 display: block;
 }
 
-#case-oui{
+#case-oui {
 	margin: 0;
 	width: 75%;
 }
 
-#case-non{
+#case-non {
 	margin: 0;
 }
 
-.question-form{
+.question-form {
 	text-align: center;
 	margin: 0;
 	padding-bottom: 2%;
 }
 
-#case-pp{
+#case-pp {
 	margin-left: 15%;
 	width: 100%;
 }
 
-.erreur-inscription{
+.erreur-inscription {
 	color : white;
 	background-color: #295767;
 	width : 50%;
@@ -169,7 +169,7 @@ display: block;
 	text-align: center;
 }
 
-.a-centrer{
+.a-centrer {
 	text-align: center;
 }
 
@@ -178,10 +178,10 @@ display: block;
 	height : auto;
 }
 
-textarea{
+textarea {
 	resize: none;
 }
 
-#note{
+#note {
 	margin-left: 5px;
 }

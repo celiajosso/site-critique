@@ -17,20 +17,20 @@ footer {
   padding-right: 2%;
 }
 
-#contact{
+#contact {
   padding-left: 5%;
 }
 
-#contact-link{
+#contact-link {
   text-decoration: none;
   color: white;
 }
 
-#contact:hover{
+#contact:hover {
   text-decoration: underline dotted;
 }
 
-#copyright{
+#copyright {
   float: right;
   text-align: right;
   padding-right : 10%;

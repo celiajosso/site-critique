@@ -1,4 +1,4 @@
-.box-page-prive{
+.box-page-prive {
     width: 80%;
     border : 1px solid;
     margin-left: auto;
@@ -23,7 +23,7 @@
     margin-right: auto;
 }
 
-.flex-content{
+.flex-content {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -34,7 +34,7 @@ form {
     margin : 0;
 }
 
-input[type="submit"]{
+input[type="submit"] {
     border : none;
     padding: 10px;
     border-radius: 8px;

@@ -1,4 +1,4 @@
-.titre-article-individuel{
+.titre-article-individuel {
     width: 82%;
     border : 1px solid rgb(70, 70, 70);
     text-align: center;
@@ -8,13 +8,13 @@
     border-radius: 30px;
 }
 
-.image-type{
+.image-type {
     width: 15%;
     height: auto;
     padding-right: 1%;
 }
 
-.image-jaquette{
+.image-jaquette {
     margin: auto;
     width: 100%;
     display: block;
@@ -34,13 +34,13 @@
     margin-right: auto;
 }
 
-.flex-content{
+.flex-content {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-.infos-article{
+.infos-article {
     width: 80%;
     border: 1px solid rgb(70, 70, 70);
     border-radius: 30px;
@@ -52,7 +52,7 @@
     line-height: 1.5;
 }
 
-table{
+table {
     background-color: rgb(247, 247, 247);
     width: 70%;
     margin-left: auto;
@@ -68,23 +68,23 @@ td, th {
     padding : 1%;
 }
 
-.col1{
+.col1 {
     width : 15%;
 }
 
-.col2{
+.col2 {
     width : 15%;
 }
 
-.to-justify{
+.to-justify {
     text-align: justify;
 }
 
-.text-content{
+.text-content {
     padding: 2%;
 }
 
-.to-place-right{
+.to-place-right {
     text-align: right;
 }
 

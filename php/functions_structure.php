@@ -1,17 +1,21 @@
 <?php
+
 //affichage des erreurs côté PHP et côté MYSQLI
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL); 
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+
 //Import du site
 include_once("./php/functions-DB.php");
 include_once("./php/functions_query.php");
 include_once("./php/functions_structure.php");
+
 $my_sqli = connectionDB();
 date_default_timezone_set('Europe/Paris');
 
 function displayArticles ($my_sqli, $jeux) {
+
     if (isset($_GET["inscription"])) {
         $login = stripslashes($_SESSION["username"]);
         echo "<div class='erreur-inscription'><h2>Bienvenue $login !</div><br><br>";
@@ -326,10 +330,11 @@ function displayArticleInformations($article, $num, $my_sqli) {
 
     echo "</div>";
     echo "<div class='right-column'>";
+
     if (!empty($_SESSION)) {
-            if ($_SESSION['role'] == 2 || $_SESSION['role'] == 3) {
-        echo "<a href='modifArticle.php?numero=$num'><img class='icone-modif' alt='Modifier article' title='Modifier article' src='Images/modif.png'></a>";
-    }
+        if ($_SESSION['role'] == 2 || $_SESSION['role'] == 3) {
+            echo "<a href='modifArticle.php?numero=$num'><img class='icone-modif' alt='Modifier article' title='Modifier article' src='Images/modif.png'></a>";
+        }
     }
 
     echo "<h1>$titre_jeu</h1>";
@@ -369,11 +374,13 @@ function displayArticleInformations($article, $num, $my_sqli) {
     echo "<br><br>";
 
     echo "<div class='text-content'>";
+
     echo "<table>";
+
         echo "<tr>";
-        echo "<th class='col1'>Date de sortie</th>";
-        echo "<th class='col2'>Prix</th>";
-        echo "<th class='col3'>Synopsis</th>";
+            echo "<th class='col1'>Date de sortie</th>";
+            echo "<th class='col2'>Prix</th>";
+            echo "<th class='col3'>Synopsis</th>";
         echo "</tr>";
     
         echo "<tr>";
@@ -383,28 +390,30 @@ function displayArticleInformations($article, $num, $my_sqli) {
             echo "<td class='to-justify'>$synopsis_jeu</td>";
         echo "</tr>";
         
-        echo "</table>";
-        echo "<div>";
+    echo "</table>";
+    echo "<div>";
 
-        echo "<br><br>";
+    echo "<br><br>";
 
-        echo "<h1>Critique du rédacteur</h1>";
-        echo "<p class='to-justify'>$contenu_article<p>";
+    echo "<h1>Critique du rédacteur</h1>";
+    echo "<p class='to-justify'>$contenu_article<p>";
 
-        echo "<h2 class='to-place-right'>Note du rédacteur : <img class='image-note' src='Images/note/$noteRedacteur_article.png' title='$noteRedacteur_article/10'></h2>";
-        echo "<br>";
+    echo "<h2 class='to-place-right'>Note du rédacteur : <img class='image-note' src='Images/note/$noteRedacteur_article.png' title='$noteRedacteur_article/10'></h2>";
+    echo "<br>";
         
-        echo "<img class='image-gameplay' src=$image_gameplay>";
+    echo "<img class='image-gameplay' src=$image_gameplay>";
 
-        echo "<div class='to-place-right'>";
-        echo "<h3>Rédigé par : <a class='lien-texte' href='profilPublic.php?numero=$idCrea_article'>$UtilisateurCrea_article</a> ($dateCrea_article)</h3>";        
-        if (!empty($UtilisateurModif_article)) {
-            $dateModif_article = writeDate($dateModif_article);
-            echo "<h3>Modifié par : <a class='lien-texte' href='profilPublic.php?numero=$idModif_article'>$UtilisateurModif_article</a> ($dateModif_article)</h3>";
-        }
-        echo "</div>";
+    echo "<div class='to-place-right'>";
+    echo "<h3>Rédigé par : <a class='lien-texte' href='profilPublic.php?numero=$idCrea_article'>$UtilisateurCrea_article</a> ($dateCrea_article)</h3>";        
+    
+    if (!empty($UtilisateurModif_article)) {
+        $dateModif_article = writeDate($dateModif_article);
+        echo "<h3>Modifié par : <a class='lien-texte' href='profilPublic.php?numero=$idModif_article'>$UtilisateurModif_article</a> ($dateModif_article)</h3>";
+    }
 
-        echo "</div>";
+    echo "</div>";
+
+    echo "</div>";
     echo "</div>";
     echo "</div>";
 
@@ -448,6 +457,7 @@ function displayArticleInformations($article, $num, $my_sqli) {
     }
     else {
         echo "<br><h2 class='a-centrer'>Aucun avis pour cet article.</h2>";
+
         if (!empty($_SESSION)) {
             $login_connected = $_SESSION["username"];
             $tab = connectedInfos($my_sqli, $login_connected);
@@ -459,6 +469,7 @@ function displayArticleInformations($article, $num, $my_sqli) {
             if ($id_createur !== $id_connected) {
                 echo "<a href='ajout_avis.php?numero=$num&id_connected=$id_connected'><button>Ajouter un avis</button></a>";
             }   
+
         }
     }
     echo "<br><br><br><br><br><br>";
@@ -474,39 +485,43 @@ function display_Avis($avis,$id_utilisateur,$my_sqli, $num) {
         echo "<div>";
 
         if (isset($id_connected)) {
+
             if ($id_utilisateur != $id_connected) {
                 echo "<a href='profilPublic.php?numero=$id_utilisateur'><img class='photo_utilisateur' src='$tableau[photoProfil_Utilisateur]'></a>";
             }
             else {
                 echo "<a href='profilPrive.php?numero=$id_utilisateur'><img class='photo_utilisateur' src='$tableau[photoProfil_Utilisateur]'></a>";
             }
+
         }
         else {
             echo "<a href='profilPublic.php?numero=$id_utilisateur'><img class='photo_utilisateur' src='$tableau[photoProfil_Utilisateur]'></a>";
         }
+
         echo "<br>";
         echo "</div>";
         $date = writeDate($tableau["dateCreation_Avis"]);
         
-        
         echo "<div>";
-        echo "<p class='titre_avis'>$tableau[titre_Avis]</p>";
-        echo "<p class='utilisateur_avis'>Utilisateur : $tableau[login_Utilisateur]</p>";
-        echo "<p class='utilisateur_avis'>" . avis_totale($my_sqli,$id_utilisateur) . " avis </p>";
-        echo "<p class='texte_avis'>$tableau[contenu_Avis]</p>";
-        echo "<img class='etoile' src='Images/Note/$tableau[note_Avis].png' title='$tableau[note_Avis]/10'>";
-        echo "<p class='texte_avis'>Article écrit le : $date</p>";
+            echo "<p class='titre_avis'>$tableau[titre_Avis]</p>";
+            echo "<p class='utilisateur_avis'>Utilisateur : $tableau[login_Utilisateur]</p>";
+            echo "<p class='utilisateur_avis'>" . avis_totale($my_sqli,$id_utilisateur) . " avis </p>";
+            echo "<p class='texte_avis'>$tableau[contenu_Avis]</p>";
+            echo "<img class='etoile' src='Images/Note/$tableau[note_Avis].png' title='$tableau[note_Avis]/10'>";
+            echo "<p class='texte_avis'>Article écrit le : $date</p>";
         echo "</div>";
+
         echo "</div>";
 
         if (!empty($_SESSION)) {
 
             $login_connected = $_SESSION["username"];
-
             $tab = connectedInfos($my_sqli, $login_connected);
             $id_connected = $tab[0];
             $role = $tab[1];
+
             if ($role == 3) {
+
                 if ($id_utilisateur != $id_connected) {
                     echo "<a href='php/delete_avis.php?numero=$num&id_connected=$id_utilisateur'><button>Supprimer cet avis</button></a>";
                 }
@@ -519,10 +534,11 @@ function display_Avis($avis,$id_utilisateur,$my_sqli, $num) {
 
             }
             else  {
+
                 if ($id_utilisateur == $id_connected) {
                     echo "<div class='aligned-buttons'>";
-                    echo "<div><a href='php/delete_avis.php?numero=$num&id_connected=$id_connected'><button>Supprimer cet avis</button></a></div>";
-                    echo "<div><a href='modifie_avis.php?numero=$num&id_connected=$id_connected'><button>Modifier cet avis</button></a></div>";
+                        echo "<div><a href='php/delete_avis.php?numero=$num&id_connected=$id_connected'><button>Supprimer cet avis</button></a></div>";
+                        echo "<div><a href='modifie_avis.php?numero=$num&id_connected=$id_connected'><button>Modifier cet avis</button></a></div>";
                     echo "</div>";
                 }
 
@@ -547,10 +563,12 @@ function display_ajoutAvis ($my_sqli) {
     $numero = $_GET['numero'];
     $id_connected = $_GET['id_connected'];
 
-    echo "<form action='php/add_review.php?numero='$numero'&id_connected='$id_connected' method='POST' name='nomForm2' class='onglet_form'>";
+    echo "<form action='php/add_review.php?numero=$numero&id_connected=$id_connected' method='POST' name='nomForm2' class='onglet_form'>";
+        
         echo "<div class='center'>";
             echo "<label for='note' class='texte'>Note sur 10 :</label>";    
             echo "<select id='note' name='note'>"; 
+
                 foreach(range(0,10) as $numero){
                     echo "<option>$numero</option>";
                 }
@@ -562,50 +580,57 @@ function display_ajoutAvis ($my_sqli) {
         echo "<div class='center'>";
             echo "<textarea name='avis_titre' rows='2' cols='50'></textarea>";
         echo "</div>";
+        
         echo "<label for='avis_texte' class='center texte'>Avis :</label>";
         echo "<div class='center'>";
             echo "<textarea name='avis_texte' rows='8' cols='50'></textarea>";
         echo "</div>";
+        
         echo "<div class='button-center'>";
             echo "<input type='submit' value='Ajouter'>";
         echo "</div>";
-    echo "</form>";
+    
+        echo "</form>";
     echo "<br><br><br><br>";
 }
 
 function display_modifAvis ($my_sqli) {
+    
     echo "<div class='onglet_titre'><div class='center'><p class='texte_titre'>Modifier un avis :</p></div></div>";
     $numero = $_GET['numero'];
     $id_connected = $_GET['id_connected'];
+    
     echo "<form action='php/change_review.php?numero=$numero&id_connected=$id_connected' method='POST' name='nomForm2' class='onglet_form'>";
     echo "<div class='center'><label for='note' class='texte'>Note sur 10 :</label>";    
 		echo "<select id='note' name='note'>";
-                foreach(range(0,10) as $numero){
-                    if ($numero==get_avis($my_sqli,$_GET['id_connected'],$_GET['numero'])[0]['note_Avis']){
-                        echo "<option selected>$numero</option>";
+                
+            foreach(range(0,10) as $numero){
+                if ($numero==get_avis($my_sqli,$_GET['id_connected'],$_GET['numero'])[0]['note_Avis']){
+                    echo "<option selected>$numero</option>";
 
-                    }
-                    else{
-                        echo "<option>$numero</option>";
-                    }
                 }
-            echo "</select></div>";
-            echo "<label for='avis_titre' class='center texte'>Titre avis :</label>";
+                else{
+                    echo "<option>$numero</option>";
+                }
+            }
+        echo "</select></div>";
 
-            $titre = get_avis($my_sqli,$_GET['id_connected'],$_GET['numero'])[0]['titre_Avis'];
+        echo "<label for='avis_titre' class='center texte'>Titre avis :</label>";
 
-            echo "<div class='center'><textarea name='avis_titre' rows='2' cols='50'>$titre</textarea></div>";
-            echo "<label for='avis_texte' class='center texte'>Avis :</label>";
+        $titre = get_avis($my_sqli,$_GET['id_connected'],$_GET['numero'])[0]['titre_Avis'];
+        echo "<div class='center'><textarea name='avis_titre' rows='2' cols='50'>$titre</textarea></div>";
+        echo "<label for='avis_texte' class='center texte'>Avis :</label>";
 
-            $texte=get_avis($my_sqli,$_GET['id_connected'],$_GET['numero'])[0]['contenu_Avis'];
+        $texte=get_avis($my_sqli,$_GET['id_connected'],$_GET['numero'])[0]['contenu_Avis'];
+        echo "<div class='center'><textarea name='avis_texte' rows='8' cols='50'>$texte</textarea></div>";
+        echo "<div class='button_center'><input type='submit' class='text' value='Modifier' id='btn_submit'/></div>";    
 
-            echo "<div class='center'><textarea name='avis_texte' rows='8' cols='50'>$texte</textarea></div>";
-            echo "<div class='button_center'><input type='submit' class='text' value='Modifier' id='btn_submit'/></div>";    
 	echo "</form>";
     echo "<br><br><br><br>";
 }
 
 function displayPrivatePage($my_sqli) {
+
     $num = $_GET['numero'];
 
     $tab_connected = connectedInfos($my_sqli, $_SESSION["username"]);
@@ -627,7 +652,6 @@ function displayPrivatePage($my_sqli) {
     echo "</div>";
 
     echo "</div>";
-
     echo "<br><br><br><br>";
 }
 
@@ -648,24 +672,23 @@ function displayAvisUserOnPrivatePage($my_sqli, $avis) {
     foreach($avis as $tableau){
         echo "<div class='onglet_avis_prive'>";
 
-        echo "<div class='aligne'>";
+            echo "<div class='aligne'>";
 
-        echo "<div class='div-jaquette'>";
+                echo "<div class='div-jaquette'>";
+                    echo "<a href='article.php?numero=$tableau[id_Article]'><img class='image-jaquette-avis' src='$tableau[chemin_Image]'></a>";
+                    echo "<br>";
+                echo "</div>";
 
-        echo "<a href='article.php?numero=$tableau[id_Article]'><img class='image-jaquette-avis' src='$tableau[chemin_Image]'></a>";
+                $date = writeDate($tableau["dateCreation_Avis"]);
+                
+                echo "<div>";
+                    echo "<p class='titre_avis'>$tableau[titre_Avis]</p>";
+                    echo "<p class='texte_avis'>$tableau[contenu_Avis]</p>";
+                    echo "<img class='etoile' src='Images/Note/$tableau[note_Avis].png' title='$tableau[note_Avis]/10'>";
+                    echo "<p class='texte_avis'>Article écrit le : $date</p>";
+                echo "</div>";
             
-        echo "<br>";
-        echo "</div>";
-        $date = writeDate($tableau["dateCreation_Avis"]);
-        
-        
-        echo "<div>";
-        echo "<p class='titre_avis'>$tableau[titre_Avis]</p>";
-        echo "<p class='texte_avis'>$tableau[contenu_Avis]</p>";
-        echo "<img class='etoile' src='Images/Note/$tableau[note_Avis].png' title='$tableau[note_Avis]/10'>";
-        echo "<p class='texte_avis'>Article écrit le : $date</p>";
-        echo "</div>";
-        echo "</div>";
+            echo "</div>";
 
         echo "</div>";
 
@@ -673,6 +696,7 @@ function displayAvisUserOnPrivatePage($my_sqli, $avis) {
 }
 
 function displayUserPrivateInformations($my_sqli, $tab) {
+    
     $num = $tab[0]["id_Utilisateur"];
     $login = $tab[0]["login_Utilisateur"];
     $password = $tab[0]["password_Utilisateur"];
@@ -685,10 +709,10 @@ function displayUserPrivateInformations($my_sqli, $tab) {
     $id_role = $tab[0]["id_Role"];
 
     $creation = writeDate($creation);
-
     $role = recupRole($my_sqli, $id_role);
 
     if (isset($_GET["erreur"])) {
+        
         if ($_GET["erreur"] == "age") {
             echo "<div class='erreur-inscription'><h2>Erreur !</h2>Vous êtes trop jeune ! Vous devez avoir au moins 15 ans !<br><br></div>";
         }
@@ -698,6 +722,7 @@ function displayUserPrivateInformations($my_sqli, $tab) {
         if ($_GET["erreur"] == "unchanged"){
             echo "<div class='erreur-inscription'><h2>Aucun champ modifié.<h2></div>";
         }
+
     }
 
     if (isset($_GET["success"])) {
@@ -769,13 +794,16 @@ function displayUserPrivateInformations($my_sqli, $tab) {
 
             echo "</table>";
 
-        echo "</div>";
+            echo "</div>";
 
+        echo "</div>";
+    
     echo "</div>";
-    echo "</div>";
+
 }
 
 function displayUserPublicInformations($my_sqli, $tab) {
+
     $login = $tab[0]["login_Utilisateur"];
     $pp = $tab[0]["photoProfil_Utilisateur"];
     $creation = $tab[0]["dateCreation_Utilisateur"];
@@ -822,14 +850,19 @@ function displayUserPublicInformations($my_sqli, $tab) {
                 echo "</tr>";
 
             echo "</table>";
+
+            echo "</div>";
+
         echo "</div>";
-    echo "</div>";
+
     echo "</div>";
     echo "<br><br><br><br><br><br><br><br><br><br>";
 }
 
 function displayInscription() {
+
     if (isset($_GET["erreur"])) {
+
         if ($_GET["erreur"] == "age") {
             echo "<div class='erreur-inscription'><h2>Erreur !</h2>Vous êtes trop jeune ! Vous devez avoir au moins 15 ans !<br><br></div>";
         }
@@ -839,6 +872,7 @@ function displayInscription() {
         if ($_GET["erreur"] == "mdp"){
             echo "<div class='erreur-inscription'><h2>Erreur !</h2>Le mot de passe confirmé est différent du mot de passe saisi !<br><br></div>";
         }
+
     }
 
     echo "<div class='form-style-5'>";
@@ -942,20 +976,24 @@ function displayInscription() {
                     echo "<input type=file name='choix-pp'required>";
                 echo "</div>";   
 
-        echo "</fieldset>";
-        echo "<input type='submit' value='Inscription'>";       
+            echo "</fieldset>";
+            echo "<input type='submit' value='Inscription'>";       
 
-    echo "</form>";
+        echo "</form>";
 
     echo "</div>";
     echo "<br><br><br><br>";
+
 }
 
 function displayRedacArticle ($my_sqli) {
+
     if (isset($_GET["erreur"])) {
+
         if ($_GET["erreur"] == "jeu") {
             echo "<div class='erreur-inscription'><h2>Erreur !</h2>Un article a déjà été écrit sur ce jeu !<br><br></div>";
         }
+
     }
 
     echo "<div class='form-style-5'>";
@@ -991,6 +1029,7 @@ function displayRedacArticle ($my_sqli) {
                     else {
                         echo "<input type='text' onfocus='(this.type=`date`)' max='$today' name='date_sortie' placeholder='Date de sortie du jeu *' required>";
                     }  
+
                 echo "</div>";
 
                 echo "<div class='right-column'>";
@@ -1020,7 +1059,6 @@ function displayRedacArticle ($my_sqli) {
                 if (isset($_GET['synopsis'])) {
                     $synopsis = $_GET['synopsis'];
                     echo "<textarea name='synopsis' maxlength='300' rows='5' placeholder='Synopsis' required='required'>$synopsis</textarea>";
-
                 }
                 else {
                     echo "<textarea name='synopsis' maxlength='300' rows='5' placeholder='Synopsis' required='required'></textarea>";
@@ -1062,7 +1100,7 @@ function displayRedacArticle ($my_sqli) {
                                     echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ'/></div>";
                                 }
                                 
-                            echo "<div class='right-column-checkbox'><img class='icone-type' src='$chemin_type'></div>";
+                                echo "<div class='right-column-checkbox'><img class='icone-type' src='$chemin_type'></div>";
                             echo "</div>";
                             echo "<br><br>";
 
@@ -1087,25 +1125,29 @@ function displayRedacArticle ($my_sqli) {
                             echo "<div class='form-content'>";
 
                             if (isset($_GET["sup_$i"])) {
+
                                 if ($_GET["sup_$i"] == 1) {
                                     echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ' checked/></div>";
                                 }
                                 else {
                                     echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ'/></div>";
                                 }
+
                             }
                             else {
                                 echo "<div class='left-column-checkbox'><input type='checkbox' name='$nom_champ'/></div>";
                             }
 
-                            echo "<div class='right-column-checkbox'><img class='icone-type' src='$chemin_type'></div>";
+                                echo "<div class='right-column-checkbox'><img class='icone-type' src='$chemin_type'></div>";
+
                             echo "</div>";
                             echo "<br><br>";
                             $i = $i + 1;
                         }
                     }
 
-                echo "</div>";  
+                echo "</div>"; 
+ 
             echo "</div>";
             echo "<br>";
 
@@ -1190,11 +1232,8 @@ function displayModifArticleInfos ($my_sqli) {
                     echo "</div>";
                 
                     echo "<div class='right-column'>";
-
                         echo "<input type='text' maxlength='30' name='nom_jeu' placeholder='Nom du jeu *' value='$nom_jeu' required>";
-                
                         echo "<input type='number' min='0' step='0.01' name='prix' placeholder='Prix du jeu *' value='$prix' required>";
-                
                     echo "</div>";
             
                 echo "</div>";
@@ -1210,7 +1249,7 @@ function displayModifArticleInfos ($my_sqli) {
                 $sql_selected_categories_res = $tab[0];
                 $sql_selected_supports_res = $tab[1];
 
-            echo "<div class='form-content'>";
+                echo "<div class='form-content'>";
 
                     echo "<div class=left-column'>";
 
@@ -1254,6 +1293,7 @@ function displayModifArticleInfos ($my_sqli) {
                     echo "</div>";
 
                     echo "<div class=right-column'>";
+
                         echo "<h3 class='a-centrer'>Supports du jeu</h3>";
 
                         $i = 1;
@@ -1296,21 +1336,23 @@ function displayModifArticleInfos ($my_sqli) {
                     echo "</div>";  
             
                 echo "</div>";
+                echo "<br>";
 
-            echo "<br>";
-            echo "<legend>";
-                echo "<span class='number'>2</span>";
-                echo "Votre critique";
-            echo "</legend>";
-            echo "<br>";
+                echo "<legend>";
+                    echo "<span class='number'>2</span>";
+                    echo "Votre critique";
+                echo "</legend>";
+                echo "<br>";
 
-            echo "<input type='number' min='0' max='10' name='note' placeholder='Note du jeu (/10) *' value='$note' required>";
-            echo "<textarea name='critique' maxlength='2000' rows='8' placeholder='Critique *' required='required'>$critique</textarea>";
+                echo "<input type='number' min='0' max='10' name='note' placeholder='Note du jeu (/10) *' value='$note' required>";
+                echo "<textarea name='critique' maxlength='2000' rows='8' placeholder='Critique *' required='required'>$critique</textarea>";
 
-        echo "</fieldset>";
+            echo "</fieldset>";
 
-        echo "<input type='submit' value='Modifier'>";         
-    echo "</form>";
+            echo "<input type='submit' value='Modifier'>";      
+   
+        echo "</form>";
+
     echo "</div>";
     echo "<br><br><br><br>";
 }
@@ -1371,6 +1413,7 @@ function displayGestionRoles ($my_sqli) {
             echo "<input type='submit' value='Changer le rôle'>";
 
         echo "</form>";
+
     echo "</div>";
     echo "<br><br><br><br>";
 }
@@ -1422,22 +1465,27 @@ function displayConnection () {
             echo "<input type='submit' value='Connexion'>";   
 
         echo "</form>";
+
     echo "</div>";
     echo "<br><br><br><br>";
 }
 
 function displayAuthentification () {
+
     echo "<div class='authentification-buttons'>";
+
         echo "<div>";
             echo "<h2>Vous possédez déjà un compte Gamecrit ?</h2>";
             echo "<br>";
             echo "<a href='connection.php'><button>Se connecter</button></a>";
         echo "</div>";
-    echo "<div>";
+
+        echo "<div>";
             echo "<h2>Vous êtes nouveau ?</h2>";
             echo "<br>";
             echo "<a href='registration.php'><button>S'inscrire</button></a>";
-            echo "</div>";
+        echo "</div>";
+    
     echo "</div>";
 }
 ?>

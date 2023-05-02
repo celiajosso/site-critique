@@ -1,4 +1,4 @@
-html{
+html {
     scroll-behavior: smooth;
     font-size: 15px;
     margin: 0;
@@ -6,20 +6,20 @@ html{
 	font-family: Arial, Helvetica, sans-serif;
 }
   
-body{
+body {
 	margin: 0;
 	padding: 0;
 	min-height: 100%;
 	position: relative;
 }  
 
-.icone-modif{
+.icone-modif {
   float:right;
   width:100px;
   height:auto;
 }
 
-.erreur-inscription{
+.erreur-inscription {
 	color : white;
 	background-color: #295767;
 	width : 50%;
@@ -31,23 +31,23 @@ body{
 	text-align: center;
 }
 
-.image-note{
+.image-note {
 	width: 100px;
 	height: auto;
 }
 
-hr{
+hr {
 	color : #e4e4e4;
 	margin-top: 30px;
 	margin-bottom: 50px;
 }
 
-.lien-texte{
+.lien-texte {
 	text-decoration: none;
 	color: black;
 	transition : color 0.2s;
 }
 
-.lien-texte:hover{
+.lien-texte:hover {
     color : #295767;
 }

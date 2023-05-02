@@ -11,7 +11,7 @@ function getArticles ($my_sqli) {
         $jeux_res = readDB($my_sqli, $jeux);
     }
 
-    // si la barre de recherche par categorie de jeu est utilisée
+    // si la barre de recherche par catégorie de jeu est utilisée
     elseif (isset($_GET) && !empty($_GET) && !isset($_GET['q'])) {
         $sql_categorie = "SELECT id_Categorie FROM Categorie";
         $sql_categorie_res = readDB($my_sqli, $sql_categorie);
@@ -21,12 +21,14 @@ function getArticles ($my_sqli) {
         $selected_categories = Array();
     
         for ($i=1; $i < $nb_categories+1; $i++) {
+
             if(isset($_GET["c_$i"])) {
                 $selected_categories[] = 1;
             }
             else {
                 $selected_categories[] = 0;
             }
+
         }
     
         $condition = " ";
@@ -62,26 +64,9 @@ function getArticles ($my_sqli) {
 }
 
 function getArticleInformations ($my_sqli) {
-    // Retourne un tableau associatif
-    // Contenant les informations suivantes
-    //      - Titre de l'article
-    //      - Catégories du jeu
-    //      - Supports du jeu
-    //      - Date de sortie du jeu
-    //      - Nom du jeu
-    //      - Prix du jeu
-    //      - Synopsis du jeu
-    //      - Critique du rédacteur
-    //      - Image de jaquette
-    //      - Image de gameplay
-    //      - Login du rédacteur + date
-    //      - Login du modifieur + date si existant
-    //      - Les avis de l'article
-    //          - Login
-    //          - Note
-    //          - Titre de l'avis
-    //          - Contenu de l'avis
-    //          - Date de rédaction de l'avis
+    // retourne un tableau associatif
+    // contenant >> toutes << les
+    // informations sur un article
 
     if (!isset ($_GET['numero'])) {
         header("Location: index.php");
@@ -122,17 +107,19 @@ function getArticleInformations ($my_sqli) {
 }
 
 function getUserPrivateInformations($my_sqli, $id_user) {
+    // retourne un tableau associatif contenant
+    // toutes les informations pour un utilisateur donné
+    // de la table Utilisateur
+    // a partir de son identifiant
+
     $sql_input = "SELECT * FROM Utilisateur WHERE id_Utilisateur = $id_user";
     $sql_input_res = readDB($my_sqli, $sql_input);
-
-    // Bonus : mettre les avis rédigés par la personnne
-    // Bonus : quand les avis seront fait -> mettre les avis rédigés par la personnne
 
     return $sql_input_res;
 }
 
 function Is_loginUnique ($my_sqli, $username) {
-    // Vérifie si le login entre par le nouvel utilisateur est unique
+    // vérifie si le login entré par le nouvel utilisateur est unique
 
     $username = htmlspecialchars($username, ENT_QUOTES);
     $sql_inscription = "SELECT login_Utilisateur FROM Utilisateur WHERE login_Utilisateur = '$username'";
@@ -142,7 +129,7 @@ function Is_loginUnique ($my_sqli, $username) {
 }
 
 function Is_gameUnique($my_sqli, $game) {
-    // Vérifie si le jeu entre par l'utilisateur est unique
+    // vérifie si le jeu entré par l'utilisateur est unique
 
     $sql_game = "SELECT * FROM Jeu WHERE nom = '$game'";
     $res_game = readDB($my_sqli, $sql_game);
@@ -151,7 +138,8 @@ function Is_gameUnique($my_sqli, $game) {
 }
 
 function Is_enoughAged ($naissance) {
-    // Vérifie si le nouvel utilisateur a plus de 15 ans
+    // vérifie si l'utilisateur a plus de 15 ans
+
     $naissance = new DateTime($naissance);
     $today = new DateTime(date("Y-m-d"));
 
@@ -161,15 +149,16 @@ function Is_enoughAged ($naissance) {
 }
 
 function Is_samePassword ($password, $password_conf) {
-    // Vérifie si le nouvel utilisateur a plus de 15 ans
+    // vérifie si le nouvel utilisateur
+    // a entré un mot de passe
+    // identique au mot de passe confirmé
+
     return $password == $password_conf;
 }
 
 function IsMember ($my_sqli, $username, $password) {
-    // Vérifie si un utilisateur existe dans la BDD
-    //      - Vérifie le login
-    //      - Vérifie le mdp
-    //      - retourne un tableau associatif
+    // vérifie si l'utilisateur existe dans la BDD
+    // lors de la connexion (login, mdp)
 
     $sql_connexion = "SELECT id_Utilisateur FROM Utilisateur WHERE login_Utilisateur = '$username' AND password_Utilisateur = '$password'";
     $res_login = readDB($my_sqli, $sql_connexion);
@@ -178,7 +167,9 @@ function IsMember ($my_sqli, $username, $password) {
 }
 
 function Is_ChangedRole ($my_sqli, $login, $chosen_role) {
-    // Vérifie le role choisi est bien différent du role initial
+    // vérifie si le role choisi
+    // est bien différent du role initial
+    // (gestion des roles)
 
     $role_utilisateur = "SELECT id_Role FROM Utilisateur WHERE login_Utilisateur='$login'";
     $role_utilisateur_res = readDB($my_sqli, $role_utilisateur);
@@ -190,13 +181,13 @@ function Is_ChangedRole ($my_sqli, $login, $chosen_role) {
 }
 
 function Duration($date) {
-    // Renvoie le temps passe depuis la date en parametre
-    // ex :
-    // il y a moins d'une minute
-    // il y a 2 minutes
-    // il y a 1 heure
-    // il y a 3 mois
-    // il y a 2 ans
+    // renvoie le temps passé depuis la date en paramètre
+    // gestion singulier / pluriel
+    // échelles de temps :
+    //    - minutes
+    //    - heures
+    //    - mois
+    //    - années
 
     $date = new DateTime($date);
     $today = new DateTime(date('Y-m-d H:i'));
@@ -259,7 +250,7 @@ function Duration($date) {
 }
 
 function writeDate($date) {
-    // Ecrit une date en format "français"
+    // ecrit une date en format "français"
     // ex :
     // "2023-02-05" -> "5 février 2023"
 
@@ -288,7 +279,7 @@ function writeDate($date) {
 }
 
 function idCategories($my_sqli) {
-    // Renvoie les identifiants des categories
+    // renvoie les identifiants des categories
 
     $sql_categorie = "SELECT id_Categorie FROM Categorie";
     $sql_categorie_res = readDB($my_sqli, $sql_categorie);
@@ -296,7 +287,7 @@ function idCategories($my_sqli) {
 }
 
 function idSupports($my_sqli) {
-    // Renvoie les identifiants des supports
+    // renvoie les identifiants des supports
 
     $sql_support = "SELECT id_Support FROM Support";
     $sql_support_res = readDB($my_sqli, $sql_support);
@@ -304,13 +295,8 @@ function idSupports($my_sqli) {
 }
 
 function articlesBySearch($my_sqli, $jeux_res) {
-    // retourne toutes les informations que doit faire retourner la recherche
-    // informations sur : 
-    //    - l'article
-    //    - l'utilisateur créateur de l'article
-    //    - l'utilisateur modifieur de l'article
-    //    - le chemin vers la jaquette du jeu
-    //    - la note globale des utilisateurs sur le jeu
+    // retourne toutes les informations sur l'article
+    // que doit faire retourner la recherche
 
     $all_data = Array();
 
@@ -347,6 +333,9 @@ function articlesBySearch($my_sqli, $jeux_res) {
 }
 
 function articlesOnPrivatePage($my_sqli, $id_connected) {
+    // retourne les informations principales sur les
+    // articles écrits par un utilisateur donné
+    // pour les afficher sur sa page privée
 
     $all_data = Array();
 
@@ -382,9 +371,9 @@ function articlesOnPrivatePage($my_sqli, $id_connected) {
 }
 
 function connectedInfos($my_sqli, $login_connected) {
-    // retourne les identifiants de l'utilisateur
-    //    - indentifiant personnel
-    //    - indentifiant de rôle
+    // retourne les identifiants d'un utilisateur donné
+    //    - identifiant personnel
+    //    - identifiant de rôle
 
     $sql_id_connected = "SELECT id_Utilisateur, id_role FROM Utilisateur WHERE login_Utilisateur='$login_connected'";
     $sql_id_connected_res = readDB($my_sqli, $sql_id_connected);
@@ -407,7 +396,8 @@ function avisEcrits($my_sqli, $id_connected, $num) {
 }
 
 function createurModifieurArticle($my_sqli, $num){
-    // retourne les identifiants des créateur et modifieur
+    // retourne les identifiants
+    // des créateur et modifieur
     // pour un article donné
 
     $sql_createur_modifieur = "SELECT id_UtilisateurCreateur, id_UtilisateurModifieur FROM Article WHERE id_Article=$num";
@@ -418,21 +408,9 @@ function createurModifieurArticle($my_sqli, $num){
     return Array($id_createur, $id_modifieur);
 }
 
-function loginPpAvis($my_sqli, $id_user){
-    // retourne le login et la pp pour un utilisateur donne
-    // utile pour l'affichage des avis
-
-    $sql_user = "SELECT login_Utilisateur, photoProfil_Utilisateur FROM Utilisateur WHERE id_Utilisateur=$id_user";
-    $sql_user_res = readDB($my_sqli, $sql_user);
-
-    $login = $sql_user_res[0]["login_Utilisateur"];
-    $pp = $sql_user_res[0]["photoProfil_Utilisateur"];
-
-    return Array($login, $pp);
-}
-
 function recupRole($my_sqli, $id_role) {
-    // recupere le role a partir de l'id du role
+    // récupère le rôle
+    // associé à partir de l'id du rôle
 
     $sql_input = "SELECT nom_Role FROM Role WHERE id_Role=$id_role";
     $sql_input_res = readDB($my_sqli, $sql_input);
@@ -443,7 +421,8 @@ function recupRole($my_sqli, $id_role) {
 }
 
 function recupUsername($my_sqli, $id_user) {
-    // recupere le pseudo a partir de l'id de l'utilisateur
+    // récupère le pseudo
+    // à partir de l'id de l'utilisateur
 
     $sql_input = "SELECT login_Utilisateur FROM Utilisateur WHERE id_Utilisateur=$id_user";
     $sql_input_res = readDB($my_sqli, $sql_input);
@@ -454,7 +433,9 @@ function recupUsername($my_sqli, $id_user) {
 }
 
 function modifArticleInfosArticleJeu ($my_sqli, $num) {
-    // retourne les infos necessaires à la modification d'un article
+    // retourne les informations nécessaires
+    // à la modification d'un article donné
+    // portant sur l'article et le jeu
 
     $sql_article = "SELECT * FROM Article WHERE id_Article=$num";
     $sql_article_res = readDB($my_sqli, $sql_article);
@@ -466,7 +447,9 @@ function modifArticleInfosArticleJeu ($my_sqli, $num) {
 }
 
 function modifArticleInfosCatSup ($my_sqli, $num_jeu) {
-    // retourne les infos necessaires à la modification d'un article
+    // retourne les informations nécessaires
+    // à la modification d'un article donné
+    // portant sur les catégories et les supports
 
     $sql_selected_categories = "SELECT id_Categorie FROM est_Categorie WHERE id_Jeu = $num_jeu";
     $sql_selected_categories_res = readDB($my_sqli, $sql_selected_categories);
@@ -478,56 +461,78 @@ function modifArticleInfosCatSup ($my_sqli, $num_jeu) {
 }
 
 function usernamesChangementRole ($my_sqli, $login_admin) {
+    // retourne tous les noms d'utilisateurs
+    // sauf celui de l'administrateur connecté
+    // utile pour la gestion des rôles
+
     $sql_noms = "SELECT login_Utilisateur FROM Utilisateur WHERE login_Utilisateur <> '$login_admin'";
     $sql_noms_res = readDB($my_sqli, $sql_noms);
     return $sql_noms_res;
 }
 
 function avis($mysqli,$id_Utilisateur,$id_Jeu){
-    // Retourne l'avis d'un jeu. 
+    // retourne toutes les informations sur un avis
+    // pour un article donné et un utilisateur donné 
+
     $tableau = readDB($mysqli,"SELECT avis.titre_Avis, avis.contenu_Avis, avis.dateCreation_Avis, avis.note_Avis, utilisateur.login_Utilisateur, utilisateur.photoProfil_Utilisateur FROM avis JOIN utilisateur ON avis.id_Utilisateur=utilisateur.id_Utilisateur JOIN article ON avis.id_Article=article.id_Article WHERE avis.id_Article=$id_Jeu AND avis.id_Utilisateur=$id_Utilisateur");
     return $tableau;
 }
 
 function avisUser($mysqli,$id_Utilisateur){
-    // Retourne tous les avis d'un utilisateur
+    // retourne tous les avis d'un utilisateur
+
     $tableau = readDB($mysqli,"SELECT avis.titre_Avis, avis.contenu_Avis, avis.dateCreation_Avis, avis.note_Avis, Article.id_Article, Image.chemin_Image FROM avis INNER JOIN article ON avis.id_Article=article.id_Article INNER JOIN est_image ON est_image.id_Article = article.id_Article INNER JOIN Image ON image.id_Image = est_image.id_Image WHERE avis.id_Utilisateur=$id_Utilisateur AND chemin_Image LIKE '%jaquette%' ORDER BY dateCreation_Avis DESC");
     return $tableau;
 }
 
 function note_moyenne($mysqli,$id_Jeu){
-    // Retourne la note moyenne d'un jeu.
+    // retourne la note moyenne d'un jeu.
+
     $tableau = readDB($mysqli,"SELECT AVG(note_Avis) FROM avis WHERE id_Article=$id_Jeu");
     return $tableau[0]["AVG(note_Avis)"];
 }
 
 function avis_totale($mysqli,$id_Utilisateur){
-    // Retourne le nombre d'avis totale d'un utilisateur. 
+    // retourne le nombre d'avis total
+    // rédigés par un utilisateur. 
+
     $tableau = readDB($mysqli,"SELECT COUNT(*) FROM avis WHERE avis.id_Utilisateur=$id_Utilisateur");
     return $tableau[0]['COUNT(*)'];
 }
 
 function utilisateurAvis ($my_sqli, $id_article) {
-    // Retourne les id des utilisateurs ayant laissé leur avis sur un jeu
+    // Retourne les id des utilisateurs
+    // ayant laissé leur avis sur un jeu
+
     $sql_utilisateur_avis = "SELECT id_Utilisateur FROM Avis WHERE id_Article=$id_article ORDER BY dateCreation_Avis DESC";
     $sql_utilisateur_avis_res = readDB($my_sqli, $sql_utilisateur_avis);
     return $sql_utilisateur_avis_res;
 }
 
 function add_review($mysqli,$titre_Avis,$contenu_Avis,$date,$note_Avis,$id_connected,$id_article){
+    // ajoute un nouvel avis à la base de données
+
     writeDB($mysqli,"INSERT INTO avis (titre_Avis, contenu_Avis, dateCreation_avis, note_Avis, id_Utilisateur, id_Article) VALUES ('$titre_Avis','$contenu_Avis','$date',$note_Avis,$id_connected,$id_article)");
 
 }
 
 function supprime_avis($mysqli,$id_user,$id_article){
+    // ajoute l'avis de la base de données
+
     writeDB($mysqli,"DELETE FROM avis WHERE avis.id_Utilisateur=$id_user and avis.id_Article=$id_article");
 }
 
 function modifie_avis($mysqli,$titre_Avis,$contenu_Avis,$note_Avis,$id_connected,$id_article){
+    // modifie l'avis dans la base de données
+
     writeDB($mysqli,"UPDATE avis SET avis.titre_Avis='$titre_Avis', avis.contenu_Avis='$contenu_Avis', avis.note_Avis=$note_Avis  WHERE avis.id_Utilisateur=$id_connected AND avis.id_Article=$id_article");
 }
 
 function get_avis($mysqli,$id_connected,$id_article){
+    // retourne toutes les informations d'un avis
+    // pour un article donné
+    // pour l'utilisateur connecté 
+
     $tableau=readDB($mysqli,"SELECT avis.titre_Avis, avis.contenu_Avis, avis.note_Avis FROM avis WHERE avis.id_Utilisateur=$id_connected AND avis.id_Article=$id_article");
     return $tableau;
 }

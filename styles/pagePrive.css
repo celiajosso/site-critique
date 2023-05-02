@@ -1,4 +1,4 @@
-.box-page-prive{
+.box-page-prive {
     width: 80%;
     border : 1px solid;
     margin-left: auto;
@@ -24,7 +24,7 @@
     margin-right: auto;
 }
 
-.flex-content{
+.flex-content {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -35,11 +35,11 @@ form {
     margin : 0;
 }
 
-.redaction-site{
+.redaction-site {
     display: flex;
 }
 
-input[type="submit"]{
+input[type="submit"] {
     border : none;
     padding: 10px;
     border-radius: 8px;
@@ -49,7 +49,7 @@ input[type="submit"]{
     transition: background-color 0.2s;
 }
 
-input[type="submit"]:hover{
+input[type="submit"]:hover {
     background-color: #57B3D4;
 }
 
@@ -84,7 +84,7 @@ td {
     font-size: 18px;
 }
 
-.boite-article{
+.boite-article {
     width: 90%;
     display : flex;
     flex-direction: row;
@@ -94,7 +94,7 @@ td {
     margin-right: auto;
 }
 
-.article-seul{
+.article-seul {
     width: 90%;
     height: 190px;
     flex-wrap: wrap;
@@ -106,7 +106,7 @@ td {
     background-color: rgb(233, 242, 249);
 }
 
-.acceuil-jaquette{
+.acceuil-jaquette {
     width: 100%;
     border-radius: 10px;
 }
@@ -128,10 +128,10 @@ td {
     margin-right: auto;
 }
 
-.redac-articles{
+.redac-articles {
     width: 50%;
 }
 
-.redac-avis{
+.redac-avis {
     width: 50%;
 }

@@ -1,4 +1,4 @@
-nav{
+nav {
   font-family: Arial, Helvetica, sans-serif;
   position: sticky;
   top: 0;
@@ -18,7 +18,7 @@ nav{
   width: 33.33%;
 }
 
-#active{
+#active {
   background-color: #295767;
 }
   
