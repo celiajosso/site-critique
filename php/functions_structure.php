@@ -32,7 +32,7 @@ function displayArticles ($my_sqli, $jeux) {
     echo "<br>";
     echo "<div class='search-content'>";
 
-    echo "<form class='left' method='GET'>";
+    echo "<form class='left' method='GET' autocomplete='off'>";
     echo "<h3>Recherche par nom de jeu :</h3><br><br><br>";
 
     if (isset($_GET['q'])) {
@@ -48,7 +48,7 @@ function displayArticles ($my_sqli, $jeux) {
 
     // === RECHERCHE PAR CATEGORIE DE JEU ===
 
-    echo "<form class='right' method='GET'>";
+    echo "<form class='right' method='GET' autocomplete='off'>";
     echo "<h3 class='a-centrer'>Recherche par catégorie :</h3>";
 
     $i = 1;
@@ -563,7 +563,7 @@ function display_ajoutAvis ($my_sqli) {
     $numero = $_GET['numero'];
     $id_connected = $_GET['id_connected'];
 
-    echo "<form action='php/add_review.php?numero=$numero&id_connected=$id_connected' method='POST' name='nomForm2' class='onglet_form'>";
+    echo "<form action='php/add_review.php?numero=$numero&id_connected=$id_connected' method='POST' name='nomForm2' class='onglet_form' autocomplete='off'>";
         
         echo "<div class='center'>";
             echo "<label for='note' class='texte'>Note sur 10 :</label>";    
@@ -600,7 +600,7 @@ function display_modifAvis ($my_sqli) {
     $numero = $_GET['numero'];
     $id_connected = $_GET['id_connected'];
     
-    echo "<form action='php/change_review.php?numero=$numero&id_connected=$id_connected' method='POST' name='nomForm2' class='onglet_form'>";
+    echo "<form action='php/change_review.php?numero=$numero&id_connected=$id_connected' method='POST' name='nomForm2' class='onglet_form' autocomplete='off'>";
     echo "<div class='center'><label for='note' class='texte'>Note sur 10 :</label>";    
 		echo "<select id='note' name='note'>";
                 
@@ -736,7 +736,7 @@ function displayUserPrivateInformations($my_sqli, $tab) {
 
             echo "<div class='left-column'>";
                 echo "<p class='table-title'>Photo de profil :</p><br>";
-                echo "<img class='pp' src='$pp'><br><form action='./php/updateInfosPrivees.php?numero=$num&pp=1' method='POST'><input type = 'file' name='pp'><br><br><input type='submit' value='modifier'></form>";
+                echo "<img class='pp' src='$pp'><br><form action='./php/updateInfosPrivees.php?numero=$num&pp=1' method='POST' autocomplete='off'><input type = 'file' name='pp'><br><br><input type='submit' value='modifier'></form>";
                 echo "<br><br>";
             echo "</div>";
 
@@ -752,32 +752,32 @@ function displayUserPrivateInformations($my_sqli, $tab) {
             echo "<table>";
                 echo "<tr>";
                     echo "<td class='table-title'>Login :</td>";
-                    echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&login=1' method='POST'><input type = 'text' name='login' size= '30' maxlength = '50' value = '$login'> <input type='submit' value='modifier'></form></td>";
+                    echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&login=1' method='POST' autocomplete='off'><input type = 'text' name='login' size= '30' maxlength = '50' value = '$login'> <input type='submit' value='modifier'></form></td>";
                 echo "</tr>";
 
                 echo "<tr>";
                     echo "<td class='table-title'>Nom :</td>";
-                    echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&nom=1' method='POST'><input type = 'text' name='nom' maxlength = '50' size= '30' value = '$nom'> <input type='submit' value='modifier'></form></td>";
+                    echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&nom=1' method='POST' autocomplete='off'><input type = 'text' name='nom' maxlength = '50' size= '30' value = '$nom'> <input type='submit' value='modifier'></form></td>";
                 echo "</tr>";
 
                 echo "<tr>";
                     echo "<td class='table-title'>Prenom :</td>";
-                    echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&prenom=1' method='POST'><input type = 'text' name='prenom' maxlength = '50' size= '30' value = '$prenom'> <input type='submit' value='modifier'></form></td>";
+                    echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&prenom=1' method='POST' autocomplete='off'><input type = 'text' name='prenom' maxlength = '50' size= '30' value = '$prenom'> <input type='submit' value='modifier'></form></td>";
                 echo "</tr>";
 
                 echo "<tr>";
                     echo "<td class='table-title'>Adresse mail :</td>";
-                    echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&mail=1' method='POST'><input type = 'email' name='mail' maxlength = '50' size= '30' value = '$mail'> <input type='submit' value='modifier'></form></td>";
+                    echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&mail=1' method='POST' autocomplete='off'><input type = 'email' name='mail' maxlength = '50' size= '30' value = '$mail'> <input type='submit' value='modifier'></form></td>";
                 echo "</tr>";
 
                 echo "<tr>";
                     echo "<td class='table-title'>Date de naissance :</td>";
-                    echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&naissance=1' method='POST'><input type = 'text' size='30' onfocus='(this.type=`date`)' max='$today' name='naissance' value = '$naissance'> <input type='submit' value='modifier'></form></td>";
+                    echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&naissance=1' method='POST' autocomplete='off'><input type = 'text' size='30' onfocus='(this.type=`date`)' max='$today' name='naissance' value = '$naissance'> <input type='submit' value='modifier'></form></td>";
                 echo "</tr>";
                 
                 echo "<tr>";
                     echo "<td class='table-title'>Mot de passe :</td>";
-                    echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&password=1' method='POST'><input type = 'password' name='password' maxlength = '50' size= '30' value = '$password'> <input type='submit' value='modifier'></form></td>";
+                    echo "<td><form action='./php/updateInfosPrivees.php?numero=$num&password=1' method='POST' autocomplete='off'><input type = 'password' name='password' maxlength = '50' size= '30' value = '$password'> <input type='submit' value='modifier'></form></td>";
                 echo "</tr>";
 
                 echo "</form>";
@@ -877,7 +877,7 @@ function displayInscription() {
 
     echo "<div class='form-style-5'>";
 
-        echo "<form action='./php/inscription.php' method='POST'>";
+        echo "<form action='./php/inscription.php' method='POST' autocomplete='off'>";
 
             echo "<fieldset>";
             echo "<br>";
@@ -998,7 +998,7 @@ function displayRedacArticle ($my_sqli) {
 
     echo "<div class='form-style-5'>";
 
-        echo "<form action='./php/ajoutArticle.php' method='POST'>";
+        echo "<form action='./php/ajoutArticle.php' method='POST' autocomplete='off'>";
 
             echo "<fieldset>";
             echo "<br>";
@@ -1210,7 +1210,7 @@ function displayModifArticleInfos ($my_sqli) {
 
     echo "<div class='form-style-5'>";
 
-        echo "<form action='./php/verifModifArticle.php?numero=$num' method='POST'>";
+        echo "<form action='./php/verifModifArticle.php?numero=$num' method='POST' autocomplete='off'>";
 
             echo "<fieldset>";
             echo "<br>";
@@ -1373,7 +1373,7 @@ function displayGestionRoles ($my_sqli) {
 
     echo "<div class='form-style-5'>";
 
-        echo "<form action='./php/verifRole.php' method='POST'>";
+        echo "<form action='./php/verifRole.php' method='POST' autocomplete='off'>";
 
             echo "<fieldset>";  
 
@@ -1426,7 +1426,7 @@ function displayConnection () {
 
     echo "<div class='form-style-5'>";
 
-        echo "<form action='./php/login.php' method='POST'>";
+        echo "<form action='./php/login.php' method='POST' autocomplete='off'>";
 
             echo "<fieldset>";
             echo "<br>";
